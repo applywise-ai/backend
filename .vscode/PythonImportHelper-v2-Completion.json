@@ -1,0 +1,2015 @@
+[
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocket",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocketDisconnect",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocket",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Set",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Callable",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "validator",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "HttpUrl",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "HttpUrl",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "constr",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "confloat",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "wraps",
+        "importPath": "functools",
+        "description": "functools",
+        "isExtraImport": true,
+        "detail": "functools",
+        "documentation": {}
+    },
+    {
+        "label": "firebase_admin",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "auth",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "firestore",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "credentials",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "storage",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "credentials",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Text",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "JSON",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Float",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "MetaData",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "FieldFilter",
+        "importPath": "google.cloud.firestore_v1.base_query",
+        "description": "google.cloud.firestore_v1.base_query",
+        "isExtraImport": true,
+        "detail": "google.cloud.firestore_v1.base_query",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationStatus",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationStatus",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "func",
+        "importPath": "sqlalchemy.sql",
+        "description": "sqlalchemy.sql",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.sql",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "app.db.base",
+        "description": "app.db.base",
+        "isExtraImport": true,
+        "detail": "app.db.base",
+        "documentation": {}
+    },
+    {
+        "label": "psycopg2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "psycopg2",
+        "description": "psycopg2",
+        "detail": "psycopg2",
+        "documentation": {}
+    },
+    {
+        "label": "RealDictCursor",
+        "importPath": "psycopg2.extras",
+        "description": "psycopg2.extras",
+        "isExtraImport": true,
+        "detail": "psycopg2.extras",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemyError",
+        "importPath": "sqlalchemy.exc",
+        "description": "sqlalchemy.exc",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.exc",
+        "documentation": {}
+    },
+    {
+        "label": "boto3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "boto3",
+        "description": "boto3",
+        "detail": "boto3",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "webdriver",
+        "importPath": "selenium",
+        "description": "selenium",
+        "isExtraImport": true,
+        "detail": "selenium",
+        "documentation": {}
+    },
+    {
+        "label": "Options",
+        "importPath": "selenium.webdriver.chrome.options",
+        "description": "selenium.webdriver.chrome.options",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.options",
+        "documentation": {}
+    },
+    {
+        "label": "Service",
+        "importPath": "selenium.webdriver.chrome.service",
+        "description": "selenium.webdriver.chrome.service",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.chrome.service",
+        "documentation": {}
+    },
+    {
+        "label": "ChromeDriverManager",
+        "importPath": "webdriver_manager.chrome",
+        "description": "webdriver_manager.chrome",
+        "isExtraImport": true,
+        "detail": "webdriver_manager.chrome",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "Celery",
+        "importPath": "celery",
+        "description": "celery",
+        "isExtraImport": true,
+        "detail": "celery",
+        "documentation": {}
+    },
+    {
+        "label": "current_task",
+        "importPath": "celery",
+        "description": "celery",
+        "isExtraImport": true,
+        "detail": "celery",
+        "documentation": {}
+    },
+    {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "celery_app",
+        "importPath": "app.tasks.celery_app",
+        "description": "app.tasks.celery_app",
+        "isExtraImport": true,
+        "detail": "app.tasks.celery_app",
+        "documentation": {}
+    },
+    {
+        "label": "browser_pool",
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "isExtraImport": true,
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
+        "label": "storage_manager",
+        "importPath": "app.services.storage",
+        "description": "app.services.storage",
+        "isExtraImport": true,
+        "detail": "app.services.storage",
+        "documentation": {}
+    },
+    {
+        "label": "firestore_manager",
+        "importPath": "app.db.firestore",
+        "description": "app.db.firestore",
+        "isExtraImport": true,
+        "detail": "app.db.firestore",
+        "documentation": {}
+    },
+    {
+        "label": "postgres_manager",
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "isExtraImport": true,
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "websocket_manager",
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
+        "isExtraImport": true,
+        "detail": "app.services.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "socket",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "socket",
+        "description": "socket",
+        "detail": "socket",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "pathlib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "pformat",
+        "importPath": "pprint",
+        "description": "pprint",
+        "isExtraImport": true,
+        "detail": "pprint",
+        "documentation": {}
+    },
+    {
+        "label": "jmespath",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jmespath",
+        "description": "jmespath",
+        "detail": "jmespath",
+        "documentation": {}
+    },
+    {
+        "label": "exceptions",
+        "importPath": "jmespath",
+        "description": "jmespath",
+        "isExtraImport": true,
+        "detail": "jmespath",
+        "documentation": {}
+    },
+    {
+        "label": "check_celery_connection",
+        "kind": 2,
+        "importPath": "app.api.routes.applications",
+        "description": "app.api.routes.applications",
+        "peekOfCode": "def check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\"\"\"\n    try:\n        from celery import current_app\n        # Check broker connection\n        inspect = current_app.control.inspect()\n        # Get active workers - this will fail if broker is down\n        active_workers = inspect.active()\n        if not active_workers:\n            return False, \"No Celery workers are running\"",
+        "detail": "app.api.routes.applications",
+        "documentation": {}
+    },
+    {
+        "label": "get_user_id",
+        "kind": 2,
+        "importPath": "app.api.routes.applications",
+        "description": "app.api.routes.applications",
+        "peekOfCode": "def get_user_id(request: Request) -> str:\n    \"\"\"Extract user_id from Firebase token\"\"\"\n    from firebase_admin import auth\n    import firebase_admin\n    # Get token from Authorization header\n    auth_header = request.headers.get(\"Authorization\")\n    if not auth_header:\n        raise HTTPException(status_code=401, detail=\"No authorization header\")\n    try:\n        # Extract token",
+        "detail": "app.api.routes.applications",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "app.api.routes.applications",
+        "description": "app.api.routes.applications",
+        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\ndef check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\"\"\"\n    try:\n        from celery import current_app\n        # Check broker connection\n        inspect = current_app.control.inspect()\n        # Get active workers - this will fail if broker is down\n        active_workers = inspect.active()",
+        "detail": "app.api.routes.applications",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.api.routes.applications",
+        "description": "app.api.routes.applications",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\"\"\"\n    try:\n        from celery import current_app\n        # Check broker connection\n        inspect = current_app.control.inspect()\n        # Get active workers - this will fail if broker is down\n        active_workers = inspect.active()\n        if not active_workers:",
+        "detail": "app.api.routes.applications",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "app.api.routes.websocket",
+        "description": "app.api.routes.websocket",
+        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    \"\"\"WebSocket endpoint for real-time updates\"\"\"\n    try:\n        await websocket_manager.connect(websocket, user_id)\n        while True:\n            # Keep connection alive and handle any client messages\n            data = await websocket.receive_text()",
+        "detail": "app.api.routes.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.api.routes.websocket",
+        "description": "app.api.routes.websocket",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    \"\"\"WebSocket endpoint for real-time updates\"\"\"\n    try:\n        await websocket_manager.connect(websocket, user_id)\n        while True:\n            # Keep connection alive and handle any client messages\n            data = await websocket.receive_text()\n            # We don't need to handle any client messages for now",
+        "detail": "app.api.routes.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "__all__",
+        "kind": 5,
+        "importPath": "app.api.dependencies",
+        "description": "app.api.dependencies",
+        "peekOfCode": "__all__ = ['auth_required']",
+        "detail": "app.api.dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "peekOfCode": "class Settings(BaseSettings):\n    \"\"\"\n    Application settings using pure Pydantic approach.\n    Environment variables are automatically loaded and validated.\n    \"\"\"\n    # Redis Configuration\n    REDIS_URL: str = Field(default=\"redis://localhost:6379/0\", description=\"Redis connection URL\")\n    # Firebase Configuration\n    FIREBASE_CREDENTIALS_PATH: str = Field(default=\"\", description=\"Path to Firebase service account JSON\")\n    FIREBASE_STORAGE_BUCKET: str = Field(default=\"\", description=\"Firebase Storage bucket name\")",
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 5,
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "peekOfCode": "settings = Settings()",
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "get_firebase_app",
+        "kind": 2,
+        "importPath": "app.core.security",
+        "description": "app.core.security",
+        "peekOfCode": "def get_firebase_app():\n    \"\"\"Get an available Firebase app for authentication\"\"\"\n    import firebase_admin\n    try:\n        # Try to get the firestore manager's app first\n        from app.db.firestore import firestore_manager\n        if firestore_manager.app_name:\n            try:\n                return firebase_admin.get_app(firestore_manager.app_name)\n            except ValueError:",
+        "detail": "app.core.security",
+        "documentation": {}
+    },
+    {
+        "label": "auth_required",
+        "kind": 2,
+        "importPath": "app.core.security",
+        "description": "app.core.security",
+        "peekOfCode": "def auth_required():\n    \"\"\"Decorator that validates Firebase token and provides user_id\"\"\"\n    def decorator(func):\n        @wraps(func)\n        async def wrapper(request: Request, *args, **kwargs):\n            # Get token from Authorization header\n            auth_header = request.headers.get(\"Authorization\")\n            if not auth_header:\n                raise HTTPException(status_code=401, detail=\"No authorization header\")\n            try:",
+        "detail": "app.core.security",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.core.security",
+        "description": "app.core.security",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_firebase_app():\n    \"\"\"Get an available Firebase app for authentication\"\"\"\n    import firebase_admin\n    try:\n        # Try to get the firestore manager's app first\n        from app.db.firestore import firestore_manager\n        if firestore_manager.app_name:\n            try:\n                return firebase_admin.get_app(firestore_manager.app_name)",
+        "detail": "app.core.security",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "app.db.base",
+        "description": "app.db.base",
+        "peekOfCode": "def get_db():\n    \"\"\"Dependency to get database session\"\"\"\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "app.db.base",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 5,
+        "importPath": "app.db.base",
+        "description": "app.db.base",
+        "peekOfCode": "engine = create_engine(\n    settings.DATABASE_URL,\n    pool_pre_ping=True,\n    pool_recycle=300,\n    echo=settings.DEBUG\n)\n# Create session factory\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Create base class for models\nBase = declarative_base()",
+        "detail": "app.db.base",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "app.db.base",
+        "description": "app.db.base",
+        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Create base class for models\nBase = declarative_base()\ndef get_db():\n    \"\"\"Dependency to get database session\"\"\"\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "app.db.base",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "app.db.base",
+        "description": "app.db.base",
+        "peekOfCode": "Base = declarative_base()\ndef get_db():\n    \"\"\"Dependency to get database session\"\"\"\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
+        "detail": "app.db.base",
+        "documentation": {}
+    },
+    {
+        "label": "FirestoreManager",
+        "kind": 6,
+        "importPath": "app.db.firestore",
+        "description": "app.db.firestore",
+        "peekOfCode": "class FirestoreManager:\n    \"\"\"Manages Firestore operations for user applications\"\"\"\n    def __init__(self):\n        self.db = None\n        self.app_name = self._get_app_name()\n        self._initialize_firestore()\n    def _get_app_name(self) -> str:\n        \"\"\"Generate a unique app name based on the process type\"\"\"\n        # Check if we're running in a Celery worker\n        if 'celery' in os.environ.get('_', '').lower() or 'worker' in os.environ.get('_', '').lower():",
+        "detail": "app.db.firestore",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.db.firestore",
+        "description": "app.db.firestore",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass FirestoreManager:\n    \"\"\"Manages Firestore operations for user applications\"\"\"\n    def __init__(self):\n        self.db = None\n        self.app_name = self._get_app_name()\n        self._initialize_firestore()\n    def _get_app_name(self) -> str:\n        \"\"\"Generate a unique app name based on the process type\"\"\"\n        # Check if we're running in a Celery worker",
+        "detail": "app.db.firestore",
+        "documentation": {}
+    },
+    {
+        "label": "firestore_manager",
+        "kind": 5,
+        "importPath": "app.db.firestore",
+        "description": "app.db.firestore",
+        "peekOfCode": "firestore_manager = FirestoreManager()",
+        "detail": "app.db.firestore",
+        "documentation": {}
+    },
+    {
+        "label": "Job",
+        "kind": 6,
+        "importPath": "app.db.models",
+        "description": "app.db.models",
+        "peekOfCode": "class Job(Base):\n    __tablename__ = \"jobs\"\n    id = Column(Integer, primary_key=True, index=True)\n    title = Column(String, nullable=False)\n    company = Column(String, nullable=False)\n    logo = Column(String)\n    location = Column(String)\n    salary = Column(String)\n    salary_value = Column(Float)\n    job_type = Column(String)",
+        "detail": "app.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "JobApplication",
+        "kind": 6,
+        "importPath": "app.db.models",
+        "description": "app.db.models",
+        "peekOfCode": "class JobApplication(Base):\n    __tablename__ = \"job_applications\"\n    id = Column(Integer, primary_key=True, index=True)\n    task_id = Column(String, unique=True, index=True, nullable=False)\n    job_url = Column(String, nullable=False)\n    company_name = Column(String)\n    job_title = Column(String)\n    status = Column(String, default=\"pending\")  # pending, processing, completed, failed\n    # Application data\n    resume_path = Column(String)",
+        "detail": "app.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationLog",
+        "kind": 6,
+        "importPath": "app.db.models",
+        "description": "app.db.models",
+        "peekOfCode": "class ApplicationLog(Base):\n    __tablename__ = \"application_logs\"\n    id = Column(Integer, primary_key=True, index=True)\n    application_id = Column(Integer, ForeignKey(\"job_applications.id\"))\n    level = Column(String)  # info, warning, error\n    message = Column(Text)\n    timestamp = Column(DateTime(timezone=True), server_default=func.now())\n    # Relationships\n    application = relationship(\"JobApplication\", back_populates=\"logs\")\nclass BrowserSession(Base):",
+        "detail": "app.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "BrowserSession",
+        "kind": 6,
+        "importPath": "app.db.models",
+        "description": "app.db.models",
+        "peekOfCode": "class BrowserSession(Base):\n    __tablename__ = \"browser_sessions\"\n    id = Column(Integer, primary_key=True, index=True)\n    worker_id = Column(String, unique=True, index=True)\n    session_id = Column(String)\n    is_active = Column(Boolean, default=True)\n    last_used = Column(DateTime(timezone=True), server_default=func.now())\n    created_at = Column(DateTime(timezone=True), server_default=func.now())",
+        "detail": "app.db.models",
+        "documentation": {}
+    },
+    {
+        "label": "PostgresManager",
+        "kind": 6,
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "peekOfCode": "class PostgresManager:\n    \"\"\"Manages PostgreSQL database operations\"\"\"\n    def __init__(self):\n        \"\"\"Initialize PostgreSQL connection with IAM authentication\"\"\"\n        logger.info(\"🐘 Starting PostgreSQL initialization...\")\n        try:\n            logger.info(f\"📡 Connecting to PostgreSQL at {settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}\")\n            # Configure connection args based on auth method\n            connect_args = {'connect_timeout': 10}\n            if not settings.POSTGRES_PASSWORD:",
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_token",
+        "kind": 2,
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "peekOfCode": "def get_db_token():\n    \"\"\"Generate a token for IAM authentication\"\"\"\n    try:\n        rds = boto3.client('rds')\n        token = rds.generate_db_auth_token(\n            DBHostname=settings.POSTGRES_HOST,\n            Port=settings.POSTGRES_PORT,\n            DBUsername=settings.POSTGRES_USER,\n            Region=settings.AWS_REGION\n        )",
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_url",
+        "kind": 2,
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "peekOfCode": "def get_db_url():\n    \"\"\"Get database URL with password or IAM token\"\"\"\n    if settings.POSTGRES_PASSWORD:\n        # Use regular password authentication\n        logger.info(\"Using password authentication for PostgreSQL\")\n        return f\"postgresql://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_DB}\"\n    else:\n        # Fall back to IAM authentication\n        logger.info(\"Using IAM authentication for PostgreSQL\")\n        token = get_db_token()",
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_db_token():\n    \"\"\"Generate a token for IAM authentication\"\"\"\n    try:\n        rds = boto3.client('rds')\n        token = rds.generate_db_auth_token(\n            DBHostname=settings.POSTGRES_HOST,\n            Port=settings.POSTGRES_PORT,\n            DBUsername=settings.POSTGRES_USER,\n            Region=settings.AWS_REGION",
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "postgres_manager",
+        "kind": 5,
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "peekOfCode": "postgres_manager = PostgresManager()",
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationStatus",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class ApplicationStatus(str, Enum):\n    \"\"\"Application status matching frontend TypeScript interface\"\"\"\n    PENDING = \"Pending\"    # Initial state when job is being processed\n    PROCESSING = \"Processing\"  # When job is actively being processed\n    DRAFT = \"Draft\"        # After processing, ready for user to review and submit\n    APPLIED = \"Applied\"\n    SAVED = \"Saved\"\n    REJECTED = \"Rejected\"\n    INTERVIEWING = \"Interviewing\"\n    EXPIRED = \"Expired\"",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "JobType",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class JobType(str, Enum):\n    FULL_TIME = \"full_time\"\n    PART_TIME = \"part_time\"\n    CONTRACT = \"contract\"\n    INTERNSHIP = \"internship\"\nclass Education(BaseModel):\n    school: str\n    degree: str\n    fieldOfStudy: str\n    educationFrom: datetime",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "Education",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class Education(BaseModel):\n    school: str\n    degree: str\n    fieldOfStudy: str\n    educationFrom: datetime\n    educationTo: Optional[datetime]\n    educationGpa: Optional[float]\nclass Employment(BaseModel):\n    company: str\n    position: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "Employment",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class Employment(BaseModel):\n    company: str\n    position: str\n    employmentFrom: datetime\n    employmentTo: Optional[datetime]\n    employmentDescription: str\n    employmentLocation: str\nclass Project(BaseModel):\n    projectName: str\n    projectDescription: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "Project",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class Project(BaseModel):\n    projectName: str\n    projectDescription: str\n    projectLink: Optional[str]\nclass UserProfile(BaseModel):\n    # Personal Information\n    fullName: str\n    email: str\n    phoneNumber: Optional[str]\n    currentLocation: Optional[str]",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "UserProfile",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class UserProfile(BaseModel):\n    # Personal Information\n    fullName: str\n    email: str\n    phoneNumber: Optional[str]\n    currentLocation: Optional[str]\n    resumeUrl: Optional[str]\n    resumeFilename: Optional[str]\n    resumeAutofill: Optional[Dict[str, Any]]\n    # Social Links",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class QuestionType(str, Enum):\n    TEXT = \"text\"\n    TEXTAREA = \"textarea\"\n    SELECT = \"select\"\n    MULTI_SELECT = \"multi_select\"\n    CHECKBOX = \"checkbox\"\n    RADIO = \"radio\"\n    FILE = \"file\"\n    DATE = \"date\"\n    NUMBER = \"number\"",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "FormSectionType",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class FormSectionType(str, Enum):\n    PERSONAL = \"personal\"\n    EDUCATION = \"education\"\n    EXPERIENCE = \"experience\"\n    SKILLS = \"skills\"\n    ADDITIONAL = \"additional\"\nclass FileType(str, Enum):\n    RESUME = \"resume\"\n    COVER_LETTER = \"cover_letter\"\n    PORTFOLIO = \"portfolio\"",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "FileType",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class FileType(str, Enum):\n    RESUME = \"resume\"\n    COVER_LETTER = \"cover_letter\"\n    PORTFOLIO = \"portfolio\"\n    OTHER = \"other\"\nclass Answer(BaseModel):\n    \"\"\"Answer model that can handle different types of answers\"\"\"\n    value: Union[str, List[str], bool, int, float]\n    file_url: Optional[str] = None\n    file_name: Optional[str] = None",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "Answer",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class Answer(BaseModel):\n    \"\"\"Answer model that can handle different types of answers\"\"\"\n    value: Union[str, List[str], bool, int, float]\n    file_url: Optional[str] = None\n    file_name: Optional[str] = None\nclass FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    id: str\n    question: str\n    answer: Union[str, Dict[str, Union[str, int, bool, None]]]  # Matches frontend Answer type",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "FormQuestion",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    id: str\n    question: str\n    answer: Union[str, Dict[str, Union[str, int, bool, None]]]  # Matches frontend Answer type\n    type: QuestionType\n    placeholder: Optional[str] = None\n    options: Optional[List[str]] = None\n    section: FormSectionType\n    file_type: Optional[FileType] = None",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "JobApplicationCreate",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class JobApplicationCreate(BaseModel):\n    user_id: str\n    job_url: HttpUrl\n    company_name: Optional[str] = None\n    job_title: Optional[str] = None\n    resume_path: Optional[str] = None\n    cover_letter_path: Optional[str] = None\n    application_data: Optional[Dict[str, Any]] = None\nclass JobApplicationResponse(BaseModel):\n    id: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "JobApplicationResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class JobApplicationResponse(BaseModel):\n    id: str\n    job_id: str\n    job_url: str\n    company_name: Optional[str]\n    job_title: Optional[str]\n    status: str\n    screenshot_urls: Optional[List[str]]\n    error_message: Optional[str]\n    created_at: Optional[datetime]",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "TaskStatusResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class TaskStatusResponse(BaseModel):\n    status: ApplicationStatus\n    result: Optional[Dict[str, Any]] = None\n    error: Optional[str] = None\nclass PrepareJobRequest(BaseModel):\n    \"\"\"Request model for preparing a job application\"\"\"\n    job_id: str\nclass ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    job_id: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "PrepareJobRequest",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class PrepareJobRequest(BaseModel):\n    \"\"\"Request model for preparing a job application\"\"\"\n    job_id: str\nclass ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    job_id: str\n    application_id: str\nclass ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "ApplyJobRequest",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    job_id: str\n    application_id: str\nclass ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass ApplicationResponse(BaseModel):",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "ApplyJobResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass ApplicationResponse(BaseModel):\n    \"\"\"Response model for a single application\"\"\"\n    id: str\n    user_id: str\n    job_id: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "ApplicationResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class ApplicationResponse(BaseModel):\n    \"\"\"Response model for a single application\"\"\"\n    id: str\n    user_id: str\n    job_id: str\n    status: ApplicationStatus\n    form_questions: List[FormQuestion]\n    applied_date: Optional[datetime] = None\n    last_updated: datetime\n    created_at: datetime",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "UserApplicationsResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class UserApplicationsResponse(BaseModel):\n    \"\"\"Response model for user applications list\"\"\"\n    applications: List[ApplicationResponse]\n    total: int\nclass SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "SaveFormRequest",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "SaveFormResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "JobBase",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobBase(BaseModel):\n    \"\"\"Base Job model with common attributes\"\"\"\n    title: constr(min_length=1, max_length=255)\n    company: constr(min_length=1, max_length=255)\n    logo: HttpUrl\n    location: constr(min_length=1, max_length=255)\n    salary: constr(min_length=1, max_length=255)\n    salary_value: confloat(gt=0)  # Must be positive\n    job_type: constr(min_length=1, max_length=50)\n    description: str",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobCreate",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobCreate(JobBase):\n    \"\"\"Schema for creating a new job\"\"\"\n    posted_date: datetime = Field(default_factory=datetime.now)\nclass JobUpdate(BaseModel):\n    \"\"\"Schema for updating an existing job\"\"\"\n    title: Optional[constr(min_length=1, max_length=255)] = None\n    company: Optional[constr(min_length=1, max_length=255)] = None\n    logo: Optional[HttpUrl] = None\n    location: Optional[constr(min_length=1, max_length=255)] = None\n    salary: Optional[constr(min_length=1, max_length=255)] = None",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobUpdate",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobUpdate(BaseModel):\n    \"\"\"Schema for updating an existing job\"\"\"\n    title: Optional[constr(min_length=1, max_length=255)] = None\n    company: Optional[constr(min_length=1, max_length=255)] = None\n    logo: Optional[HttpUrl] = None\n    location: Optional[constr(min_length=1, max_length=255)] = None\n    salary: Optional[constr(min_length=1, max_length=255)] = None\n    salary_value: Optional[confloat(gt=0)] = None\n    job_type: Optional[constr(min_length=1, max_length=50)] = None\n    description: Optional[str] = None",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobInDB",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobInDB(JobBase):\n    \"\"\"Schema for job as stored in database\"\"\"\n    id: int\n    posted_date: datetime\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        from_attributes = True\nclass JobResponse(JobInDB):\n    \"\"\"Schema for job response\"\"\"",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobResponse",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobResponse(JobInDB):\n    \"\"\"Schema for job response\"\"\"\n    pass  # Same as JobInDB for now, but can be extended if needed\n# Example of how to use the schema:\n\"\"\"\n# Creating a new job\nnew_job = JobCreate(\n    title=\"Senior Software Engineer\",\n    company=\"TechCorp Innovation\",\n    logo=\"https://example.com/techcorp-logo.png\",",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "new_job",
+        "kind": 5,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "new_job = JobCreate(\n    title=\"Senior Software Engineer\",\n    company=\"TechCorp Innovation\",\n    logo=\"https://example.com/techcorp-logo.png\",\n    location=\"San Francisco, CA (Hybrid)\",\n    salary=\"$150,000 - $220,000 annually\",\n    salary_value=185000.00,\n    job_type=\"Full-time\",\n    description=\"TechCorp Innovation is seeking a Senior Software Engineer...\",\n    experience_level=\"Senior\",",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "BrowserPool",
+        "kind": 6,
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "peekOfCode": "class BrowserPool:\n    \"\"\"Singleton browser pool to manage persistent Chrome drivers\"\"\"\n    _instance = None\n    _lock = threading.Lock()\n    def __new__(cls):\n        if cls._instance is None:\n            with cls._lock:\n                if cls._instance is None:\n                    cls._instance = super().__new__(cls)\n                    cls._instance._initialized = False",
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass BrowserPool:\n    \"\"\"Singleton browser pool to manage persistent Chrome drivers\"\"\"\n    _instance = None\n    _lock = threading.Lock()\n    def __new__(cls):\n        if cls._instance is None:\n            with cls._lock:\n                if cls._instance is None:\n                    cls._instance = super().__new__(cls)",
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
+        "label": "browser_pool",
+        "kind": 5,
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "peekOfCode": "browser_pool = BrowserPool()",
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
+        "label": "StorageManager",
+        "kind": 6,
+        "importPath": "app.services.storage",
+        "description": "app.services.storage",
+        "peekOfCode": "class StorageManager:\n    \"\"\"Manages file uploads to Firebase Storage\"\"\"\n    def __init__(self):\n        \"\"\"Initialize storage client\"\"\"\n        self.firebase_bucket = None\n        self._bucket_initialized = False\n    def _get_firebase_app(self):\n        \"\"\"Get an existing Firebase app or return None\"\"\"\n        try:\n            # Try to get any existing Firebase app",
+        "detail": "app.services.storage",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.storage",
+        "description": "app.services.storage",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Check if Firebase Admin SDK is available\ntry:\n    from firebase_admin import storage\n    FIREBASE_AVAILABLE = True\nexcept ImportError:\n    FIREBASE_AVAILABLE = False\n    logger.warning(\"Firebase Admin SDK not available\")\nfrom app.core.config import settings\nclass StorageManager:",
+        "detail": "app.services.storage",
+        "documentation": {}
+    },
+    {
+        "label": "storage_manager",
+        "kind": 5,
+        "importPath": "app.services.storage",
+        "description": "app.services.storage",
+        "peekOfCode": "storage_manager = StorageManager()",
+        "detail": "app.services.storage",
+        "documentation": {}
+    },
+    {
+        "label": "WebSocketManager",
+        "kind": 6,
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
+        "peekOfCode": "class WebSocketManager:\n    def __init__(self):\n        # Store active connections by user_id\n        self.active_connections: Dict[str, Set[WebSocket]] = {}\n    async def connect(self, websocket: WebSocket, user_id: str):\n        \"\"\"Connect a new WebSocket client\"\"\"\n        await websocket.accept()\n        if user_id not in self.active_connections:\n            self.active_connections[user_id] = set()\n        self.active_connections[user_id].add(websocket)",
+        "detail": "app.services.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass WebSocketManager:\n    def __init__(self):\n        # Store active connections by user_id\n        self.active_connections: Dict[str, Set[WebSocket]] = {}\n    async def connect(self, websocket: WebSocket, user_id: str):\n        \"\"\"Connect a new WebSocket client\"\"\"\n        await websocket.accept()\n        if user_id not in self.active_connections:\n            self.active_connections[user_id] = set()",
+        "detail": "app.services.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "websocket_manager",
+        "kind": 5,
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
+        "peekOfCode": "websocket_manager = WebSocketManager()",
+        "detail": "app.services.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "celery_app",
+        "kind": 5,
+        "importPath": "app.tasks.celery_app",
+        "description": "app.tasks.celery_app",
+        "peekOfCode": "celery_app = Celery(\n    \"applywise\",\n    broker=settings.CELERY_BROKER_URL,\n    backend=settings.CELERY_RESULT_BACKEND,\n    include=[\"app.tasks.job_application\"]\n)\n# Configure Celery\ncelery_app.conf.update(\n    task_serializer=\"json\",\n    accept_content=[\"json\"],",
+        "detail": "app.tasks.celery_app",
+        "documentation": {}
+    },
+    {
+        "label": "log_to_firestore",
+        "kind": 2,
+        "importPath": "app.tasks.job_application",
+        "description": "app.tasks.job_application",
+        "peekOfCode": "def log_to_firestore(user_id: str, application_id: str, level: str, message: str):\n    \"\"\"Helper function to log messages to Firestore\"\"\"\n    try:\n        firestore_manager.add_application_log(user_id, application_id, level, message)\n    except Exception as e:\n        logger.error(f\"Failed to log to Firestore: {e}\")\n@celery_app.task(bind=True)\ndef apply_to_job(self, application_data: Dict[str, Any]):\n    \"\"\"Main task to apply to a job\"\"\"\n    worker_id = f\"worker_{current_task.request.hostname}_{os.getpid()}\"",
+        "detail": "app.tasks.job_application",
+        "documentation": {}
+    },
+    {
+        "label": "apply_to_job",
+        "kind": 2,
+        "importPath": "app.tasks.job_application",
+        "description": "app.tasks.job_application",
+        "peekOfCode": "def apply_to_job(self, application_data: Dict[str, Any]):\n    \"\"\"Main task to apply to a job\"\"\"\n    worker_id = f\"worker_{current_task.request.hostname}_{os.getpid()}\"\n    user_id = application_data['user_id']\n    application_id = application_data['application_id']\n    job_id = application_data['job_id']\n    should_submit = application_data.get('should_submit', False)\n    form_questions = application_data.get('form_questions', None)\n    override_form_questions = application_data.get('override_form_questions', False)\n    logger.info(f\"Starting job application task for job {job_id}, application {application_id}\")",
+        "detail": "app.tasks.job_application",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "kind": 2,
+        "importPath": "app.tasks.job_application",
+        "description": "app.tasks.job_application",
+        "peekOfCode": "def take_screenshot(driver, application_id: str) -> str:\n    \"\"\"Take a screenshot of the current page\"\"\"\n    try:\n        # Use temp directory for faster I/O\n        filename = f\"screenshot_{application_id}_{uuid.uuid4().hex[:8]}.png\"\n        filepath = os.path.join(tempfile.gettempdir(), filename)\n        # Take screenshot with minimal quality for speed\n        driver.save_screenshot(filepath)\n        return filepath\n    except Exception as e:",
+        "detail": "app.tasks.job_application",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.tasks.job_application",
+        "description": "app.tasks.job_application",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef log_to_firestore(user_id: str, application_id: str, level: str, message: str):\n    \"\"\"Helper function to log messages to Firestore\"\"\"\n    try:\n        firestore_manager.add_application_log(user_id, application_id, level, message)\n    except Exception as e:\n        logger.error(f\"Failed to log to Firestore: {e}\")\n@celery_app.task(bind=True)\ndef apply_to_job(self, application_data: Dict[str, Any]):\n    \"\"\"Main task to apply to a job\"\"\"",
+        "detail": "app.tasks.job_application",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nlogger.info(\"Starting FastAPI application\")\napp = FastAPI(\n    title=\"ApplyWise API\",\n    description=\"Backend API for ApplyWise job application automation\",\n    version=\"1.0.0\"\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "app = FastAPI(\n    title=\"ApplyWise API\",\n    description=\"Backend API for ApplyWise job application automation\",\n    version=\"1.0.0\"\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=settings.CORS_ORIGINS,\n    allow_credentials=True,",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "test_network_connectivity",
+        "kind": 2,
+        "importPath": "scripts.check_db_connection",
+        "description": "scripts.check_db_connection",
+        "peekOfCode": "def test_network_connectivity(host, port):\n    \"\"\"Test basic network connectivity to host:port\"\"\"\n    print(f\"🌐 Testing network connectivity to {host}:{port}\")\n    try:\n        sock = socket.create_connection((host, port), timeout=10)\n        sock.close()\n        print(\"✅ Network connectivity OK\")\n        return True\n    except socket.timeout:\n        print(\"❌ Connection timeout - possible network/VPN issue\")",
+        "detail": "scripts.check_db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "test_db_connection",
+        "kind": 2,
+        "importPath": "scripts.check_db_connection",
+        "description": "scripts.check_db_connection",
+        "peekOfCode": "def test_db_connection():\n    \"\"\"Test PostgreSQL database connection\"\"\"\n    print(\"🐘 Testing PostgreSQL connection\")\n    db_params = {\n        \"host\": os.getenv(\"POSTGRES_HOST\", \"172.31.85.170\"),\n        \"database\": os.getenv(\"POSTGRES_DB\", \"applywise\"),\n        \"user\": os.getenv(\"POSTGRES_USER\", \"postgres\"),\n        \"password\": os.getenv(\"POSTGRES_PASSWORD\"),\n        \"port\": int(os.getenv(\"POSTGRES_PORT\", \"5432\")),\n        \"connect_timeout\": 10,",
+        "detail": "scripts.check_db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "get_public_ip",
+        "kind": 2,
+        "importPath": "scripts.check_db_connection",
+        "description": "scripts.check_db_connection",
+        "peekOfCode": "def get_public_ip():\n    \"\"\"Get your current public IP address\"\"\"\n    try:\n        import requests\n        response = requests.get('https://httpbin.org/ip', timeout=5)\n        ip = response.json()['origin']\n        print(f\"🌍 Your public IP: {ip}\")\n        return ip\n    except Exception as e:\n        print(f\"⚠️ Could not determine public IP: {e}\")",
+        "detail": "scripts.check_db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.check_db_connection",
+        "description": "scripts.check_db_connection",
+        "peekOfCode": "def main():\n    \"\"\"Main diagnostic function\"\"\"\n    print(\"🔍 PostgreSQL Connection Diagnostics\")\n    print(\"=\" * 50)\n    # Get environment info\n    print(f\"📁 Working directory: {os.getcwd()}\")\n    print(f\"🐍 Python version: {sys.version}\")\n    # Check if .env file exists\n    env_file = \".env\"\n    if os.path.exists(env_file):",
+        "detail": "scripts.check_db_connection",
+        "documentation": {}
+    },
+    {
+        "label": "Job",
+        "kind": 6,
+        "importPath": "scripts.insert_job",
+        "description": "scripts.insert_job",
+        "peekOfCode": "class Job(BaseModel):\n    \"\"\"Pydantic model matching the TypeScript Job interface\"\"\"\n    id: Optional[int] = None\n    title: str\n    company: str\n    logo: str\n    location: str\n    salary: str\n    salary_value: float  # Numeric value for filtering\n    job_type: str",
+        "detail": "scripts.insert_job",
+        "documentation": {}
+    },
+    {
+        "label": "test_connection",
+        "kind": 2,
+        "importPath": "scripts.insert_job",
+        "description": "scripts.insert_job",
+        "peekOfCode": "def test_connection():\n    \"\"\"Test database connection and print detailed error if it fails\"\"\"\n    try:\n        print(\"[4] Testing database connection...\")\n        start_time = time.time()\n        # Try to connect\n        conn = psycopg2.connect(**DB_PARAMS)\n        conn.close()\n        end_time = time.time()\n        print(f\"[5] Test connection successful! Time taken: {end_time - start_time:.2f} seconds\")",
+        "detail": "scripts.insert_job",
+        "documentation": {}
+    },
+    {
+        "label": "create_jobs_table",
+        "kind": 2,
+        "importPath": "scripts.insert_job",
+        "description": "scripts.insert_job",
+        "peekOfCode": "def create_jobs_table(cursor):\n    \"\"\"Create jobs table if it doesn't exist\"\"\"\n    print(\"[5] Creating jobs table if not exists...\")\n    start_time = time.time()\n    cursor.execute(\"\"\"\n        CREATE TABLE IF NOT EXISTS jobs (\n            id SERIAL PRIMARY KEY,\n            title VARCHAR(255) NOT NULL,\n            company VARCHAR(255) NOT NULL,\n            logo TEXT NOT NULL,",
+        "detail": "scripts.insert_job",
+        "documentation": {}
+    },
+    {
+        "label": "insert_sample_job",
+        "kind": 2,
+        "importPath": "scripts.insert_job",
+        "description": "scripts.insert_job",
+        "peekOfCode": "def insert_sample_job(cursor):\n    \"\"\"Insert a sample job into the jobs table\"\"\"\n    print(\"[7] Preparing sample job data...\")\n    job_data = {\n        \"title\": \"Senior Software Engineer\",\n        \"company\": \"TechCorp Innovation\",\n        \"logo\": \"https://example.com/techcorp-logo.png\",\n        \"location\": \"San Francisco, CA (Hybrid)\",\n        \"salary\": \"$150,000 - $220,000 annually\",\n        \"salary_value\": 185000.00,  # Average of the range",
+        "detail": "scripts.insert_job",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.insert_job",
+        "description": "scripts.insert_job",
+        "peekOfCode": "def main():\n    # First test the connection\n    if not test_connection():\n        print(\"[ERROR] Exiting due to connection failure\")\n        return\n    conn = None\n    cursor = None\n    try:\n        print(\"[10] Establishing main database connection...\")\n        start_time = time.time()",
+        "detail": "scripts.insert_job",
+        "documentation": {}
+    },
+    {
+        "label": "DB_PARAMS",
+        "kind": 5,
+        "importPath": "scripts.insert_job",
+        "description": "scripts.insert_job",
+        "peekOfCode": "DB_PARAMS = {\n    \"host\": os.getenv(\"POSTGRES_HOST\", \"172.31.85.170\"),\n    \"database\": os.getenv(\"POSTGRES_DB\", \"applywise\"),\n    \"user\": os.getenv(\"POSTGRES_USER\", \"postgres\"),\n    \"password\": os.getenv(\"POSTGRES_PASSWORD\"),\n    \"port\": os.getenv(\"POSTGRES_PORT\", \"5432\"),\n    # Add timeout parameters\n    \"connect_timeout\": 10,  # Connection timeout in seconds\n    \"options\": \"-c statement_timeout=30000\"  # Statement timeout in milliseconds (30 seconds)\n}",
+        "detail": "scripts.insert_job",
+        "documentation": {}
+    },
+    {
+        "label": "test_health_check",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_health_check():\n    \"\"\"Test the health check endpoint\"\"\"\n    print(\"🔍 Testing health check...\")\n    response = requests.get(f\"{API_BASE_URL}/health\")\n    if response.status_code == 200:\n        print(\"✅ Health check passed\")\n        print(json.dumps(response.json(), indent=2))\n    else:\n        print(f\"❌ Health check failed: {response.status_code}\")\n    return response.status_code == 200",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_apply_job",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_apply_job():\n    \"\"\"Test job application submission\"\"\"\n    print(\"\\n📝 Testing job application...\")\n    # Sample job application data\n    application_data = {\n        \"user_id\": TEST_USER_ID,\n        \"job_url\": \"https://www.linkedin.com/jobs/view/3750000000\",\n        \"resume_data\": {\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_apply_job_duplicate",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_apply_job_duplicate():\n    \"\"\"Test applying to the same job again (should use existing application)\"\"\"\n    print(\"\\n🔄 Testing duplicate job application...\")\n    # Same job URL as before\n    application_data = {\n        \"user_id\": TEST_USER_ID,\n        \"job_url\": \"https://www.linkedin.com/jobs/view/3750000000\",\n        \"resume_data\": {\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_task_status",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_task_status(task_id: str):\n    \"\"\"Test task status checking\"\"\"\n    print(f\"\\n📊 Checking task status for {task_id}...\")\n    max_attempts = 30\n    attempt = 0\n    while attempt < max_attempts:\n        response = requests.get(f\"{API_BASE_URL}/status/{task_id}\")\n        if response.status_code == 200:\n            result = response.json()\n            status = result['status']",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_user_applications",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_get_user_applications():\n    \"\"\"Test getting list of applications for a user\"\"\"\n    print(f\"\\n📋 Getting applications for user {TEST_USER_ID}...\")\n    response = requests.get(f\"{API_BASE_URL}/users/{TEST_USER_ID}/applications\")\n    if response.status_code == 200:\n        result = response.json()\n        applications = result['applications']\n        print(f\"✅ Found {len(applications)} applications\")\n        print(f\"Total count: {result['total_count']}\")\n        print(f\"Has more: {result['has_more']}\")",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_specific_application",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_get_specific_application(application_id: str):\n    \"\"\"Test getting a specific application\"\"\"\n    print(f\"\\n📄 Getting specific application {application_id}...\")\n    response = requests.get(f\"{API_BASE_URL}/users/{TEST_USER_ID}/applications/{application_id}\")\n    if response.status_code == 200:\n        application = response.json()\n        print(\"✅ Application retrieved successfully\")\n        print(f\"  - Job ID: {application['job_id']}\")\n        print(f\"  - Status: {application['status']}\")\n        print(f\"  - Job URL: {application['job_url']}\")",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_application_logs",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_get_application_logs(application_id: str):\n    \"\"\"Test getting application logs\"\"\"\n    print(f\"\\n📝 Getting logs for application {application_id}...\")\n    response = requests.get(f\"{API_BASE_URL}/users/{TEST_USER_ID}/applications/{application_id}/logs\")\n    if response.status_code == 200:\n        result = response.json()\n        logs = result['logs']\n        print(f\"✅ Found {len(logs)} log entries\")\n        for log in logs[-5:]:  # Show last 5 logs\n            print(f\"  - [{log.get('level', 'info')}] {log.get('message', '')}\")",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_worker_status",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def test_worker_status():\n    \"\"\"Test worker status endpoint\"\"\"\n    print(\"\\n👷 Checking worker status...\")\n    response = requests.get(f\"{API_BASE_URL}/workers\")\n    if response.status_code == 200:\n        result = response.json()\n        print(\"✅ Worker status retrieved\")\n        # Count active tasks\n        active_tasks = result.get('active_tasks', {})\n        total_active = sum(len(tasks) for tasks in active_tasks.values())",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "def main():\n    \"\"\"Run all tests\"\"\"\n    print(\"🧪 ApplyWise Backend API Test Suite (Firestore)\")\n    print(\"=\" * 60)\n    # Test health check\n    if not test_health_check():\n        print(\"❌ Health check failed. Make sure the API is running.\")\n        return\n    # Test worker status\n    test_worker_status()",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "API_BASE_URL",
+        "kind": 5,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "API_BASE_URL = \"http://localhost:8000\"\nTEST_USER_ID = \"test_user_123\"  # Test user ID\ndef test_health_check():\n    \"\"\"Test the health check endpoint\"\"\"\n    print(\"🔍 Testing health check...\")\n    response = requests.get(f\"{API_BASE_URL}/health\")\n    if response.status_code == 200:\n        print(\"✅ Health check passed\")\n        print(json.dumps(response.json(), indent=2))\n    else:",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "TEST_USER_ID",
+        "kind": 5,
+        "importPath": "scripts.test_api",
+        "description": "scripts.test_api",
+        "peekOfCode": "TEST_USER_ID = \"test_user_123\"  # Test user ID\ndef test_health_check():\n    \"\"\"Test the health check endpoint\"\"\"\n    print(\"🔍 Testing health check...\")\n    response = requests.get(f\"{API_BASE_URL}/health\")\n    if response.status_code == 200:\n        print(\"✅ Health check passed\")\n        print(json.dumps(response.json(), indent=2))\n    else:\n        print(f\"❌ Health check failed: {response.status_code}\")",
+        "detail": "scripts.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "firestore_adminCallTransformer",
+        "kind": 6,
+        "importPath": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "description": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "peekOfCode": "class firestore_adminCallTransformer(cst.CSTTransformer):\n    CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')\n    METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {\n        'create_database': ('parent', 'database', 'database_id', ),\n        'create_index': ('parent', 'index', ),\n        'delete_index': ('name', ),\n        'export_documents': ('name', 'collection_ids', 'output_uri_prefix', ),\n        'get_database': ('name', ),\n        'get_field': ('name', ),\n        'get_index': ('name', ),",
+        "detail": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "partition",
+        "kind": 2,
+        "importPath": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "description": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "peekOfCode": "def partition(\n    predicate: Callable[[Any], bool],\n    iterator: Sequence[Any]\n) -> Tuple[List[Any], List[Any]]:\n    \"\"\"A stable, out-of-place partition.\"\"\"\n    results = ([], [])\n    for i in iterator:\n        results[int(predicate(i))].append(i)\n    # Returns trueList, falseList\n    return results[1], results[0]",
+        "detail": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "fix_files",
+        "kind": 2,
+        "importPath": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "description": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "peekOfCode": "def fix_files(\n    in_dir: pathlib.Path,\n    out_dir: pathlib.Path,\n    *,\n    transformer=firestore_adminCallTransformer(),\n):\n    \"\"\"Duplicate the input dir to the output dir, fixing file method calls.\n    Preconditions:\n    * in_dir is a real directory\n    * out_dir is a real, empty directory",
+        "detail": "venv.bin.fixup_firestore_admin_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "firestoreCallTransformer",
+        "kind": 6,
+        "importPath": "venv.bin.fixup_firestore_v1_keywords",
+        "description": "venv.bin.fixup_firestore_v1_keywords",
+        "peekOfCode": "class firestoreCallTransformer(cst.CSTTransformer):\n    CTRL_PARAMS: Tuple[str] = ('retry', 'timeout', 'metadata')\n    METHOD_TO_PARAMS: Dict[str, Tuple[str]] = {\n        'batch_get_documents': ('database', 'documents', 'mask', 'transaction', 'new_transaction', 'read_time', ),\n        'batch_write': ('database', 'writes', 'labels', ),\n        'begin_transaction': ('database', 'options', ),\n        'commit': ('database', 'writes', 'transaction', ),\n        'create_document': ('parent', 'collection_id', 'document', 'document_id', 'mask', ),\n        'delete_document': ('name', 'current_document', ),\n        'get_document': ('name', 'mask', 'transaction', 'read_time', ),",
+        "detail": "venv.bin.fixup_firestore_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "partition",
+        "kind": 2,
+        "importPath": "venv.bin.fixup_firestore_v1_keywords",
+        "description": "venv.bin.fixup_firestore_v1_keywords",
+        "peekOfCode": "def partition(\n    predicate: Callable[[Any], bool],\n    iterator: Sequence[Any]\n) -> Tuple[List[Any], List[Any]]:\n    \"\"\"A stable, out-of-place partition.\"\"\"\n    results = ([], [])\n    for i in iterator:\n        results[int(predicate(i))].append(i)\n    # Returns trueList, falseList\n    return results[1], results[0]",
+        "detail": "venv.bin.fixup_firestore_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "fix_files",
+        "kind": 2,
+        "importPath": "venv.bin.fixup_firestore_v1_keywords",
+        "description": "venv.bin.fixup_firestore_v1_keywords",
+        "peekOfCode": "def fix_files(\n    in_dir: pathlib.Path,\n    out_dir: pathlib.Path,\n    *,\n    transformer=firestoreCallTransformer(),\n):\n    \"\"\"Duplicate the input dir to the output dir, fixing file method calls.\n    Preconditions:\n    * in_dir is a real directory\n    * out_dir is a real, empty directory",
+        "detail": "venv.bin.fixup_firestore_v1_keywords",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "venv.bin.jp",
+        "description": "venv.bin.jp",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('expression')\n    parser.add_argument('-f', '--filename',\n                        help=('The filename containing the input data.  '\n                              'If a filename is not given then data is '\n                              'read from stdin.'))\n    parser.add_argument('--ast', action='store_true',\n                        help=('Pretty print the AST, do not search the data.'))\n    args = parser.parse_args()",
+        "detail": "venv.bin.jp",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+  # Redis for Celery
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+
+  # FastAPI Application
+  api:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: applywise-backend  # Named image for reuse
+    ports:
+      - "8000:8000"
+    environment: &common-env
+      # Redis Configuration
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      
+      # PostgreSQL Configuration (Pydantic will construct DATABASE_URL)
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_PORT=${POSTGRES_PORT:-5432}
+      - POSTGRES_DB=${POSTGRES_DB:-applywise}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      
+      # Application Configuration
+      - HEADLESS_BROWSER=true
+      - DEBUG=false
+      - ENVIRONMENT=production
+      
+      # Firebase Configuration
+      - FIREBASE_CREDENTIALS_PATH=${FIREBASE_CREDENTIALS_PATH}
+      - FIREBASE_STORAGE_BUCKET=${FIREBASE_STORAGE_BUCKET}
+      
+      # AWS Configuration
+      - AWS_REGION=${AWS_REGION}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+  # Celery Worker
+  worker:
+    image: applywise-backend  # Reuse the same image
+    environment: *common-env  # Reuse environment variables
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app
+      - /dev/shm:/dev/shm  # Shared memory for Chrome
+    command: ["celery", "-A", "app.tasks.celery_app", "worker", "--loglevel=info", "--concurrency=2"]
+    deploy:
+      replicas: 1  # Start with 1 replica, scale as needed
+
+  # Celery Flower (monitoring)
+  flower:
+    image: applywise-backend  # Reuse the same image
+    ports:
+      - "5555:5555"
+    environment: *common-env  # Reuse environment variables
+    depends_on:
+      redis:
+        condition: service_healthy
+    command: ["celery", "-A", "app.tasks.celery_app", "flower", "--port=5555"]
+
+  # Celery Beat (scheduler - optional)
+  beat:
+    image: applywise-backend  # Reuse the same image
+    environment: *common-env  # Reuse environment variables
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./app:/app/app
+    command: ["celery", "-A", "app.tasks.celery_app", "beat", "--loglevel=info"]
+
+volumes:
+  postgres_data: 
