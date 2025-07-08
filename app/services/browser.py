@@ -1,17 +1,86 @@
 import threading
 import time
-import os
-import glob
-from typing import Dict, Optional
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from typing import Dict
+import undetected_chromedriver as uc
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import StaleElementReferenceException
+from selenium_stealth import stealth
 from app.core.config import settings
 import logging
 
 logger = logging.getLogger(__name__)
 
+
+class CustomWebDriver(uc.Chrome):
+    """Custom WebDriver class that extends the Undetected Chrome WebDriver with additional functionality."""
+    
+    def __init__(self, headless=None, options=None, service=None):
+        """Initialize the Custom Undetected Chrome WebDriver with fallback"""
+        try:
+            if options is None:
+                options = self._get_custom_chrome_options(headless)
+                
+            # Determine headless mode
+            if headless is None:
+                headless = settings.HEADLESS_BROWSER
+
+            super().__init__(options=options, headless=headless, version_main=137, browser_executable_path="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+            self.apply_stealth()
+            
+        except Exception as e:
+            logger.warning(f"Failed to initialize undetected-chromedriver: {e}")
+
+    def _get_custom_chrome_options(self, headless=None):
+        """Set up Chrome options for undetected Chrome"""
+        chrome_options = uc.ChromeOptions()
+        
+        # Basic options (undetected-chromedriver handles most stealth automatically)
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--window-size=1920,1080")
+        
+        # Disable images and CSS for faster loading
+        prefs = {
+            "profile.managed_default_content_settings.images": 2,
+            "profile.default_content_setting_values.notifications": 2
+        }
+        chrome_options.add_experimental_option("prefs", prefs)
+        
+        return chrome_options
+
+    def apply_stealth(self):
+        """Apply stealth using Selenium Stealth"""
+        stealth(self,
+            languages=["en-US", "en"],
+            vendor="Google Inc.",
+            platform="Win32",
+            webgl_vendor="Intel Inc.",
+            renderer="Intel Iris OpenGL Engine",
+            fix_hairline=True)
+
+    def wait_and_find_element(self, by=By.ID, value=None, timeout=2):
+        """Wait until the element is visible, then return it."""
+        wait = WebDriverWait(self, timeout, ignored_exceptions=[StaleElementReferenceException])
+        element = wait.until(EC.presence_of_element_located((by, value)))
+        return element
+
+    def wait_and_find_elements(self, by=By.ID, value=None, timeout=2):
+        """Wait until at least one element is visible, then return all."""
+        wait = WebDriverWait(self, timeout, ignored_exceptions=[StaleElementReferenceException])
+        wait.until(EC.presence_of_element_located((by, value)))
+        elements = super().find_elements(by, value)
+        return elements
+    
+    def wait_and_click_element(self, element=None, by=By.ID, timeout=2):
+        """Wait until the element is clickable, then click it."""
+        if element is not None:
+            # If element is provided, scroll to it and click
+            super().execute_script("arguments[0].scrollIntoView({behavior: 'instant', block: 'center'});", element)
+            wait = WebDriverWait(self, timeout)
+            wait.until(EC.element_to_be_clickable(element))
+            element.click()
 
 class BrowserPool:
     """Singleton browser pool to manage persistent Chrome drivers"""
@@ -30,29 +99,24 @@ class BrowserPool:
     def __init__(self):
         if self._initialized:
             return
-            
-        self.drivers: Dict[str, webdriver.Chrome] = {}
+        
+        self._initialized = True
+        
+        self.drivers: Dict[str, CustomWebDriver] = {}
         self.driver_lock = threading.Lock()
         self.last_used: Dict[str, float] = {}
-        self._initialized = True
         
         # Start cleanup thread
         cleanup_thread = threading.Thread(target=self._cleanup_inactive_drivers, daemon=True)
         cleanup_thread.start()
     
-    def get_chrome_options(self) -> Options:
-        """Configure Chrome options for automation"""
-        options = Options()
+    def get_chrome_options(self) -> uc.ChromeOptions:
+        """Configure Chrome options for undetected automation"""
+        options = uc.ChromeOptions()
         
-        if settings.HEADLESS_BROWSER:
-            options.add_argument("--headless")
-        
-        # Performance and stability options
+        # Basic options (undetected-chromedriver handles most stealth automatically)
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--disable-gpu")
-        options.add_argument("--disable-web-security")
-        options.add_argument("--disable-features=VizDisplayCompositor")
         options.add_argument("--window-size=1920,1080")
         
         # Disable images and CSS for faster loading
@@ -63,67 +127,15 @@ class BrowserPool:
         options.add_experimental_option("prefs", prefs)
         
         return options
-    
-    def _get_chromedriver_path(self) -> str:
-        """Get the correct ChromeDriver path, handling macOS permission issues"""
-        try:
-            driver_path = ChromeDriverManager().install()
-            
-            # Check if webdriver-manager returned a valid executable
-            if self._is_valid_executable(driver_path):
-                return driver_path
-            
-            # Find the actual chromedriver in the same directory
-            driver_dir = os.path.dirname(driver_path)
-            chromedriver_path = os.path.join(driver_dir, "chromedriver")
-            
-            if os.path.isfile(chromedriver_path) and self._is_valid_executable(chromedriver_path):
-                return chromedriver_path
-            
-            # If not executable, try to fix permissions
-            if os.path.isfile(chromedriver_path):
-                try:
-                    os.chmod(chromedriver_path, 0o755)
-                    if self._is_valid_executable(chromedriver_path):
-                        logger.info(f"Fixed permissions for chromedriver: {chromedriver_path}")
-                        return chromedriver_path
-                except Exception as e:
-                    logger.error(f"Failed to fix permissions: {e}")
-            
-            # Fallback to original path
-            return driver_path
-            
-        except Exception as e:
-            logger.error(f"Error getting chromedriver path: {e}")
-            raise
-    
-    def _is_valid_executable(self, path: str) -> bool:
-        """Check if file is a valid executable binary"""
-        if not (os.path.isfile(path) and os.access(path, os.X_OK)):
-            return False
-        
-        try:
-            with open(path, 'rb') as f:
-                header = f.read(4)
-                # Check for Mach-O executable headers (macOS)
-                return header.startswith((b'\xcf\xfa\xed\xfe', b'\xce\xfa\xed\xfe', 
-                                        b'\xfe\xed\xfa\xce', b'\xfe\xed\xfa\xcf'))
-        except Exception:
-            return False
 
-    def get_driver(self, worker_id: str) -> webdriver.Chrome:
-        """Get or create a Chrome driver for the worker"""
+    def get_driver(self, worker_id: str) -> CustomWebDriver:
+        """Get or create a Custom Chrome driver for the worker"""
         with self.driver_lock:
             if worker_id not in self.drivers:
-                logger.info(f"Creating new Chrome driver for worker {worker_id}")
+                logger.info(f"Creating new Custom Chrome driver for worker {worker_id}")
                 
-                # Get the correct ChromeDriver path
-                chromedriver_path = self._get_chromedriver_path()
-                service = Service(chromedriver_path)
-                
-                # Create driver with options
-                options = self.get_chrome_options()
-                driver = webdriver.Chrome(service=service, options=options)
+                # Create CustomWebDriver with stealth capabilities
+                driver = CustomWebDriver()
                 driver.set_page_load_timeout(settings.BROWSER_TIMEOUT)
                 
                 self.drivers[worker_id] = driver

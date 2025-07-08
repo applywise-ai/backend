@@ -32,6 +32,10 @@ class Education(BaseModel):
     educationFrom: datetime
     educationTo: Optional[datetime]
     educationGpa: Optional[float]
+    educationEndMonth: Optional[str]
+    educationEndYear: Optional[str]
+    educationStartMonth: Optional[str]
+    educationStartYear: Optional[str]
 
 
 class Employment(BaseModel):
@@ -66,10 +70,10 @@ class UserProfile(BaseModel):
     portfolio: Optional[str]
 
     # Demographics
-    gender: Optional[str]
+    gender: Optional[List[str]]
     veteran: Optional[bool]
-    sexuality: Optional[str]
-    race: Optional[str]
+    sexuality: Optional[List[str]]
+    race: Optional[List[str]]
     hispanic: Optional[bool]
     disability: Optional[bool]
     trans: Optional[bool]

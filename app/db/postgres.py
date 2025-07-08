@@ -179,4 +179,12 @@ class PostgresManager:
         }
 
 # Global Postgres manager instance
-postgres_manager = PostgresManager() 
+postgres_manager = PostgresManager()
+
+def get_db():
+    """FastAPI dependency to get database session"""
+    session = postgres_manager.SessionLocal()
+    try:
+        yield session
+    finally:
+        session.close() 

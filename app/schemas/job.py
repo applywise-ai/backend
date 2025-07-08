@@ -68,6 +68,40 @@ class JobResponse(JobInDB):
     """Schema for job response"""
     pass  # Same as JobInDB for now, but can be extended if needed
 
+class JobFilters(BaseModel):
+    """Schema for job filtering parameters"""
+    location: Optional[str] = None
+    job_type: Optional[str] = None
+    experience_level: Optional[str] = None
+    salary_min: Optional[float] = None
+    salary_max: Optional[float] = None
+    company: Optional[str] = None
+    title: Optional[str] = None
+    provides_sponsorship: Optional[bool] = None
+    is_verified: Optional[bool] = None
+    tags: Optional[List[str]] = None
+
+class JobsPaginatedResponse(BaseModel):
+    """Schema for paginated jobs response"""
+    jobs: List[JobResponse]
+    has_more: bool
+    last_job_id: Optional[int] = None
+    total_count: int
+    filtered_count: int
+
+class JobsCountResponse(BaseModel):
+    """Schema for jobs count response"""
+    filtered_count: int
+    total_available: int
+
+class JobsSearchResponse(BaseModel):
+    """Schema for advanced job search response"""
+    jobs: List[JobResponse]
+    total_count: int
+    limit: int
+    offset: int
+    has_more: bool
+
 # Example of how to use the schema:
 """
 # Creating a new job

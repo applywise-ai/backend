@@ -8,7 +8,23 @@
         "documentation": {}
     },
     {
-        "label": "Request",
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -17,6 +33,14 @@
     },
     {
         "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Query",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -97,11 +121,43 @@
         "documentation": {}
     },
     {
-        "label": "BaseSettings",
-        "importPath": "pydantic_settings",
-        "description": "pydantic_settings",
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
         "isExtraImport": true,
-        "detail": "pydantic_settings",
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Set",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -241,7 +297,95 @@
         "documentation": {}
     },
     {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -329,6 +473,22 @@
         "documentation": {}
     },
     {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "Any",
         "importPath": "typing",
         "description": "typing",
@@ -425,140 +585,75 @@
         "documentation": {}
     },
     {
-        "label": "Field",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy.orm",
         "documentation": {}
     },
     {
-        "label": "validator",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy.orm",
         "documentation": {}
     },
     {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy.orm",
         "documentation": {}
     },
     {
-        "label": "HttpUrl",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy.orm",
         "documentation": {}
     },
     {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy.orm",
         "documentation": {}
     },
     {
-        "label": "HttpUrl",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "and_",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
-        "label": "Field",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "or_",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
-        "label": "constr",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "func",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
         "isExtraImport": true,
-        "detail": "pydantic",
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
-        "label": "confloat",
-        "importPath": "pydantic",
-        "description": "pydantic",
+        "label": "desc",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
         "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "wraps",
-        "importPath": "functools",
-        "description": "functools",
-        "isExtraImport": true,
-        "detail": "functools",
-        "documentation": {}
-    },
-    {
-        "label": "firebase_admin",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "firebase_admin",
-        "description": "firebase_admin",
-        "detail": "firebase_admin",
-        "documentation": {}
-    },
-    {
-        "label": "auth",
-        "importPath": "firebase_admin",
-        "description": "firebase_admin",
-        "isExtraImport": true,
-        "detail": "firebase_admin",
-        "documentation": {}
-    },
-    {
-        "label": "firestore",
-        "importPath": "firebase_admin",
-        "description": "firebase_admin",
-        "isExtraImport": true,
-        "detail": "firebase_admin",
-        "documentation": {}
-    },
-    {
-        "label": "credentials",
-        "importPath": "firebase_admin",
-        "description": "firebase_admin",
-        "isExtraImport": true,
-        "detail": "firebase_admin",
-        "documentation": {}
-    },
-    {
-        "label": "storage",
-        "importPath": "firebase_admin",
-        "description": "firebase_admin",
-        "isExtraImport": true,
-        "detail": "firebase_admin",
-        "documentation": {}
-    },
-    {
-        "label": "credentials",
-        "importPath": "firebase_admin",
-        "description": "firebase_admin",
-        "isExtraImport": true,
-        "detail": "firebase_admin",
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
@@ -658,35 +753,75 @@
         "documentation": {}
     },
     {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "get_db",
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "app.db.postgres",
         "documentation": {}
     },
     {
-        "label": "declarative_base",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "postgres_manager",
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "app.db.postgres",
         "documentation": {}
     },
     {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "Job",
+        "importPath": "app.db.models",
+        "description": "app.db.models",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "app.db.models",
         "documentation": {}
     },
     {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "JobResponse",
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobFilters",
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "isExtraImport": true,
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobsPaginatedResponse",
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "isExtraImport": true,
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobsCountResponse",
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "isExtraImport": true,
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobsSearchResponse",
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "isExtraImport": true,
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
         "documentation": {}
     },
     {
@@ -735,6 +870,102 @@
         "description": "app.core.config",
         "isExtraImport": true,
         "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "validator",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "HttpUrl",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "HttpUrl",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "constr",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "confloat",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
         "documentation": {}
     },
     {
@@ -787,6 +1018,47 @@
         "documentation": {}
     },
     {
+        "label": "firebase_admin",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "firestore",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "credentials",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "storage",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
+        "label": "credentials",
+        "importPath": "firebase_admin",
+        "description": "firebase_admin",
+        "isExtraImport": true,
+        "detail": "firebase_admin",
+        "documentation": {}
+    },
+    {
         "label": "FieldFilter",
         "importPath": "google.cloud.firestore_v1.base_query",
         "description": "google.cloud.firestore_v1.base_query",
@@ -796,6 +1068,30 @@
     },
     {
         "label": "ApplicationStatus",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "Education",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "UserProfile",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "UserProfile",
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
         "isExtraImport": true,
@@ -869,12 +1165,179 @@
         "documentation": {}
     },
     {
-        "label": "threading",
-        "kind": 6,
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
         "isExtraImport": true,
-        "importPath": "threading",
-        "description": "threading",
-        "detail": "threading",
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "Select",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "WebDriverWait",
+        "importPath": "selenium.webdriver.support.ui",
+        "description": "selenium.webdriver.support.ui",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support.ui",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
+        "documentation": {}
+    },
+    {
+        "label": "expected_conditions",
+        "importPath": "selenium.webdriver.support",
+        "description": "selenium.webdriver.support",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.support",
         "documentation": {}
     },
     {
@@ -887,53 +1350,254 @@
         "documentation": {}
     },
     {
-        "label": "glob",
+        "label": "requests",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "glob",
-        "description": "glob",
-        "detail": "glob",
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
         "documentation": {}
     },
     {
-        "label": "webdriver",
-        "importPath": "selenium",
-        "description": "selenium",
-        "isExtraImport": true,
-        "detail": "selenium",
-        "documentation": {}
-    },
-    {
-        "label": "Options",
-        "importPath": "selenium.webdriver.chrome.options",
-        "description": "selenium.webdriver.chrome.options",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.chrome.options",
-        "documentation": {}
-    },
-    {
-        "label": "Service",
-        "importPath": "selenium.webdriver.chrome.service",
-        "description": "selenium.webdriver.chrome.service",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.chrome.service",
-        "documentation": {}
-    },
-    {
-        "label": "ChromeDriverManager",
-        "importPath": "webdriver_manager.chrome",
-        "description": "webdriver_manager.chrome",
-        "isExtraImport": true,
-        "detail": "webdriver_manager.chrome",
-        "documentation": {}
-    },
-    {
-        "label": "uuid",
+        "label": "tempfile",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "urlparse",
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "isExtraImport": true,
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "ABC",
+        "importPath": "abc",
+        "description": "abc",
+        "isExtraImport": true,
+        "detail": "abc",
+        "documentation": {}
+    },
+    {
+        "label": "fuzz",
+        "importPath": "rapidfuzz",
+        "description": "rapidfuzz",
+        "isExtraImport": true,
+        "detail": "rapidfuzz",
+        "documentation": {}
+    },
+    {
+        "label": "fuzz",
+        "importPath": "rapidfuzz",
+        "description": "rapidfuzz",
+        "isExtraImport": true,
+        "detail": "rapidfuzz",
+        "documentation": {}
+    },
+    {
+        "label": "process",
+        "importPath": "rapidfuzz",
+        "description": "rapidfuzz",
+        "isExtraImport": true,
+        "detail": "rapidfuzz",
+        "documentation": {}
+    },
+    {
+        "label": "jaccard",
+        "importPath": "textdistance",
+        "description": "textdistance",
+        "isExtraImport": true,
+        "detail": "textdistance",
+        "documentation": {}
+    },
+    {
+        "label": "levenshtein",
+        "importPath": "textdistance",
+        "description": "textdistance",
+        "isExtraImport": true,
+        "detail": "textdistance",
+        "documentation": {}
+    },
+    {
+        "label": "jaccard",
+        "importPath": "textdistance",
+        "description": "textdistance",
+        "isExtraImport": true,
+        "detail": "textdistance",
+        "documentation": {}
+    },
+    {
+        "label": "levenshtein",
+        "importPath": "textdistance",
+        "description": "textdistance",
+        "isExtraImport": true,
+        "detail": "textdistance",
+        "documentation": {}
+    },
+    {
+        "label": "CustomWebDriver",
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "isExtraImport": true,
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
+        "label": "CustomWebDriver",
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "isExtraImport": true,
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
+        "label": "browser_pool",
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "isExtraImport": true,
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
+        "label": "clean_string",
+        "importPath": "app.services.job_application.utils.helpers",
+        "description": "app.services.job_application.utils.helpers",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.utils.helpers",
+        "documentation": {}
+    },
+    {
+        "label": "Keys",
+        "importPath": "selenium.webdriver.common.keys",
+        "description": "selenium.webdriver.common.keys",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.keys",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "NoSuchElementException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "TimeoutException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ElementNotInteractableException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "ElementClickInterceptedException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "StaleElementReferenceException",
+        "importPath": "selenium.common.exceptions",
+        "description": "selenium.common.exceptions",
+        "isExtraImport": true,
+        "detail": "selenium.common.exceptions",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "Lever",
+        "importPath": "app.services.job_application.portals",
+        "description": "app.services.job_application.portals",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.portals",
+        "documentation": {}
+    },
+    {
+        "label": "Greenhouse",
+        "importPath": "app.services.job_application.portals",
+        "description": "app.services.job_application.portals",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.portals",
+        "documentation": {}
+    },
+    {
+        "label": "Ashby",
+        "importPath": "app.services.job_application.portals",
+        "description": "app.services.job_application.portals",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.portals",
+        "documentation": {}
+    },
+    {
+        "label": "Jobvite",
+        "importPath": "app.services.job_application.portals",
+        "description": "app.services.job_application.portals",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.portals",
+        "documentation": {}
+    },
+    {
+        "label": "Workable",
+        "importPath": "app.services.job_application.portals",
+        "description": "app.services.job_application.portals",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.portals",
         "documentation": {}
     },
     {
@@ -943,6 +1607,81 @@
         "importPath": "json",
         "description": "json",
         "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI",
+        "importPath": "openai",
+        "description": "openai",
+        "isExtraImport": true,
+        "detail": "openai",
+        "documentation": {}
+    },
+    {
+        "label": "AIFormFiller",
+        "importPath": "app.services.ai_form_filler",
+        "description": "app.services.ai_form_filler",
+        "isExtraImport": true,
+        "detail": "app.services.ai_form_filler",
+        "documentation": {}
+    },
+    {
+        "label": "InputType",
+        "importPath": "app.services.ai_form_filler",
+        "description": "app.services.ai_form_filler",
+        "isExtraImport": true,
+        "detail": "app.services.ai_form_filler",
+        "documentation": {}
+    },
+    {
+        "label": "AIFormFiller",
+        "importPath": "app.services.ai_form_filler",
+        "description": "app.services.ai_form_filler",
+        "isExtraImport": true,
+        "detail": "app.services.ai_form_filler",
+        "documentation": {}
+    },
+    {
+        "label": "InputType",
+        "importPath": "app.services.ai_form_filler",
+        "description": "app.services.ai_form_filler",
+        "isExtraImport": true,
+        "detail": "app.services.ai_form_filler",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "undetected_chromedriver",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "undetected_chromedriver",
+        "description": "undetected_chromedriver",
+        "detail": "undetected_chromedriver",
+        "documentation": {}
+    },
+    {
+        "label": "stealth",
+        "importPath": "selenium_stealth",
+        "description": "selenium_stealth",
+        "isExtraImport": true,
+        "detail": "selenium_stealth",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
         "documentation": {}
     },
     {
@@ -959,15 +1698,6 @@
         "description": "celery",
         "isExtraImport": true,
         "detail": "celery",
-        "documentation": {}
-    },
-    {
-        "label": "tempfile",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "tempfile",
-        "description": "tempfile",
-        "detail": "tempfile",
         "documentation": {}
     },
     {
@@ -988,14 +1718,6 @@
         "documentation": {}
     },
     {
-        "label": "browser_pool",
-        "importPath": "app.services.browser",
-        "description": "app.services.browser",
-        "isExtraImport": true,
-        "detail": "app.services.browser",
-        "documentation": {}
-    },
-    {
         "label": "storage_manager",
         "importPath": "app.services.storage",
         "description": "app.services.storage",
@@ -1012,19 +1734,19 @@
         "documentation": {}
     },
     {
-        "label": "postgres_manager",
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "isExtraImport": true,
-        "detail": "app.db.postgres",
-        "documentation": {}
-    },
-    {
         "label": "websocket_manager",
         "importPath": "app.services.websocket",
         "description": "app.services.websocket",
         "isExtraImport": true,
         "detail": "app.services.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "JobApplicationService",
+        "importPath": "app.services.job_application",
+        "description": "app.services.job_application",
+        "isExtraImport": true,
+        "detail": "app.services.job_application",
         "documentation": {}
     },
     {
@@ -1054,31 +1776,6 @@
         "documentation": {}
     },
     {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "requests",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
-        "documentation": {}
-    },
-    {
         "label": "argparse",
         "kind": 6,
         "isExtraImport": true,
@@ -1094,6 +1791,15 @@
         "importPath": "pathlib",
         "description": "pathlib",
         "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "pprint",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pprint",
+        "description": "pprint",
+        "detail": "pprint",
         "documentation": {}
     },
     {
@@ -1131,15 +1837,6 @@
         "documentation": {}
     },
     {
-        "label": "get_user_id",
-        "kind": 2,
-        "importPath": "app.api.routes.applications",
-        "description": "app.api.routes.applications",
-        "peekOfCode": "def get_user_id(request: Request) -> str:\n    \"\"\"Extract user_id from Firebase token\"\"\"\n    from firebase_admin import auth\n    import firebase_admin\n    # Get token from Authorization header\n    auth_header = request.headers.get(\"Authorization\")\n    if not auth_header:\n        raise HTTPException(status_code=401, detail=\"No authorization header\")\n    try:\n        # Extract token",
-        "detail": "app.api.routes.applications",
-        "documentation": {}
-    },
-    {
         "label": "router",
         "kind": 5,
         "importPath": "app.api.routes.applications",
@@ -1155,6 +1852,24 @@
         "description": "app.api.routes.applications",
         "peekOfCode": "logger = logging.getLogger(__name__)\ndef check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\"\"\"\n    try:\n        from celery import current_app\n        # Check broker connection\n        inspect = current_app.control.inspect()\n        # Get active workers - this will fail if broker is down\n        active_workers = inspect.active()\n        if not active_workers:",
         "detail": "app.api.routes.applications",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "app.api.routes.jobs",
+        "description": "app.api.routes.jobs",
+        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\n@router.get(\"/paginated\", response_model=Dict[str, Any])\nasync def get_jobs_paginated(\n    limit: int = Query(9, ge=1, le=100, description=\"Number of jobs to return\"),\n    last_job_id: Optional[int] = Query(None, description=\"Last job ID for pagination\"),\n    # Filters\n    location: Optional[str] = Query(None, description=\"Filter by location\"),\n    job_type: Optional[str] = Query(None, description=\"Filter by job type\"),\n    experience_level: Optional[str] = Query(None, description=\"Filter by experience level\"),",
+        "detail": "app.api.routes.jobs",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.api.routes.jobs",
+        "description": "app.api.routes.jobs",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n@router.get(\"/paginated\", response_model=Dict[str, Any])\nasync def get_jobs_paginated(\n    limit: int = Query(9, ge=1, le=100, description=\"Number of jobs to return\"),\n    last_job_id: Optional[int] = Query(None, description=\"Last job ID for pagination\"),\n    # Filters\n    location: Optional[str] = Query(None, description=\"Filter by location\"),\n    job_type: Optional[str] = Query(None, description=\"Filter by job type\"),\n    experience_level: Optional[str] = Query(None, description=\"Filter by experience level\"),\n    salary_min: Optional[float] = Query(None, description=\"Minimum salary value\"),",
+        "detail": "app.api.routes.jobs",
         "documentation": {}
     },
     {
@@ -1176,11 +1891,29 @@
         "documentation": {}
     },
     {
+        "label": "get_user_id",
+        "kind": 2,
+        "importPath": "app.api.dependencies",
+        "description": "app.api.dependencies",
+        "peekOfCode": "def get_user_id(request: Request) -> str:\n    \"\"\"Extract user_id from Firebase token\"\"\"\n    from firebase_admin import auth\n    import firebase_admin\n    from ..db.firestore import firestore_manager\n    # Get token from Authorization header\n    auth_header = request.headers.get(\"Authorization\")\n    if not auth_header:\n        raise HTTPException(status_code=401, detail=\"No authorization header\")\n    try:",
+        "detail": "app.api.dependencies",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.api.dependencies",
+        "description": "app.api.dependencies",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_user_id(request: Request) -> str:\n    \"\"\"Extract user_id from Firebase token\"\"\"\n    from firebase_admin import auth\n    import firebase_admin\n    from ..db.firestore import firestore_manager\n    # Get token from Authorization header\n    auth_header = request.headers.get(\"Authorization\")\n    if not auth_header:\n        raise HTTPException(status_code=401, detail=\"No authorization header\")",
+        "detail": "app.api.dependencies",
+        "documentation": {}
+    },
+    {
         "label": "__all__",
         "kind": 5,
         "importPath": "app.api.dependencies",
         "description": "app.api.dependencies",
-        "peekOfCode": "__all__ = ['auth_required']",
+        "peekOfCode": "__all__ = ['get_user_id']",
         "detail": "app.api.dependencies",
         "documentation": {}
     },
@@ -1200,33 +1933,6 @@
         "description": "app.core.config",
         "peekOfCode": "settings = Settings()",
         "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "get_firebase_app",
-        "kind": 2,
-        "importPath": "app.core.security",
-        "description": "app.core.security",
-        "peekOfCode": "def get_firebase_app():\n    \"\"\"Get an available Firebase app for authentication\"\"\"\n    import firebase_admin\n    try:\n        # Try to get the firestore manager's app first\n        from app.db.firestore import firestore_manager\n        if firestore_manager.app_name:\n            try:\n                return firebase_admin.get_app(firestore_manager.app_name)\n            except ValueError:",
-        "detail": "app.core.security",
-        "documentation": {}
-    },
-    {
-        "label": "auth_required",
-        "kind": 2,
-        "importPath": "app.core.security",
-        "description": "app.core.security",
-        "peekOfCode": "def auth_required():\n    \"\"\"Decorator that validates Firebase token and provides user_id\"\"\"\n    def decorator(func):\n        @wraps(func)\n        async def wrapper(request: Request, *args, **kwargs):\n            # Get token from Authorization header\n            auth_header = request.headers.get(\"Authorization\")\n            if not auth_header:\n                raise HTTPException(status_code=401, detail=\"No authorization header\")\n            try:",
-        "detail": "app.core.security",
-        "documentation": {}
-    },
-    {
-        "label": "logger",
-        "kind": 5,
-        "importPath": "app.core.security",
-        "description": "app.core.security",
-        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_firebase_app():\n    \"\"\"Get an available Firebase app for authentication\"\"\"\n    import firebase_admin\n    try:\n        # Try to get the firestore manager's app first\n        from app.db.firestore import firestore_manager\n        if firestore_manager.app_name:\n            try:\n                return firebase_admin.get_app(firestore_manager.app_name)",
-        "detail": "app.core.security",
         "documentation": {}
     },
     {
@@ -1356,6 +2062,15 @@
         "documentation": {}
     },
     {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "peekOfCode": "def get_db():\n    \"\"\"FastAPI dependency to get database session\"\"\"\n    session = postgres_manager.SessionLocal()\n    try:\n        yield session\n    finally:\n        session.close()",
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
         "label": "logger",
         "kind": 5,
         "importPath": "app.db.postgres",
@@ -1369,7 +2084,7 @@
         "kind": 5,
         "importPath": "app.db.postgres",
         "description": "app.db.postgres",
-        "peekOfCode": "postgres_manager = PostgresManager()",
+        "peekOfCode": "postgres_manager = PostgresManager()\ndef get_db():\n    \"\"\"FastAPI dependency to get database session\"\"\"\n    session = postgres_manager.SessionLocal()\n    try:\n        yield session\n    finally:\n        session.close()",
         "detail": "app.db.postgres",
         "documentation": {}
     },
@@ -1396,7 +2111,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class Education(BaseModel):\n    school: str\n    degree: str\n    fieldOfStudy: str\n    educationFrom: datetime\n    educationTo: Optional[datetime]\n    educationGpa: Optional[float]\nclass Employment(BaseModel):\n    company: str\n    position: str",
+        "peekOfCode": "class Education(BaseModel):\n    school: str\n    degree: str\n    fieldOfStudy: str\n    educationFrom: datetime\n    educationTo: Optional[datetime]\n    educationGpa: Optional[float]\n    educationEndMonth: Optional[str]\n    educationEndYear: Optional[str]\n    educationStartMonth: Optional[str]",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -1603,7 +2318,43 @@
         "kind": 6,
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
-        "peekOfCode": "class JobResponse(JobInDB):\n    \"\"\"Schema for job response\"\"\"\n    pass  # Same as JobInDB for now, but can be extended if needed\n# Example of how to use the schema:\n\"\"\"\n# Creating a new job\nnew_job = JobCreate(\n    title=\"Senior Software Engineer\",\n    company=\"TechCorp Innovation\",\n    logo=\"https://example.com/techcorp-logo.png\",",
+        "peekOfCode": "class JobResponse(JobInDB):\n    \"\"\"Schema for job response\"\"\"\n    pass  # Same as JobInDB for now, but can be extended if needed\nclass JobFilters(BaseModel):\n    \"\"\"Schema for job filtering parameters\"\"\"\n    location: Optional[str] = None\n    job_type: Optional[str] = None\n    experience_level: Optional[str] = None\n    salary_min: Optional[float] = None\n    salary_max: Optional[float] = None",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobFilters",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobFilters(BaseModel):\n    \"\"\"Schema for job filtering parameters\"\"\"\n    location: Optional[str] = None\n    job_type: Optional[str] = None\n    experience_level: Optional[str] = None\n    salary_min: Optional[float] = None\n    salary_max: Optional[float] = None\n    company: Optional[str] = None\n    title: Optional[str] = None\n    provides_sponsorship: Optional[bool] = None",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobsPaginatedResponse",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobsPaginatedResponse(BaseModel):\n    \"\"\"Schema for paginated jobs response\"\"\"\n    jobs: List[JobResponse]\n    has_more: bool\n    last_job_id: Optional[int] = None\n    total_count: int\n    filtered_count: int\nclass JobsCountResponse(BaseModel):\n    \"\"\"Schema for jobs count response\"\"\"\n    filtered_count: int",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobsCountResponse",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobsCountResponse(BaseModel):\n    \"\"\"Schema for jobs count response\"\"\"\n    filtered_count: int\n    total_available: int\nclass JobsSearchResponse(BaseModel):\n    \"\"\"Schema for advanced job search response\"\"\"\n    jobs: List[JobResponse]\n    total_count: int\n    limit: int\n    offset: int",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobsSearchResponse",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobsSearchResponse(BaseModel):\n    \"\"\"Schema for advanced job search response\"\"\"\n    jobs: List[JobResponse]\n    total_count: int\n    limit: int\n    offset: int\n    has_more: bool\n# Example of how to use the schema:\n\"\"\"\n# Creating a new job",
         "detail": "app.schemas.job",
         "documentation": {}
     },
@@ -1614,6 +2365,195 @@
         "description": "app.schemas.job",
         "peekOfCode": "new_job = JobCreate(\n    title=\"Senior Software Engineer\",\n    company=\"TechCorp Innovation\",\n    logo=\"https://example.com/techcorp-logo.png\",\n    location=\"San Francisco, CA (Hybrid)\",\n    salary=\"$150,000 - $220,000 annually\",\n    salary_value=185000.00,\n    job_type=\"Full-time\",\n    description=\"TechCorp Innovation is seeking a Senior Software Engineer...\",\n    experience_level=\"Senior\",",
         "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "Ashby",
+        "kind": 6,
+        "importPath": "app.services.job_application.portals.ashby",
+        "description": "app.services.job_application.portals.ashby",
+        "peekOfCode": "class Ashby(BasePortal):\n    \"\"\"Ashby job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Ashby portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Ashby portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Ashby portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Ashby application form\")",
+        "detail": "app.services.job_application.portals.ashby",
+        "documentation": {}
+    },
+    {
+        "label": "BasePortal",
+        "kind": 6,
+        "importPath": "app.services.job_application.portals.base",
+        "description": "app.services.job_application.portals.base",
+        "peekOfCode": "class BasePortal(ABC):\n    \"\"\"Base class for all job application portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict):\n        \"\"\"Initialize portal with driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile\n        self.logger = logging.getLogger(self.__class__.__name__)\n        # Track how many times each profile key has been used\n        self.filled_profile_keys = {}\n        # Define field mappings with keywords for profile matching",
+        "detail": "app.services.job_application.portals.base",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.job_application.portals.base",
+        "description": "app.services.job_application.portals.base",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass BasePortal(ABC):\n    \"\"\"Base class for all job application portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict):\n        \"\"\"Initialize portal with driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile\n        self.logger = logging.getLogger(self.__class__.__name__)\n        # Track how many times each profile key has been used\n        self.filled_profile_keys = {}",
+        "detail": "app.services.job_application.portals.base",
+        "documentation": {}
+    },
+    {
+        "label": "Greenhouse",
+        "kind": 6,
+        "importPath": "app.services.job_application.portals.greenhouse",
+        "description": "app.services.job_application.portals.greenhouse",
+        "peekOfCode": "class Greenhouse(BasePortal):\n    \"\"\"Greenhouse job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Greenhouse portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Greenhouse portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Greenhouse.\"\"\"\n        try:\n            # Find and click the Apply button first",
+        "detail": "app.services.job_application.portals.greenhouse",
+        "documentation": {}
+    },
+    {
+        "label": "Jobvite",
+        "kind": 6,
+        "importPath": "app.services.job_application.portals.jobvite",
+        "description": "app.services.job_application.portals.jobvite",
+        "peekOfCode": "class Jobvite(BasePortal):\n    \"\"\"Jobvite job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Jobvite portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Jobvite portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Jobvite portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Jobvite application form\")",
+        "detail": "app.services.job_application.portals.jobvite",
+        "documentation": {}
+    },
+    {
+        "label": "Lever",
+        "kind": 6,
+        "importPath": "app.services.job_application.portals.lever",
+        "description": "app.services.job_application.portals.lever",
+        "peekOfCode": "class Lever(BasePortal):\n    \"\"\"Lever job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Lever portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Lever portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Lever portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Lever application form\")",
+        "detail": "app.services.job_application.portals.lever",
+        "documentation": {}
+    },
+    {
+        "label": "Workable",
+        "kind": 6,
+        "importPath": "app.services.job_application.portals.workable",
+        "description": "app.services.job_application.portals.workable",
+        "peekOfCode": "class Workable(BasePortal):\n    \"\"\"Workable job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Workable portal with explicit parent initialization.\"\"\"\n        try:\n            super().__init__(driver, profile)\n            self.logger.info(\"Workable portal initialized successfully\")\n        except Exception as e:\n            self.logger.error(f\"Error initializing Workable portal: {str(e)}\")\n            raise",
+        "detail": "app.services.job_application.portals.workable",
+        "documentation": {}
+    },
+    {
+        "label": "AutofillException",
+        "kind": 6,
+        "importPath": "app.services.job_application.utils.error",
+        "description": "app.services.job_application.utils.error",
+        "peekOfCode": "class AutofillException(Exception):\n    \"\"\"Exception raised when autofilling fails.\"\"\"\n    def __init__(self, error_type, message):\n        # Initialize the base class (Exception)\n        super().__init__(message)\n        # Store the error type (e.g., Listbox, Input, etc.)\n        self.error_type = error_type\n    def __str__(self):\n        # Customize the error message format to include the error type\n        return f\"{self.error_type} Error: {self.args[0]}\"",
+        "detail": "app.services.job_application.utils.error",
+        "documentation": {}
+    },
+    {
+        "label": "ApplyException",
+        "kind": 6,
+        "importPath": "app.services.job_application.utils.error",
+        "description": "app.services.job_application.utils.error",
+        "peekOfCode": "class ApplyException(Exception):\n    \"\"\"Exception raised when applying fails.\"\"\"",
+        "detail": "app.services.job_application.utils.error",
+        "documentation": {}
+    },
+    {
+        "label": "clean_string",
+        "kind": 2,
+        "importPath": "app.services.job_application.utils.helpers",
+        "description": "app.services.job_application.utils.helpers",
+        "peekOfCode": "def clean_string(s):\n    return re.sub(r'[^A-Za-z0-9 ]+', '', s)",
+        "detail": "app.services.job_application.utils.helpers",
+        "documentation": {}
+    },
+    {
+        "label": "JobApplicationService",
+        "kind": 6,
+        "importPath": "app.services.job_application.main",
+        "description": "app.services.job_application.main",
+        "peekOfCode": "class JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        # Validate required environment variables\n        self._validate_environment()\n        # Portal configuration - easily extensible\n        self.portal_config = {",
+        "detail": "app.services.job_application.main",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.job_application.main",
+        "description": "app.services.job_application.main",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nload_dotenv()\nclass JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        # Validate required environment variables\n        self._validate_environment()",
+        "detail": "app.services.job_application.main",
+        "documentation": {}
+    },
+    {
+        "label": "InputType",
+        "kind": 6,
+        "importPath": "app.services.ai_form_filler",
+        "description": "app.services.ai_form_filler",
+        "peekOfCode": "class InputType(str, Enum):\n    \"\"\"Supported input types for form fields.\"\"\"\n    INPUT = \"input\"\n    SELECT = \"select\"\n    MULTISELECT = \"multiselect\"\n    DATE = \"date\"\nclass AIFormFiller:\n    \"\"\"AI-powered form filler that uses user profile context to answer questions.\"\"\"\n    def __init__(self, user_profile: Dict[str, Any], openai_api_key: Optional[str] = None):\n        \"\"\"",
+        "detail": "app.services.ai_form_filler",
+        "documentation": {}
+    },
+    {
+        "label": "AIFormFiller",
+        "kind": 6,
+        "importPath": "app.services.ai_form_filler",
+        "description": "app.services.ai_form_filler",
+        "peekOfCode": "class AIFormFiller:\n    \"\"\"AI-powered form filler that uses user profile context to answer questions.\"\"\"\n    def __init__(self, user_profile: Dict[str, Any], openai_api_key: Optional[str] = None):\n        \"\"\"\n        Initialize the AI form filler with user profile context.\n        Args:\n            user_profile: Dictionary containing user profile information\n            openai_api_key: OpenAI API key (optional, will use from settings if not provided)\n        \"\"\"\n        self.user_profile = user_profile",
+        "detail": "app.services.ai_form_filler",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.ai_form_filler",
+        "description": "app.services.ai_form_filler",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass InputType(str, Enum):\n    \"\"\"Supported input types for form fields.\"\"\"\n    INPUT = \"input\"\n    SELECT = \"select\"\n    MULTISELECT = \"multiselect\"\n    DATE = \"date\"\nclass AIFormFiller:\n    \"\"\"AI-powered form filler that uses user profile context to answer questions.\"\"\"\n    def __init__(self, user_profile: Dict[str, Any], openai_api_key: Optional[str] = None):",
+        "detail": "app.services.ai_form_filler",
+        "documentation": {}
+    },
+    {
+        "label": "demonstrate_ai_form_filler",
+        "kind": 2,
+        "importPath": "app.services.ai_form_filler_example",
+        "description": "app.services.ai_form_filler_example",
+        "peekOfCode": "def demonstrate_ai_form_filler():\n    \"\"\"Demonstrate various use cases of the AI Form Filler.\"\"\"\n    # Initialize the AI Form Filler\n    ai_filler = AIFormFiller(sample_profile)\n    print(\"=== AI Form Filler Demo ===\\n\")\n    # Example 1: TEXT INPUT - Open-ended question\n    print(\"1. TEXT INPUT Example:\")\n    question = \"Why are you interested in this position?\"\n    answer = ai_filler.answer_question(question, InputType.INPUT)\n    print(f\"Question: {question}\")",
+        "detail": "app.services.ai_form_filler_example",
+        "documentation": {}
+    },
+    {
+        "label": "demonstrate_integration_with_portal",
+        "kind": 2,
+        "importPath": "app.services.ai_form_filler_example",
+        "description": "app.services.ai_form_filler_example",
+        "peekOfCode": "def demonstrate_integration_with_portal():\n    \"\"\"Demonstrate how to integrate AI Form Filler with portal classes.\"\"\"\n    # This would be integrated into your portal base class\n    class ExamplePortalIntegration:\n        def __init__(self, user_profile):\n            self.profile = user_profile\n            self.ai_filler = AIFormFiller(user_profile)\n        def fill_field_with_ai_fallback(self, field_element, question: str, field_type: str, options=None):\n            \"\"\"Fill a field using AI as fallback when algorithm fails.\"\"\"\n            # First try your existing algorithm",
+        "detail": "app.services.ai_form_filler_example",
+        "documentation": {}
+    },
+    {
+        "label": "sample_profile",
+        "kind": 5,
+        "importPath": "app.services.ai_form_filler_example",
+        "description": "app.services.ai_form_filler_example",
+        "peekOfCode": "sample_profile = {\n    \"fullName\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phoneNumber\": \"+1-555-123-4567\",\n    \"currentLocation\": \"San Francisco, CA\",\n    \"education\": [\n        {\n            \"school\": \"Stanford University\",\n            \"degree\": \"Bachelor of Science\",\n            \"fieldOfStudy\": \"Computer Science\",",
+        "detail": "app.services.ai_form_filler_example",
+        "documentation": {}
+    },
+    {
+        "label": "AIFormFillingMixin",
+        "kind": 6,
+        "importPath": "app.services.ai_integration",
+        "description": "app.services.ai_integration",
+        "peekOfCode": "class AIFormFillingMixin:\n    \"\"\"\n    Mixin class that adds AI form filling capabilities to portal classes.\n    This should be mixed into your BasePortal class.\n    \"\"\"\n    def __init__(self, *args, **kwargs):\n        \"\"\"Initialize the AI form filler if not already initialized.\"\"\"\n        super().__init__(*args, **kwargs)\n        # Initialize AI form filler if profile is available\n        if hasattr(self, 'profile') and self.profile:",
+        "detail": "app.services.ai_integration",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.ai_integration",
+        "description": "app.services.ai_integration",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass AIFormFillingMixin:\n    \"\"\"\n    Mixin class that adds AI form filling capabilities to portal classes.\n    This should be mixed into your BasePortal class.\n    \"\"\"\n    def __init__(self, *args, **kwargs):\n        \"\"\"Initialize the AI form filler if not already initialized.\"\"\"\n        super().__init__(*args, **kwargs)\n        # Initialize AI form filler if profile is available",
+        "detail": "app.services.ai_integration",
+        "documentation": {}
+    },
+    {
+        "label": "CustomWebDriver",
+        "kind": 6,
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "peekOfCode": "class CustomWebDriver(uc.Chrome):\n    \"\"\"Custom WebDriver class that extends the Undetected Chrome WebDriver with additional functionality.\"\"\"\n    def __init__(self, headless=None, options=None, service=None):\n        \"\"\"Initialize the Custom Undetected Chrome WebDriver with fallback\"\"\"\n        try:\n            if options is None:\n                options = self._get_custom_chrome_options(headless)\n            # Determine headless mode\n            if headless is None:\n                headless = settings.HEADLESS_BROWSER",
+        "detail": "app.services.browser",
         "documentation": {}
     },
     {
@@ -1630,7 +2570,7 @@
         "kind": 5,
         "importPath": "app.services.browser",
         "description": "app.services.browser",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass BrowserPool:\n    \"\"\"Singleton browser pool to manage persistent Chrome drivers\"\"\"\n    _instance = None\n    _lock = threading.Lock()\n    def __new__(cls):\n        if cls._instance is None:\n            with cls._lock:\n                if cls._instance is None:\n                    cls._instance = super().__new__(cls)",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass CustomWebDriver(uc.Chrome):\n    \"\"\"Custom WebDriver class that extends the Undetected Chrome WebDriver with additional functionality.\"\"\"\n    def __init__(self, headless=None, options=None, service=None):\n        \"\"\"Initialize the Custom Undetected Chrome WebDriver with fallback\"\"\"\n        try:\n            if options is None:\n                options = self._get_custom_chrome_options(headless)\n            # Determine headless mode\n            if headless is None:",
         "detail": "app.services.browser",
         "documentation": {}
     },
@@ -1950,6 +2890,105 @@
         "documentation": {}
     },
     {
+        "label": "test_health",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_health():\n    \"\"\"Test if the API is running\"\"\"\n    print(\"🏥 Testing API health...\")\n    try:\n        response = requests.get(f\"{API_BASE_URL}/health\")\n        if response.status_code == 200:\n            print(\"✅ API is healthy\")\n            return True\n        else:\n            print(f\"❌ API health check failed: {response.status_code}\")",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_jobs_paginated",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_get_jobs_paginated():\n    \"\"\"Test paginated jobs endpoint\"\"\"\n    print(\"\\n📄 Testing paginated jobs...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/paginated?limit=5\")\n        if response.status_code == 200:\n            data = response.json()\n            print(f\"✅ Retrieved paginated jobs\")\n            print(f\"  - Jobs count: {len(data.get('jobs', []))}\")\n            print(f\"  - Has more: {data.get('hasMore', False)}\")",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_filtered_count",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_get_filtered_count():\n    \"\"\"Test filtered jobs count endpoint\"\"\"\n    print(\"\\n🔢 Testing filtered jobs count...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/filtered-count\")\n        if response.status_code == 200:\n            count = response.json()\n            print(f\"✅ Retrieved filtered jobs count: {count}\")\n            return count\n        else:",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_total_available_count",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_get_total_available_count():\n    \"\"\"Test total available jobs count endpoint\"\"\"\n    print(\"\\n📊 Testing total available jobs count...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/total-available-count\")\n        if response.status_code == 200:\n            count = response.json()\n            print(f\"✅ Retrieved total available jobs count: {count}\")\n            return count\n        else:",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_single_job",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_get_single_job(job_id: int):\n    \"\"\"Test getting a single job\"\"\"\n    print(f\"\\n🎯 Testing single job retrieval (ID: {job_id})...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/{job_id}\")\n        if response.status_code == 200:\n            job = response.json()\n            if job:\n                print(f\"✅ Retrieved job: {job.get('title', 'Unknown')} at {job.get('company', 'Unknown')}\")\n                return job",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_get_bulk_jobs",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_get_bulk_jobs(job_ids: list):\n    \"\"\"Test bulk jobs retrieval\"\"\"\n    print(f\"\\n📦 Testing bulk jobs retrieval ({len(job_ids)} jobs)...\")\n    try:\n        job_ids_str = \",\".join(map(str, job_ids))\n        response = requests.get(f\"{JOBS_API_URL}/bulk?job_ids={job_ids_str}\")\n        if response.status_code == 200:\n            jobs = response.json()\n            valid_jobs = [job for job in jobs if job is not None]\n            print(f\"✅ Retrieved {len(valid_jobs)} out of {len(job_ids)} requested jobs\")",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_jobs_with_filters",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_jobs_with_filters():\n    \"\"\"Test jobs with various filters\"\"\"\n    print(\"\\n🔍 Testing jobs with filters...\")\n    # Test location filter\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/paginated?limit=3&location=San Francisco\")\n        if response.status_code == 200:\n            data = response.json()\n            print(f\"✅ Location filter test: {len(data.get('jobs', []))} jobs in San Francisco\")\n        else:",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_advanced_search",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def test_advanced_search():\n    \"\"\"Test advanced search endpoint\"\"\"\n    print(\"\\n🔎 Testing advanced search...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/search/advanced?q=engineer&limit=5\")\n        if response.status_code == 200:\n            data = response.json()\n            print(f\"✅ Advanced search test: {len(data.get('jobs', []))} jobs found for 'engineer'\")\n            print(f\"  - Total count: {data.get('total_count', 0)}\")\n            print(f\"  - Has more: {data.get('has_more', False)}\")",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "def main():\n    \"\"\"Run all tests\"\"\"\n    print(\"🚀 Starting Jobs API Tests\")\n    print(\"=\" * 50)\n    # Test API health first\n    if not test_health():\n        print(\"\\n❌ API is not healthy. Make sure the server is running.\")\n        return\n    # Test paginated jobs\n    paginated_data = test_get_jobs_paginated()",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "API_BASE_URL",
+        "kind": 5,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "API_BASE_URL = \"http://localhost:8000\"\nJOBS_API_URL = f\"{API_BASE_URL}/jobs\"\ndef test_health():\n    \"\"\"Test if the API is running\"\"\"\n    print(\"🏥 Testing API health...\")\n    try:\n        response = requests.get(f\"{API_BASE_URL}/health\")\n        if response.status_code == 200:\n            print(\"✅ API is healthy\")\n            return True",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
+        "label": "JOBS_API_URL",
+        "kind": 5,
+        "importPath": "scripts.test_jobs_api",
+        "description": "scripts.test_jobs_api",
+        "peekOfCode": "JOBS_API_URL = f\"{API_BASE_URL}/jobs\"\ndef test_health():\n    \"\"\"Test if the API is running\"\"\"\n    print(\"🏥 Testing API health...\")\n    try:\n        response = requests.get(f\"{API_BASE_URL}/health\")\n        if response.status_code == 200:\n            print(\"✅ API is healthy\")\n            return True\n        else:",
+        "detail": "scripts.test_jobs_api",
+        "documentation": {}
+    },
+    {
         "label": "firestore_adminCallTransformer",
         "kind": 6,
         "importPath": "venv.bin.fixup_firestore_admin_v1_keywords",
@@ -2010,6 +3049,78 @@
         "description": "venv.bin.jp",
         "peekOfCode": "def main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('expression')\n    parser.add_argument('-f', '--filename',\n                        help=('The filename containing the input data.  '\n                              'If a filename is not given then data is '\n                              'read from stdin.'))\n    parser.add_argument('--ast', action='store_true',\n                        help=('Pretty print the AST, do not search the data.'))\n    args = parser.parse_args()",
         "detail": "venv.bin.jp",
+        "documentation": {}
+    },
+    {
+        "label": "target",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "target = \"MAN\"\nchoices = [\"MALE\", \"FEMALE\"]\n# Calculate different similarity scores\nresults = {\n    choice: {\n        \"ratio\": fuzz.ratio(target, choice),\n        \"partial_ratio\": fuzz.partial_ratio(target, choice),\n        \"token_sort_ratio\": fuzz.token_sort_ratio(target, choice),\n        \"token_set_ratio\": fuzz.token_set_ratio(target, choice),\n        \"WRatio\": fuzz.WRatio(target, choice)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "choices",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "choices = [\"MALE\", \"FEMALE\"]\n# Calculate different similarity scores\nresults = {\n    choice: {\n        \"ratio\": fuzz.ratio(target, choice),\n        \"partial_ratio\": fuzz.partial_ratio(target, choice),\n        \"token_sort_ratio\": fuzz.token_sort_ratio(target, choice),\n        \"token_set_ratio\": fuzz.token_set_ratio(target, choice),\n        \"WRatio\": fuzz.WRatio(target, choice)\n    }",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "results",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "results = {\n    choice: {\n        \"ratio\": fuzz.ratio(target, choice),\n        \"partial_ratio\": fuzz.partial_ratio(target, choice),\n        \"token_sort_ratio\": fuzz.token_sort_ratio(target, choice),\n        \"token_set_ratio\": fuzz.token_set_ratio(target, choice),\n        \"WRatio\": fuzz.WRatio(target, choice)\n    }\n    for choice in choices\n}",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "best_match",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "best_match = process.extractOne(target, choices, scorer=fuzz.partial_ratio)\nresults[\"best_match\"] = {\n    \"match\": best_match[0],\n    \"score\": best_match[1],\n    \"method\": \"WRatio (default)\"\n}\n# Print the results\nimport pprint\npprint.pprint(results)\nfrom textdistance import jaccard, levenshtein",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "results[\"best_match\"]",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "results[\"best_match\"] = {\n    \"match\": best_match[0],\n    \"score\": best_match[1],\n    \"method\": \"WRatio (default)\"\n}\n# Print the results\nimport pprint\npprint.pprint(results)\nfrom textdistance import jaccard, levenshtein\njaccard_score = jaccard.normalized_similarity(\"MAN\", \"MALE\")",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "jaccard_score",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "jaccard_score = jaccard.normalized_similarity(\"MAN\", \"MALE\")\nlev_score = levenshtein.normalized_similarity(\"MAN\", \"MALE\")\nfinal_score = (jaccard_score + lev_score) / 2\nprint(final_score)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "lev_score",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "lev_score = levenshtein.normalized_similarity(\"MAN\", \"MALE\")\nfinal_score = (jaccard_score + lev_score) / 2\nprint(final_score)",
+        "detail": "test",
+        "documentation": {}
+    },
+    {
+        "label": "final_score",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "final_score = (jaccard_score + lev_score) / 2\nprint(final_score)",
+        "detail": "test",
         "documentation": {}
     }
 ]

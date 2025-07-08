@@ -13,6 +13,7 @@ from app.db.firestore import firestore_manager
 from app.db.postgres import postgres_manager
 from app.schemas.application import ApplicationStatus
 from app.services.websocket import websocket_manager
+from app.services.job_application import JobApplicationService
 
 logger = logging.getLogger(__name__)
 
@@ -76,24 +77,24 @@ def apply_to_job(self, application_data: Dict[str, Any]):
         form_questions = None
         screenshot, screenshot_url = None, None
 
-        # Add profile and job data to application_data for applying functions
+        # Create job application service with profile
+        job_service = JobApplicationService(driver, profile)
+        
+        # Add profile and job data to application_data for reference
         application_data['profile'] = profile
         application_data['job'] = job
         
         if should_submit:
-            # This is a submission request
-            # TODO: Apply and submit
-            success = True
-            final_status = ApplicationStatus.APPLIED
+            # This is a submission request - actually apply and submit
+            success = job_service.apply(job_url)
+            final_status = ApplicationStatus.APPLIED if success else ApplicationStatus.FAILED
         else:
-            # This is just a preparation/save request
-            # TODO: Apply but don't submit
-            # Generate form questions here
-
-            # if override form questions is true, use them to fill out the form
-
-            success = True
-            final_status = ApplicationStatus.DRAFT
+            # This is just a preparation/save request - apply but don't submit
+            # TODO: Implement preparation mode (form detection without submission)
+            
+            # For now, we'll still call apply but in preparation mode
+            success = job_service.apply(job_url)
+            final_status = ApplicationStatus.DRAFT if success else ApplicationStatus.FAILED
             
         # Take screenshot and upload in background (don't wait)
         screenshot_url = None

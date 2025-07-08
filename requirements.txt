@@ -17,6 +17,12 @@ boto3==1.34.0
 # Selenium and browser automation
 selenium==4.15.2
 webdriver-manager==4.0.1
+selenium-stealth==1.0.6
+fake-useragent==1.4.0
+undetected-chromedriver==3.5.4
+
+# AI/ML
+openai==1.51.2
 
 # Cloud storage and Firestore
 firebase-admin==6.2.0

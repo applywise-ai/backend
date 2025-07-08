@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .api.routes import applications, websocket
+from .api.routes import applications, websocket, jobs
 from .core.config import settings
 import logging
 
@@ -31,15 +31,12 @@ async def health_check():
 @app.get("/")
 async def root():
     """Root endpoint"""
-    return {
-        "message": "Welcome to ApplyWise API",
-        "docs_url": "/docs",
-        "openapi_url": "/openapi.json"
-    }
+    return {"message": "ApplyWise API is running", "version": "1.0.0"}
 
 # Include routers
 app.include_router(applications.router, prefix="/applications", tags=["applications"])
 app.include_router(websocket.router, prefix="/ws", tags=["websocket"])
+app.include_router(jobs.router, prefix="/jobs", tags=["jobs"])
 
 if __name__ == "__main__":
     import uvicorn

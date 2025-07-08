@@ -49,6 +49,9 @@ class Settings(BaseSettings):
     # WebSocket Configuration
     WEBSOCKET_URL: str = Field(default="", description="WebSocket server URL for notifications")
     
+    # OpenAI Configuration
+    OPENAI_API_KEY: str = Field(default="", description="OpenAI API key for AI form filling")
+    
     @validator('CORS_ORIGINS', pre=True)
     def parse_cors_origins(cls, v):
         """Parse CORS origins from string or list"""

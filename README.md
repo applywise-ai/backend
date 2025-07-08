@@ -52,7 +52,7 @@ Backend service for ApplyWise job application automation platform.
 ```bash
 # Clone repository
 git clone <repository-url>
-cd applywise-backend
+cd backend
 
 # Install dependencies
 make install

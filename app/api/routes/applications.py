@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Request, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends
 from ...schemas.application import (
     PrepareJobRequest,
     ApplyJobRequest, 
@@ -10,7 +10,7 @@ from ...schemas.application import (
 from ...services.websocket import websocket_manager
 from ...db.firestore import firestore_manager
 from ...tasks.job_application import apply_to_job
-from ..dependencies import auth_required
+from ..dependencies import get_user_id
 import logging
 
 router = APIRouter()
@@ -41,51 +41,7 @@ def check_celery_connection():
     except Exception as e:
         return False, f"Celery broker connection failed: {str(e)}"
 
-def get_user_id(request: Request) -> str:
-    """Extract user_id from Firebase token"""
-    from firebase_admin import auth
-    import firebase_admin
-    
-    # Get token from Authorization header
-    auth_header = request.headers.get("Authorization")
-    if not auth_header:
-        raise HTTPException(status_code=401, detail="No authorization header")
 
-    try:
-        # Extract token
-        scheme, token = auth_header.split()
-        if scheme.lower() != "bearer":
-            raise HTTPException(status_code=401, detail="Invalid authentication scheme")
-
-        # Get the Firebase app from firestore_manager
-        firebase_app = None
-        if firestore_manager.app_name:
-            try:
-                firebase_app = firebase_admin.get_app(firestore_manager.app_name)
-            except ValueError:
-                pass
-        
-        if not firebase_app:
-            # Fallback: try to get any available Firebase app
-            apps = firebase_admin._apps
-            if apps:
-                firebase_app = list(apps.values())[0]
-            else:
-                raise HTTPException(status_code=500, detail="No Firebase app available for authentication")
-
-        # Verify token with the specific Firebase app
-        decoded_token = auth.verify_id_token(token, app=firebase_app)
-        return decoded_token["uid"]
-
-    except auth.InvalidIdTokenError:
-        raise HTTPException(status_code=401, detail="Invalid token")
-    except auth.ExpiredIdTokenError:
-        raise HTTPException(status_code=401, detail="Token expired")
-    except auth.RevokedIdTokenError:
-        raise HTTPException(status_code=401, detail="Token revoked")
-    except Exception as e:
-        logger.error(f"Token verification failed: {e}")
-        raise HTTPException(status_code=500, detail="Token verification failed")
 
 @router.post("/prepare", response_model=ApplyJobResponse)
 async def prepare_application(
@@ -151,11 +107,9 @@ async def prepare_application(
 
 
 @router.post("/submit", response_model=ApplyJobResponse)
-@auth_required()
 async def submit_application(
-    request: Request,
     job_request: ApplyJobRequest,
-    user_id: str
+    user_id: str = Depends(get_user_id)
 ):
     """
     Submit a job application that was previously prepared.
@@ -222,11 +176,9 @@ async def submit_application(
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/save", response_model=SaveFormResponse)
-@auth_required()
 async def save_form_questions(
-    request: Request,
     save_request: SaveFormRequest,
-    user_id: str
+    user_id: str = Depends(get_user_id)
 ):
     """
     Save custom form questions for a job application and process it.
