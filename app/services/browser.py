@@ -82,6 +82,15 @@ class CustomWebDriver(uc.Chrome):
             wait.until(EC.element_to_be_clickable(element))
             element.click()
 
+    def wait_for_options_to_change(self, selector: str, initial_count: int, timeout: int = 5):
+        """Wait for options to change after typing in a search field."""
+        try:
+            wait = WebDriverWait(self, timeout)
+            wait.until(lambda driver: len(driver.find_elements(By.CSS_SELECTOR, selector)) != initial_count)
+            return self.find_elements(By.CSS_SELECTOR, selector)
+        except:
+            return self.find_elements(By.CSS_SELECTOR, selector)
+
 class BrowserPool:
     """Singleton browser pool to manage persistent Chrome drivers"""
     
@@ -105,10 +114,11 @@ class BrowserPool:
         self.drivers: Dict[str, CustomWebDriver] = {}
         self.driver_lock = threading.Lock()
         self.last_used: Dict[str, float] = {}
+        self._shutdown_event = threading.Event()
         
         # Start cleanup thread
-        cleanup_thread = threading.Thread(target=self._cleanup_inactive_drivers, daemon=True)
-        cleanup_thread.start()
+        self.cleanup_thread = threading.Thread(target=self._cleanup_inactive_drivers, daemon=True)
+        self.cleanup_thread.start()
     
     def get_chrome_options(self) -> uc.ChromeOptions:
         """Configure Chrome options for undetected automation"""
@@ -165,7 +175,7 @@ class BrowserPool:
     
     def _cleanup_inactive_drivers(self):
         """Background thread to cleanup inactive drivers"""
-        while True:
+        while not self._shutdown_event.is_set():
             try:
                 current_time = time.time()
                 inactive_threshold = 30 * 60  # 30 minutes
@@ -180,17 +190,33 @@ class BrowserPool:
                     logger.info(f"Cleaning up inactive driver for worker {worker_id}")
                     self.close_driver(worker_id)
                 
-                time.sleep(60)  # Check every minute
+                # Wait for 60 seconds or until shutdown is signaled
+                self._shutdown_event.wait(60)
                 
             except Exception as e:
                 logger.error(f"Error in driver cleanup: {e}")
-                time.sleep(60)
+                if not self._shutdown_event.is_set():
+                    self._shutdown_event.wait(60)
+        
+        logger.info("Cleanup thread shutting down")
     
     def close_all(self):
-        """Close all drivers"""
+        """Close all drivers and shutdown cleanup thread"""
+        logger.info("Shutting down browser pool...")
+        
+        # Signal shutdown to cleanup thread
+        self._shutdown_event.set()
+        
+        # Wait for cleanup thread to finish (with timeout)
+        if self.cleanup_thread.is_alive():
+            self.cleanup_thread.join(timeout=5)
+        
+        # Close all drivers
         with self.driver_lock:
             for worker_id in list(self.drivers.keys()):
                 self.close_driver(worker_id)
+        
+        logger.info("Browser pool shutdown complete")
 
 
 # Global browser pool instance

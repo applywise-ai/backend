@@ -72,14 +72,6 @@
         "documentation": {}
     },
     {
-        "label": "WebSocketDisconnect",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
         "label": "HTTPException",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -89,14 +81,6 @@
     },
     {
         "label": "Request",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
-        "label": "WebSocket",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
@@ -121,6 +105,105 @@
         "documentation": {}
     },
     {
+        "label": "tempfile",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tempfile",
+        "description": "tempfile",
+        "detail": "tempfile",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "List",
         "importPath": "typing",
         "description": "typing",
@@ -273,6 +356,22 @@
         "documentation": {}
     },
     {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "List",
         "importPath": "typing",
         "description": "typing",
@@ -282,6 +381,38 @@
     },
     {
         "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -337,14 +468,6 @@
         "documentation": {}
     },
     {
-        "label": "Any",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "Optional",
         "importPath": "typing",
         "description": "typing",
@@ -361,46 +484,6 @@
         "documentation": {}
     },
     {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Any",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "List",
         "importPath": "typing",
         "description": "typing",
@@ -409,15 +492,7 @@
         "documentation": {}
     },
     {
-        "label": "Dict",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Set",
+        "label": "Optional",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -442,14 +517,6 @@
     },
     {
         "label": "List",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Optional",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -585,43 +652,148 @@
         "documentation": {}
     },
     {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "psycopg2",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "importPath": "psycopg2",
+        "description": "psycopg2",
+        "detail": "psycopg2",
         "documentation": {}
     },
     {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "RealDictCursor",
+        "importPath": "psycopg2.extras",
+        "description": "psycopg2.extras",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "psycopg2.extras",
         "documentation": {}
     },
     {
-        "label": "declarative_base",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "RealDictCursor",
+        "importPath": "psycopg2.extras",
+        "description": "psycopg2.extras",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "psycopg2.extras",
         "documentation": {}
     },
     {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "app.core.config",
         "documentation": {}
     },
     {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
         "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "MetaData",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "URL",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
         "documentation": {}
     },
     {
@@ -753,6 +925,122 @@
         "documentation": {}
     },
     {
+        "label": "URL",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "text",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "relationship",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemyError",
+        "importPath": "sqlalchemy.exc",
+        "description": "sqlalchemy.exc",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.exc",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemyError",
+        "importPath": "sqlalchemy.exc",
+        "description": "sqlalchemy.exc",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.exc",
+        "documentation": {}
+    },
+    {
+        "label": "boto3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "boto3",
+        "description": "boto3",
+        "detail": "boto3",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
         "label": "get_db",
         "importPath": "app.db.postgres",
         "description": "app.db.postgres",
@@ -762,6 +1050,22 @@
     },
     {
         "label": "postgres_manager",
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "isExtraImport": true,
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "postgres_manager",
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "isExtraImport": true,
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "PostgresManager",
         "importPath": "app.db.postgres",
         "description": "app.db.postgres",
         "isExtraImport": true,
@@ -817,67 +1121,52 @@
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
+        "label": "asyncio",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "app.core.config",
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
+        "label": "redis_client",
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
         "isExtraImport": true,
-        "detail": "app.core.config",
+        "detail": "app.services.websocket",
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
+        "label": "send_job_application_update",
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
         "isExtraImport": true,
-        "detail": "app.core.config",
+        "detail": "app.services.websocket",
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
+        "label": "send_job_application_update",
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
         "isExtraImport": true,
-        "detail": "app.core.config",
+        "detail": "app.services.websocket",
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
+        "label": "websocket_manager",
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
         "isExtraImport": true,
-        "detail": "app.core.config",
+        "detail": "app.services.websocket",
         "documentation": {}
     },
     {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
+        "label": "send_job_application_update",
+        "importPath": "app.services.websocket",
+        "description": "app.services.websocket",
         "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
+        "detail": "app.services.websocket",
         "documentation": {}
     },
     {
@@ -929,14 +1218,6 @@
         "documentation": {}
     },
     {
-        "label": "HttpUrl",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
         "label": "Field",
         "importPath": "pydantic",
         "description": "pydantic",
@@ -945,7 +1226,7 @@
         "documentation": {}
     },
     {
-        "label": "constr",
+        "label": "HttpUrl",
         "importPath": "pydantic",
         "description": "pydantic",
         "isExtraImport": true,
@@ -953,68 +1234,11 @@
         "documentation": {}
     },
     {
-        "label": "confloat",
+        "label": "field_validator",
         "importPath": "pydantic",
         "description": "pydantic",
         "isExtraImport": true,
         "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "BaseModel",
-        "importPath": "pydantic",
-        "description": "pydantic",
-        "isExtraImport": true,
-        "detail": "pydantic",
-        "documentation": {}
-    },
-    {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
         "documentation": {}
     },
     {
@@ -1075,6 +1299,14 @@
         "documentation": {}
     },
     {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
         "label": "Education",
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
@@ -1083,7 +1315,7 @@
         "documentation": {}
     },
     {
-        "label": "UserProfile",
+        "label": "FormQuestion",
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
         "isExtraImport": true,
@@ -1091,7 +1323,79 @@
         "documentation": {}
     },
     {
-        "label": "UserProfile",
+        "label": "FormSectionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "FormSectionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "FormQuestion",
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
         "isExtraImport": true,
@@ -1123,40 +1427,6 @@
         "documentation": {}
     },
     {
-        "label": "psycopg2",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "psycopg2",
-        "description": "psycopg2",
-        "detail": "psycopg2",
-        "documentation": {}
-    },
-    {
-        "label": "RealDictCursor",
-        "importPath": "psycopg2.extras",
-        "description": "psycopg2.extras",
-        "isExtraImport": true,
-        "detail": "psycopg2.extras",
-        "documentation": {}
-    },
-    {
-        "label": "SQLAlchemyError",
-        "importPath": "sqlalchemy.exc",
-        "description": "sqlalchemy.exc",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.exc",
-        "documentation": {}
-    },
-    {
-        "label": "boto3",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "boto3",
-        "description": "boto3",
-        "detail": "boto3",
-        "documentation": {}
-    },
-    {
         "label": "Enum",
         "importPath": "enum",
         "description": "enum",
@@ -1165,11 +1435,116 @@
         "documentation": {}
     },
     {
-        "label": "Enum",
-        "importPath": "enum",
-        "description": "enum",
+        "label": "csv",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "enum",
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "scrape_jobs",
+        "importPath": "jobspy",
+        "description": "jobspy",
+        "isExtraImport": true,
+        "detail": "jobspy",
+        "documentation": {}
+    },
+    {
+        "label": "INDUSTRY_SPECIALIZATION_MAPPING",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "LOCATION_TYPE_OPTIONS",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "ROLE_LEVEL_MAPPING",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "SUPPORTED_JOB_PORTALS",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "get_field_type",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "map_profile_value",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "get_field_type",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "get_field_type",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "get_field_type",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "AIAssistant",
+        "importPath": "app.services.ai_assistant",
+        "description": "app.services.ai_assistant",
+        "isExtraImport": true,
+        "detail": "app.services.ai_assistant",
+        "documentation": {}
+    },
+    {
+        "label": "AIAssistant",
+        "importPath": "app.services.ai_assistant",
+        "description": "app.services.ai_assistant",
+        "isExtraImport": true,
+        "detail": "app.services.ai_assistant",
+        "documentation": {}
+    },
+    {
+        "label": "AIAssistant",
+        "importPath": "app.services.ai_assistant",
+        "description": "app.services.ai_assistant",
+        "isExtraImport": true,
+        "detail": "app.services.ai_assistant",
         "documentation": {}
     },
     {
@@ -1269,54 +1644,6 @@
         "documentation": {}
     },
     {
-        "label": "WebDriverWait",
-        "importPath": "selenium.webdriver.support.ui",
-        "description": "selenium.webdriver.support.ui",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support.ui",
-        "documentation": {}
-    },
-    {
-        "label": "WebDriverWait",
-        "importPath": "selenium.webdriver.support.ui",
-        "description": "selenium.webdriver.support.ui",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support.ui",
-        "documentation": {}
-    },
-    {
-        "label": "WebDriverWait",
-        "importPath": "selenium.webdriver.support.ui",
-        "description": "selenium.webdriver.support.ui",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support.ui",
-        "documentation": {}
-    },
-    {
-        "label": "expected_conditions",
-        "importPath": "selenium.webdriver.support",
-        "description": "selenium.webdriver.support",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support",
-        "documentation": {}
-    },
-    {
-        "label": "expected_conditions",
-        "importPath": "selenium.webdriver.support",
-        "description": "selenium.webdriver.support",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support",
-        "documentation": {}
-    },
-    {
-        "label": "expected_conditions",
-        "importPath": "selenium.webdriver.support",
-        "description": "selenium.webdriver.support",
-        "isExtraImport": true,
-        "detail": "selenium.webdriver.support",
-        "documentation": {}
-    },
-    {
         "label": "expected_conditions",
         "importPath": "selenium.webdriver.support",
         "description": "selenium.webdriver.support",
@@ -1350,21 +1677,30 @@
         "documentation": {}
     },
     {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
         "label": "requests",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "requests",
         "description": "requests",
         "detail": "requests",
-        "documentation": {}
-    },
-    {
-        "label": "tempfile",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "tempfile",
-        "description": "tempfile",
-        "detail": "tempfile",
         "documentation": {}
     },
     {
@@ -1384,43 +1720,11 @@
         "documentation": {}
     },
     {
-        "label": "fuzz",
-        "importPath": "rapidfuzz",
-        "description": "rapidfuzz",
+        "label": "defaultdict",
+        "importPath": "collections",
+        "description": "collections",
         "isExtraImport": true,
-        "detail": "rapidfuzz",
-        "documentation": {}
-    },
-    {
-        "label": "fuzz",
-        "importPath": "rapidfuzz",
-        "description": "rapidfuzz",
-        "isExtraImport": true,
-        "detail": "rapidfuzz",
-        "documentation": {}
-    },
-    {
-        "label": "process",
-        "importPath": "rapidfuzz",
-        "description": "rapidfuzz",
-        "isExtraImport": true,
-        "detail": "rapidfuzz",
-        "documentation": {}
-    },
-    {
-        "label": "jaccard",
-        "importPath": "textdistance",
-        "description": "textdistance",
-        "isExtraImport": true,
-        "detail": "textdistance",
-        "documentation": {}
-    },
-    {
-        "label": "levenshtein",
-        "importPath": "textdistance",
-        "description": "textdistance",
-        "isExtraImport": true,
-        "detail": "textdistance",
+        "detail": "collections",
         "documentation": {}
     },
     {
@@ -1464,6 +1768,14 @@
         "documentation": {}
     },
     {
+        "label": "clean_label",
+        "importPath": "app.services.job_application.utils.helpers",
+        "description": "app.services.job_application.utils.helpers",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.utils.helpers",
+        "documentation": {}
+    },
+    {
         "label": "clean_string",
         "importPath": "app.services.job_application.utils.helpers",
         "description": "app.services.job_application.utils.helpers",
@@ -1480,31 +1792,23 @@
         "documentation": {}
     },
     {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "TimeoutException",
-        "importPath": "selenium.common.exceptions",
-        "description": "selenium.common.exceptions",
-        "isExtraImport": true,
-        "detail": "selenium.common.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "NoSuchElementException",
-        "importPath": "selenium.common.exceptions",
-        "description": "selenium.common.exceptions",
-        "isExtraImport": true,
-        "detail": "selenium.common.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "TimeoutException",
-        "importPath": "selenium.common.exceptions",
-        "description": "selenium.common.exceptions",
-        "isExtraImport": true,
-        "detail": "selenium.common.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "ElementNotInteractableException",
         "importPath": "selenium.common.exceptions",
         "description": "selenium.common.exceptions",
         "isExtraImport": true,
@@ -1525,39 +1829,6 @@
         "description": "selenium.common.exceptions",
         "isExtraImport": true,
         "detail": "selenium.common.exceptions",
-        "documentation": {}
-    },
-    {
-        "label": "re",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -1601,12 +1872,92 @@
         "documentation": {}
     },
     {
-        "label": "json",
+        "label": "letter",
+        "importPath": "reportlab.lib.pagesizes",
+        "description": "reportlab.lib.pagesizes",
+        "isExtraImport": true,
+        "detail": "reportlab.lib.pagesizes",
+        "documentation": {}
+    },
+    {
+        "label": "SimpleDocTemplate",
+        "importPath": "reportlab.platypus",
+        "description": "reportlab.platypus",
+        "isExtraImport": true,
+        "detail": "reportlab.platypus",
+        "documentation": {}
+    },
+    {
+        "label": "Paragraph",
+        "importPath": "reportlab.platypus",
+        "description": "reportlab.platypus",
+        "isExtraImport": true,
+        "detail": "reportlab.platypus",
+        "documentation": {}
+    },
+    {
+        "label": "Spacer",
+        "importPath": "reportlab.platypus",
+        "description": "reportlab.platypus",
+        "isExtraImport": true,
+        "detail": "reportlab.platypus",
+        "documentation": {}
+    },
+    {
+        "label": "PageTemplate",
+        "importPath": "reportlab.platypus",
+        "description": "reportlab.platypus",
+        "isExtraImport": true,
+        "detail": "reportlab.platypus",
+        "documentation": {}
+    },
+    {
+        "label": "Frame",
+        "importPath": "reportlab.platypus",
+        "description": "reportlab.platypus",
+        "isExtraImport": true,
+        "detail": "reportlab.platypus",
+        "documentation": {}
+    },
+    {
+        "label": "getSampleStyleSheet",
+        "importPath": "reportlab.lib.styles",
+        "description": "reportlab.lib.styles",
+        "isExtraImport": true,
+        "detail": "reportlab.lib.styles",
+        "documentation": {}
+    },
+    {
+        "label": "ParagraphStyle",
+        "importPath": "reportlab.lib.styles",
+        "description": "reportlab.lib.styles",
+        "isExtraImport": true,
+        "detail": "reportlab.lib.styles",
+        "documentation": {}
+    },
+    {
+        "label": "colors",
+        "importPath": "reportlab.lib",
+        "description": "reportlab.lib",
+        "isExtraImport": true,
+        "detail": "reportlab.lib",
+        "documentation": {}
+    },
+    {
+        "label": "stringWidth",
+        "importPath": "reportlab.pdfbase.pdfmetrics",
+        "description": "reportlab.pdfbase.pdfmetrics",
+        "isExtraImport": true,
+        "detail": "reportlab.pdfbase.pdfmetrics",
+        "documentation": {}
+    },
+    {
+        "label": "google.generativeai",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "importPath": "google.generativeai",
+        "description": "google.generativeai",
+        "detail": "google.generativeai",
         "documentation": {}
     },
     {
@@ -1615,38 +1966,6 @@
         "description": "openai",
         "isExtraImport": true,
         "detail": "openai",
-        "documentation": {}
-    },
-    {
-        "label": "AIFormFiller",
-        "importPath": "app.services.ai_form_filler",
-        "description": "app.services.ai_form_filler",
-        "isExtraImport": true,
-        "detail": "app.services.ai_form_filler",
-        "documentation": {}
-    },
-    {
-        "label": "InputType",
-        "importPath": "app.services.ai_form_filler",
-        "description": "app.services.ai_form_filler",
-        "isExtraImport": true,
-        "detail": "app.services.ai_form_filler",
-        "documentation": {}
-    },
-    {
-        "label": "AIFormFiller",
-        "importPath": "app.services.ai_form_filler",
-        "description": "app.services.ai_form_filler",
-        "isExtraImport": true,
-        "detail": "app.services.ai_form_filler",
-        "documentation": {}
-    },
-    {
-        "label": "InputType",
-        "importPath": "app.services.ai_form_filler",
-        "description": "app.services.ai_form_filler",
-        "isExtraImport": true,
-        "detail": "app.services.ai_form_filler",
         "documentation": {}
     },
     {
@@ -1676,12 +1995,12 @@
         "documentation": {}
     },
     {
-        "label": "uuid",
+        "label": "redis.asyncio",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
+        "importPath": "redis.asyncio",
+        "description": "redis.asyncio",
+        "detail": "redis.asyncio",
         "documentation": {}
     },
     {
@@ -1701,12 +2020,12 @@
         "documentation": {}
     },
     {
-        "label": "asyncio",
+        "label": "base64",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "asyncio",
-        "description": "asyncio",
-        "detail": "asyncio",
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
         "documentation": {}
     },
     {
@@ -1734,14 +2053,6 @@
         "documentation": {}
     },
     {
-        "label": "websocket_manager",
-        "importPath": "app.services.websocket",
-        "description": "app.services.websocket",
-        "isExtraImport": true,
-        "detail": "app.services.websocket",
-        "documentation": {}
-    },
-    {
         "label": "JobApplicationService",
         "importPath": "app.services.job_application",
         "description": "app.services.job_application",
@@ -1755,6 +2066,23 @@
         "description": "fastapi.middleware.cors",
         "isExtraImport": true,
         "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "atexit",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "atexit",
+        "description": "atexit",
+        "detail": "atexit",
+        "documentation": {}
+    },
+    {
+        "label": "asynccontextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
         "documentation": {}
     },
     {
@@ -1776,15 +2104,6 @@
         "documentation": {}
     },
     {
-        "label": "argparse",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "argparse",
-        "description": "argparse",
-        "detail": "argparse",
-        "documentation": {}
-    },
-    {
         "label": "pathlib",
         "kind": 6,
         "isExtraImport": true,
@@ -1794,12 +2113,28 @@
         "documentation": {}
     },
     {
-        "label": "pprint",
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "JobFetcher",
+        "importPath": "app.services.fetch_jobs.main",
+        "description": "app.services.fetch_jobs.main",
+        "isExtraImport": true,
+        "detail": "app.services.fetch_jobs.main",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "pprint",
-        "description": "pprint",
-        "detail": "pprint",
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
         "documentation": {}
     },
     {
@@ -1825,6 +2160,15 @@
         "description": "jmespath",
         "isExtraImport": true,
         "detail": "jmespath",
+        "documentation": {}
+    },
+    {
+        "label": "redis",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "redis",
+        "description": "redis",
+        "detail": "redis",
         "documentation": {}
     },
     {
@@ -1855,11 +2199,29 @@
         "documentation": {}
     },
     {
+        "label": "convert_job_to_response",
+        "kind": 2,
+        "importPath": "app.api.routes.jobs",
+        "description": "app.api.routes.jobs",
+        "peekOfCode": "def convert_job_to_response(job: Job) -> JobResponse:\n    \"\"\"Convert SQLAlchemy Job model to Pydantic JobResponse\"\"\"\n    try:\n        # Convert to dict and handle None values for list fields\n        job_dict = {\n            'id': job.id,\n            'title': job.title,\n            'company': job.company,\n            'company_url': job.company_url,\n            'logo': job.logo,",
+        "detail": "app.api.routes.jobs",
+        "documentation": {}
+    },
+    {
+        "label": "convert_jobs_to_response",
+        "kind": 2,
+        "importPath": "app.api.routes.jobs",
+        "description": "app.api.routes.jobs",
+        "peekOfCode": "def convert_jobs_to_response(jobs: List[Job]) -> List[JobResponse]:\n    \"\"\"Convert list of SQLAlchemy Job models to Pydantic JobResponse models\"\"\"\n    try:\n        logger.info(f\"Converting {len(jobs)} jobs to response format\")\n        result = [convert_job_to_response(job) for job in jobs]\n        logger.info(f\"Successfully converted {len(result)} jobs\")\n        return result\n    except Exception as e:\n        logger.error(f\"Error converting jobs list to response: {e}\")\n        raise e",
+        "detail": "app.api.routes.jobs",
+        "documentation": {}
+    },
+    {
         "label": "router",
         "kind": 5,
         "importPath": "app.api.routes.jobs",
         "description": "app.api.routes.jobs",
-        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\n@router.get(\"/paginated\", response_model=Dict[str, Any])\nasync def get_jobs_paginated(\n    limit: int = Query(9, ge=1, le=100, description=\"Number of jobs to return\"),\n    last_job_id: Optional[int] = Query(None, description=\"Last job ID for pagination\"),\n    # Filters\n    location: Optional[str] = Query(None, description=\"Filter by location\"),\n    job_type: Optional[str] = Query(None, description=\"Filter by job type\"),\n    experience_level: Optional[str] = Query(None, description=\"Filter by experience level\"),",
+        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\ndef convert_job_to_response(job: Job) -> JobResponse:\n    \"\"\"Convert SQLAlchemy Job model to Pydantic JobResponse\"\"\"\n    try:\n        # Convert to dict and handle None values for list fields\n        job_dict = {\n            'id': job.id,\n            'title': job.title,\n            'company': job.company,",
         "detail": "app.api.routes.jobs",
         "documentation": {}
     },
@@ -1868,7 +2230,7 @@
         "kind": 5,
         "importPath": "app.api.routes.jobs",
         "description": "app.api.routes.jobs",
-        "peekOfCode": "logger = logging.getLogger(__name__)\n@router.get(\"/paginated\", response_model=Dict[str, Any])\nasync def get_jobs_paginated(\n    limit: int = Query(9, ge=1, le=100, description=\"Number of jobs to return\"),\n    last_job_id: Optional[int] = Query(None, description=\"Last job ID for pagination\"),\n    # Filters\n    location: Optional[str] = Query(None, description=\"Filter by location\"),\n    job_type: Optional[str] = Query(None, description=\"Filter by job type\"),\n    experience_level: Optional[str] = Query(None, description=\"Filter by experience level\"),\n    salary_min: Optional[float] = Query(None, description=\"Minimum salary value\"),",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef convert_job_to_response(job: Job) -> JobResponse:\n    \"\"\"Convert SQLAlchemy Job model to Pydantic JobResponse\"\"\"\n    try:\n        # Convert to dict and handle None values for list fields\n        job_dict = {\n            'id': job.id,\n            'title': job.title,\n            'company': job.company,\n            'company_url': job.company_url,",
         "detail": "app.api.routes.jobs",
         "documentation": {}
     },
@@ -1877,16 +2239,7 @@
         "kind": 5,
         "importPath": "app.api.routes.websocket",
         "description": "app.api.routes.websocket",
-        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    \"\"\"WebSocket endpoint for real-time updates\"\"\"\n    try:\n        await websocket_manager.connect(websocket, user_id)\n        while True:\n            # Keep connection alive and handle any client messages\n            data = await websocket.receive_text()",
-        "detail": "app.api.routes.websocket",
-        "documentation": {}
-    },
-    {
-        "label": "logger",
-        "kind": 5,
-        "importPath": "app.api.routes.websocket",
-        "description": "app.api.routes.websocket",
-        "peekOfCode": "logger = logging.getLogger(__name__)\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    \"\"\"WebSocket endpoint for real-time updates\"\"\"\n    try:\n        await websocket_manager.connect(websocket, user_id)\n        while True:\n            # Keep connection alive and handle any client messages\n            data = await websocket.receive_text()\n            # We don't need to handle any client messages for now",
+        "peekOfCode": "router = APIRouter()\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    await websocket.accept()\n    pubsub = redis_client.pubsub()\n    await pubsub.subscribe(f\"user:{user_id}\")\n    try:\n        while True:\n            message = await pubsub.get_message(ignore_subscribe_messages=True)\n            if message:",
         "detail": "app.api.routes.websocket",
         "documentation": {}
     },
@@ -2003,7 +2356,7 @@
         "kind": 6,
         "importPath": "app.db.models",
         "description": "app.db.models",
-        "peekOfCode": "class Job(Base):\n    __tablename__ = \"jobs\"\n    id = Column(Integer, primary_key=True, index=True)\n    title = Column(String, nullable=False)\n    company = Column(String, nullable=False)\n    logo = Column(String)\n    location = Column(String)\n    salary = Column(String)\n    salary_value = Column(Float)\n    job_type = Column(String)",
+        "peekOfCode": "class Job(Base):\n    __tablename__ = \"jobs\"\n    id = Column(String, primary_key=True, index=True)\n    title = Column(String, nullable=False)\n    company = Column(String, nullable=False)\n    company_url = Column(String)\n    logo = Column(String)\n    location = Column(String)\n    salary_min_range = Column(Float)\n    salary_max_range = Column(Float)",
         "detail": "app.db.models",
         "documentation": {}
     },
@@ -2039,16 +2392,25 @@
         "kind": 6,
         "importPath": "app.db.postgres",
         "description": "app.db.postgres",
-        "peekOfCode": "class PostgresManager:\n    \"\"\"Manages PostgreSQL database operations\"\"\"\n    def __init__(self):\n        \"\"\"Initialize PostgreSQL connection with IAM authentication\"\"\"\n        logger.info(\"🐘 Starting PostgreSQL initialization...\")\n        try:\n            logger.info(f\"📡 Connecting to PostgreSQL at {settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}\")\n            # Configure connection args based on auth method\n            connect_args = {'connect_timeout': 10}\n            if not settings.POSTGRES_PASSWORD:",
+        "peekOfCode": "class PostgresManager:\n    \"\"\"Manages PostgreSQL database operations\"\"\"\n    def __init__(self):\n        \"\"\"Initialize PostgreSQL connection with Secrets Manager authentication\"\"\"\n        logger.info(\"🐘 Starting PostgreSQL initialization...\")\n        try:\n            logger.info(\"📡 Connecting to PostgreSQL using Secrets Manager credentials\")\n            # Get database URL from Secrets Manager\n            db_url = get_db_url()\n            # Configure connection args",
         "detail": "app.db.postgres",
         "documentation": {}
     },
     {
-        "label": "get_db_token",
+        "label": "is_effectively_empty",
         "kind": 2,
         "importPath": "app.db.postgres",
         "description": "app.db.postgres",
-        "peekOfCode": "def get_db_token():\n    \"\"\"Generate a token for IAM authentication\"\"\"\n    try:\n        rds = boto3.client('rds')\n        token = rds.generate_db_auth_token(\n            DBHostname=settings.POSTGRES_HOST,\n            Port=settings.POSTGRES_PORT,\n            DBUsername=settings.POSTGRES_USER,\n            Region=settings.AWS_REGION\n        )",
+        "peekOfCode": "def is_effectively_empty(val):\n    \"\"\"\n    Safely check if a value is null, empty, or effectively empty.\n    Args:\n        val: Value to check\n    Returns:\n        bool: True if the value is effectively empty, False otherwise\n    \"\"\"\n    if isinstance(val, (list, tuple, set, dict, np.ndarray, pd.Series)):\n        return len(val) == 0",
+        "detail": "app.db.postgres",
+        "documentation": {}
+    },
+    {
+        "label": "get_db_credentials",
+        "kind": 2,
+        "importPath": "app.db.postgres",
+        "description": "app.db.postgres",
+        "peekOfCode": "def get_db_credentials():\n    \"\"\"Get database credentials from AWS Secrets Manager\"\"\"\n    try:\n        secrets_client = boto3.client(\n            'secretsmanager',\n            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,\n            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,\n            region_name=settings.AWS_REGION\n        )\n        # Get the secret from Secrets Manager",
         "detail": "app.db.postgres",
         "documentation": {}
     },
@@ -2057,7 +2419,7 @@
         "kind": 2,
         "importPath": "app.db.postgres",
         "description": "app.db.postgres",
-        "peekOfCode": "def get_db_url():\n    \"\"\"Get database URL with password or IAM token\"\"\"\n    if settings.POSTGRES_PASSWORD:\n        # Use regular password authentication\n        logger.info(\"Using password authentication for PostgreSQL\")\n        return f\"postgresql://{settings.POSTGRES_USER}:{settings.POSTGRES_PASSWORD}@{settings.POSTGRES_HOST}:{settings.POSTGRES_PORT}/{settings.POSTGRES_DB}\"\n    else:\n        # Fall back to IAM authentication\n        logger.info(\"Using IAM authentication for PostgreSQL\")\n        token = get_db_token()",
+        "peekOfCode": "def get_db_url():\n    \"\"\"Get database URL using credentials from Secrets Manager and settings\"\"\"\n    try:\n        credentials = get_db_credentials()\n        logger.info(\"Using Secrets Manager authentication for PostgreSQL\")\n        return URL.create(\n            drivername=\"postgresql\",\n            username=credentials['username'],\n            password=credentials['password'],\n            host=settings.POSTGRES_HOST,",
         "detail": "app.db.postgres",
         "documentation": {}
     },
@@ -2075,7 +2437,7 @@
         "kind": 5,
         "importPath": "app.db.postgres",
         "description": "app.db.postgres",
-        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_db_token():\n    \"\"\"Generate a token for IAM authentication\"\"\"\n    try:\n        rds = boto3.client('rds')\n        token = rds.generate_db_auth_token(\n            DBHostname=settings.POSTGRES_HOST,\n            Port=settings.POSTGRES_PORT,\n            DBUsername=settings.POSTGRES_USER,\n            Region=settings.AWS_REGION",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_db_credentials():\n    \"\"\"Get database credentials from AWS Secrets Manager\"\"\"\n    try:\n        secrets_client = boto3.client(\n            'secretsmanager',\n            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,\n            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,\n            region_name=settings.AWS_REGION\n        )",
         "detail": "app.db.postgres",
         "documentation": {}
     },
@@ -2102,7 +2464,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class JobType(str, Enum):\n    FULL_TIME = \"full_time\"\n    PART_TIME = \"part_time\"\n    CONTRACT = \"contract\"\n    INTERNSHIP = \"internship\"\nclass Education(BaseModel):\n    school: str\n    degree: str\n    fieldOfStudy: str\n    educationFrom: datetime",
+        "peekOfCode": "class JobType(str, Enum):\n    FULL_TIME = \"fulltime\"\n    PART_TIME = \"temporary\"\n    CONTRACT = \"contract\"\n    INTERNSHIP = \"internship\"\nclass Education(BaseModel):\n    school: str\n    degree: str\n    fieldOfStudy: str\n    educationFrom: datetime",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2147,7 +2509,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class QuestionType(str, Enum):\n    TEXT = \"text\"\n    TEXTAREA = \"textarea\"\n    SELECT = \"select\"\n    MULTI_SELECT = \"multi_select\"\n    CHECKBOX = \"checkbox\"\n    RADIO = \"radio\"\n    FILE = \"file\"\n    DATE = \"date\"\n    NUMBER = \"number\"",
+        "peekOfCode": "class QuestionType(Enum):\n    \"\"\"Field types enum.\"\"\"\n    INPUT = \"text\"\n    TEXTAREA = \"textarea\"\n    SELECT = \"select\"\n    MULTISELECT = \"multiselect\"\n    DATE = \"date\"\n    FILE = \"file\"\nclass FormSectionType(str, Enum):\n    PERSONAL = \"personal\"",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2156,25 +2518,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class FormSectionType(str, Enum):\n    PERSONAL = \"personal\"\n    EDUCATION = \"education\"\n    EXPERIENCE = \"experience\"\n    SKILLS = \"skills\"\n    ADDITIONAL = \"additional\"\nclass FileType(str, Enum):\n    RESUME = \"resume\"\n    COVER_LETTER = \"cover_letter\"\n    PORTFOLIO = \"portfolio\"",
-        "detail": "app.schemas.application",
-        "documentation": {}
-    },
-    {
-        "label": "FileType",
-        "kind": 6,
-        "importPath": "app.schemas.application",
-        "description": "app.schemas.application",
-        "peekOfCode": "class FileType(str, Enum):\n    RESUME = \"resume\"\n    COVER_LETTER = \"cover_letter\"\n    PORTFOLIO = \"portfolio\"\n    OTHER = \"other\"\nclass Answer(BaseModel):\n    \"\"\"Answer model that can handle different types of answers\"\"\"\n    value: Union[str, List[str], bool, int, float]\n    file_url: Optional[str] = None\n    file_name: Optional[str] = None",
-        "detail": "app.schemas.application",
-        "documentation": {}
-    },
-    {
-        "label": "Answer",
-        "kind": 6,
-        "importPath": "app.schemas.application",
-        "description": "app.schemas.application",
-        "peekOfCode": "class Answer(BaseModel):\n    \"\"\"Answer model that can handle different types of answers\"\"\"\n    value: Union[str, List[str], bool, int, float]\n    file_url: Optional[str] = None\n    file_name: Optional[str] = None\nclass FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    id: str\n    question: str\n    answer: Union[str, Dict[str, Union[str, int, bool, None]]]  # Matches frontend Answer type",
+        "peekOfCode": "class FormSectionType(str, Enum):\n    PERSONAL = \"personal\"\n    EDUCATION = \"education\"\n    EXPERIENCE = \"experience\"\n    RESUME = \"resume\"\n    COVER_LETTER = \"cover_letter\"\n    ADDITIONAL = \"additional\" \nclass FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    unique_label_id: str",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2183,25 +2527,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    id: str\n    question: str\n    answer: Union[str, Dict[str, Union[str, int, bool, None]]]  # Matches frontend Answer type\n    type: QuestionType\n    placeholder: Optional[str] = None\n    options: Optional[List[str]] = None\n    section: FormSectionType\n    file_type: Optional[FileType] = None",
-        "detail": "app.schemas.application",
-        "documentation": {}
-    },
-    {
-        "label": "JobApplicationCreate",
-        "kind": 6,
-        "importPath": "app.schemas.application",
-        "description": "app.schemas.application",
-        "peekOfCode": "class JobApplicationCreate(BaseModel):\n    user_id: str\n    job_url: HttpUrl\n    company_name: Optional[str] = None\n    job_title: Optional[str] = None\n    resume_path: Optional[str] = None\n    cover_letter_path: Optional[str] = None\n    application_data: Optional[Dict[str, Any]] = None\nclass JobApplicationResponse(BaseModel):\n    id: str",
-        "detail": "app.schemas.application",
-        "documentation": {}
-    },
-    {
-        "label": "JobApplicationResponse",
-        "kind": 6,
-        "importPath": "app.schemas.application",
-        "description": "app.schemas.application",
-        "peekOfCode": "class JobApplicationResponse(BaseModel):\n    id: str\n    job_id: str\n    job_url: str\n    company_name: Optional[str]\n    job_title: Optional[str]\n    status: str\n    screenshot_urls: Optional[List[str]]\n    error_message: Optional[str]\n    created_at: Optional[datetime]",
+        "peekOfCode": "class FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    unique_label_id: str\n    question: str\n    answer: Optional[str] = None\n    type: QuestionType\n    placeholder: Optional[str] = None\n    options: Optional[List[str]] = None\n    section: FormSectionType\n    file_url: Optional[str] = None",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2210,7 +2536,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class TaskStatusResponse(BaseModel):\n    status: ApplicationStatus\n    result: Optional[Dict[str, Any]] = None\n    error: Optional[str] = None\nclass PrepareJobRequest(BaseModel):\n    \"\"\"Request model for preparing a job application\"\"\"\n    job_id: str\nclass ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    job_id: str",
+        "peekOfCode": "class TaskStatusResponse(BaseModel):\n    status: ApplicationStatus\n    result: Optional[Dict[str, Any]] = None\n    error: Optional[str] = None\nclass PrepareJobRequest(BaseModel):\n    \"\"\"Request model for preparing a job application\"\"\"\n    job_id: str\nclass ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    application_id: str",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2219,7 +2545,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class PrepareJobRequest(BaseModel):\n    \"\"\"Request model for preparing a job application\"\"\"\n    job_id: str\nclass ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    job_id: str\n    application_id: str\nclass ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str",
+        "peekOfCode": "class PrepareJobRequest(BaseModel):\n    \"\"\"Request model for preparing a job application\"\"\"\n    job_id: str\nclass ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    application_id: str\nclass ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str\n    status: ApplicationStatus",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2228,7 +2554,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    job_id: str\n    application_id: str\nclass ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass ApplicationResponse(BaseModel):",
+        "peekOfCode": "class ApplyJobRequest(BaseModel):\n    \"\"\"Request model for job application submission\"\"\"\n    application_id: str\nclass ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2237,25 +2563,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass ApplicationResponse(BaseModel):\n    \"\"\"Response model for a single application\"\"\"\n    id: str\n    user_id: str\n    job_id: str",
-        "detail": "app.schemas.application",
-        "documentation": {}
-    },
-    {
-        "label": "ApplicationResponse",
-        "kind": 6,
-        "importPath": "app.schemas.application",
-        "description": "app.schemas.application",
-        "peekOfCode": "class ApplicationResponse(BaseModel):\n    \"\"\"Response model for a single application\"\"\"\n    id: str\n    user_id: str\n    job_id: str\n    status: ApplicationStatus\n    form_questions: List[FormQuestion]\n    applied_date: Optional[datetime] = None\n    last_updated: datetime\n    created_at: datetime",
-        "detail": "app.schemas.application",
-        "documentation": {}
-    },
-    {
-        "label": "UserApplicationsResponse",
-        "kind": 6,
-        "importPath": "app.schemas.application",
-        "description": "app.schemas.application",
-        "peekOfCode": "class UserApplicationsResponse(BaseModel):\n    \"\"\"Response model for user applications list\"\"\"\n    applications: List[ApplicationResponse]\n    total: int\nclass SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"",
+        "peekOfCode": "class ApplyJobResponse(BaseModel):\n    \"\"\"Response model for job application submission\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2264,7 +2572,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str",
+        "peekOfCode": "class SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str \nclass GenerateCoverLetterRequest(BaseModel):",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2273,7 +2581,43 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str",
+        "peekOfCode": "class SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str \nclass GenerateCoverLetterRequest(BaseModel):\n    \"\"\"Request model for generating cover letter\"\"\"\n    job_id: str\n    prompt: Optional[str] = None\nclass GenerateCoverLetterResponse(BaseModel):",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "GenerateCoverLetterRequest",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class GenerateCoverLetterRequest(BaseModel):\n    \"\"\"Request model for generating cover letter\"\"\"\n    job_id: str\n    prompt: Optional[str] = None\nclass GenerateCoverLetterResponse(BaseModel):\n    \"\"\"Response model for cover letter generation\"\"\"\n    application_id: str\n    cover_letter_url: str\n    message: str \nclass GenerateCustomAnswerRequest(BaseModel):",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "GenerateCoverLetterResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class GenerateCoverLetterResponse(BaseModel):\n    \"\"\"Response model for cover letter generation\"\"\"\n    application_id: str\n    cover_letter_url: str\n    message: str \nclass GenerateCustomAnswerRequest(BaseModel):\n    \"\"\"Request model for generating custom answers\"\"\"\n    job_description: str\n    question: str\n    prompt: Optional[str] = None",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "GenerateCustomAnswerRequest",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class GenerateCustomAnswerRequest(BaseModel):\n    \"\"\"Request model for generating custom answers\"\"\"\n    job_description: str\n    question: str\n    prompt: Optional[str] = None\nclass GenerateCustomAnswerResponse(BaseModel):\n    \"\"\"Response model for custom answer generation\"\"\"\n    answer: str\n    message: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "GenerateCustomAnswerResponse",
+        "kind": 6,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "class GenerateCustomAnswerResponse(BaseModel):\n    \"\"\"Response model for custom answer generation\"\"\"\n    answer: str\n    message: str",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2282,7 +2626,7 @@
         "kind": 6,
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
-        "peekOfCode": "class JobBase(BaseModel):\n    \"\"\"Base Job model with common attributes\"\"\"\n    title: constr(min_length=1, max_length=255)\n    company: constr(min_length=1, max_length=255)\n    logo: HttpUrl\n    location: constr(min_length=1, max_length=255)\n    salary: constr(min_length=1, max_length=255)\n    salary_value: confloat(gt=0)  # Must be positive\n    job_type: constr(min_length=1, max_length=50)\n    description: str",
+        "peekOfCode": "class JobBase(BaseModel):\n    \"\"\"Base Job model with common attributes\"\"\"\n    title: str = Field(..., min_length=1, max_length=255)\n    company: str = Field(..., min_length=1, max_length=255)\n    company_url: Optional[HttpUrl] = None\n    logo: Optional[HttpUrl] = None\n    company_description: Optional[str] = None\n    location: Optional[str] = Field(None, min_length=1, max_length=255)\n    salary_min_range: Optional[float] = Field(None, gt=0)\n    salary_max_range: Optional[float] = Field(None, gt=0)",
         "detail": "app.schemas.job",
         "documentation": {}
     },
@@ -2291,16 +2635,7 @@
         "kind": 6,
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
-        "peekOfCode": "class JobCreate(JobBase):\n    \"\"\"Schema for creating a new job\"\"\"\n    posted_date: datetime = Field(default_factory=datetime.now)\nclass JobUpdate(BaseModel):\n    \"\"\"Schema for updating an existing job\"\"\"\n    title: Optional[constr(min_length=1, max_length=255)] = None\n    company: Optional[constr(min_length=1, max_length=255)] = None\n    logo: Optional[HttpUrl] = None\n    location: Optional[constr(min_length=1, max_length=255)] = None\n    salary: Optional[constr(min_length=1, max_length=255)] = None",
-        "detail": "app.schemas.job",
-        "documentation": {}
-    },
-    {
-        "label": "JobUpdate",
-        "kind": 6,
-        "importPath": "app.schemas.job",
-        "description": "app.schemas.job",
-        "peekOfCode": "class JobUpdate(BaseModel):\n    \"\"\"Schema for updating an existing job\"\"\"\n    title: Optional[constr(min_length=1, max_length=255)] = None\n    company: Optional[constr(min_length=1, max_length=255)] = None\n    logo: Optional[HttpUrl] = None\n    location: Optional[constr(min_length=1, max_length=255)] = None\n    salary: Optional[constr(min_length=1, max_length=255)] = None\n    salary_value: Optional[confloat(gt=0)] = None\n    job_type: Optional[constr(min_length=1, max_length=50)] = None\n    description: Optional[str] = None",
+        "peekOfCode": "class JobCreate(BaseModel):\n    id: str\n    title: str\n    company: str\n    company_url: Optional[str] = None\n    logo: Optional[str] = None\n    location: Optional[str] = None\n    salary_min_range: Optional[float] = None\n    salary_max_range: Optional[float] = None\n    salary_currency: Optional[str] = None",
         "detail": "app.schemas.job",
         "documentation": {}
     },
@@ -2309,7 +2644,7 @@
         "kind": 6,
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
-        "peekOfCode": "class JobInDB(JobBase):\n    \"\"\"Schema for job as stored in database\"\"\"\n    id: int\n    posted_date: datetime\n    created_at: datetime\n    updated_at: datetime\n    class Config:\n        from_attributes = True\nclass JobResponse(JobInDB):\n    \"\"\"Schema for job response\"\"\"",
+        "peekOfCode": "class JobInDB(JobBase):\n    \"\"\"Schema for job as stored in database\"\"\"\n    id: str\n    created_at: datetime\n    updated_at: datetime\n    model_config = {\"from_attributes\": True}\nclass JobResponse(JobInDB):\n    \"\"\"Schema for job response\"\"\"\n    pass  # Same as JobInDB for now, but can be extended if needed\nclass JobFilters(BaseModel):",
         "detail": "app.schemas.job",
         "documentation": {}
     },
@@ -2336,7 +2671,7 @@
         "kind": 6,
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
-        "peekOfCode": "class JobsPaginatedResponse(BaseModel):\n    \"\"\"Schema for paginated jobs response\"\"\"\n    jobs: List[JobResponse]\n    has_more: bool\n    last_job_id: Optional[int] = None\n    total_count: int\n    filtered_count: int\nclass JobsCountResponse(BaseModel):\n    \"\"\"Schema for jobs count response\"\"\"\n    filtered_count: int",
+        "peekOfCode": "class JobsPaginatedResponse(BaseModel):\n    \"\"\"Schema for paginated jobs response\"\"\"\n    jobs: List[JobResponse]\n    has_more: bool\n    last_job_id: Optional[str] = None\n    total_count: int\n    filtered_count: int\nclass JobsCountResponse(BaseModel):\n    \"\"\"Schema for jobs count response\"\"\"\n    filtered_count: int",
         "detail": "app.schemas.job",
         "documentation": {}
     },
@@ -2354,7 +2689,16 @@
         "kind": 6,
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
-        "peekOfCode": "class JobsSearchResponse(BaseModel):\n    \"\"\"Schema for advanced job search response\"\"\"\n    jobs: List[JobResponse]\n    total_count: int\n    limit: int\n    offset: int\n    has_more: bool\n# Example of how to use the schema:\n\"\"\"\n# Creating a new job",
+        "peekOfCode": "class JobsSearchResponse(BaseModel):\n    \"\"\"Schema for advanced job search response\"\"\"\n    jobs: List[JobResponse]\n    total_count: int\n    limit: int\n    offset: int\n    has_more: bool\nclass JobsResponse(BaseModel):\n    jobs: List[JobResponse]\n    total: int",
+        "detail": "app.schemas.job",
+        "documentation": {}
+    },
+    {
+        "label": "JobsResponse",
+        "kind": 6,
+        "importPath": "app.schemas.job",
+        "description": "app.schemas.job",
+        "peekOfCode": "class JobsResponse(BaseModel):\n    jobs: List[JobResponse]\n    total: int\n    lastJobId: Optional[str] = None\n# Example of how to use the schema:\n\"\"\"\n# Creating a new job\nnew_job = JobCreate(\n    title=\"Senior Software Engineer\",\n    company=\"TechCorp Innovation\",",
         "detail": "app.schemas.job",
         "documentation": {}
     },
@@ -2368,11 +2712,38 @@
         "documentation": {}
     },
     {
+        "label": "JobFetcher",
+        "kind": 6,
+        "importPath": "app.services.fetch_jobs.main",
+        "description": "app.services.fetch_jobs.main",
+        "peekOfCode": "class JobFetcher:\n    \"\"\"\n    A class to fetch jobs from multiple job sites using jobspy library.\n    Supports Linkedin for now.\n    \"\"\"\n    def __init__(self, \n                 results_wanted: int = 500,\n                 hours_old: int = 1,\n                 linkedin_fetch_description: bool = True,\n                 proxies: Optional[List[str]] = None):",
+        "detail": "app.services.fetch_jobs.main",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "app.services.fetch_jobs.main",
+        "description": "app.services.fetch_jobs.main",
+        "peekOfCode": "def main():\n    \"\"\"\n    Fetch jobs for all specializations in United States and Canada and upload them to the database.\n    \"\"\"\n    print(\"🚀 Starting job fetching for all specializations in US and Canada...\")\n    # Initialize JobFetcher with AI assistant\n    job_fetcher = JobFetcher(hours_old=24)\n    # Get all specializations from the mapping\n    all_specializations = list(INDUSTRY_SPECIALIZATION_MAPPING.keys())\n    # Create searches for all specializations in US and Canada",
+        "detail": "app.services.fetch_jobs.main",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.fetch_jobs.main",
+        "description": "app.services.fetch_jobs.main",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass JobFetcher:\n    \"\"\"\n    A class to fetch jobs from multiple job sites using jobspy library.\n    Supports Linkedin for now.\n    \"\"\"\n    def __init__(self, \n                 results_wanted: int = 500,\n                 hours_old: int = 1,\n                 linkedin_fetch_description: bool = True,",
+        "detail": "app.services.fetch_jobs.main",
+        "documentation": {}
+    },
+    {
         "label": "Ashby",
         "kind": 6,
         "importPath": "app.services.job_application.portals.ashby",
         "description": "app.services.job_application.portals.ashby",
-        "peekOfCode": "class Ashby(BasePortal):\n    \"\"\"Ashby job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Ashby portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Ashby portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Ashby portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Ashby application form\")",
+        "peekOfCode": "class Ashby(BasePortal):\n    \"\"\"Ashby job portal handler.\"\"\"\n    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):\n        \"\"\"Initialize Ashby portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile, url, job_description, overrided_answers)\n        self.logger.info(\"Ashby portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Ashby portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Ashby application form\")",
         "detail": "app.services.job_application.portals.ashby",
         "documentation": {}
     },
@@ -2381,7 +2752,7 @@
         "kind": 6,
         "importPath": "app.services.job_application.portals.base",
         "description": "app.services.job_application.portals.base",
-        "peekOfCode": "class BasePortal(ABC):\n    \"\"\"Base class for all job application portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict):\n        \"\"\"Initialize portal with driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile\n        self.logger = logging.getLogger(self.__class__.__name__)\n        # Track how many times each profile key has been used\n        self.filled_profile_keys = {}\n        # Define field mappings with keywords for profile matching",
+        "peekOfCode": "class BasePortal(ABC):\n    \"\"\"Base class for all job application portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict, url: str = None, job_description: str = None, overrided_answers: dict = None):\n        \"\"\"Initialize portal with driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile\n        self.url = url\n        self.job_description = job_description\n        self.overrided_answers = overrided_answers\n        self.logger = logging.getLogger(self.__class__.__name__)",
         "detail": "app.services.job_application.portals.base",
         "documentation": {}
     },
@@ -2390,7 +2761,7 @@
         "kind": 5,
         "importPath": "app.services.job_application.portals.base",
         "description": "app.services.job_application.portals.base",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass BasePortal(ABC):\n    \"\"\"Base class for all job application portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict):\n        \"\"\"Initialize portal with driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile\n        self.logger = logging.getLogger(self.__class__.__name__)\n        # Track how many times each profile key has been used\n        self.filled_profile_keys = {}",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass BasePortal(ABC):\n    \"\"\"Base class for all job application portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict, url: str = None, job_description: str = None, overrided_answers: dict = None):\n        \"\"\"Initialize portal with driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile\n        self.url = url\n        self.job_description = job_description\n        self.overrided_answers = overrided_answers",
         "detail": "app.services.job_application.portals.base",
         "documentation": {}
     },
@@ -2399,7 +2770,7 @@
         "kind": 6,
         "importPath": "app.services.job_application.portals.greenhouse",
         "description": "app.services.job_application.portals.greenhouse",
-        "peekOfCode": "class Greenhouse(BasePortal):\n    \"\"\"Greenhouse job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Greenhouse portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Greenhouse portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Greenhouse.\"\"\"\n        try:\n            # Find and click the Apply button first",
+        "peekOfCode": "class Greenhouse(BasePortal):\n    \"\"\"Greenhouse job portal handler.\"\"\"\n    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):\n        \"\"\"Initialize Greenhouse portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile, url, job_description, overrided_answers)\n        self.is_new_portal = self.url and 'job-boards.greenhouse.io' in self.url\n        self.logger.info(\"Greenhouse portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Greenhouse.\"\"\"\n        try:",
         "detail": "app.services.job_application.portals.greenhouse",
         "documentation": {}
     },
@@ -2408,7 +2779,7 @@
         "kind": 6,
         "importPath": "app.services.job_application.portals.jobvite",
         "description": "app.services.job_application.portals.jobvite",
-        "peekOfCode": "class Jobvite(BasePortal):\n    \"\"\"Jobvite job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Jobvite portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Jobvite portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Jobvite portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Jobvite application form\")",
+        "peekOfCode": "class Jobvite(BasePortal):\n    \"\"\"Jobvite job portal handler.\"\"\"\n    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):\n        \"\"\"Initialize Jobvite portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile, url, job_description, overrided_answers)\n        self.logger.info(\"Jobvite portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Jobvite portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Jobvite application form\")",
         "detail": "app.services.job_application.portals.jobvite",
         "documentation": {}
     },
@@ -2417,7 +2788,7 @@
         "kind": 6,
         "importPath": "app.services.job_application.portals.lever",
         "description": "app.services.job_application.portals.lever",
-        "peekOfCode": "class Lever(BasePortal):\n    \"\"\"Lever job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Lever portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile)\n        self.logger.info(\"Lever portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Lever portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Lever application form\")",
+        "peekOfCode": "class Lever(BasePortal):\n    \"\"\"Lever job portal handler.\"\"\"\n    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):\n        \"\"\"Initialize Lever portal with driver and user profile.\"\"\"\n        super().__init__(driver, profile, url, job_description, overrided_answers)\n        self.logger.info(\"Lever portal initialized successfully\")\n    def apply(self):\n        \"\"\"Apply to job on Lever portal using base class functionality.\"\"\"\n        try:\n            self.logger.info(\"Starting to fill out Lever application form\")",
         "detail": "app.services.job_application.portals.lever",
         "documentation": {}
     },
@@ -2426,7 +2797,7 @@
         "kind": 6,
         "importPath": "app.services.job_application.portals.workable",
         "description": "app.services.job_application.portals.workable",
-        "peekOfCode": "class Workable(BasePortal):\n    \"\"\"Workable job portal handler.\"\"\"\n    def __init__(self, driver, profile):\n        \"\"\"Initialize Workable portal with explicit parent initialization.\"\"\"\n        try:\n            super().__init__(driver, profile)\n            self.logger.info(\"Workable portal initialized successfully\")\n        except Exception as e:\n            self.logger.error(f\"Error initializing Workable portal: {str(e)}\")\n            raise",
+        "peekOfCode": "class Workable(BasePortal):\n    \"\"\"Workable job portal handler.\"\"\"\n    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):\n        \"\"\"Initialize Workable portal with explicit parent initialization.\"\"\"\n        try:\n            super().__init__(driver, profile, url, job_description, overrided_answers)\n            self.logger.info(\"Workable portal initialized successfully\")\n        except Exception as e:\n            self.logger.error(f\"Error initializing Workable portal: {str(e)}\")\n            raise",
         "detail": "app.services.job_application.portals.workable",
         "documentation": {}
     },
@@ -2453,7 +2824,16 @@
         "kind": 2,
         "importPath": "app.services.job_application.utils.helpers",
         "description": "app.services.job_application.utils.helpers",
-        "peekOfCode": "def clean_string(s):\n    return re.sub(r'[^A-Za-z0-9 ]+', '', s)",
+        "peekOfCode": "def clean_string(s):\n    \"\"\"Clean a string by removing special characters and replacing hyphens and underscores with spaces.\"\"\"\n    s = s.replace(\"-\", \" \").replace(\"_\", \" \")\n    return re.sub(r'[^A-Za-z0-9 ]+', '', s)\ndef clean_label(s):\n    \"\"\"Clean a label by removing special characters and replacing hyphens and underscores with spaces.\"\"\"\n    # Keep important characters\n    s = s.replace(\"-\", \" \").replace(\"_\", \" \")\n    cleaned = re.sub(r\"[^A-Za-z0-9?!/.' ]+\", '', s)\n    # Strip extra spaces",
+        "detail": "app.services.job_application.utils.helpers",
+        "documentation": {}
+    },
+    {
+        "label": "clean_label",
+        "kind": 2,
+        "importPath": "app.services.job_application.utils.helpers",
+        "description": "app.services.job_application.utils.helpers",
+        "peekOfCode": "def clean_label(s):\n    \"\"\"Clean a label by removing special characters and replacing hyphens and underscores with spaces.\"\"\"\n    # Keep important characters\n    s = s.replace(\"-\", \" \").replace(\"_\", \" \")\n    cleaned = re.sub(r\"[^A-Za-z0-9?!/.' ]+\", '', s)\n    # Strip extra spaces\n    cleaned = re.sub(r'\\s+', ' ', cleaned).strip()\n    # Capitalize if all lowercase\n    return cleaned.capitalize() if cleaned.islower() else cleaned",
         "detail": "app.services.job_application.utils.helpers",
         "documentation": {}
     },
@@ -2462,89 +2842,206 @@
         "kind": 6,
         "importPath": "app.services.job_application.main",
         "description": "app.services.job_application.main",
-        "peekOfCode": "class JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        # Validate required environment variables\n        self._validate_environment()\n        # Portal configuration - easily extensible\n        self.portal_config = {",
+        "peekOfCode": "class JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None, job_description: str = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        self.job_description = job_description\n        self.logger = logging.getLogger(__name__)\n        # Validate required environment variables\n        self._validate_environment()",
         "detail": "app.services.job_application.main",
         "documentation": {}
     },
     {
-        "label": "logger",
-        "kind": 5,
-        "importPath": "app.services.job_application.main",
-        "description": "app.services.job_application.main",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nload_dotenv()\nclass JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        # Validate required environment variables\n        self._validate_environment()",
-        "detail": "app.services.job_application.main",
-        "documentation": {}
-    },
-    {
-        "label": "InputType",
-        "kind": 6,
-        "importPath": "app.services.ai_form_filler",
-        "description": "app.services.ai_form_filler",
-        "peekOfCode": "class InputType(str, Enum):\n    \"\"\"Supported input types for form fields.\"\"\"\n    INPUT = \"input\"\n    SELECT = \"select\"\n    MULTISELECT = \"multiselect\"\n    DATE = \"date\"\nclass AIFormFiller:\n    \"\"\"AI-powered form filler that uses user profile context to answer questions.\"\"\"\n    def __init__(self, user_profile: Dict[str, Any], openai_api_key: Optional[str] = None):\n        \"\"\"",
-        "detail": "app.services.ai_form_filler",
-        "documentation": {}
-    },
-    {
-        "label": "AIFormFiller",
-        "kind": 6,
-        "importPath": "app.services.ai_form_filler",
-        "description": "app.services.ai_form_filler",
-        "peekOfCode": "class AIFormFiller:\n    \"\"\"AI-powered form filler that uses user profile context to answer questions.\"\"\"\n    def __init__(self, user_profile: Dict[str, Any], openai_api_key: Optional[str] = None):\n        \"\"\"\n        Initialize the AI form filler with user profile context.\n        Args:\n            user_profile: Dictionary containing user profile information\n            openai_api_key: OpenAI API key (optional, will use from settings if not provided)\n        \"\"\"\n        self.user_profile = user_profile",
-        "detail": "app.services.ai_form_filler",
-        "documentation": {}
-    },
-    {
-        "label": "logger",
-        "kind": 5,
-        "importPath": "app.services.ai_form_filler",
-        "description": "app.services.ai_form_filler",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass InputType(str, Enum):\n    \"\"\"Supported input types for form fields.\"\"\"\n    INPUT = \"input\"\n    SELECT = \"select\"\n    MULTISELECT = \"multiselect\"\n    DATE = \"date\"\nclass AIFormFiller:\n    \"\"\"AI-powered form filler that uses user profile context to answer questions.\"\"\"\n    def __init__(self, user_profile: Dict[str, Any], openai_api_key: Optional[str] = None):",
-        "detail": "app.services.ai_form_filler",
-        "documentation": {}
-    },
-    {
-        "label": "demonstrate_ai_form_filler",
+        "label": "get_related_specializations",
         "kind": 2,
-        "importPath": "app.services.ai_form_filler_example",
-        "description": "app.services.ai_form_filler_example",
-        "peekOfCode": "def demonstrate_ai_form_filler():\n    \"\"\"Demonstrate various use cases of the AI Form Filler.\"\"\"\n    # Initialize the AI Form Filler\n    ai_filler = AIFormFiller(sample_profile)\n    print(\"=== AI Form Filler Demo ===\\n\")\n    # Example 1: TEXT INPUT - Open-ended question\n    print(\"1. TEXT INPUT Example:\")\n    question = \"Why are you interested in this position?\"\n    answer = ai_filler.answer_question(question, InputType.INPUT)\n    print(f\"Question: {question}\")",
-        "detail": "app.services.ai_form_filler_example",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "def get_related_specializations(specialization: str) -> List[str]:\n    \"\"\"Get related specializations for a given specialization.\"\"\"\n    return RELATED_SPECIALIZATIONS_MAP.get(specialization, [])\ndef expand_specializations(specializations: List[str]) -> List[str]:\n    \"\"\"Expand a list of specializations to include related ones.\"\"\"\n    expanded = set(specializations)  # Start with original specializations\n    for spec in specializations:\n        related = get_related_specializations(spec)\n        expanded.update(related)\n    return list(expanded)",
+        "detail": "app.services.job_application.types",
         "documentation": {}
     },
     {
-        "label": "demonstrate_integration_with_portal",
+        "label": "expand_specializations",
         "kind": 2,
-        "importPath": "app.services.ai_form_filler_example",
-        "description": "app.services.ai_form_filler_example",
-        "peekOfCode": "def demonstrate_integration_with_portal():\n    \"\"\"Demonstrate how to integrate AI Form Filler with portal classes.\"\"\"\n    # This would be integrated into your portal base class\n    class ExamplePortalIntegration:\n        def __init__(self, user_profile):\n            self.profile = user_profile\n            self.ai_filler = AIFormFiller(user_profile)\n        def fill_field_with_ai_fallback(self, field_element, question: str, field_type: str, options=None):\n            \"\"\"Fill a field using AI as fallback when algorithm fails.\"\"\"\n            # First try your existing algorithm",
-        "detail": "app.services.ai_form_filler_example",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "def expand_specializations(specializations: List[str]) -> List[str]:\n    \"\"\"Expand a list of specializations to include related ones.\"\"\"\n    expanded = set(specializations)  # Start with original specializations\n    for spec in specializations:\n        related = get_related_specializations(spec)\n        expanded.update(related)\n    return list(expanded)\ndef get_field_type(field_type_string: str, tag_name: str = None) -> QuestionType:\n    \"\"\"Convert string field type to QuestionType enum.\"\"\"\n    try:",
+        "detail": "app.services.job_application.types",
         "documentation": {}
     },
     {
-        "label": "sample_profile",
+        "label": "get_field_type",
+        "kind": 2,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "def get_field_type(field_type_string: str, tag_name: str = None) -> QuestionType:\n    \"\"\"Convert string field type to QuestionType enum.\"\"\"\n    try:\n        if tag_name == 'textarea':\n            return QuestionType.TEXTAREA\n        elif tag_name == 'select' or tag_name == 'select-one':\n            return QuestionType.SELECT\n        return QuestionType(field_type_string.lower())\n    except ValueError:\n        return QuestionType.INPUT",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "map_profile_value",
+        "kind": 2,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "def map_profile_value(profile_key: str, profile_value) -> str:\n    \"\"\"Map profile values to their display labels using the type mappings.\"\"\"\n    if not profile_value:\n        return profile_value\n    # Handle list values (convert to comma-separated string of labels)\n    if isinstance(profile_value, list):\n        if profile_key == 'jobTypes':\n            return ', '.join([JOB_TYPE_MAPPING.get(val, val) for val in profile_value])\n        elif profile_key == 'locationPreferences':\n            return ', '.join([LOCATION_TYPE_MAPPING.get(val, val) for val in profile_value])",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "JOB_TYPE_OPTIONS",
         "kind": 5,
-        "importPath": "app.services.ai_form_filler_example",
-        "description": "app.services.ai_form_filler_example",
-        "peekOfCode": "sample_profile = {\n    \"fullName\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"phoneNumber\": \"+1-555-123-4567\",\n    \"currentLocation\": \"San Francisco, CA\",\n    \"education\": [\n        {\n            \"school\": \"Stanford University\",\n            \"degree\": \"Bachelor of Science\",\n            \"fieldOfStudy\": \"Computer Science\",",
-        "detail": "app.services.ai_form_filler_example",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "JOB_TYPE_OPTIONS = [\n    {'value': 'fulltime', 'label': 'Full-time'},\n    {'value': 'parttime', 'label': 'Part-time'},\n    {'value': 'temporary', 'label': 'Temporary'},\n    {'value': 'contract', 'label': 'Contract'},\n    {'value': 'internship', 'label': 'Internship'}\n]\n# Location Types\nLOCATION_TYPE_OPTIONS = [\n    # US Locations",
+        "detail": "app.services.job_application.types",
         "documentation": {}
     },
     {
-        "label": "AIFormFillingMixin",
+        "label": "LOCATION_TYPE_OPTIONS",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "LOCATION_TYPE_OPTIONS = [\n    # US Locations\n    {'value': 'new-york-ny', 'label': 'New York, NY'},\n    {'value': 'mountain-view-ca', 'label': 'Mountain View, CA'},\n    {'value': 'san-francisco-ca', 'label': 'San Francisco, CA'},\n    {'value': 'san-jose-ca', 'label': 'San Jose, CA'},\n    {'value': 'sunnyvale-ca', 'label': 'Sunnyvale, CA'},\n    {'value': 'san-mateo-ca', 'label': 'San Mateo, CA'},\n    {'value': 'redwood-city-ca', 'label': 'Redwood City, CA'},\n    {'value': 'palo-alto-ca', 'label': 'Palo Alto, CA'},",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "ROLE_LEVEL_OPTIONS",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "ROLE_LEVEL_OPTIONS = [\n    {'value': 'internship', 'label': 'Intern & Co-op'},\n    {'value': 'entry', 'label': 'Entry Level & New Grad'},\n    {'value': 'associate', 'label': 'Junior (1-3 years)'},\n    {'value': 'mid-senior', 'label': 'Senior (3-5 years)'},\n    {'value': 'director', 'label': 'Director & Lead'},\n    {'value': 'executive', 'label': 'Executive'}\n]\n# Industry Specializations\nINDUSTRY_SPECIALIZATION_OPTIONS = [",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "INDUSTRY_SPECIALIZATION_OPTIONS",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "INDUSTRY_SPECIALIZATION_OPTIONS = [\n    {'value': 'backend', 'label': 'Backend Engineer'},\n    {'value': 'frontend', 'label': 'Frontend Engineer'},\n    {'value': 'fullstack', 'label': 'Full Stack Engineer'},\n    {'value': 'mobile', 'label': 'Mobile Development'},\n    {'value': 'devops', 'label': 'DevOps & Infrastructure'},\n    {'value': 'data_science', 'label': 'Data Science'},\n    {'value': 'data_engineer', 'label': 'Data Engineer'},\n    {'value': 'ml_ai', 'label': 'Machine Learning & AI'},\n    {'value': 'product', 'label': 'Product Management'},",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "COMPANY_SIZE_OPTIONS",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "COMPANY_SIZE_OPTIONS = [\n    {'value': 'startup', 'label': 'Startup (1-50 employees)'},\n    {'value': 'small', 'label': 'Small (51-200 employees)'},\n    {'value': 'medium', 'label': 'Medium (201-1000 employees)'},\n    {'value': 'large', 'label': 'Large (1001-5000 employees)'},\n    {'value': 'enterprise', 'label': 'Enterprise (5000+ employees)'}\n]\n# Education Degrees\nDEGREE_OPTIONS = [\n    {'value': 'high_school', 'label': 'High School'},",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "DEGREE_OPTIONS",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "DEGREE_OPTIONS = [\n    {'value': 'high_school', 'label': 'High School'},\n    {'value': 'associate', 'label': 'Associate Degree'},\n    {'value': 'bachelor', 'label': \"Bachelor's Degree\"},\n    {'value': 'master', 'label': \"Master's Degree\"},\n    {'value': 'doctorate', 'label': 'Doctorate'},\n    {'value': 'other', 'label': 'Other'}\n]\n# Supported job portals\nSUPPORTED_JOB_PORTALS = {",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "SUPPORTED_JOB_PORTALS",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "SUPPORTED_JOB_PORTALS = {\n    'lever.co': 'Lever',\n    'greenhouse.io': 'Greenhouse',\n    'ashbyhq.com': 'Ashby',\n    'workable.com': 'Workable'\n}\n# Create lookup dictionaries for easy value to label mapping\nJOB_TYPE_MAPPING = {option['value']: option['label'] for option in JOB_TYPE_OPTIONS}\nLOCATION_TYPE_MAPPING = {option['value']: option['label'] for option in LOCATION_TYPE_OPTIONS}\nROLE_LEVEL_MAPPING = {option['value']: option['label'] for option in ROLE_LEVEL_OPTIONS}",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "JOB_TYPE_MAPPING",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "JOB_TYPE_MAPPING = {option['value']: option['label'] for option in JOB_TYPE_OPTIONS}\nLOCATION_TYPE_MAPPING = {option['value']: option['label'] for option in LOCATION_TYPE_OPTIONS}\nROLE_LEVEL_MAPPING = {option['value']: option['label'] for option in ROLE_LEVEL_OPTIONS}\nINDUSTRY_SPECIALIZATION_MAPPING = {option['value']: option['label'] for option in INDUSTRY_SPECIALIZATION_OPTIONS}\nCOMPANY_SIZE_MAPPING = {option['value']: option['label'] for option in COMPANY_SIZE_OPTIONS}\nDEGREE_MAPPING = {option['value']: option['label'] for option in DEGREE_OPTIONS}\n# Related specializations map for expanding specialization filters\nRELATED_SPECIALIZATIONS_MAP = {\n    'frontend': ['fullstack', 'ux_ui'],\n    'backend': ['fullstack', 'devops', 'security'],",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "LOCATION_TYPE_MAPPING",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "LOCATION_TYPE_MAPPING = {option['value']: option['label'] for option in LOCATION_TYPE_OPTIONS}\nROLE_LEVEL_MAPPING = {option['value']: option['label'] for option in ROLE_LEVEL_OPTIONS}\nINDUSTRY_SPECIALIZATION_MAPPING = {option['value']: option['label'] for option in INDUSTRY_SPECIALIZATION_OPTIONS}\nCOMPANY_SIZE_MAPPING = {option['value']: option['label'] for option in COMPANY_SIZE_OPTIONS}\nDEGREE_MAPPING = {option['value']: option['label'] for option in DEGREE_OPTIONS}\n# Related specializations map for expanding specialization filters\nRELATED_SPECIALIZATIONS_MAP = {\n    'frontend': ['fullstack', 'ux_ui'],\n    'backend': ['fullstack', 'devops', 'security'],\n    'fullstack': ['frontend', 'backend'],",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "ROLE_LEVEL_MAPPING",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "ROLE_LEVEL_MAPPING = {option['value']: option['label'] for option in ROLE_LEVEL_OPTIONS}\nINDUSTRY_SPECIALIZATION_MAPPING = {option['value']: option['label'] for option in INDUSTRY_SPECIALIZATION_OPTIONS}\nCOMPANY_SIZE_MAPPING = {option['value']: option['label'] for option in COMPANY_SIZE_OPTIONS}\nDEGREE_MAPPING = {option['value']: option['label'] for option in DEGREE_OPTIONS}\n# Related specializations map for expanding specialization filters\nRELATED_SPECIALIZATIONS_MAP = {\n    'frontend': ['fullstack', 'ux_ui'],\n    'backend': ['fullstack', 'devops', 'security'],\n    'fullstack': ['frontend', 'backend'],\n    'mobile': ['frontend', 'game_dev', 'ar_vr'],",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "INDUSTRY_SPECIALIZATION_MAPPING",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "INDUSTRY_SPECIALIZATION_MAPPING = {option['value']: option['label'] for option in INDUSTRY_SPECIALIZATION_OPTIONS}\nCOMPANY_SIZE_MAPPING = {option['value']: option['label'] for option in COMPANY_SIZE_OPTIONS}\nDEGREE_MAPPING = {option['value']: option['label'] for option in DEGREE_OPTIONS}\n# Related specializations map for expanding specialization filters\nRELATED_SPECIALIZATIONS_MAP = {\n    'frontend': ['fullstack', 'ux_ui'],\n    'backend': ['fullstack', 'devops', 'security'],\n    'fullstack': ['frontend', 'backend'],\n    'mobile': ['frontend', 'game_dev', 'ar_vr'],\n    'devops': ['backend', 'cloud', 'security'],",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "COMPANY_SIZE_MAPPING",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "COMPANY_SIZE_MAPPING = {option['value']: option['label'] for option in COMPANY_SIZE_OPTIONS}\nDEGREE_MAPPING = {option['value']: option['label'] for option in DEGREE_OPTIONS}\n# Related specializations map for expanding specialization filters\nRELATED_SPECIALIZATIONS_MAP = {\n    'frontend': ['fullstack', 'ux_ui'],\n    'backend': ['fullstack', 'devops', 'security'],\n    'fullstack': ['frontend', 'backend'],\n    'mobile': ['frontend', 'game_dev', 'ar_vr'],\n    'devops': ['backend', 'cloud', 'security'],\n    'ml_ai': ['data_science', 'data_engineer'],",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "DEGREE_MAPPING",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "DEGREE_MAPPING = {option['value']: option['label'] for option in DEGREE_OPTIONS}\n# Related specializations map for expanding specialization filters\nRELATED_SPECIALIZATIONS_MAP = {\n    'frontend': ['fullstack', 'ux_ui'],\n    'backend': ['fullstack', 'devops', 'security'],\n    'fullstack': ['frontend', 'backend'],\n    'mobile': ['frontend', 'game_dev', 'ar_vr'],\n    'devops': ['backend', 'cloud', 'security'],\n    'ml_ai': ['data_science', 'data_engineer'],\n    'data_science': ['ml_ai', 'data_engineer'],",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "RELATED_SPECIALIZATIONS_MAP",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "RELATED_SPECIALIZATIONS_MAP = {\n    'frontend': ['fullstack', 'ux_ui'],\n    'backend': ['fullstack', 'devops', 'security'],\n    'fullstack': ['frontend', 'backend'],\n    'mobile': ['frontend', 'game_dev', 'ar_vr'],\n    'devops': ['backend', 'cloud', 'security'],\n    'ml_ai': ['data_science', 'data_engineer'],\n    'data_science': ['ml_ai', 'data_engineer'],\n    'ux_ui': ['frontend', 'product'],\n    'qa': ['backend'],",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "PDFGenerator",
         "kind": 6,
-        "importPath": "app.services.ai_integration",
-        "description": "app.services.ai_integration",
-        "peekOfCode": "class AIFormFillingMixin:\n    \"\"\"\n    Mixin class that adds AI form filling capabilities to portal classes.\n    This should be mixed into your BasePortal class.\n    \"\"\"\n    def __init__(self, *args, **kwargs):\n        \"\"\"Initialize the AI form filler if not already initialized.\"\"\"\n        super().__init__(*args, **kwargs)\n        # Initialize AI form filler if profile is available\n        if hasattr(self, 'profile') and self.profile:",
-        "detail": "app.services.ai_integration",
+        "importPath": "app.services.pdf_generator.pdf_generator",
+        "description": "app.services.pdf_generator.pdf_generator",
+        "peekOfCode": "class PDFGenerator:\n    \"\"\"Service for generating PDF documents from text and other content\"\"\"\n    @staticmethod\n    def create_pdf_from_text(text: str, output_path: str, profile: dict) -> bool:\n        \"\"\"\n        Create a PDF cover letter with a modern header (name + contact icons) and styled text.\n        \"\"\"\n        try:\n            styles = getSampleStyleSheet()\n            normal_style = styles['Normal']",
+        "detail": "app.services.pdf_generator.pdf_generator",
         "documentation": {}
     },
     {
         "label": "logger",
         "kind": 5,
-        "importPath": "app.services.ai_integration",
-        "description": "app.services.ai_integration",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass AIFormFillingMixin:\n    \"\"\"\n    Mixin class that adds AI form filling capabilities to portal classes.\n    This should be mixed into your BasePortal class.\n    \"\"\"\n    def __init__(self, *args, **kwargs):\n        \"\"\"Initialize the AI form filler if not already initialized.\"\"\"\n        super().__init__(*args, **kwargs)\n        # Initialize AI form filler if profile is available",
-        "detail": "app.services.ai_integration",
+        "importPath": "app.services.pdf_generator.pdf_generator",
+        "description": "app.services.pdf_generator.pdf_generator",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass PDFGenerator:\n    \"\"\"Service for generating PDF documents from text and other content\"\"\"\n    @staticmethod\n    def create_pdf_from_text(text: str, output_path: str, profile: dict) -> bool:\n        \"\"\"\n        Create a PDF cover letter with a modern header (name + contact icons) and styled text.\n        \"\"\"\n        try:\n            styles = getSampleStyleSheet()",
+        "detail": "app.services.pdf_generator.pdf_generator",
+        "documentation": {}
+    },
+    {
+        "label": "pdf_generator",
+        "kind": 5,
+        "importPath": "app.services.pdf_generator.pdf_generator",
+        "description": "app.services.pdf_generator.pdf_generator",
+        "peekOfCode": "pdf_generator = PDFGenerator()",
+        "detail": "app.services.pdf_generator.pdf_generator",
+        "documentation": {}
+    },
+    {
+        "label": "AIAssistant",
+        "kind": 6,
+        "importPath": "app.services.ai_assistant",
+        "description": "app.services.ai_assistant",
+        "peekOfCode": "class AIAssistant:\n    \"\"\"AI Assistant using OpenAI for Pro users (textarea only) and Gemini for non-pro users.\"\"\"\n    def __init__(self, user_profile: Dict[str, Any], job_description: Optional[str] = None, override_gemini_model: Optional[str] = None):\n        \"\"\"\n        Initialize the AI assistant with user profile.\n        Args:\n            user_profile: Dictionary containing user profile information\n            job_description: Optional job description to provide context for answers\n            override_gemini_model: Optional Gemini model to use instead of the default\n        \"\"\"",
+        "detail": "app.services.ai_assistant",
         "documentation": {}
     },
     {
@@ -2588,7 +3085,7 @@
         "kind": 6,
         "importPath": "app.services.storage",
         "description": "app.services.storage",
-        "peekOfCode": "class StorageManager:\n    \"\"\"Manages file uploads to Firebase Storage\"\"\"\n    def __init__(self):\n        \"\"\"Initialize storage client\"\"\"\n        self.firebase_bucket = None\n        self._bucket_initialized = False\n    def _get_firebase_app(self):\n        \"\"\"Get an existing Firebase app or return None\"\"\"\n        try:\n            # Try to get any existing Firebase app",
+        "peekOfCode": "class StorageManager:\n    \"\"\"Manages file uploads to Firebase Storage\"\"\"\n    def __init__(self):\n        \"\"\"Initialize storage client\"\"\"\n        self.firebase_bucket = None\n        self._bucket_initialized = False\n        self.resume_path = \"resumes\"\n        self.cover_letter_path = \"cover-letters\"\n        self.screenshot_path = \"screenshots\"\n    def _get_firebase_app(self):",
         "detail": "app.services.storage",
         "documentation": {}
     },
@@ -2611,29 +3108,20 @@
         "documentation": {}
     },
     {
-        "label": "WebSocketManager",
-        "kind": 6,
+        "label": "check_able_to_submit",
+        "kind": 2,
         "importPath": "app.services.websocket",
         "description": "app.services.websocket",
-        "peekOfCode": "class WebSocketManager:\n    def __init__(self):\n        # Store active connections by user_id\n        self.active_connections: Dict[str, Set[WebSocket]] = {}\n    async def connect(self, websocket: WebSocket, user_id: str):\n        \"\"\"Connect a new WebSocket client\"\"\"\n        await websocket.accept()\n        if user_id not in self.active_connections:\n            self.active_connections[user_id] = set()\n        self.active_connections[user_id].add(websocket)",
+        "peekOfCode": "def check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:\n    \"\"\"\n    Check if all required form questions have non-None answers\n    Args:\n        form_questions: List of form questions to check\n    Returns:\n        True if all required questions have answers, False otherwise\n    \"\"\"\n    if not form_questions:\n        return True  # If no questions, can submit",
         "detail": "app.services.websocket",
         "documentation": {}
     },
     {
-        "label": "logger",
+        "label": "redis_client",
         "kind": 5,
         "importPath": "app.services.websocket",
         "description": "app.services.websocket",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass WebSocketManager:\n    def __init__(self):\n        # Store active connections by user_id\n        self.active_connections: Dict[str, Set[WebSocket]] = {}\n    async def connect(self, websocket: WebSocket, user_id: str):\n        \"\"\"Connect a new WebSocket client\"\"\"\n        await websocket.accept()\n        if user_id not in self.active_connections:\n            self.active_connections[user_id] = set()",
-        "detail": "app.services.websocket",
-        "documentation": {}
-    },
-    {
-        "label": "websocket_manager",
-        "kind": 5,
-        "importPath": "app.services.websocket",
-        "description": "app.services.websocket",
-        "peekOfCode": "websocket_manager = WebSocketManager()",
+        "peekOfCode": "redis_client = aioredis.from_url(settings.get_redis_url(db=1), decode_responses=True)\ndef check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:\n    \"\"\"\n    Check if all required form questions have non-None answers\n    Args:\n        form_questions: List of form questions to check\n    Returns:\n        True if all required questions have answers, False otherwise\n    \"\"\"\n    if not form_questions:",
         "detail": "app.services.websocket",
         "documentation": {}
     },
@@ -2651,7 +3139,7 @@
         "kind": 2,
         "importPath": "app.tasks.job_application",
         "description": "app.tasks.job_application",
-        "peekOfCode": "def log_to_firestore(user_id: str, application_id: str, level: str, message: str):\n    \"\"\"Helper function to log messages to Firestore\"\"\"\n    try:\n        firestore_manager.add_application_log(user_id, application_id, level, message)\n    except Exception as e:\n        logger.error(f\"Failed to log to Firestore: {e}\")\n@celery_app.task(bind=True)\ndef apply_to_job(self, application_data: Dict[str, Any]):\n    \"\"\"Main task to apply to a job\"\"\"\n    worker_id = f\"worker_{current_task.request.hostname}_{os.getpid()}\"",
+        "peekOfCode": "def log_to_firestore(user_id: str, application_id: str, level: str, message: str):\n    \"\"\"Helper function to log messages to Firestore\"\"\"\n    try:\n        firestore_manager.add_application_log(user_id, application_id, level, message)\n    except Exception as e:\n        logger.error(f\"Failed to log to Firestore: {e}\")\ndef _run_async_websocket(func, *args, **kwargs):\n    \"\"\"Run an async WebSocket function in a separate thread\"\"\"\n    try:\n        loop = asyncio.new_event_loop()",
         "detail": "app.tasks.job_application",
         "documentation": {}
     },
@@ -2660,7 +3148,7 @@
         "kind": 2,
         "importPath": "app.tasks.job_application",
         "description": "app.tasks.job_application",
-        "peekOfCode": "def apply_to_job(self, application_data: Dict[str, Any]):\n    \"\"\"Main task to apply to a job\"\"\"\n    worker_id = f\"worker_{current_task.request.hostname}_{os.getpid()}\"\n    user_id = application_data['user_id']\n    application_id = application_data['application_id']\n    job_id = application_data['job_id']\n    should_submit = application_data.get('should_submit', False)\n    form_questions = application_data.get('form_questions', None)\n    override_form_questions = application_data.get('override_form_questions', False)\n    logger.info(f\"Starting job application task for job {job_id}, application {application_id}\")",
+        "peekOfCode": "def apply_to_job(self, application_data: Dict[str, Any]):\n    \"\"\"Main task to apply to a job\"\"\"\n    worker_id = f\"worker_{current_task.request.hostname}_{os.getpid()}\"\n    user_id = application_data['user_id']\n    application_id = application_data['application_id']\n    job_id = application_data['job_id']\n    should_submit = application_data.get('should_submit', False)\n    overrided_form_questions = application_data.get('form_questions', None)\n    logger.info(f\"Starting job application task for job {job_id}, application {application_id}\")\n    driver = None",
         "detail": "app.tasks.job_application",
         "documentation": {}
     },
@@ -2669,7 +3157,7 @@
         "kind": 2,
         "importPath": "app.tasks.job_application",
         "description": "app.tasks.job_application",
-        "peekOfCode": "def take_screenshot(driver, application_id: str) -> str:\n    \"\"\"Take a screenshot of the current page\"\"\"\n    try:\n        # Use temp directory for faster I/O\n        filename = f\"screenshot_{application_id}_{uuid.uuid4().hex[:8]}.png\"\n        filepath = os.path.join(tempfile.gettempdir(), filename)\n        # Take screenshot with minimal quality for speed\n        driver.save_screenshot(filepath)\n        return filepath\n    except Exception as e:",
+        "peekOfCode": "def take_screenshot(driver, application_id: str) -> str:\n    \"\"\"Take a screenshot of the current page using CDP\"\"\"\n    try:\n        from Screenshot import Screenshot\n        ss = Screenshot(driver)\n        # Define temp filepath\n        filename = f\"screenshot_{application_id}.png\"\n        filepath = os.path.join(tempfile.gettempdir(), filename)\n        # Take full page screenshot and save to temp dir\n        ss.capture_full_page(",
         "detail": "app.tasks.job_application",
         "documentation": {}
     },
@@ -2678,8 +3166,17 @@
         "kind": 5,
         "importPath": "app.tasks.job_application",
         "description": "app.tasks.job_application",
-        "peekOfCode": "logger = logging.getLogger(__name__)\ndef log_to_firestore(user_id: str, application_id: str, level: str, message: str):\n    \"\"\"Helper function to log messages to Firestore\"\"\"\n    try:\n        firestore_manager.add_application_log(user_id, application_id, level, message)\n    except Exception as e:\n        logger.error(f\"Failed to log to Firestore: {e}\")\n@celery_app.task(bind=True)\ndef apply_to_job(self, application_data: Dict[str, Any]):\n    \"\"\"Main task to apply to a job\"\"\"",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef log_to_firestore(user_id: str, application_id: str, level: str, message: str):\n    \"\"\"Helper function to log messages to Firestore\"\"\"\n    try:\n        firestore_manager.add_application_log(user_id, application_id, level, message)\n    except Exception as e:\n        logger.error(f\"Failed to log to Firestore: {e}\")\ndef _run_async_websocket(func, *args, **kwargs):\n    \"\"\"Run an async WebSocket function in a separate thread\"\"\"\n    try:",
         "detail": "app.tasks.job_application",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_resources",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def cleanup_resources():\n    \"\"\"Cleanup function for atexit handler\"\"\"\n    logger.info(\"🧹 atexit cleanup initiated...\")\n    try:\n        browser_pool.close_all()\n        postgres_manager.cleanup()\n        logger.info(\"✅ atexit cleanup completed\")\n    except Exception as e:\n        logger.error(f\"❌ Error during atexit cleanup: {e}\")\n# Register cleanup function for process termination",
+        "detail": "app.main",
         "documentation": {}
     },
     {
@@ -2687,7 +3184,7 @@
         "kind": 5,
         "importPath": "app.main",
         "description": "app.main",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nlogger.info(\"Starting FastAPI application\")\napp = FastAPI(\n    title=\"ApplyWise API\",\n    description=\"Backend API for ApplyWise job application automation\",\n    version=\"1.0.0\"\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n@asynccontextmanager\nasync def lifespan(app: FastAPI):\n    \"\"\"Application lifespan context manager\"\"\"\n    # Startup\n    logger.info(\"🚀 Application startup initiated\")\n    # Initialize resources if needed\n    logger.info(\"✅ Application startup complete\")\n    yield\n    # Shutdown",
         "detail": "app.main",
         "documentation": {}
     },
@@ -2696,7 +3193,7 @@
         "kind": 5,
         "importPath": "app.main",
         "description": "app.main",
-        "peekOfCode": "app = FastAPI(\n    title=\"ApplyWise API\",\n    description=\"Backend API for ApplyWise job application automation\",\n    version=\"1.0.0\"\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=settings.CORS_ORIGINS,\n    allow_credentials=True,",
+        "peekOfCode": "app = FastAPI(\n    title=\"ApplyWise API\",\n    description=\"Backend API for ApplyWise job application automation\",\n    version=\"1.0.0\",\n    lifespan=lifespan\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=settings.CORS_ORIGINS,",
         "detail": "app.main",
         "documentation": {}
     },
@@ -2737,255 +3234,201 @@
         "documentation": {}
     },
     {
-        "label": "Job",
-        "kind": 6,
-        "importPath": "scripts.insert_job",
-        "description": "scripts.insert_job",
-        "peekOfCode": "class Job(BaseModel):\n    \"\"\"Pydantic model matching the TypeScript Job interface\"\"\"\n    id: Optional[int] = None\n    title: str\n    company: str\n    logo: str\n    location: str\n    salary: str\n    salary_value: float  # Numeric value for filtering\n    job_type: str",
-        "detail": "scripts.insert_job",
-        "documentation": {}
-    },
-    {
-        "label": "test_connection",
-        "kind": 2,
-        "importPath": "scripts.insert_job",
-        "description": "scripts.insert_job",
-        "peekOfCode": "def test_connection():\n    \"\"\"Test database connection and print detailed error if it fails\"\"\"\n    try:\n        print(\"[4] Testing database connection...\")\n        start_time = time.time()\n        # Try to connect\n        conn = psycopg2.connect(**DB_PARAMS)\n        conn.close()\n        end_time = time.time()\n        print(f\"[5] Test connection successful! Time taken: {end_time - start_time:.2f} seconds\")",
-        "detail": "scripts.insert_job",
-        "documentation": {}
-    },
-    {
         "label": "create_jobs_table",
         "kind": 2,
-        "importPath": "scripts.insert_job",
-        "description": "scripts.insert_job",
-        "peekOfCode": "def create_jobs_table(cursor):\n    \"\"\"Create jobs table if it doesn't exist\"\"\"\n    print(\"[5] Creating jobs table if not exists...\")\n    start_time = time.time()\n    cursor.execute(\"\"\"\n        CREATE TABLE IF NOT EXISTS jobs (\n            id SERIAL PRIMARY KEY,\n            title VARCHAR(255) NOT NULL,\n            company VARCHAR(255) NOT NULL,\n            logo TEXT NOT NULL,",
-        "detail": "scripts.insert_job",
+        "importPath": "scripts.reset_db",
+        "description": "scripts.reset_db",
+        "peekOfCode": "def create_jobs_table(postgres_manager: PostgresManager):\n    \"\"\"Create jobs table if it doesn't exist\"\"\"\n    print(\"[5] Dropping existing jobs table...\")\n    start_time = time.time()\n    session = postgres_manager.SessionLocal()\n    try:\n        session.execute(text(\"DROP TABLE IF EXISTS jobs CASCADE\"))\n        session.commit()\n    finally:\n        session.close()",
+        "detail": "scripts.reset_db",
         "documentation": {}
     },
     {
         "label": "insert_sample_job",
         "kind": 2,
-        "importPath": "scripts.insert_job",
-        "description": "scripts.insert_job",
-        "peekOfCode": "def insert_sample_job(cursor):\n    \"\"\"Insert a sample job into the jobs table\"\"\"\n    print(\"[7] Preparing sample job data...\")\n    job_data = {\n        \"title\": \"Senior Software Engineer\",\n        \"company\": \"TechCorp Innovation\",\n        \"logo\": \"https://example.com/techcorp-logo.png\",\n        \"location\": \"San Francisco, CA (Hybrid)\",\n        \"salary\": \"$150,000 - $220,000 annually\",\n        \"salary_value\": 185000.00,  # Average of the range",
-        "detail": "scripts.insert_job",
+        "importPath": "scripts.reset_db",
+        "description": "scripts.reset_db",
+        "peekOfCode": "def insert_sample_job(postgres_manager: PostgresManager):\n    \"\"\"Insert a sample job into the jobs table\"\"\"\n    print(\"[9] Preparing sample job data...\")\n    # Generate a unique string ID\n    import uuid\n    import json\n    job_id = str(uuid.uuid4())\n    job_data = {\n        \"id\": job_id,\n        \"title\": \"Senior Software Engineer\",",
+        "detail": "scripts.reset_db",
         "documentation": {}
     },
     {
         "label": "main",
         "kind": 2,
-        "importPath": "scripts.insert_job",
-        "description": "scripts.insert_job",
-        "peekOfCode": "def main():\n    # First test the connection\n    if not test_connection():\n        print(\"[ERROR] Exiting due to connection failure\")\n        return\n    conn = None\n    cursor = None\n    try:\n        print(\"[10] Establishing main database connection...\")\n        start_time = time.time()",
-        "detail": "scripts.insert_job",
-        "documentation": {}
-    },
-    {
-        "label": "DB_PARAMS",
-        "kind": 5,
-        "importPath": "scripts.insert_job",
-        "description": "scripts.insert_job",
-        "peekOfCode": "DB_PARAMS = {\n    \"host\": os.getenv(\"POSTGRES_HOST\", \"172.31.85.170\"),\n    \"database\": os.getenv(\"POSTGRES_DB\", \"applywise\"),\n    \"user\": os.getenv(\"POSTGRES_USER\", \"postgres\"),\n    \"password\": os.getenv(\"POSTGRES_PASSWORD\"),\n    \"port\": os.getenv(\"POSTGRES_PORT\", \"5432\"),\n    # Add timeout parameters\n    \"connect_timeout\": 10,  # Connection timeout in seconds\n    \"options\": \"-c statement_timeout=30000\"  # Statement timeout in milliseconds (30 seconds)\n}",
-        "detail": "scripts.insert_job",
+        "importPath": "scripts.reset_db",
+        "description": "scripts.reset_db",
+        "peekOfCode": "def main():\n    print(\"[1] Starting job insertion script...\")\n    script_start_time = time.time()\n    try:\n        # Initialize PostgresManager\n        print(\"[2] Initializing PostgresManager...\")\n        start_time = time.time()\n        postgres_manager = PostgresManager()\n        end_time = time.time()\n        print(f\"[3] PostgresManager initialized in {end_time - start_time:.2f} seconds\")",
+        "detail": "scripts.reset_db",
         "documentation": {}
     },
     {
         "label": "test_health_check",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_health_check():\n    \"\"\"Test the health check endpoint\"\"\"\n    print(\"🔍 Testing health check...\")\n    response = requests.get(f\"{API_BASE_URL}/health\")\n    if response.status_code == 200:\n        print(\"✅ Health check passed\")\n        print(json.dumps(response.json(), indent=2))\n    else:\n        print(f\"❌ Health check failed: {response.status_code}\")\n    return response.status_code == 200",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "test_apply_job",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_apply_job():\n    \"\"\"Test job application submission\"\"\"\n    print(\"\\n📝 Testing job application...\")\n    # Sample job application data\n    application_data = {\n        \"user_id\": TEST_USER_ID,\n        \"job_url\": \"https://www.linkedin.com/jobs/view/3750000000\",\n        \"resume_data\": {\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "test_apply_job_duplicate",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_apply_job_duplicate():\n    \"\"\"Test applying to the same job again (should use existing application)\"\"\"\n    print(\"\\n🔄 Testing duplicate job application...\")\n    # Same job URL as before\n    application_data = {\n        \"user_id\": TEST_USER_ID,\n        \"job_url\": \"https://www.linkedin.com/jobs/view/3750000000\",\n        \"resume_data\": {\n            \"first_name\": \"John\",\n            \"last_name\": \"Doe\",",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "test_task_status",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_task_status(task_id: str):\n    \"\"\"Test task status checking\"\"\"\n    print(f\"\\n📊 Checking task status for {task_id}...\")\n    max_attempts = 30\n    attempt = 0\n    while attempt < max_attempts:\n        response = requests.get(f\"{API_BASE_URL}/status/{task_id}\")\n        if response.status_code == 200:\n            result = response.json()\n            status = result['status']",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "test_get_user_applications",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_get_user_applications():\n    \"\"\"Test getting list of applications for a user\"\"\"\n    print(f\"\\n📋 Getting applications for user {TEST_USER_ID}...\")\n    response = requests.get(f\"{API_BASE_URL}/users/{TEST_USER_ID}/applications\")\n    if response.status_code == 200:\n        result = response.json()\n        applications = result['applications']\n        print(f\"✅ Found {len(applications)} applications\")\n        print(f\"Total count: {result['total_count']}\")\n        print(f\"Has more: {result['has_more']}\")",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "test_get_specific_application",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_get_specific_application(application_id: str):\n    \"\"\"Test getting a specific application\"\"\"\n    print(f\"\\n📄 Getting specific application {application_id}...\")\n    response = requests.get(f\"{API_BASE_URL}/users/{TEST_USER_ID}/applications/{application_id}\")\n    if response.status_code == 200:\n        application = response.json()\n        print(\"✅ Application retrieved successfully\")\n        print(f\"  - Job ID: {application['job_id']}\")\n        print(f\"  - Status: {application['status']}\")\n        print(f\"  - Job URL: {application['job_url']}\")",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "test_get_application_logs",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_get_application_logs(application_id: str):\n    \"\"\"Test getting application logs\"\"\"\n    print(f\"\\n📝 Getting logs for application {application_id}...\")\n    response = requests.get(f\"{API_BASE_URL}/users/{TEST_USER_ID}/applications/{application_id}/logs\")\n    if response.status_code == 200:\n        result = response.json()\n        logs = result['logs']\n        print(f\"✅ Found {len(logs)} log entries\")\n        for log in logs[-5:]:  # Show last 5 logs\n            print(f\"  - [{log.get('level', 'info')}] {log.get('message', '')}\")",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "test_worker_status",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def test_worker_status():\n    \"\"\"Test worker status endpoint\"\"\"\n    print(\"\\n👷 Checking worker status...\")\n    response = requests.get(f\"{API_BASE_URL}/workers\")\n    if response.status_code == 200:\n        result = response.json()\n        print(\"✅ Worker status retrieved\")\n        # Count active tasks\n        active_tasks = result.get('active_tasks', {})\n        total_active = sum(len(tasks) for tasks in active_tasks.values())",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "main",
         "kind": 2,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "def main():\n    \"\"\"Run all tests\"\"\"\n    print(\"🧪 ApplyWise Backend API Test Suite (Firestore)\")\n    print(\"=\" * 60)\n    # Test health check\n    if not test_health_check():\n        print(\"❌ Health check failed. Make sure the API is running.\")\n        return\n    # Test worker status\n    test_worker_status()",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "API_BASE_URL",
         "kind": 5,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "API_BASE_URL = \"http://localhost:8000\"\nTEST_USER_ID = \"test_user_123\"  # Test user ID\ndef test_health_check():\n    \"\"\"Test the health check endpoint\"\"\"\n    print(\"🔍 Testing health check...\")\n    response = requests.get(f\"{API_BASE_URL}/health\")\n    if response.status_code == 200:\n        print(\"✅ Health check passed\")\n        print(json.dumps(response.json(), indent=2))\n    else:",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
         "label": "TEST_USER_ID",
         "kind": 5,
-        "importPath": "scripts.test_api",
-        "description": "scripts.test_api",
+        "importPath": "tests.test_api",
+        "description": "tests.test_api",
         "peekOfCode": "TEST_USER_ID = \"test_user_123\"  # Test user ID\ndef test_health_check():\n    \"\"\"Test the health check endpoint\"\"\"\n    print(\"🔍 Testing health check...\")\n    response = requests.get(f\"{API_BASE_URL}/health\")\n    if response.status_code == 200:\n        print(\"✅ Health check passed\")\n        print(json.dumps(response.json(), indent=2))\n    else:\n        print(f\"❌ Health check failed: {response.status_code}\")",
-        "detail": "scripts.test_api",
+        "detail": "tests.test_api",
         "documentation": {}
     },
     {
-        "label": "test_health",
+        "label": "create_sample_jobs_df",
         "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_health():\n    \"\"\"Test if the API is running\"\"\"\n    print(\"🏥 Testing API health...\")\n    try:\n        response = requests.get(f\"{API_BASE_URL}/health\")\n        if response.status_code == 200:\n            print(\"✅ API is healthy\")\n            return True\n        else:\n            print(f\"❌ API health check failed: {response.status_code}\")",
-        "detail": "scripts.test_jobs_api",
+        "importPath": "tests.test_job_summarization",
+        "description": "tests.test_job_summarization",
+        "peekOfCode": "def create_sample_jobs_df():\n    \"\"\"Create a sample DataFrame with job descriptions for testing.\"\"\"\n    sample_jobs = [\n        {\n            'title': 'Senior Software Engineer',\n            'company': 'TechCorp',\n            'location': 'San Francisco, CA',\n            'description': '''\n            We are looking for a Senior Software Engineer to join our team.\n            Responsibilities:",
+        "detail": "tests.test_job_summarization",
         "documentation": {}
     },
     {
-        "label": "test_get_jobs_paginated",
+        "label": "test_job_summarization",
         "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_get_jobs_paginated():\n    \"\"\"Test paginated jobs endpoint\"\"\"\n    print(\"\\n📄 Testing paginated jobs...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/paginated?limit=5\")\n        if response.status_code == 200:\n            data = response.json()\n            print(f\"✅ Retrieved paginated jobs\")\n            print(f\"  - Jobs count: {len(data.get('jobs', []))}\")\n            print(f\"  - Has more: {data.get('hasMore', False)}\")",
-        "detail": "scripts.test_jobs_api",
+        "importPath": "tests.test_job_summarization",
+        "description": "tests.test_job_summarization",
+        "peekOfCode": "def test_job_summarization():\n    \"\"\"Test the job summarization functionality.\"\"\"\n    try:\n        # Create sample user profile (minimal for testing)\n        user_profile = {\n            'fullName': 'John Doe',\n            'isProMember': True,  # Use Pro features for better results\n            'currentLocation': 'San Francisco, CA'\n        }\n        # Create sample jobs DataFrame",
+        "detail": "tests.test_job_summarization",
         "documentation": {}
     },
     {
-        "label": "test_get_filtered_count",
-        "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_get_filtered_count():\n    \"\"\"Test filtered jobs count endpoint\"\"\"\n    print(\"\\n🔢 Testing filtered jobs count...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/filtered-count\")\n        if response.status_code == 200:\n            count = response.json()\n            print(f\"✅ Retrieved filtered jobs count: {count}\")\n            return count\n        else:",
-        "detail": "scripts.test_jobs_api",
+        "label": "logger",
+        "kind": 5,
+        "importPath": "tests.test_job_summarization",
+        "description": "tests.test_job_summarization",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef create_sample_jobs_df():\n    \"\"\"Create a sample DataFrame with job descriptions for testing.\"\"\"\n    sample_jobs = [\n        {\n            'title': 'Senior Software Engineer',\n            'company': 'TechCorp',\n            'location': 'San Francisco, CA',\n            'description': '''\n            We are looking for a Senior Software Engineer to join our team.",
+        "detail": "tests.test_job_summarization",
         "documentation": {}
     },
     {
-        "label": "test_get_total_available_count",
+        "label": "test_job_upload",
         "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_get_total_available_count():\n    \"\"\"Test total available jobs count endpoint\"\"\"\n    print(\"\\n📊 Testing total available jobs count...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/total-available-count\")\n        if response.status_code == 200:\n            count = response.json()\n            print(f\"✅ Retrieved total available jobs count: {count}\")\n            return count\n        else:",
-        "detail": "scripts.test_jobs_api",
+        "importPath": "tests.test_job_upload",
+        "description": "tests.test_job_upload",
+        "peekOfCode": "def test_job_upload():\n    \"\"\"\n    Test uploading backend_jobs_raw.csv to the database.\n    \"\"\"\n    print(\"🧪 Testing job upload with backend_jobs_raw.csv...\")\n    # Path to the CSV file\n    csv_file = \"all_jobs_raw.csv\"\n    if not os.path.exists(csv_file):\n        print(f\"❌ CSV file not found: {csv_file}\")\n        return",
+        "detail": "tests.test_job_upload",
         "documentation": {}
     },
     {
-        "label": "test_get_single_job",
-        "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_get_single_job(job_id: int):\n    \"\"\"Test getting a single job\"\"\"\n    print(f\"\\n🎯 Testing single job retrieval (ID: {job_id})...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/{job_id}\")\n        if response.status_code == 200:\n            job = response.json()\n            if job:\n                print(f\"✅ Retrieved job: {job.get('title', 'Unknown')} at {job.get('company', 'Unknown')}\")\n                return job",
-        "detail": "scripts.test_jobs_api",
+        "label": "logger",
+        "kind": 5,
+        "importPath": "tests.test_job_upload",
+        "description": "tests.test_job_upload",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef test_job_upload():\n    \"\"\"\n    Test uploading backend_jobs_raw.csv to the database.\n    \"\"\"\n    print(\"🧪 Testing job upload with backend_jobs_raw.csv...\")\n    # Path to the CSV file\n    csv_file = \"all_jobs_raw.csv\"\n    if not os.path.exists(csv_file):\n        print(f\"❌ CSV file not found: {csv_file}\")",
+        "detail": "tests.test_job_upload",
         "documentation": {}
     },
     {
-        "label": "test_get_bulk_jobs",
+        "label": "test_endpoint",
         "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_get_bulk_jobs(job_ids: list):\n    \"\"\"Test bulk jobs retrieval\"\"\"\n    print(f\"\\n📦 Testing bulk jobs retrieval ({len(job_ids)} jobs)...\")\n    try:\n        job_ids_str = \",\".join(map(str, job_ids))\n        response = requests.get(f\"{JOBS_API_URL}/bulk?job_ids={job_ids_str}\")\n        if response.status_code == 200:\n            jobs = response.json()\n            valid_jobs = [job for job in jobs if job is not None]\n            print(f\"✅ Retrieved {len(valid_jobs)} out of {len(job_ids)} requested jobs\")",
-        "detail": "scripts.test_jobs_api",
-        "documentation": {}
-    },
-    {
-        "label": "test_jobs_with_filters",
-        "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_jobs_with_filters():\n    \"\"\"Test jobs with various filters\"\"\"\n    print(\"\\n🔍 Testing jobs with filters...\")\n    # Test location filter\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/paginated?limit=3&location=San Francisco\")\n        if response.status_code == 200:\n            data = response.json()\n            print(f\"✅ Location filter test: {len(data.get('jobs', []))} jobs in San Francisco\")\n        else:",
-        "detail": "scripts.test_jobs_api",
-        "documentation": {}
-    },
-    {
-        "label": "test_advanced_search",
-        "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def test_advanced_search():\n    \"\"\"Test advanced search endpoint\"\"\"\n    print(\"\\n🔎 Testing advanced search...\")\n    try:\n        response = requests.get(f\"{JOBS_API_URL}/search/advanced?q=engineer&limit=5\")\n        if response.status_code == 200:\n            data = response.json()\n            print(f\"✅ Advanced search test: {len(data.get('jobs', []))} jobs found for 'engineer'\")\n            print(f\"  - Total count: {data.get('total_count', 0)}\")\n            print(f\"  - Has more: {data.get('has_more', False)}\")",
-        "detail": "scripts.test_jobs_api",
+        "importPath": "tests.test_jobs_api",
+        "description": "tests.test_jobs_api",
+        "peekOfCode": "def test_endpoint(endpoint: str, params: Dict[str, Any] = None, description: str = \"\") -> bool:\n    \"\"\"\n    Test an API endpoint and print results.\n    Args:\n        endpoint: API endpoint path\n        params: Query parameters\n        description: Description of the test\n    Returns:\n        bool: True if successful, False otherwise\n    \"\"\"",
+        "detail": "tests.test_jobs_api",
         "documentation": {}
     },
     {
         "label": "main",
         "kind": 2,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "def main():\n    \"\"\"Run all tests\"\"\"\n    print(\"🚀 Starting Jobs API Tests\")\n    print(\"=\" * 50)\n    # Test API health first\n    if not test_health():\n        print(\"\\n❌ API is not healthy. Make sure the server is running.\")\n        return\n    # Test paginated jobs\n    paginated_data = test_get_jobs_paginated()",
-        "detail": "scripts.test_jobs_api",
+        "importPath": "tests.test_jobs_api",
+        "description": "tests.test_jobs_api",
+        "peekOfCode": "def main():\n    \"\"\"Run all API tests.\"\"\"\n    print(\"🚀 Testing Jobs API Endpoints\")\n    print(\"=\" * 50)\n    # Check if server is running\n    print(\"\\n🔍 Checking if server is running...\")\n    try:\n        response = requests.get(BASE_URL, timeout=5)\n        if response.status_code == 200:\n            print(\"✅ Server is running!\")",
+        "detail": "tests.test_jobs_api",
         "documentation": {}
     },
     {
-        "label": "API_BASE_URL",
+        "label": "BASE_URL",
         "kind": 5,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "API_BASE_URL = \"http://localhost:8000\"\nJOBS_API_URL = f\"{API_BASE_URL}/jobs\"\ndef test_health():\n    \"\"\"Test if the API is running\"\"\"\n    print(\"🏥 Testing API health...\")\n    try:\n        response = requests.get(f\"{API_BASE_URL}/health\")\n        if response.status_code == 200:\n            print(\"✅ API is healthy\")\n            return True",
-        "detail": "scripts.test_jobs_api",
-        "documentation": {}
-    },
-    {
-        "label": "JOBS_API_URL",
-        "kind": 5,
-        "importPath": "scripts.test_jobs_api",
-        "description": "scripts.test_jobs_api",
-        "peekOfCode": "JOBS_API_URL = f\"{API_BASE_URL}/jobs\"\ndef test_health():\n    \"\"\"Test if the API is running\"\"\"\n    print(\"🏥 Testing API health...\")\n    try:\n        response = requests.get(f\"{API_BASE_URL}/health\")\n        if response.status_code == 200:\n            print(\"✅ API is healthy\")\n            return True\n        else:",
-        "detail": "scripts.test_jobs_api",
+        "importPath": "tests.test_jobs_api",
+        "description": "tests.test_jobs_api",
+        "peekOfCode": "BASE_URL = \"http://localhost:8000/jobs\"\ndef test_endpoint(endpoint: str, params: Dict[str, Any] = None, description: str = \"\") -> bool:\n    \"\"\"\n    Test an API endpoint and print results.\n    Args:\n        endpoint: API endpoint path\n        params: Query parameters\n        description: Description of the test\n    Returns:\n        bool: True if successful, False otherwise",
+        "detail": "tests.test_jobs_api",
         "documentation": {}
     },
     {
@@ -3052,75 +3495,12 @@
         "documentation": {}
     },
     {
-        "label": "target",
+        "label": "logger",
         "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "target = \"MAN\"\nchoices = [\"MALE\", \"FEMALE\"]\n# Calculate different similarity scores\nresults = {\n    choice: {\n        \"ratio\": fuzz.ratio(target, choice),\n        \"partial_ratio\": fuzz.partial_ratio(target, choice),\n        \"token_sort_ratio\": fuzz.token_sort_ratio(target, choice),\n        \"token_set_ratio\": fuzz.token_set_ratio(target, choice),\n        \"WRatio\": fuzz.WRatio(target, choice)",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "choices",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "choices = [\"MALE\", \"FEMALE\"]\n# Calculate different similarity scores\nresults = {\n    choice: {\n        \"ratio\": fuzz.ratio(target, choice),\n        \"partial_ratio\": fuzz.partial_ratio(target, choice),\n        \"token_sort_ratio\": fuzz.token_sort_ratio(target, choice),\n        \"token_set_ratio\": fuzz.token_set_ratio(target, choice),\n        \"WRatio\": fuzz.WRatio(target, choice)\n    }",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "results",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "results = {\n    choice: {\n        \"ratio\": fuzz.ratio(target, choice),\n        \"partial_ratio\": fuzz.partial_ratio(target, choice),\n        \"token_sort_ratio\": fuzz.token_sort_ratio(target, choice),\n        \"token_set_ratio\": fuzz.token_set_ratio(target, choice),\n        \"WRatio\": fuzz.WRatio(target, choice)\n    }\n    for choice in choices\n}",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "best_match",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "best_match = process.extractOne(target, choices, scorer=fuzz.partial_ratio)\nresults[\"best_match\"] = {\n    \"match\": best_match[0],\n    \"score\": best_match[1],\n    \"method\": \"WRatio (default)\"\n}\n# Print the results\nimport pprint\npprint.pprint(results)\nfrom textdistance import jaccard, levenshtein",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "results[\"best_match\"]",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "results[\"best_match\"] = {\n    \"match\": best_match[0],\n    \"score\": best_match[1],\n    \"method\": \"WRatio (default)\"\n}\n# Print the results\nimport pprint\npprint.pprint(results)\nfrom textdistance import jaccard, levenshtein\njaccard_score = jaccard.normalized_similarity(\"MAN\", \"MALE\")",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "jaccard_score",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "jaccard_score = jaccard.normalized_similarity(\"MAN\", \"MALE\")\nlev_score = levenshtein.normalized_similarity(\"MAN\", \"MALE\")\nfinal_score = (jaccard_score + lev_score) / 2\nprint(final_score)",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "lev_score",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "lev_score = levenshtein.normalized_similarity(\"MAN\", \"MALE\")\nfinal_score = (jaccard_score + lev_score) / 2\nprint(final_score)",
-        "detail": "test",
-        "documentation": {}
-    },
-    {
-        "label": "final_score",
-        "kind": 5,
-        "importPath": "test",
-        "description": "test",
-        "peekOfCode": "final_score = (jaccard_score + lev_score) / 2\nprint(final_score)",
-        "detail": "test",
+        "importPath": "test_websocket_redis",
+        "description": "test_websocket_redis",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nasync def test_job_application_updates():\n    \"\"\"Test sending job application updates to users.\"\"\"\n    try:\n        print(\"🧪 Testing Redis WebSocket Manager with Job Application Updates\")\n        print(\"=\" * 70)\n        # Initialize the WebSocket manager\n        print(\"🔌 Initializing WebSocket manager...\")\n        await websocket_manager.initialize()\n        print(\"✅ WebSocket manager initialized\")",
+        "detail": "test_websocket_redis",
         "documentation": {}
     }
 ]

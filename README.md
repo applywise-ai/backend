@@ -76,37 +76,6 @@ This will:
 
 If you prefer manual setup, create a `.env` file in the root directory:
 
-```bash
-# Firebase
-FIREBASE_CREDENTIALS_PATH=/path/to/firebase-credentials.json
-FIREBASE_STORAGE_BUCKET=your-project-id.appspot.com
-
-# PostgreSQL (use private IP when connected via Tailscale)
-POSTGRES_HOST=172.31.85.170
-POSTGRES_PORT=5432
-POSTGRES_DB=applywise
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=your-password
-
-# AWS
-AWS_REGION=us-east-1
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
-
-# Redis
-REDIS_HOST=localhost
-REDIS_PORT=6379
-
-# API
-API_HOST=0.0.0.0
-API_PORT=8000
-CORS_ORIGINS=["http://localhost:3000","http://localhost:3001"]
-
-# Environment
-ENVIRONMENT=development
-DEBUG=true
-```
-
 ### 4. Development
 
 Start the development environment (Redis + API server):

@@ -1,47 +1,57 @@
-from typing import Dict, Set
-from fastapi import WebSocket
+import redis.asyncio as aioredis
+from app.core.config import settings
 import json
-import logging
+import asyncio
+from typing import List, Optional
+from app.schemas.application import FormQuestion
 
-logger = logging.getLogger(__name__)
+redis_client = aioredis.from_url(settings.get_redis_url(db=1), decode_responses=True)
 
-class WebSocketManager:
-    def __init__(self):
-        # Store active connections by user_id
-        self.active_connections: Dict[str, Set[WebSocket]] = {}
+def check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:
+    """
+    Check if all required form questions have non-None answers
+    
+    Args:
+        form_questions: List of form questions to check
         
-    async def connect(self, websocket: WebSocket, user_id: str):
-        """Connect a new WebSocket client"""
-        await websocket.accept()
-        if user_id not in self.active_connections:
-            self.active_connections[user_id] = set()
-        self.active_connections[user_id].add(websocket)
-        logger.info(f"WebSocket connected for user {user_id}")
-        
-    def disconnect(self, websocket: WebSocket, user_id: str):
-        """Disconnect a WebSocket client"""
-        if user_id in self.active_connections:
-            self.active_connections[user_id].remove(websocket)
-            if not self.active_connections[user_id]:
-                del self.active_connections[user_id]
-        logger.info(f"WebSocket disconnected for user {user_id}")
-        
-    async def broadcast_to_user(self, user_id: str, message: dict):
-        """Broadcast a message to all connections of a specific user"""
-        if user_id not in self.active_connections:
-            return
-            
-        disconnected = set()
-        for connection in self.active_connections[user_id]:
-            try:
-                await connection.send_json(message)
-            except Exception as e:
-                logger.error(f"Error sending message to WebSocket: {e}")
-                disconnected.add(connection)
-                
-        # Clean up disconnected sockets
-        for connection in disconnected:
-            self.disconnect(connection, user_id)
+    Returns:
+        True if all required questions have answers, False otherwise
+    """
+    if not form_questions:
+        return True  # If no questions, can submit
+    
+    for question in form_questions:
+        if question.required and question.answer is None:
+            return False
+    
+    return True
 
-# Create a global instance
-websocket_manager = WebSocketManager() 
+async def send_job_application_update(user_id: str, application_id: str, status: str, details: dict = None, form_questions: Optional[List[FormQuestion]] = None):
+    """
+    Send a job application status update to a user via Redis pub/sub
+    
+    Args:
+        user_id: The user ID to send the update to
+        application_id: The application ID
+        status: The new status (e.g., 'submitted', 'in_progress', 'completed', 'failed')
+        details: Additional details about the application
+        form_questions: List of form questions to check for able_to_submit
+    """
+    # Check if able to submit based on form questions
+    able_to_submit = check_able_to_submit(form_questions)
+    
+    message = {
+        "type": "job_application_update",
+        "application_id": application_id,
+        "status": status,
+        "timestamp": asyncio.get_event_loop().time(),
+        "details": details or {},
+        "able_to_submit": able_to_submit
+    }
+    
+    try:
+        channel = f"user:{user_id}"
+        await redis_client.publish(channel, json.dumps({"message": message}))
+        print(f"Job application update sent to user {user_id} on channel {channel}")
+    except Exception as e:
+        print(f"Error sending job application update: {e}")

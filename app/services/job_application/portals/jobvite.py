@@ -7,9 +7,9 @@ from .base import BasePortal
 class Jobvite(BasePortal):
     """Jobvite job portal handler."""
     
-    def __init__(self, driver, profile):
+    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):
         """Initialize Jobvite portal with driver and user profile."""
-        super().__init__(driver, profile)
+        super().__init__(driver, profile, url, job_description, overrided_answers)
         self.logger.info("Jobvite portal initialized successfully")
     
     def apply(self):
@@ -44,8 +44,6 @@ class Jobvite(BasePortal):
                     
                     # Skip fields that shouldn't be filled
                     if self._should_skip_field(field):
-                        skip_reason = self._get_skip_reason(field) if hasattr(self, '_get_skip_reason') else "unknown reason"
-                        self.logger.info(f"Skipping field {i+1}: {skip_reason}")
                         continue
                     
                     # Analyze field context using base class method
@@ -56,30 +54,24 @@ class Jobvite(BasePortal):
                         self.logger.info(f"No context found for field {i+1}, skipping")
                         continue
                     
+                    # Check if field is required
+                    is_required = self.is_required_field(context)
+                    
+                    # Initialize form question
+                    question_id = self.init_form_question(field, field_type, context, is_required, has_custom_options=bool(field.tag_name == 'select'))
+                    
                     # Match field to profile data using base class method
-                    match_result = self.match_field_to_profile(context, field)
-                    if not match_result:
-                        self.logger.info(f"No profile match found for field {i+1} with context: '{context[:50]}...'")
-                        continue
-                    
-                    value, profile_key = match_result
-                    self.logger.info(f"Field {i+1} matched: '{context[:50]}...' -> {profile_key} = '{value}'")
-                    
-                    # Validate the match makes sense
-                    if not self.validate_field_match(context, profile_key, value, field):
-                        self.logger.info(f"Match validation failed for field {i+1}: {profile_key} = '{value}'")
-                        continue
+                    value = self.match_field_to_profile(question_id)
                     
                     # Fill the field using base class method
                     self.logger.info(f"Processing regular field {i+1} ({field_type}): '{context[:50]}...'")
-                    success = self.fill_field(field, value)
+                    success = self.fill_field(field, question_id)
                     
                     if success:
                         fields_filled += 1
-                        self.mark_profile_key_filled(profile_key)
-                        self.logger.info(f"Successfully filled field {i+1}: {profile_key}")
+                        self.logger.info(f"Successfully filled field {i+1}: {value}")
                     else:
-                        self.logger.warning(f"Failed to fill field {i+1}: {profile_key}")
+                        self.logger.warning(f"Failed to fill field {i+1}: {value}")
                         
                 except Exception as e:
                     self.logger.warning(f"Error processing field {i+1}: {str(e)}")

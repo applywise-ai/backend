@@ -1,21 +1,20 @@
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
-from ...services.websocket import websocket_manager
-import logging
-
+from fastapi import APIRouter, WebSocket
+import asyncio
+import json
+from app.services.websocket import redis_client
 router = APIRouter()
-logger = logging.getLogger(__name__)
 
 @router.websocket("/{user_id}")
 async def websocket_endpoint(websocket: WebSocket, user_id: str):
-    """WebSocket endpoint for real-time updates"""
+    await websocket.accept()
+    pubsub = redis_client.pubsub()
+    await pubsub.subscribe(f"user:{user_id}")
+
     try:
-        await websocket_manager.connect(websocket, user_id)
         while True:
-            # Keep connection alive and handle any client messages
-            data = await websocket.receive_text()
-            # We don't need to handle any client messages for now
-    except WebSocketDisconnect:
-        websocket_manager.disconnect(websocket, user_id)
-    except Exception as e:
-        logger.error(f"WebSocket error: {e}")
-        websocket_manager.disconnect(websocket, user_id) 
+            message = await pubsub.get_message(ignore_subscribe_messages=True)
+            if message:
+                await websocket.send_text(message["data"])
+            await asyncio.sleep(10)
+    finally:
+        await pubsub.unsubscribe(f"user:{user_id}")

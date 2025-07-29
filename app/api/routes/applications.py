@@ -5,13 +5,24 @@ from ...schemas.application import (
     ApplyJobResponse, 
     ApplicationStatus,
     SaveFormRequest,
-    SaveFormResponse
+    SaveFormResponse,
+    GenerateCoverLetterRequest,
+    GenerateCoverLetterResponse,
+    GenerateCustomAnswerRequest,
+    GenerateCustomAnswerResponse
 )
-from ...services.websocket import websocket_manager
 from ...db.firestore import firestore_manager
+from ...db.postgres import postgres_manager
 from ...tasks.job_application import apply_to_job
 from ..dependencies import get_user_id
+from ...services.storage import storage_manager
+from ...services.ai_assistant import AIAssistant
+from ...schemas.application import QuestionType
+from ...services.pdf_generator import pdf_generator
 import logging
+import tempfile
+import os
+from datetime import datetime
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -134,11 +145,16 @@ async def submit_application(
         if not application:
             raise HTTPException(status_code=404, detail="Application not found")
         
+        # Get job_id from the application
+        job_id = application.get('jobId')
+        if not job_id:
+            raise HTTPException(status_code=404, detail="Job ID not found in application")
+        
         # Queue the task
         task_data = {
             'user_id': user_id,
             'application_id': job_request.application_id,
-            'job_id': job_request.job_id,
+            'job_id': job_id,
             'form_questions': application.get('formQuestions', None),
             'should_submit': True  # Flag to indicate this is a submission
         }
@@ -185,23 +201,21 @@ async def save_form_questions(
     These questions will override the default form filling in the job application task.
     """
     try:
-        # TODO: Validate form questions
+        # Get job_id from the application
+        job_id = firestore_manager.get_job_id_by_application_id(user_id, save_request.application_id)
+        if not job_id:
+            raise HTTPException(status_code=404, detail="Application not found or job_id not available")
         
-        # Update application with form questions
-        firestore_manager.update_application_status(
-            user_id,
-            save_request.application_id,
-            ApplicationStatus.PENDING,
-            form_questions=save_request.form_questions
-        )
+        # TODO: Validate form questions
+        # Convert FormQuestion objects to dictionaries for JSON serialization
+        form_questions_dict = [question.dict() for question in save_request.form_questions]
         
         # Queue the task with the custom form questions
         apply_to_job.delay({
             'user_id': user_id,
             'application_id': save_request.application_id,
-            'job_id': save_request.job_id,
-            'override_form_questions': True,
-            'form_questions': save_request.form_questions
+            'job_id': job_id,
+            'form_questions': form_questions_dict,
         })
         
         return SaveFormResponse(
@@ -279,8 +293,6 @@ async def health_check():
     Health check endpoint to monitor system status including Celery workers
     """
     try:
-        from datetime import datetime
-        
         # Check Celery status
         celery_ok, celery_message = check_celery_connection()
         
@@ -321,3 +333,142 @@ async def health_check():
             "error": str(e),
             "version": "1.0.0"
         } 
+
+
+@router.post("/generate-cover-letter", response_model=GenerateCoverLetterResponse)
+async def generate_cover_letter(
+    request: GenerateCoverLetterRequest,
+    user_id: str = Depends(get_user_id)
+):
+    """
+    Generate a cover letter using AI and upload it to storage
+    
+    Args:
+        request: Cover letter generation request with job_id and optional prompt
+        user_id: User ID from authentication
+        
+    Returns:
+        GenerateCoverLetterResponse with cover letter text and URL
+    """
+    try:
+        # Get user profile
+        profile = firestore_manager.get_profile(user_id)
+        if not profile:
+            raise HTTPException(status_code=404, detail="User profile not found")
+        
+        # Check if user is pro member (required for cover letter generation)
+        if not profile.get('isProMember', False):
+            raise HTTPException(status_code=403, detail="Cover letter generation is only available for Pro members")
+        
+        # Get job description from postgres using job_id
+        job_data = postgres_manager.get_job_by_id(request.job_id)
+        if not job_data:
+            raise HTTPException(status_code=404, detail="Job not found")
+        
+        job_description = job_data.get('description', '')
+        if not job_description:
+            raise HTTPException(status_code=400, detail="Job description not available")
+        
+        # Get application from firestore using application_id
+        application_id = firestore_manager.create_or_update_application(
+            user_id=user_id,
+            job_id=request.job_id
+        )
+
+        # Initialize AI assistant with profile and job description
+        ai_assistant = AIAssistant(profile, job_description)
+        
+        # Generate cover letter text with optional custom prompt
+        cover_letter_text = ai_assistant.generate_cover_letter(request.prompt)
+
+        if not cover_letter_text:
+            raise HTTPException(status_code=500, detail="Failed to generate cover letter")
+        
+        # Create temporary PDF file
+        with tempfile.NamedTemporaryFile(suffix='.pdf', delete=False) as tmp_file:
+            tmp_path = tmp_file.name
+        
+        # Create PDF from text
+        if not pdf_generator.create_pdf_from_text(cover_letter_text, tmp_path, profile):
+            os.unlink(tmp_path)
+            raise HTTPException(status_code=500, detail="Failed to create PDF")
+        
+        # Upload to storage
+        cover_letter_url = storage_manager.upload_cover_letter(tmp_path, user_id, application_id)
+        
+        # Clean up temporary file
+        os.unlink(tmp_path)
+        
+        if not cover_letter_url:
+            raise HTTPException(status_code=500, detail="Failed to upload cover letter")
+        
+        logger.info(f"Cover letter generated successfully for user {user_id}, job {request.job_id}, application {application_id}")
+        
+        return GenerateCoverLetterResponse(
+            application_id=application_id,
+            cover_letter_url=cover_letter_url,
+            message="Cover letter generated successfully"
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error generating cover letter: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error")
+
+
+@router.post("/generate-custom-answer", response_model=GenerateCustomAnswerResponse)
+async def generate_custom_answer(
+    request: GenerateCustomAnswerRequest,
+    user_id: str = Depends(get_user_id)
+):
+    """
+    Generate a custom answer using AI assistant
+    
+    Args:
+        request: Custom answer generation request with job_description, question, and optional prompt
+        user_id: User ID from authentication
+        
+    Returns:
+        GenerateCustomAnswerResponse with generated answer
+    """
+    try:
+        # Get user profile
+        profile = firestore_manager.get_profile(user_id)
+        if not profile:
+            raise HTTPException(status_code=404, detail="User profile not found")
+        
+        # Check if user is pro member (required for AI custom answer generation)
+        if not profile.get('isProMember', False):
+            raise HTTPException(status_code=403, detail="AI custom answer generation is only available for Pro members")
+        
+        # Use job description directly from request
+        job_description = request.job_description
+        if not job_description:
+            raise HTTPException(status_code=400, detail="Job description is required")
+
+        # Initialize AI assistant with profile and job description
+        ai_assistant = AIAssistant(profile, job_description)
+        
+        # Generate custom answer with the question and optional custom prompt
+        answer = ai_assistant.answer_question(
+            question=request.question,
+            field_type=QuestionType.TEXTAREA,
+            custom_prompt=request.prompt
+        )
+
+        if not answer:
+            raise HTTPException(status_code=500, detail="Failed to generate custom answer")
+        
+        logger.info(f"Custom answer generated successfully for user {user_id}, question: {request.question[:50]}...")
+        
+        return GenerateCustomAnswerResponse(
+            answer=answer,
+            message="Custom answer generated successfully"
+        )
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error generating custom answer: {e}")
+        raise HTTPException(status_code=500, detail="Internal server error") 

@@ -2,18 +2,23 @@
 
 import logging
 import os
+import uuid
 import time
 import requests
 import tempfile
+from typing import Any
 from urllib.parse import urlparse
 from abc import ABC
+from collections import defaultdict
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
-from rapidfuzz import fuzz
 from textdistance import jaccard, levenshtein
 from app.services.browser import CustomWebDriver
-from app.services.job_application.utils.helpers import clean_string
-from app.schemas.application import Education
+from app.services.job_application.utils.helpers import clean_label, clean_string
+from app.schemas.application import Education, FormQuestion, FormSectionType
+from app.services.ai_assistant import AIAssistant
+from app.services.job_application.types import map_profile_value
+from app.schemas.application import QuestionType
 
 logger = logging.getLogger(__name__)
 
@@ -21,15 +26,24 @@ logger = logging.getLogger(__name__)
 class BasePortal(ABC):
     """Base class for all job application portals."""
     
-    def __init__(self, driver: CustomWebDriver, profile: dict):
+    def __init__(self, driver: CustomWebDriver, profile: dict, url: str = None, job_description: str = None, overrided_answers: dict = None):
         """Initialize portal with driver and user profile."""
         self.driver = driver
         self.profile = profile
+        self.url = url
+        self.job_description = job_description
+        self.overrided_answers = overrided_answers
         self.logger = logging.getLogger(self.__class__.__name__)
+
+        # Track the form questions that have been asked
+        self.form_questions: dict[str, FormQuestion] = {}
         
-        # Track how many times each profile key has been used
-        self.filled_profile_keys = {}
-        
+        # Count occurrences of clean labels
+        self.counted_labels = defaultdict(int)
+
+        # Track count for order of form questions
+        self.form_question_count = 0
+
         # Define field mappings with keywords for profile matching
         self.field_mappings = {
             # Personal Information
@@ -38,9 +52,10 @@ class BasePortal(ABC):
             'lastName': ['last name', 'lname', 'last_name', 'surname', 'family name', 'lastname'],
             'email': ['email', 'email address', 'e-mail', 'mail'],
             'phoneNumber': ['phone', 'telephone', 'mobile', 'phone number', 'contact number'],
-            'currentLocation': ['location', 'address', 'city', 'current location', 'where are you located'],
+            'currentLocation': ['address', 'city', 'current location', 'where are you located'],
             'resumeUrl': ['resume', 'cv', 'resume url', 'curriculum vitae', 'upload resume', 'attach resume', 'resume file', 'cv file', 'upload cv', 'attach cv', 'upload a file', 'drag and drop', 'file upload', 'attach file', 'choose file', 'browse file', 'upload document', 'attach document'],
             'resumeFilename': ['resume name', 'cv name', 'file name'],
+            'coverLetterUrl': ['cover letter', 'cover letter url', 'cover letter file', 'upload cover letter', 'attach cover letter'],
             
             # Social Links
             'linkedin': ['linkedin', 'linkedin url', 'linkedin profile', 'linkedin link'],
@@ -69,7 +84,10 @@ class BasePortal(ABC):
             'expectedSalary': ['salary', 'expected salary', 'salary expectation', 'compensation', 'salary range', 'desired salary'],
             'roleLevel': ['role level', 'experience level', 'seniority level', 'career level', 'job level'],
             'companySize': ['company size', 'organization size', 'team size preference'],
-            
+            'jobTypes': ['job type', 'employment type', 'position type', 'work type'],
+            'locationPreferences': ['location preference', 'preferred location', 'preferred office location', 'work location preference'],
+            'industrySpecializations': ['industry preference', 'specialization', 'domain expertise'],
+
             # Skills (handled as comma-separated string)
             'skills': ['skills', 'technical skills', 'key skills', 'core skills'],
             
@@ -80,16 +98,79 @@ class BasePortal(ABC):
             'school': ['school', 'university', 'college', 'institution', 'alma mater'],
             'degree': ['degree', 'qualification', 'education level', 'diploma'],
             'fieldOfStudy': ['field of study', 'major', 'subject', 'area of study', 'discipline', 'concentration'],
-            'educationGpa': ['education gpa', 'academic gpa', 'university gpa', 'college gpa'],
+            'educationGpa': ['education gpa', 'academic gpa', 'university gpa', 'college gpa', ' gpa '],
             'educationStartMonth': ['start month', 'education start month', 'enrollment month', 'begin month'],
             'educationStartYear': ['start year', 'education start year', 'enrollment year', 'begin year'],
             'educationEndMonth': ['graduation month', 'completion month', 'end month', 'education end month'],
             'educationEndYear': ['graduation year', 'completion year', 'end year', 'education end year'],
         }
-        
-        # Process profile to extract derived fields (firstName, lastName from fullName)
+
+        # Process profile to extract derived fields for manual matching (firstName, lastName from fullName)
         self._process_profile()
+
+        # Initialize ai assistant
+        self.ai_assistant = AIAssistant(self.profile, job_description=job_description)
     
+    def init_form_question(self, question_element, question_type: QuestionType, label: str, required: bool = False, has_custom_options: bool = False) -> str:
+        """
+        Initialize a new form question and return its unique ID.
+        
+        Args:
+            question_element: The element of the question
+            question_type: The type of question (from QuestionType enum)
+            label: The label/question text
+            required: Whether the question is required
+            has_custom_options: Whether the question has custom options
+        
+        Returns:
+            str: The unique ID of the created form question
+        """
+        # Generate unique ID
+        question_id = str(uuid.uuid4())
+
+        # Count the occurrence of this label
+        self.counted_labels[label] += 1
+
+        # Increment the form question count
+        self.form_question_count += 1
+
+        # Create the form question entry
+        form_question = {
+            'element': question_element,
+            'type': question_type,
+            'question': label,
+            'required': required,
+            'placeholder': question_element.get_attribute('placeholder'),
+            'has_custom_options': has_custom_options,
+            'unique_label_id': label + str(self.counted_labels[label]),
+            'count': self.form_question_count,
+        }
+        
+        # Store in the form_questions map
+        self.form_questions[question_id] = form_question
+
+        return question_id
+
+    def delete_form_question(self, question_id: str) -> bool:
+        """
+        Delete a form question by its ID.
+        
+        Args:
+            question_id: The unique ID of the question to delete
+        
+        Returns:
+            bool: True if the question was found and deleted, False otherwise
+        """
+        if question_id in self.form_questions:
+            deleted_question = self.form_questions.pop(question_id)
+            if deleted_question.get('question', 'Unknown') in self.counted_labels:
+                del self.counted_labels[deleted_question.get('question', 'Unknown')]
+            self.logger.info(f"Deleted form question with ID {question_id}: {deleted_question.get('question', 'Unknown')}")
+            return True
+        else:
+            self.logger.warning(f"Attempted to delete non-existent form question with ID {question_id}")
+            return False
+
     def _process_profile(self):
         """Process profile to extract derived fields and handle nested objects."""
         # Extract firstName and lastName from fullName if not provided
@@ -108,20 +189,12 @@ class BasePortal(ABC):
         if 'skills' in self.profile and isinstance(self.profile['skills'], list):
             self.profile['skills'] = ', '.join(self.profile['skills'])
         
-        # Process location preferences
-        if 'locationPreferences' in self.profile and isinstance(self.profile['locationPreferences'], list):
-            self.profile['locationPreferences'] = ', '.join(self.profile['locationPreferences'])
-        
         # Process hispanic/latino status - add to race if true
         if 'hispanic' in self.profile and self.profile['hispanic']:
             if 'race' not in self.profile:
                 self.profile['race'] = ['Hispanic or Latino']
             else:
                 self.profile['race'].append('Hispanic or Latino')
-                    
-        # Process industry specializations
-        if 'industrySpecializations' in self.profile and isinstance(self.profile['industrySpecializations'], list):
-            self.profile['industrySpecializations'] = ', '.join(self.profile['industrySpecializations'])
         
         # Process education - extract date fields and add to each education entry
         if 'education' in self.profile and isinstance(self.profile['education'], list) and self.profile['education']:
@@ -130,6 +203,10 @@ class BasePortal(ABC):
             
             # Process each education entry to add date fields
             for education in self.profile['education']:
+                # Map degree to degree field
+                if 'degree' in education:
+                    education['degree'] = map_profile_value('degree', education['degree'])
+
                 # Process start date (fromDate)
                 from_date = education.get('educationFrom', '')
                 if from_date and '/' in from_date:
@@ -169,49 +246,6 @@ class BasePortal(ABC):
                 'currentTitle': ['current title', 'current role', 'current position']
             })
         
-        # Add additional field mappings for missing UserProfile fields
-        additional_mappings = {
-            # Job Types (convert list to string)
-            'jobTypes': ['job type', 'employment type', 'position type', 'work type'],
-            'locationPreferences': ['location preference', 'preferred location', 'preferred office location', 'work location preference'],
-            'industrySpecializations': ['industry', 'industry preference', 'specialization', 'domain expertise'],
-        }
-        
-        # Process job types list
-        if 'jobTypes' in self.profile and isinstance(self.profile['jobTypes'], list):
-            job_type_mapping = {
-                'full_time': 'Full Time',
-                'part_time': 'Part Time', 
-                'contract': 'Contract',
-                'internship': 'Internship'
-            }
-            job_types = [job_type_mapping.get(jt, jt) for jt in self.profile['jobTypes']]
-            self.profile['jobTypes'] = ', '.join(job_types)
-        
-        # Add all additional mappings
-        self.field_mappings.update(additional_mappings)
-        
-        # Add standard question mappings for common legal/compliance questions
-        common_question_mappings = {
-            # Criminal background questions - should be False
-            'convictedFelon': ['convicted of a felony', 'felony conviction', 'criminal conviction', 'convicted of a crime', 'criminal background', 'have you ever been convicted'],
-            'criminalRecord': ['criminal record', 'criminal history', 'been arrested', 'pending charges'],
-            
-            # Background check consent - should be True
-            'backgroundCheckConsent': ['background check', 'consent to background check', 'authorize background check', 'criminal background check'],
-            'drugTestConsent': ['drug test', 'consent to drug test', 'drug screening', 'substance abuse test'],
-            
-            # General yes/no questions - default to positive responses
-            'generalYes': ['confirm', 'agree', 'acknowledge', 'consent'],
-        }
-        
-        # Set default values for standard questions
-        self.profile['convictedFelon'] = False
-        self.profile['criminalRecord'] = False
-        self.profile['backgroundCheckConsent'] = True
-        self.profile['drugTestConsent'] = True
-        self.profile['generalYes'] = True
-        
         # Calculate earliest start date based on notice period
         if 'noticePeriod' in self.profile and self.profile['noticePeriod']:
             try:
@@ -245,13 +279,40 @@ class BasePortal(ABC):
             except Exception:
                 # Fallback to "Immediate" if calculation fails
                 self.profile['earliestStartDate'] = today.strftime('%m/%d/%Y')
-        
-        self.field_mappings.update(common_question_mappings)
-        
+
         # Add earliest start date field mapping
         self.field_mappings.update({
-            'earliestStartDate': ['earliest start date', 'when can you start', 'start date', 'available start date', 'earliest availability', 'when are you available', 'availability date', 'can start on'],
+            'earliestStartDate': ['earliest start date', 'when can you start', 'start working', 'start date', 'available start date', 'earliest availability', 'when are you available', 'availability date', 'can start on'],
         })
+        
+        # Process profile values using the type mappings
+        profile_fields_to_map = ['jobTypes', 'locationPreferences', 'industrySpecializations', 'roleLevel', 'companySize']
+        for field_key in profile_fields_to_map:
+            if field_key in self.profile and self.profile[field_key]:
+                self.profile[field_key] = map_profile_value(field_key, self.profile[field_key])
+        
+        # Add standard question mappings for common legal/compliance questions
+        common_question_mappings = {
+            # Criminal background questions - should be False
+            'convictedFelon': ['convicted of a felony', 'felony conviction', 'criminal conviction', 'convicted of a crime', 'criminal background', 'have you ever been convicted'],
+            'criminalRecord': ['criminal record', 'criminal history', 'been arrested', 'pending charges'],
+            
+            # Background check consent - should be True
+            'backgroundCheckConsent': ['background check', 'consent to background check', 'authorize background check', 'criminal background check'],
+            'drugTestConsent': ['drug test', 'consent to drug test', 'drug screening', 'substance abuse test'],
+            
+            # General yes/no questions - default to positive responses
+            'generalYes': ['confirm', 'agree', 'acknowledge', 'consent'],
+        }
+        
+        # Set default values for standard questions
+        self.profile['convictedFelon'] = False
+        self.profile['criminalRecord'] = False
+        self.profile['backgroundCheckConsent'] = True
+        self.profile['drugTestConsent'] = True
+        self.profile['generalYes'] = True
+
+        self.field_mappings.update(common_question_mappings)
     
     def apply(self):
         """Abstract method to be implemented by each portal."""
@@ -293,43 +354,7 @@ class BasePortal(ABC):
             
         except Exception:
             return True
-    
-    def _get_skip_reason(self, field) -> str:
-        """Get detailed reason why field is being skipped."""
-        try:
-            field_type = field.get_attribute('type')
-            
-            # For file inputs, only check if enabled (they're often hidden but still functional)
-            if field_type == 'file':
-                if not field.is_enabled():
-                    return "File input is not enabled"
-                return "File input should not be skipped"
-            
-            # For radio inputs, only check if enabled (they're often hidden but still functional)
-            if field_type == 'radio':
-                if not field.is_enabled():
-                    return "Radio input is not enabled"
-                return "Radio input should not be skipped"
-            
-            # For other inputs, check visibility and enabled status
-            if not field.is_displayed():
-                return "Field is not visible"
-            if not field.is_enabled():
-                return "Field is not enabled"
-                
-            skip_types = ['hidden', 'submit', 'button', 'reset', 'image']
-            if field_type in skip_types:
-                return f"Field type '{field_type}' is in skip list"
-                
-            # Check if already filled
-            if field_type not in ['file', 'radio'] and field.get_attribute('value') and field.get_attribute('value').strip():
-                return f"Field already has value: '{field.get_attribute('value')[:50]}...'"
-                
-            return "Unknown reason"
-            
-        except Exception as e:
-            return f"Exception checking skip reason: {str(e)}"
-    
+
     def analyze_field_context(self, field) -> str:
         """Analyze field context to understand what data it expects."""
         try:
@@ -374,32 +399,82 @@ class BasePortal(ABC):
         except Exception:
             return ''
     
-    def match_field_to_profile(self, label: str, field) -> tuple:
+    def _set_form_section(self, question_id: str, profile_key: str) -> None:
+        """Set the form section based on the profile key."""
+        if profile_key is None:
+            self.form_questions[question_id]['section'] = FormSectionType.ADDITIONAL
+        elif self.is_education_field(profile_key):
+            self.form_questions[question_id]['section'] = FormSectionType.EDUCATION
+        elif profile_key == 'coverLetterUrl':
+            self.form_questions[question_id]['section'] = FormSectionType.COVER_LETTER
+        elif profile_key == 'resumeUrl':
+            self.form_questions[question_id]['section'] = FormSectionType.RESUME
+        else:
+            self.form_questions[question_id]['section'] = FormSectionType.PERSONAL
+    
+    def _handle_custom_match(self, question_id: str, profile_key: str, best_match: Any, field_type: QuestionType) -> Any:
+        """Handle custom matching for special cases like boolean, select, resume, cover letter."""
+        # Handle boolean fields
+        if best_match is not None and isinstance(best_match, bool):
+            best_match = 'Yes' if best_match else 'No'
+        
+        # Handle education fields
+        if self.is_education_field(profile_key):
+            best_match = self.get_education_value(profile_key, self.form_questions[question_id]['question'])
+            
+        # Handle cover letter fields
+        if profile_key == 'coverLetterUrl' and best_match is not None:
+            self.form_questions[question_id]['file_url'] = best_match
+            self.form_questions[question_id]['file_name'] = self.profile.get('coverLetterFilename', 'cover_letter.pdf')
+
+        # Handle select inputs - if it's a select input and we have a list of matches,
+        # prioritize the first match
+        if field_type == QuestionType.SELECT and isinstance(best_match, list):
+            best_match = best_match[0] if len(best_match) > 0 else None
+
+        # Handle resume fields - set file_url and file_name
+        if profile_key == 'resumeUrl' and best_match is not None:
+            self.form_questions[question_id]['file_url'] = best_match
+            self.form_questions[question_id]['file_name'] = self.profile.get('resumeFilename', 'resume.pdf')
+
+        return best_match
+    
+    def match_field_to_profile(self, question_id: str) -> tuple:
         """Match field context to profile data using fuzzy matching."""
+        field = self.form_questions[question_id]['element']
+        has_custom_options = self.form_questions[question_id]['has_custom_options']
+        field_type = self.form_questions[question_id]['type']
+        label = self.form_questions[question_id]['question']
+        is_required = self.form_questions[question_id]['required']
+        unique_label_id = self.form_questions[question_id]['unique_label_id']
+
         if not label:
+            self.delete_form_question(question_id)
+            self.logger.info(f"No label found for question {question_id}, deleting question")
             return None
+
+        # Override answer if overrided_answers is provided
+        if self.overrided_answers and unique_label_id in self.overrided_answers:
+            best_match = self.overrided_answers[unique_label_id]
+            self.form_questions[question_id]['answer'] = best_match
+            return best_match
             
         best_match = None
         best_score = 0
         best_profile_key = None
-
-        context = clean_string(label.lower().strip())
         
-        # Special handling for file inputs - if it's a file input and we have generic upload text,
-        # prioritize it for resume if no other specific matches
-        field_type = field.get_attribute('type')
-        is_file_input = field_type == 'file'
-        is_select_input = field_type == 'select' or field_type == 'select-one'
+        context = clean_string(label.lower().strip())
+
+        is_file_input = field_type == QuestionType.FILE
+        is_select_input = field_type == QuestionType.SELECT
         
         # Check each profile field mapping
         for profile_key, keywords in self.field_mappings.items():
             # Calculate match score
             score = 0
-            current_matches = []
             for keyword in keywords:
                 if keyword in context:
                     score += len(keyword)
-                    current_matches.append(keyword)
                     
             # Boost score for resume fields on file inputs with generic upload terms
             if is_file_input and profile_key == 'resumeUrl' and score > 0:
@@ -408,40 +483,35 @@ class BasePortal(ABC):
                     if term in context:
                         score += 10  # Boost score for generic file upload on file inputs
                         break
+                        
+            # Boost score for gpa fields
+            if profile_key == 'educationGpa' and " gpa" in label.lower():
+                score += 10
 
             if score > best_score:
                 best_score = score
                 best_match = self.profile.get(profile_key)
                 best_profile_key = profile_key
         
-        # Fallback: if this is a file input and no specific matches, try resume anyway
-        if is_file_input and best_match is None and 'resumeUrl' in self.profile and self.profile['resumeUrl']:
-            generic_terms = ['upload', 'file', 'attach', 'drag', 'drop', 'browse', 'choose']
-            if any(term in context for term in generic_terms):
-                best_match = self.profile['resumeUrl']
-                best_profile_key = 'resumeUrl'
-                best_score = 5  # Low score but still a match
+        # Set form section based on profile key
+        self._set_form_section(question_id, best_profile_key)
         
-        # Special handling for boolean fields
-        if best_match is not None and isinstance(best_match, bool):
-            return ('Yes' if best_match else 'No', best_profile_key)
-        
-        # Removed for now: Skip if this profile key has already been used to fill a field
-        # if skip and self.is_profile_key_filled(best_profile_key):
-        #     return None
-        
-        # Handle education fields
-        if self.is_education_field(best_profile_key):
-            value = self.get_education_value(best_profile_key)
-            return (value, best_profile_key)
+        # Handle custom matching for special cases
+        best_match = self._handle_custom_match(question_id, best_profile_key, best_match, field_type)
 
-        # Special handling for select inputs - if it's a select input and we have a list of matches,
-        # prioritize the first match
-        self.logger.info(f"Best match: {best_match} of type {field_type} for select input: {is_select_input}")
-        if is_select_input and isinstance(best_match, list):
-            return (best_match[0] if len(best_match) > 0 else None, best_profile_key)
+        # If our manual matching is not valid, set to None so we can use AI
+        if best_match is not None and not self.validate_field_match(label, best_profile_key, best_match, field):
+            best_match = None
 
-        return (best_match if best_match is not None else None, best_profile_key)
+        # Always use AI for textarea type questions, or if we don't have a match and there are no options
+        self.logger.info(f"Best match: {best_match} for field: {label} with type: {field_type}")
+        if field_type == QuestionType.TEXTAREA or (best_match is None and not is_select_input and not has_custom_options and not is_file_input):
+            best_match = self.ai_assistant.answer_question(label, field_type, is_required=is_required)
+
+        if best_match is not None:
+            self.form_questions[question_id]['answer'] = best_match
+
+        return best_match
     
     def validate_field_match(self, context: str, profile_key: str, profile_value: str, field = None) -> bool:
         """Validate if a field match makes logical sense."""
@@ -449,8 +519,13 @@ class BasePortal(ABC):
             return False
 
         # If profile key is resume, field type should be file
-        if profile_key == 'resumeUrl' and field.get_attribute('type') != 'file':
+        if profile_key == 'resumeUrl' and field and field.get_attribute('type') != 'file':
             self.logger.info(f"Rejecting {profile_key} match for resume question: {context}")
+            return False
+
+        # If profile key is coverLetter, field type should be file
+        if profile_key == 'coverLetterUrl' and field and field.get_attribute('type') != 'file':
+            self.logger.info(f"Rejecting {profile_key} match for cover letter question: {context}")
             return False
 
         # GPA questions should only match GPA values, not company names
@@ -466,13 +541,6 @@ class BasePortal(ABC):
                 except:
                     return False
         
-        # Remote work questions should get yes/no answers, not company names
-        remote_indicators = ['comfortable working from home', 'productive working from home', 'remote work']
-        if any(indicator in context.lower() for indicator in remote_indicators):
-            if profile_value not in ['Yes', 'No']:
-                self.logger.info(f"Rejecting {profile_key} match for remote work question: {context}")
-                return False
-        
         # Company name questions should not match boolean values or GPA
         company_indicators = ['company name', 'employer name', 'which company', 'name of company']
         if any(indicator in context.lower() for indicator in company_indicators):
@@ -482,11 +550,11 @@ class BasePortal(ABC):
         
         return True
     
-    def fill_field(self, field, value) -> bool:
-        """Utility method to fill field with the given value based on field type."""
+    def fill_field(self, field, question_id: str) -> bool:
+        """Utility method to fill field based on field type."""
         try:
-            if not value:
-                return False
+            # Get the answer from form_questions
+            value = self.form_questions[question_id].get('answer')
             
             # Scroll to the field to ensure it's visible
             self.scroll_to_element(field)
@@ -496,13 +564,15 @@ class BasePortal(ABC):
             
             # Handle different field types
             if tag_name == 'select':
-                return self.fill_select_field(field, value)
-            elif field_type == 'checkbox':
-                return self.fill_checkbox_field(field, value)
-            elif field_type == 'radio':
-                return self.fill_radio_field(field, value)
+                return self.fill_select_field(field, question_id)
             elif field_type == 'file':
-                return self.fill_file_field(field, value)
+                if 'file_url' not in self.form_questions[question_id] or 'file_name' not in self.form_questions[question_id]:
+                    self.logger.warning(f"No file URL or name found for question: {question_id}")
+                    return False
+                
+                file_url = self.form_questions[question_id]['file_url']
+                file_name = self.form_questions[question_id]['file_name']
+                return self.fill_file_field(field, file_url, filename=file_name)
             else:
                 return self.fill_text_field(field, value)
                 
@@ -512,6 +582,9 @@ class BasePortal(ABC):
     
     def fill_text_field(self, field, value) -> bool:
         """Fill text input field."""
+        if not value:
+            return False
+        self.logger.info(f"Filling text field: {value}")
         try:
             field.clear()
             field.send_keys(str(value))
@@ -519,16 +592,17 @@ class BasePortal(ABC):
         except Exception:
             return False
     
-    def fill_select_field(self, field, value) -> bool:
+    def fill_select_field(self, field, question_id: str) -> bool:
         """Fill select dropdown field."""
         try:
             select = Select(field)
-            value_str = str(value).lower()
             
             # Match select option by our own method
             option_texts = [option.text for option in select.options]
-            best_index = self.match_option_to_target(option_texts, value_str)
+            best_index = self.match_option_to_target(option_texts, question_id)
             if best_index is not None:
+                question = self.form_questions[question_id].get('question', '')
+                self.logger.info(f"Best match for select field: {select.options[best_index].text} for question: {question}")
                 select.select_by_visible_text(select.options[best_index].text)
                 return True
                     
@@ -536,32 +610,7 @@ class BasePortal(ABC):
         except Exception:
             return False
     
-    def fill_checkbox_field(self, field, value) -> bool:
-        """Fill checkbox field."""
-        try:
-            should_check = value is True or str(value).lower() in ['true', 'yes', '1']
-            is_checked = field.is_selected()
-            
-            if should_check != is_checked:
-                field.click()
-                
-            return True
-        except Exception:
-            return False
-    
-    def fill_radio_field(self, field, value) -> bool:
-        """Fill radio button field."""
-        try:
-            should_select = value is True or str(value).lower() in ['true', 'yes', '1']
-            
-            if should_select and not field.is_selected():
-                field.click()
-                
-            return True
-        except Exception:
-            return False
-    
-    def fill_file_field(self, field, value) -> bool:
+    def fill_file_field(self, field, value, filename=None) -> bool:
         """Handle file upload field with enhanced error detection and validation."""
         temp_file_path = None
         try:
@@ -579,8 +628,6 @@ class BasePortal(ABC):
                     response = requests.get(value, stream=True, timeout=30, headers=headers)
                     
                     if response.status_code == 200:
-                        # Get filename from profile
-                        filename = self.profile.get('resumeFilename', 'resume.pdf')
                         if not filename or filename == '':
                             # Fallback to filename from URL
                             parsed_url = urlparse(value)
@@ -680,11 +727,15 @@ class BasePortal(ABC):
             self.logger.error(f"Error in safe file upload: {str(e)}")
             return False
     
-    def _normalize_option_value(self, value) -> str:
-        """Normalize option value for matching in multi-option fields."""
+    def _normalize_target_value(self, value) -> str:
+        """Normalize target value for matching in field."""
         if isinstance(value, bool):
             return "YES" if value else "NO"
-        
+
+        # If value is a list, return the first value
+        if isinstance(value, list) and len(value) > 0:
+            value = value[0]
+
         value_str = str(value).upper().strip()
         
         # Common positive responses
@@ -697,37 +748,103 @@ class BasePortal(ABC):
         
         return value_str
     
-    def match_option_to_target(self, options: list, target_value: str):
-        """Find the best matching option from a list of option strings.
+    def match_option_to_target(self, options: list, question_id: str, multiple=False, retry=False):
+        """Find the best matching option from a list of option strings to target(s).
         
         Args:
             options: List of option strings to match against
-            target_value: The target value to match
-            
+            target: The target value(s) to match
+            question: The question that the target value is for
+            multiple: Whether the field is a multiple select field
+            retry: Whether to retry the match with AI if no good match is found
         Returns:
-            Index of the best matching option, or None if no good match found
+            multiple=False -> Index of the best matching option, or None if no good match found
+            multiple=True -> List of indices of the best matching options, or [] if no good match found
         """
+        target = self.form_questions[question_id].get('answer')
+        question = self.form_questions[question_id].get('question')
+        is_required = self.form_questions[question_id].get('required')
+        unique_label_id = self.form_questions[question_id]['unique_label_id']
+        override = self.overrided_answers and unique_label_id in self.overrided_answers
+
+        # Override target with overrided_answers if provided
+        if override:
+            target = self.overrided_answers[unique_label_id]
+            if target is None:
+                return None
+
         if not options:
             return None
-            
-        # Normalize target value
-        target_value = self._normalize_option_value(target_value)
+
+        # Clean each option text
+        options = [option.strip(".") for option in options]
+
+        # Normalize options
+        normalized_options = [self._normalize_target_value(option) for option in options]
         
+        # If we don't have a target value, use AI to get value from question
+        field_type = QuestionType.SELECT if not multiple else QuestionType.MULTISELECT
+        self.form_questions[question_id]['type'] = field_type
+        if target is None:
+            target = self.ai_assistant.answer_question(question, field_type, options, is_required)
+            if not target:
+                return None
+
+        # Normalize target(s)
+        if multiple and isinstance(target, list):
+            target = [self._normalize_target_value(value) for value in target]
+        elif multiple and not isinstance(target, list):
+            target = [self._normalize_target_value(target)]
+        else:
+            target = self._normalize_target_value(target)
+
+        # Get best match indices for each target value
+        best_indices = []
+        best_index = None
+
+        if multiple:
+            for value in target:
+                best_indices.append(self._get_best_match_index(normalized_options, value))
+            
+            # Remove duplicates and None values
+            best_indices = list(set([index for index in best_indices if index is not None]))
+        else:
+            best_index = self._get_best_match_index(normalized_options, target)
+        
+        
+        if best_indices or best_index is not None:
+            # Prune options if there are more than 20(for frontend performance)
+            if len(options) > 20:
+                self.form_questions[question_id]['answer'] = [options[index] for index in best_indices] if multiple else options[best_index]
+                self.form_questions[question_id]['pruned'] = True
+            else:
+                self.form_questions[question_id]['answer'] = best_indices if multiple else best_index
+                self.form_questions[question_id]['options'] = options
+
+        # If we have nothing and haven't retried, retry with AI
+        if not best_indices and best_index is None and not retry:
+            # Set target to None and retry
+            self.form_questions[question_id]['answer'] = None
+            return self.match_option_to_target(options, question_id, multiple, retry=True)
+
+        return best_indices if multiple else best_index
+        
+    def _get_best_match_index(self, options: list, target_value: str) -> int:
         # Check if options exceed 10
         exceed_options = len(options) > 10
 
         best_index = None
         best_score = 0
-        
+
         for i, option_text in enumerate(options):
             try:
+                # Skip if option text is empty or if options exceed 10 and first letter of option text doesn't match first letter of target value
                 if not option_text or (exceed_options and option_text.lower()[0] != target_value.lower()[0]):
                     continue
                    
                 # Normalize option text
                 normalized_option = option_text.strip().upper()
                 score = self._calculate_option_score(normalized_option, target_value)
-                
                 if score > best_score:
                     best_score = score
                     best_index = i
@@ -819,44 +936,29 @@ class BasePortal(ABC):
                     option_elements[0].click()
                     self.logger.info("Fallback: Selected first (only) option")
                     return True
-            
+
             return False
             
         except Exception as e:
             self.logger.error(f"Error in option group fallback: {str(e)}")
             return False
     
-    def get_education_value(self, profile_key):
-        """Get education value based on how many times we've seen this profile key."""
+    def get_education_value(self, profile_key, label):
+        """Get education value from the most recent education entry."""
         try:
-            # Get the usage count directly from filled_profile_keys
-            usage_count = self.filled_profile_keys.get(profile_key, 0)
-            
             # Get education list from profile
             education_list = self.profile.get('education', [])
             
-            # If we have education entries and our index is valid
-            if education_list and usage_count < len(education_list):
-                education_entry = education_list[usage_count]
-                
-                value = education_entry.get(profile_key, '')
-                return value
-            
+            # Get the education entry based on label counts
+            if education_list:
+                count = self.counted_labels.get(label, 0)
+                if count - 1 < len(education_list):
+                    return education_list[count - 1].get(profile_key, '')
             return None
             
         except Exception:
             self.logger.warning(f"Error getting education value for {profile_key}")
             return None
-
-    def mark_profile_key_filled(self, profile_key: str):
-        """Increment the usage count for a profile key."""
-        if profile_key not in self.filled_profile_keys:
-            self.filled_profile_keys[profile_key] = 0
-        self.filled_profile_keys[profile_key] += 1
-    
-    def is_profile_key_filled(self, profile_key: str) -> bool:
-        """Check if a profile key has already been used to fill a field."""
-        return profile_key in self.filled_profile_keys
     
     def is_required_field(self, label: str) -> bool:
         """Check if a field is required."""

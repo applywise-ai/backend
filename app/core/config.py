@@ -22,6 +22,7 @@ class Settings(BaseSettings):
     
     # Selenium Configuration
     HEADLESS_BROWSER: bool = Field(default=True, description="Run browser in headless mode")
+
     BROWSER_TIMEOUT: int = Field(default=10, description="Browser timeout in seconds")
     
     # Celery Configuration
@@ -35,7 +36,7 @@ class Settings(BaseSettings):
     )
     POSTGRES_PORT: int = Field(default=5432, description="PostgreSQL port")
     POSTGRES_DB: str = Field(default="applywise", description="PostgreSQL database name")
-    POSTGRES_USER: str = Field(default="postgres", description="PostgreSQL username")
+    POSTGRES_USER: str = Field(default="applywise_backend", description="PostgreSQL username")
     POSTGRES_PASSWORD: str = Field(default="", description="PostgreSQL password")
     
     # CORS Configuration
@@ -45,12 +46,16 @@ class Settings(BaseSettings):
     AWS_REGION: str = Field(default="us-east-1", description="AWS region")
     AWS_ACCESS_KEY_ID: str = Field(default="", description="AWS access key ID")
     AWS_SECRET_ACCESS_KEY: str = Field(default="", description="AWS secret access key")
+    DB_SECRET_NAME: str = Field(default="applywise/db-credentials", description="AWS Secrets Manager secret name for database credentials")
     
     # WebSocket Configuration
     WEBSOCKET_URL: str = Field(default="", description="WebSocket server URL for notifications")
     
     # OpenAI Configuration
     OPENAI_API_KEY: str = Field(default="", description="OpenAI API key for AI form filling")
+    
+    # Google Gemini Configuration
+    GOOGLE_API_KEY: str = Field(default="", description="Google API key for Gemini AI")
     
     @validator('CORS_ORIGINS', pre=True)
     def parse_cors_origins(cls, v):

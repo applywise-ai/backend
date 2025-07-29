@@ -4,16 +4,17 @@ import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from app.schemas.application import UserProfile
 from .base import BasePortal
+from app.services.job_application.types import get_field_type
+from app.schemas.application import QuestionType
 
 
 class Lever(BasePortal):
     """Lever job portal handler."""
     
-    def __init__(self, driver, profile):
+    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):
         """Initialize Lever portal with driver and user profile."""
-        super().__init__(driver, profile)
+        super().__init__(driver, profile, url, job_description, overrided_answers)
         self.logger.info("Lever portal initialized successfully")
     
     def apply(self):
@@ -52,12 +53,24 @@ class Lever(BasePortal):
                     if label_elem:
                         label_text = label_elem.text.strip()
                         self.logger.debug(f"Found label text: {label_text}")
-                        return label_text
+                        is_required = len(label_elem.find_elements(By.CSS_SELECTOR, '.required')) > 0
+                        return label_text, is_required
                 except Exception as e:
                     self.logger.debug(f"Could not find label element: {str(e)}")
             
-            # Fallback: Use base get context method(TODO: Use AI to extract the label)
-            return self.analyze_field_context(field)
+            # If an id exists try to find label by id
+            field_id = field.get_attribute('id')
+            if field_id:
+                label_elem = self.driver.find_element(By.CSS_SELECTOR, f"label[for='{field_id}']")
+                if label_elem:
+                    label_text = label_elem.text.strip()
+                    self.logger.debug(f"Found label text: {label_text}")
+                    is_required = len(label_elem.find_elements(By.CSS_SELECTOR, '.required')) > 0
+                    return label_text, is_required
+
+            # Fallback: Use base get context method
+            fallback_label = self.analyze_field_context(field)
+            return fallback_label, self.is_required_field(fallback_label)
         except Exception as e:
             self.logger.warning(f"Error getting field label: {str(e)}")
             return ""
@@ -90,23 +103,102 @@ class Lever(BasePortal):
         
         return fields
     
+    def _process_all_form_fields(self):
+        """Process all form fields using base class functionality."""
+        try:
+            # Find all form fields
+            all_fields = self._find_all_form_fields()
+
+            # Queued location field to process at end(prevents issues with resume autofill)
+            location_field = {}
+            
+            self.logger.info(f"Found {len(all_fields)} form fields to process")
+            fields_filled = 0
+            
+            for i, field in enumerate(all_fields):
+                try:
+                    # Skip fields that shouldn't be filled
+                    if self._should_skip_field(field):
+                        continue
+                    
+                    # Get field label
+                    label, is_required = self._get_field_label(field)
+                    
+                    # Get field type
+                    field_type = self._get_lever_field_type(field)
+                    
+                    # Check if field has custom options
+                    is_lever_group = self._is_lever_group(field)
+                    
+                    # Initialize form question
+                    question_id = self.init_form_question(field, field_type, label, is_required, is_lever_group)
+                    
+                    # Match field to profile data
+                    value = self.match_field_to_profile(question_id)
+                    self.logger.info(f"Field {i+1} matched to value: {value}")
+                    
+                    # Fill the field using appropriate method
+                    if self._is_location_field(label, field):
+                        self.logger.info(f"Field {i+1} identified as location field")
+                        location_field = { 'field': field, 'value': value, 'question': label }
+                        continue
+                    elif is_lever_group:
+                        self.logger.info(f"Processing group: '{label}'")
+                        success = self._fill_lever_group(field, question_id)
+                    else:
+                        self.logger.info(f"Processing regular field: '{label}'")
+                        success = self.fill_field(field, question_id)
+                    
+                    if success:
+                        fields_filled += 1
+                        self.logger.info(f"Successfully filled field {i+1}")
+                        
+                        # Fill disability section - check if 'disability' is in the question text
+                        if 'disability' in label.lower():
+                            self._fill_disability_signature_section()
+                    else:
+                        self.logger.warning(f"Failed to fill field {i+1}")
+                    
+                except Exception as e:
+                    self.logger.warning(f"Error processing field {i+1}: {str(e)}", exc_info=True)
+                    continue
+            
+            # Fill location field at end
+            if location_field:
+                success = self._fill_location_field(location_field['field'], location_field['value'])
+                if success:
+                    fields_filled += 1
+                    self.logger.info(f"Successfully filled location field")
+            
+            self.logger.info(f"Successfully filled {fields_filled} out of {len(all_fields)} fields")
+                    
+        except Exception as e:
+            self.logger.error(f"Error processing form fields: {str(e)}", exc_info=True)
+
+    def _get_lever_field_type(self, field) -> QuestionType:
+        """Get field type based on field attributes."""
+        if self._is_lever_group(field):
+            return QuestionType.SELECT
+        else:
+            return get_field_type(field.get_attribute('type'), field.tag_name)
+
     def _is_lever_group(self, field) -> bool:
         """Check if field is a Lever radio group."""
         try:
-            return field.tag_name == 'ul' and field.get_attribute('data-qa')
+            return field.tag_name == 'ul' and field.get_attribute('data-qa') is not None
         except:
             return False
 
-    def _fill_lever_group(self, group, value) -> bool:
+    def _fill_lever_group(self, group, question_id: str) -> bool:
         """Fill Lever group by selecting the appropriate option(s)."""
         try:
-            if not value:
-                return False
+            value = self.form_questions[question_id].get('answer')
+            question = self.form_questions[question_id].get('question')
             
             # Check if the group is a multiselect
             is_multiselect = group.get_attribute('data-qa') == 'checkboxes'
 
-            self.logger.info(f"Filling Lever group with value: {value} (multiselect: {is_multiselect})")
+            self.logger.info(f"Filling Lever group with value: {value} (multiselect: {is_multiselect}) for question: {question}")
             
             # Scroll to the group
             self.scroll_to_element(group)
@@ -120,122 +212,27 @@ class Lever(BasePortal):
             # Get all option texts
             option_texts = [opt.find_element(By.CSS_SELECTOR, "span.application-answer-alternative").text.strip() for opt in options]
             
-            # Handle multiple values
-            if isinstance(value, list):
-                values_to_process = value
+            best_indices = []
+            if is_multiselect:
+                best_indices = self.match_option_to_target(option_texts, question_id, multiple=True)
             else:
-                # Convert single value to list for uniform processing
-                values_to_process = [value]
+                best_indices = [self.match_option_to_target(option_texts, question_id)]
             
-            # If not multiselect but multiple values provided, use only the first value
-            if not is_multiselect and len(values_to_process) > 1:
-                self.logger.info(f"Field is not multiselect but multiple values provided. Using first value: {values_to_process[0]}")
-                values_to_process = [values_to_process[0]]
-            
-            # Track successful matches
-            successful_matches = 0
-            
-            # Process each value
-            for val in values_to_process:
-                if not val:  # Skip empty values
-                    continue
-                
-                # Use match_option_to_target to find best match
-                best_index = self.match_option_to_target(option_texts, str(val))
-                if best_index is not None:
-                    options[best_index].click()
-                    successful_matches += 1
-                    self.logger.info(f"Successfully matched and clicked option for value: {val}")
-                else:
-                    self.logger.warning(f"No matching option found for value: {val}")
+            # Click the options
+            for index in best_indices:
+                self.driver.wait_and_click_element(options[index])
+                self.logger.info(f"Successfully clicked option {index} for value: {value}")
             
             # Return True if at least one match was successful
-            if successful_matches > 0:
+            if len(best_indices) > 0:
                 return True
             
-            self.logger.warning(f"No matching options found for any values: {values_to_process}")
+            self.logger.warning(f"No matching options found for any values: {value}")
             return False
             
         except Exception as e:
             self.logger.error(f"Error filling Lever group: {str(e)}")
             return False
-    
-    def _process_all_form_fields(self):
-        """Process all form fields using base class functionality."""
-        try:
-            # Find all form fields
-            all_fields = self._find_all_form_fields()
-            
-            self.logger.info(f"Found {len(all_fields)} form fields to process")
-            fields_filled = 0
-            
-            for i, field in enumerate(all_fields):
-                try:
-                    # Log field details
-                    field_type = field.get_attribute('type') if not self._is_lever_group(field) else 'radio-group'
-                    field_name = field.get_attribute('name') or 'no-name'
-                    field_id = field.get_attribute('id') or 'no-id'
-                    self.logger.info(f"Processing field {i+1}: {field_type} (name: {field_name}, id: {field_id})")
-                    
-                    # Skip fields that shouldn't be filled
-                    if self._should_skip_field(field):
-                        continue
-                    
-                    # Get field label
-                    label = self._get_field_label(field)
-                    if not label:
-                        self.logger.info(f"No label found for field {i+1}, skipping")
-                        continue
-                    
-                    if self.is_required_field(label):
-                        self.logger.info(f"Field {i+1} with label '{label}' is required")
-                    else:
-                        self.logger.info(f"Field {i+1} label: '{label}' is not required")
-                    
-                    # Match field to profile data
-                    match_result = self.match_field_to_profile(label, field)
-                    if not match_result:
-                        self.logger.info(f"No profile match found for field {i+1}")
-                        continue
-                    
-                    value, profile_key = match_result
-                    self.logger.info(f"Field {i+1} matched to profile key '{profile_key}' with value: {value}")
-                    
-                    # Validate the match makes sense
-                    if not self.validate_field_match(label, profile_key, value, field):
-                        self.logger.info(f"Field {i+1} match validation failed")
-                        continue
-                    
-                    # Fill the field using appropriate method
-                    if self._is_location_field(label, field):
-                        self.logger.info(f"Field {i+1} identified as location field")
-                        success = self._fill_location_field(field, value)
-                    elif self._is_lever_group(field):
-                        self.logger.info(f"Processing group: '{label}'")
-                        success = self._fill_lever_group(field, value)
-                    else:
-                        self.logger.info(f"Processing regular field: '{label}'")
-                        success = self.fill_field(field, value)
-                    
-                    if success:
-                        fields_filled += 1
-                        self.mark_profile_key_filled(profile_key)
-                        self.logger.info(f"Successfully filled field {i+1}")
-                        
-                        # Fill disability section
-                        if profile_key == 'disability':
-                            self._fill_disability_signature_section()
-                    else:
-                        self.logger.warning(f"Failed to fill field {i+1}")
-                    
-                except Exception as e:
-                    self.logger.warning(f"Error processing field {i+1}: {str(e)}", exc_info=True)
-                    continue
-            
-            self.logger.info(f"Successfully filled {fields_filled} out of {len(all_fields)} fields")
-                    
-        except Exception as e:
-            self.logger.error(f"Error processing form fields: {str(e)}", exc_info=True)
     
     def _is_location_field(self, label: str, field) -> bool:
         """Check if this is Lever's specific current location field."""

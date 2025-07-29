@@ -157,6 +157,18 @@ class FirestoreManager:
             logger.error(f"Error getting application: {e}")
             return None
     
+    def get_job_id_by_application_id(self, user_id: str, application_id: str) -> Optional[str]:
+        """Get job_id by application_id"""
+        try:
+            application = self.get_application(user_id, application_id)
+            if application:
+                return application.get('jobId')
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error getting job_id for application {application_id}: {e}")
+            return None
+    
     def add_application_log(self, user_id: str, application_id: str, level: str, message: str):
         """Add a log entry to an application"""
         try:
@@ -178,34 +190,6 @@ class FirestoreManager:
             
         except Exception as e:
             logger.error(f"Error adding application log: {e}")
-    
-    def get_application_by_task_id(self, task_id: str) -> Optional[tuple]:
-        """
-        Get an application by its task ID
-        Returns a tuple of (user_id, application_data) or None
-        """
-        try:
-            # Use collection group query to search across all user subcollections
-            query = (
-                self.db.collection_group('applications')
-                .where(filter=firestore.FieldFilter('taskId', '==', task_id))
-                .limit(1)
-            )
-            
-            results = query.get()
-            
-            for doc in results:
-                app_data = doc.to_dict()
-                app_data['id'] = doc.id
-                # Extract user_id from the document path: users/{user_id}/applications/{app_id}
-                user_id = doc.reference.parent.parent.id
-                return (user_id, app_data)
-                
-            return None
-            
-        except Exception as e:
-            logger.error(f"Failed to get application by task ID: {e}")
-            return None
 
     def get_profile(self, user_id: str) -> Optional[Dict]:
         """

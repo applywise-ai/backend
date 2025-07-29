@@ -7,28 +7,35 @@ from app.db.base import Base
 class Job(Base):
     __tablename__ = "jobs"
     
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True)
     title = Column(String, nullable=False)
     company = Column(String, nullable=False)
+    company_url = Column(String)
     logo = Column(String)
     location = Column(String)
-    salary = Column(String)
-    salary_value = Column(Float)
+    salary_min_range = Column(Float)
+    salary_max_range = Column(Float)
+    salary_currency = Column(String)
     job_type = Column(String)
     description = Column(Text)
+    company_description = Column(Text)
+    company_size = Column(String)
     experience_level = Column(String)
     specialization = Column(String)
     responsibilities = Column(JSON)  # List of strings
     requirements = Column(JSON)  # List of strings
+    skills = Column(JSON)  # List of strings
     job_url = Column(String)  # Database column is job_url
     score = Column(Float)
     tags = Column(JSON)  # List of strings
     short_responsibilities = Column(String)
     short_qualifications = Column(String)
-    is_verified = Column(Boolean, default=False)
+    is_verified = Column(Boolean, default=True)
     is_sponsored = Column(Boolean, default=False)
     provides_sponsorship = Column(Boolean, default=False)
     expired = Column(Boolean, default=False)
+    is_remote = Column(Boolean, default=False)
+    posted_date = Column(DateTime(timezone=True), server_default=func.now())
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 

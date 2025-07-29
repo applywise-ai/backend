@@ -19,8 +19,8 @@ class ApplicationStatus(str, Enum):
 
 
 class JobType(str, Enum):
-    FULL_TIME = "full_time"
-    PART_TIME = "part_time"
+    FULL_TIME = "fulltime"
+    PART_TIME = "temporary"
     CONTRACT = "contract"
     INTERNSHIP = "internship"
 
@@ -122,82 +122,41 @@ class UserProfile(BaseModel):
     likedJobs: List[str] = []
     dislikedJobs: List[str] = []
 
-
-class QuestionType(str, Enum):
-    TEXT = "text"
+# Field types enum
+class QuestionType(Enum):
+    """Field types enum."""
+    INPUT = "text"
     TEXTAREA = "textarea"
     SELECT = "select"
-    MULTI_SELECT = "multi_select"
-    CHECKBOX = "checkbox"
-    RADIO = "radio"
-    FILE = "file"
+    MULTISELECT = "multiselect"
     DATE = "date"
-    NUMBER = "number"
-    EMAIL = "email"
-    PHONE = "phone"
-    URL = "url"
-
+    FILE = "file"
 
 class FormSectionType(str, Enum):
     PERSONAL = "personal"
     EDUCATION = "education"
     EXPERIENCE = "experience"
-    SKILLS = "skills"
-    ADDITIONAL = "additional"
-
-
-class FileType(str, Enum):
     RESUME = "resume"
     COVER_LETTER = "cover_letter"
-    PORTFOLIO = "portfolio"
-    OTHER = "other"
-
-
-class Answer(BaseModel):
-    """Answer model that can handle different types of answers"""
-    value: Union[str, List[str], bool, int, float]
-    file_url: Optional[str] = None
-    file_name: Optional[str] = None
+    ADDITIONAL = "additional" 
 
 
 class FormQuestion(BaseModel):
     """Form question model matching frontend interface"""
-    id: str
+    unique_label_id: str
     question: str
-    answer: Union[str, Dict[str, Union[str, int, bool, None]]]  # Matches frontend Answer type
+    answer: Optional[str] = None
     type: QuestionType
     placeholder: Optional[str] = None
     options: Optional[List[str]] = None
     section: FormSectionType
-    file_type: Optional[FileType] = None
+    file_url: Optional[str] = None
+    file_name: Optional[str] = None
     required: Optional[bool] = False
+    pruned: Optional[bool] = False
 
-
-class JobApplicationCreate(BaseModel):
-    user_id: str
-    job_url: HttpUrl
-    company_name: Optional[str] = None
-    job_title: Optional[str] = None
-    resume_path: Optional[str] = None
-    cover_letter_path: Optional[str] = None
-    application_data: Optional[Dict[str, Any]] = None
-
-
-class JobApplicationResponse(BaseModel):
-    id: str
-    job_id: str
-    job_url: str
-    company_name: Optional[str]
-    job_title: Optional[str]
-    status: str
-    screenshot_urls: Optional[List[str]]
-    error_message: Optional[str]
-    created_at: Optional[datetime]
-    started_at: Optional[datetime]
-    completed_at: Optional[datetime]
-    
     class Config:
-        from_attributes = True
+        use_enum_values = True  # Use enum values instead of enum objects for JSON serialization
 
 
 class TaskStatusResponse(BaseModel):
@@ -213,7 +172,6 @@ class PrepareJobRequest(BaseModel):
 
 class ApplyJobRequest(BaseModel):
     """Request model for job application submission"""
-    job_id: str
     application_id: str
 
 
@@ -222,30 +180,6 @@ class ApplyJobResponse(BaseModel):
     application_id: str
     status: ApplicationStatus
     message: str
-
-
-class ApplicationResponse(BaseModel):
-    """Response model for a single application"""
-    id: str
-    user_id: str
-    job_id: str
-    status: ApplicationStatus
-    form_questions: List[FormQuestion]
-    applied_date: Optional[datetime] = None
-    last_updated: datetime
-    created_at: datetime
-    resume_url: Optional[str] = None
-    resume_filename: Optional[str] = None
-    cover_letter_url: Optional[str] = None
-    cover_letter_filename: Optional[str] = None
-    screenshots: List[str] = []
-
-
-class UserApplicationsResponse(BaseModel):
-    """Response model for user applications list"""
-    applications: List[ApplicationResponse]
-    total: int
-
 
 class SaveFormRequest(BaseModel):
     """Request model for saving form questions"""
@@ -257,4 +191,30 @@ class SaveFormResponse(BaseModel):
     """Response model for saving form questions"""
     application_id: str
     status: ApplicationStatus
+    message: str 
+
+
+class GenerateCoverLetterRequest(BaseModel):
+    """Request model for generating cover letter"""
+    job_id: str
+    prompt: Optional[str] = None
+
+
+class GenerateCoverLetterResponse(BaseModel):
+    """Response model for cover letter generation"""
+    application_id: str
+    cover_letter_url: str
+    message: str 
+
+
+class GenerateCustomAnswerRequest(BaseModel):
+    """Request model for generating custom answers"""
+    job_description: str
+    question: str
+    prompt: Optional[str] = None
+
+
+class GenerateCustomAnswerResponse(BaseModel):
+    """Response model for custom answer generation"""
+    answer: str
     message: str 

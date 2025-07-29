@@ -1,20 +1,18 @@
 """Workable job portal implementation."""
 
-import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+from app.services.job_application.types import get_field_type
+from app.schemas.application import QuestionType
 from .base import BasePortal
 
 
 class Workable(BasePortal):
     """Workable job portal handler."""
     
-    def __init__(self, driver, profile):
+    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):
         """Initialize Workable portal with explicit parent initialization."""
         try:
-            super().__init__(driver, profile)
+            super().__init__(driver, profile, url, job_description, overrided_answers)
             self.logger.info("Workable portal initialized successfully")
         except Exception as e:
             self.logger.error(f"Error initializing Workable portal: {str(e)}")
@@ -23,9 +21,6 @@ class Workable(BasePortal):
     def apply(self):
         """Apply to job on Workable portal using base class functionality."""
         try:
-            # Handle cookie consent first
-            self._handle_cookie_consent()
-            
             self.logger.info("Starting to fill out Workable application form")
             
             # Find all form fields and process them using base class methods
@@ -49,59 +44,36 @@ class Workable(BasePortal):
             
             for i, field in enumerate(all_fields):
                 try:
-                    field_type = field.tag_name
-                    field_id = field.get_attribute('id') or 'no-id'
-                    self.logger.info(f"Processing field {i+1}: {field_type} (id: {field_id})")
-                    
                     # Skip fields that shouldn't be filled
                     if self._should_skip_field(field):
-                        skip_reason = self._get_skip_reason(field) if hasattr(self, '_get_skip_reason') else "unknown reason"
-                        self.logger.info(f"Skipping field {i+1}: {skip_reason}")
                         continue
+                    
+                    # Use custom function to get enum type
+                    question_type = self._get_workable_field_type(field)
                     
                     # Check if this is a Workable radio group
-                    is_radio_group = field.tag_name.lower() == 'fieldset' and field.get_attribute('role') == 'radiogroup'
+                    is_radio_group = field.tag_name == 'fieldset' and field.get_attribute('role') == 'radiogroup'
                     
-                    # Analyze field context using base class method or specific method for fieldsets
-                    if is_radio_group:
-                        context = self._get_workable_fieldset_context(field)
-                    else:
-                        context = self.analyze_field_context(field)
+                    # Get field label
+                    question, is_required = self._get_workable_field_label(field)
                     
-                    self.logger.info(f"Field {i+1} context: '{context[:100]}...' (type: {field_type})")
-                    
-                    if not context:
-                        self.logger.info(f"No context found for field {i+1}, skipping")
-                        continue
+                    # Initialize form question
+                    question_id = self.init_form_question(field, question_type, question, is_required, has_custom_options=is_radio_group)
                     
                     # Match field to profile data using base class method
-                    match_result = self.match_field_to_profile(context, field)
-                    if not match_result:
-                        self.logger.info(f"No profile match found for field {i+1} with context: '{context[:50]}...'")
-                        continue
-                    
-                    value, profile_key = match_result
-                    self.logger.info(f"Field {i+1} matched: '{context[:50]}...' -> {profile_key} = '{value}'")
-                    
-                    # Validate the match makes sense
-                    if not self.validate_field_match(context, profile_key, value, field):
-                        self.logger.info(f"Match validation failed for field {i+1}: {profile_key} = '{value}'")
-                        continue
+                    answer = self.match_field_to_profile(question_id)
                     
                     # Fill the field using appropriate method
                     if is_radio_group:
-                        self.logger.info(f"Processing fieldset {i+1} as radio group: '{context[:50]}...'")
-                        success = self._fill_workable_radio_group(field, value)
+                        success = self._fill_workable_radio_group(field, question_id)
                     else:
-                        self.logger.info(f"Processing regular field {i+1} ({field_type}): '{context[:50]}...'")
-                        success = self.fill_field(field, value)
+                        success = self.fill_field(field, question_id)
                         
                     if success:
                         fields_filled += 1
-                        self.mark_profile_key_filled(profile_key)
-                        self.logger.info(f"Successfully filled field {i+1}: {profile_key}")
+                        self.logger.info(f"Successfully filled field {i+1}: {answer}")
                     else:
-                        self.logger.warning(f"Failed to fill field {i+1}: {profile_key}")
+                        self.logger.warning(f"Failed to fill field {i+1}: {answer}")
                     
                 except Exception as e:
                     self.logger.warning(f"Error processing field {i+1}: {str(e)}")
@@ -140,92 +112,98 @@ class Workable(BasePortal):
         
         return fields
     
-    def _get_workable_fieldset_context(self, fieldset):
-        """Get context from Workable fieldset (question text)."""
+    def _get_workable_field_type(self, field):
+        """Get the type of field from Workable."""
+        field_type = field.get_attribute('type')
+        tag_name = field.tag_name
+        if tag_name == 'fieldset' and field.get_attribute('role') == 'radiogroup':
+            return QuestionType.SELECT
+        return get_field_type(field_type, tag_name=tag_name)
+
+    def _get_workable_field_label(self, field):
+        """Get context from Workable field element using aria-labelledby, name-based labels, or base context."""
         try:
-            parent = fieldset.find_element(By.XPATH, "..")
-            # Look for sibling span that contains the label
-            sibling_spans = parent.find_elements(By.XPATH, "./span[contains(@class, 'styles--')]")
-            for span in sibling_spans:
-                # Look for nested span with ID ending in "_label"
+            label_element = None
+            label_text = ""
+            
+            # Check aria-labelledby first
+            aria_labelledby = field.get_attribute('aria-labelledby')
+            # If there are two identifiers in labelled by use the first one
+            if aria_labelledby:
+                aria_labelledby = aria_labelledby.split(' ')[0] if len(aria_labelledby.split(' ')) > 1 else aria_labelledby
+                
                 try:
-                    label_span = span.find_element(By.CSS_SELECTOR, "span[id$='_label']")
-                    label_text = label_span.text.strip()
+                    label_element = self.driver.find_element(By.ID, aria_labelledby)
+                    label_text = label_element.text.strip()
                     if label_text:
-                        return label_text
+                        self.logger.debug(f"Found label via aria-labelledby: {label_text}")
                 except:
-                    continue
-            return ""
+                    pass
+            
+            # Check for name-based label pattern: {name}_label
+            if not label_text:
+                name = field.get_attribute('name')
+                if name:
+                    label_id = f"{name}_label"
+                    try:
+                        label_element = self.driver.find_element(By.ID, label_id)
+                        label_text = label_element.text.strip()
+                        if label_text:
+                            self.logger.debug(f"Found label via name pattern: {label_text}")
+                    except:
+                        pass
+            
+            # If we found a label element, check for required status in parent elements
+            if label_element and label_text:
+                try:
+                    # Move two parents up from the label element
+                    parent = label_element.find_element(By.XPATH, "../..")
+                    parent_text = parent.text
+                    is_required = self.is_required_field(parent_text)
+                    return label_text, is_required
+                except:
+                    return label_text, False
+            
+            # Fallback to base context method
+            self.logger.debug("Using base context method as fallback")
+            base_context = self.analyze_field_context(field)
+            return base_context, self.is_required_field(base_context)
+            
         except Exception as e:
-            self.logger.warning(f"Error getting fieldset context: {str(e)}")
-            return ""
+            self.logger.warning(f"Error getting field label: {str(e)}")
+            base_context = self.analyze_field_context(field)
+            return base_context, self.is_required_field(base_context)
     
-    def _fill_workable_radio_group(self, radio_group, value) -> bool:
+    def _fill_workable_radio_group(self, radio_group, question_id) -> bool:
         """Fill Workable custom radio group by clicking the appropriate option wrapper."""
         try:
+            value = self.form_questions[question_id].get('answer')
             self.logger.info(f"Filling Workable radio group with value: '{value}'")
             
             # Scroll to the radio group to ensure it's visible
             self.scroll_to_element(radio_group)
             
-            # Find all option wrappers within the radio group - try multiple selectors
-            option_wrappers = radio_group.find_elements(By.CSS_SELECTOR, "div[role='radio']")
+            # Find all inputs/labels
+            option_elements = radio_group.find_elements(By.CSS_SELECTOR, "input[type='radio']")
+            option_labels = radio_group.find_elements(By.CSS_SELECTOR, "span[id*='radio_label_']")
             
-            # If no div[role='radio'] found, try the data-ui="option" structure
-            if not option_wrappers:
-                option_wrappers = radio_group.find_elements(By.CSS_SELECTOR, "div[data-ui='option']")
-            
-            self.logger.info(f"Found {len(option_wrappers)} option wrappers in radio group")
-            
-            if not option_wrappers:
-                self.logger.warning("No option wrappers found in radio group")
-                return False
-            
-            # Create list of option elements for matching
-            option_elements = []
-            for i, option_wrapper in enumerate(option_wrappers):
-                try:
-                    # Try to get text from span with radio_label_ ID first
-                    try:
-                        label_span = option_wrapper.find_element(By.CSS_SELECTOR, "span[id*='radio_label_']")
-                        option_text = label_span.text.strip()
-                    except:
-                        # Fallback to textContent of the wrapper
-                        option_text = option_wrapper.get_attribute('textContent') or ''
-                        option_text = option_text.strip()
+            self.logger.info(f"Found {len(option_elements)} option elements and {len(option_labels)} option labels in radio group")
                     
-                    if option_text:
-                        option_elements.append({
-                            'element': option_wrapper,
-                            'text': option_text
-                        })
-                        self.logger.info(f"Option {i+1}: '{option_text}'")
-                except Exception as e:
-                    self.logger.info(f"Failed to get text for option {i+1}: {str(e)}")
-                    continue
-            
-            if not option_elements:
-                self.logger.warning("No valid option elements found in radio group")
+            if not option_elements or not option_labels:
+                self.logger.warning("No option elements found in radio group")
                 return False
             
             # Match the value to the appropriate option
-            option_texts = [opt['text'] for opt in option_elements]
-            best_index = self.match_option_to_target(option_texts, str(value))
+            option_texts = [opt.text for opt in option_labels]
+            best_index = self.match_option_to_target(option_texts, question_id)
             
             if best_index is not None:
                 selected_option = option_elements[best_index]
-                selected_text = selected_option['text']
+                selected_text = option_texts[best_index]
                 self.logger.info(f"Selecting option: '{selected_text}' (index {best_index})")
                 
-                # Check if already selected
-                aria_checked = selected_option['element'].get_attribute('aria-checked')
-                if aria_checked == 'true':
-                    self.logger.info(f"Option already selected: '{selected_text}'")
-                    return True
-                        
-                # Click the wrapper to select it
                 try:
-                    self.driver.wait_and_click_element(element=selected_option['element'])
+                    selected_option.click()
                     self.logger.info(f"Successfully clicked option: '{selected_text}'")
                     return True
                 except Exception as e:
@@ -238,34 +216,3 @@ class Workable(BasePortal):
         except Exception as e:
             self.logger.error(f"Error filling Workable radio group: {str(e)}")
             return False
-    
-    def _handle_cookie_consent(self):
-        """Handle cookie consent banner on Workable."""
-        try:
-            self.logger.info("Checking for cookie consent banner")
-            
-            # Use known working selector for Workable
-            selector = "//button[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'accept')]"
-            
-            try:
-                elements = self.driver.wait_and_find_elements(By.XPATH, selector)
-                cookie_button = None
-                
-                for element in elements:
-                    if element.is_displayed() and element.is_enabled():
-                        cookie_button = element
-                        break
-                
-                if cookie_button:
-                    self.logger.info("Found cookie consent button")
-                    self.driver.wait_and_click_element(element=cookie_button)
-                    self.logger.info("Successfully clicked cookie consent button")
-                    
-                else:
-                    self.logger.info("No cookie consent banner found - proceeding with application")
-                    
-            except Exception as e:
-                self.logger.info(f"No cookie consent banner found ({str(e)}) - proceeding with application")
-                
-        except Exception as e:
-            self.logger.warning(f"Error handling cookie consent: {str(e)} - proceeding anyway")

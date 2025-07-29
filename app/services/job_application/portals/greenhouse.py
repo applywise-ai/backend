@@ -2,39 +2,42 @@
 
 import time
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys  
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 from .base import BasePortal
-
+from app.services.job_application.types import get_field_type
+from app.schemas.application import QuestionType
 
 class Greenhouse(BasePortal):
     """Greenhouse job portal handler."""
     
-    def __init__(self, driver, profile):
+    def __init__(self, driver, profile, url=None, job_description=None, overrided_answers=None):
         """Initialize Greenhouse portal with driver and user profile."""
-        super().__init__(driver, profile)
+        super().__init__(driver, profile, url, job_description, overrided_answers)
+        self.is_new_portal = self.url and 'job-boards.greenhouse.io' in self.url
         self.logger.info("Greenhouse portal initialized successfully")
     
     def apply(self):
         """Apply to job on Greenhouse."""
         try:
-            # Find and click the Apply button first
-            try:
-                apply_button = self.driver.wait_and_find_element(By.XPATH, "//button[contains(text(), 'Apply')]", 5)
-                if apply_button:
-                    self.logger.info("Found Apply button, clicking it")
-                    self.driver.wait_and_click_element(element=apply_button)
-                else:
-                    self.logger.warning("Could not find Apply button")
-            except Exception as e:
-                self.logger.warning(f"Error clicking Apply button: {str(e)}")
+            # Only click Apply button for new Greenhouse portal
+            if self.is_new_portal:
+                try:
+                    apply_button = self.driver.wait_and_find_element(By.XPATH, "//button[contains(text(), 'Apply')]", 5)
+                    if apply_button:
+                        self.logger.info("Found Apply button, clicking it")
+                        self.driver.wait_and_click_element(element=apply_button)
+                    else:
+                        self.logger.warning("Could not find Apply button")
+                except Exception as e:
+                    self.logger.warning(f"Error clicking Apply button: {str(e)}")
+            else:
+                self.logger.info("Old Greenhouse portal detected, skipping Apply button click")
+
+            # Handle education section if present
+            self._handle_greenhouse_education_section()
 
             # Process all form fields
             self._process_all_form_fields()
-            
-            # Handle education section if present
-            self._handle_greenhouse_education_section()
             
             return True
             
@@ -62,46 +65,35 @@ class Greenhouse(BasePortal):
 
                     # Check if this is a Greenhouse Select2 dropdown
                     is_select2 = self._is_greenhouse_select2_field(field)
+
+                    has_options = is_react_select or is_select2
+                    
+                    # Get field type
+                    field_type = self._get_greenhouse_field_type(field, has_options)
                     
                     # Get field label by traversing parents
                     label = self._get_greenhouse_field_label(field)
-                    self.logger.info(f"Field label: {label}")
-                    if not label:
-                        continue
                     
                     # Check if field is required
                     is_required = self.is_required_field(label)
-                    if is_required:
-                        self.logger.info(f"Field '{label}' is required")
                     
-                    # Match field to profile data using base class method (don't skip repeated education fields)
-                    match_result = self.match_field_to_profile(label, field)
-                    self.logger.info(f"Match result: {match_result} for label: {label}")
-                    if not match_result:
-                        continue
+                    # Initialize form question
+                    question_id = self.init_form_question(field, field_type, label, is_required, has_options)
                     
-                    value, profile_key = match_result
-                    
-                    # Validate the match makes sense
-                    if not self.validate_field_match(label, profile_key, value, field):
-                        continue
+                    # Match field to profile data using base class method
+                    self.match_field_to_profile(question_id)
                     
                     # Fill the field using appropriate method
                     if is_react_select:
-                        success = self._fill_greenhouse_react_select(field, value)
+                        success = self._fill_greenhouse_react_select(field, question_id)
                     elif is_select2:
-                        success = self._fill_greenhouse_select2_field(field, value)
+                        success = self._fill_greenhouse_select2_field(field, question_id)
                     else:
-                        success = self.fill_field(field, value)
-                        
+                        success = self.fill_field(field, question_id)
+
                     if success:
                         fields_filled += 1
-                        self.mark_profile_key_filled(profile_key)
                         self.logger.info(f"Successfully filled field {i+1}")
-                        
-                        # If we just filled hispanic origin and selected No, fill race
-                        if profile_key == 'hispanic' and str(value).lower() == 'no':
-                            self._fill_race_field()
                     else:
                         self.remove_focus()
                         self.logger.warning(f"Failed to fill field {i+1}")
@@ -141,11 +133,21 @@ class Greenhouse(BasePortal):
         
         return fields
     
+    def _get_greenhouse_field_type(self, field, has_options: bool) -> QuestionType:
+        """Get field type based on field attributes."""
+        if has_options:
+            return QuestionType.SELECT
+        return get_field_type(field.get_attribute('type'), field.tag_name)
+    
     def _handle_greenhouse_education_section(self):
         """Handle Greenhouse custom education section with dynamic creation and filling."""
         try:
             # Check if education section exists
-            education_section = self.driver.find_elements(By.ID, "education_section")
+            if self.is_new_portal:
+                education_section = self.driver.find_elements(By.CSS_SELECTOR, ".education--container")
+            else:
+                education_section = self.driver.find_elements(By.ID, "education_section")
+            self.logger.info(f"Found {len(education_section)} education section(s)")
             if not education_section:
                 return
             
@@ -153,22 +155,31 @@ class Greenhouse(BasePortal):
             education_list = self.profile.get('education', [])
             if not education_list:
                 return
-            
+
             # Add all education entries so we can find and fill them later
             for i in range(len(education_list)):
                 # Add new education entry if needed (skip first one as it already exists)
                 if i > 0:
-                    self._add_greenhouse_education_entry()
+                    self._add_greenhouse_education_entry(education_section[0])
                 
         except Exception:
             self.logger.error(f"Error handling Greenhouse education section")
     
-    def _add_greenhouse_education_entry(self):
+    def _add_greenhouse_education_entry(self, education_container):
         """Add a new education entry by clicking the 'Add another education' button."""
         try:
-            add_button = self.driver.find_element(By.ID, "add_education")
+            if self.is_new_portal:
+                # For new portal, find add-another-button within education container
+                add_button = education_container.find_element(By.CSS_SELECTOR, ".add-another-button")
+            else:
+                # For old portal, use the existing logic
+                add_button = self.driver.find_element(By.ID, "add_education")
+            
             if add_button and add_button.is_displayed():
                 self.driver.wait_and_click_element(element=add_button)
+                self.logger.info(f"Added education entry")
+            else:
+                self.logger.warning(f"Could not find add button")
         except Exception:
             self.logger.warning(f"Error adding education entry")
 
@@ -190,11 +201,10 @@ class Greenhouse(BasePortal):
         except:
             return False
     
-    def _fill_greenhouse_react_select(self, field, value) -> bool:
+    def _fill_greenhouse_react_select(self, field, question_id: str) -> bool:
         """Fill Greenhouse React Select component."""
         try:
-            if not value:
-                return False
+            value = self.form_questions[question_id].get('answer')
             
             # Find the select control container
             select_control = field.find_element(By.XPATH, "./ancestor::div[contains(@class, 'select__control')]")
@@ -211,9 +221,8 @@ class Greenhouse(BasePortal):
             # Click the field to open the dropdown
             self.driver.wait_and_click_element(element=field)
 
-            if is_autocomplete:
-                city = value.split(",")[0]
-                field.send_keys(city)
+            if is_autocomplete and value is not None:
+                field.send_keys(value[:7])
             
             # Get field ID to find the listbox
             field_id = field.get_attribute('id')
@@ -223,19 +232,28 @@ class Greenhouse(BasePortal):
                 # Try to find options in the listbox if we have an ID
                 if listbox_id:
                     self.logger.info(f"Looking for options in listbox: {listbox_id}")
-                    option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{listbox_id} div[role='option']", 2)
+                    try:
+                        option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{listbox_id} div[role='option']", 2)
+                    except Exception:
+                        self.remove_focus()
+                        self.driver.wait_and_click_element(element=field)
+                        option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{listbox_id} div[role='option']", 4)
+                        self.logger.info(f"Found {len(option_elements)} options in listbox after clicking outside") 
+
                     if option_elements:
-                        # If there are more than 5 options, type into the field and then fetch options again
-                        if len(option_elements) >= 5:
+                        # If there are more than 10 options, type into the field and wait for options to change
+                        if len(option_elements) >= 20 and value is not None:
+                            self.form_questions[question_id]['pruned'] = True
                             field.send_keys(value)
                             option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{listbox_id} div[role='option']", 2)
                             if not option_elements:
-                                self.logger.info(f"No options found, clearing field")
+                                self.logger.info(f"No options found after typing, clearing field")
                                 field.clear()
                                 option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{listbox_id} div[role='option']", 2)
+                        
                         self.logger.info(f"Found {len(option_elements)} options in listbox")
                         option_texts = [elem.get_attribute('textContent') or '' for elem in option_elements]
-                        best_index = self.match_option_to_target(option_texts, str(value))
+                        best_index = self.match_option_to_target(option_texts, question_id)
                         if best_index is not None:
                             option_elements[best_index].click()
                             return True
@@ -248,7 +266,7 @@ class Greenhouse(BasePortal):
 
                 return False
                 
-            except Exception as e:
+            except Exception:
                 self.logger.warning(f"Error finding/selecting options for {value}")
                 return False
                 
@@ -264,11 +282,11 @@ class Greenhouse(BasePortal):
         except:
             return False
     
-    def _fill_greenhouse_select2_field(self, field, value) -> bool:
+    def _fill_greenhouse_select2_field(self, field, question_id: str) -> bool:
         """Fill Greenhouse Select2 field using label ID approach."""
         try:
-            if not value:
-                return False
+            value = self.form_questions[question_id].get('answer')
+            question = self.form_questions[question_id].get('question')
             
             field_id = field.get_attribute('id')
             self.logger.info(f"Filling Select2 field with ID: {field_id}")
@@ -290,15 +308,35 @@ class Greenhouse(BasePortal):
                 listbox = self.driver.wait_and_find_element(By.XPATH, f"//*[@id='{aria_controls}']")
                         
                 # Wait for at least one option to appear
-                option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{aria_controls} li", 2)
-                
-                # Get the first 10 options
-                option_elements = option_elements[:10]
-                
+                try:
+                    option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{aria_controls} li", 2)
+                    self.logger.info(f"Found {len(option_elements)} options in listbox")
+                except Exception:
+                    self.remove_focus()
+                    self.driver.wait_and_click_element(element=parent_div)
+                    option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{aria_controls} li", 4)
+
+                if len(option_elements) >= 20 and value is not None:
+                    self.form_questions[question_id]['pruned'] = True
+                    initial_count = len(option_elements)
+                    search_input.send_keys(value)
+                    
+                    # Wait for options to change after typing
+                    option_elements = self.driver.wait_for_options_to_change(
+                        f"#{aria_controls} li", 
+                        initial_count,
+                    )
+                    
+                    self.logger.info(f"Found {len(option_elements)} options in listbox after typing")
+                    if not option_elements:
+                        self.logger.info(f"No options found, clearing field")
+                        search_input.clear()
+                        option_elements = self.driver.wait_and_find_elements(By.CSS_SELECTOR, f"#{aria_controls} li", 2)
+
                 # Find the best matching option
                 option_texts = [elem.get_attribute('textContent') or '' for elem in option_elements]
                 
-                best_index = self.match_option_to_target(option_texts, str(value))
+                best_index = self.match_option_to_target(option_texts, question_id)
                 if best_index is not None:
                     option_elements[best_index].click()
                     return True
@@ -336,7 +374,10 @@ class Greenhouse(BasePortal):
             
         elif field_type == 'file':
             if field_id != "":
-                return field_id
+                # Check upload label
+                upload_label = self.driver.find_element(By.ID, f"upload-label-{field_id}")
+                if upload_label:
+                    return upload_label.text.strip()
             else:
                 # Get parent div and get data-presigned-form on the div
                 try:
@@ -349,6 +390,11 @@ class Greenhouse(BasePortal):
                 except Exception:
                     return None
         
+        # Check if aria-label is present
+        aria_label = field.get_attribute('aria-label')
+        if aria_label != "" and aria_label is not None:
+            return aria_label
+        
         # Find parent label and get text
         try:
             parent_label = field.find_element(By.XPATH, "./ancestor::label")
@@ -359,25 +405,3 @@ class Greenhouse(BasePortal):
 
         # Default to analyzing field context
         return self.analyze_field_context(field)
-
-    def _fill_race_field(self):
-        """Fill race field that appears after selecting No for Hispanic origin."""
-        try:
-            # Wait for race field to appear
-            race_field = self.driver.wait_and_find_element(By.ID, "race", 2)
-            if not race_field:
-                self.logger.warning("Could not find race field")
-                return False
-
-            # Get race from profile
-            race = self.profile.get('race')
-            if not race:
-                self.logger.warning("No race value found in profile")
-                return False
-
-            self.logger.info(f"Found race field, filling with value: {race}")
-            return self._fill_greenhouse_react_select(race_field, race)
-
-        except Exception as e:
-            self.logger.warning(f"Error filling race field: {str(e)}")
-            return False

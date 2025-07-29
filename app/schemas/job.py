@@ -1,68 +1,73 @@
+from pydantic import BaseModel, Field, HttpUrl, field_validator
+from typing import Optional, List
 from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, HttpUrl, Field, constr, confloat
 
 class JobBase(BaseModel):
     """Base Job model with common attributes"""
-    title: constr(min_length=1, max_length=255)
-    company: constr(min_length=1, max_length=255)
-    logo: HttpUrl
-    location: constr(min_length=1, max_length=255)
-    salary: constr(min_length=1, max_length=255)
-    salary_value: confloat(gt=0)  # Must be positive
-    job_type: constr(min_length=1, max_length=50)
+    title: str = Field(..., min_length=1, max_length=255)
+    company: str = Field(..., min_length=1, max_length=255)
+    company_url: Optional[HttpUrl] = None
+    logo: Optional[HttpUrl] = None
+    company_description: Optional[str] = None
+    location: Optional[str] = Field(None, min_length=1, max_length=255)
+    salary_min_range: Optional[float] = Field(None, gt=0)
+    salary_max_range: Optional[float] = Field(None, gt=0)
+    salary_currency: Optional[str] = Field(None, min_length=1, max_length=50)
+    job_type: str = Field(..., min_length=1, max_length=50)
     description: str
-    experience_level: constr(min_length=1, max_length=50)
+    posted_date: datetime
+    experience_level: str = Field(..., min_length=1, max_length=50)
     specialization: Optional[str] = None
     responsibilities: List[str] = Field(default_factory=list)
     requirements: List[str] = Field(default_factory=list)
     job_url: Optional[HttpUrl] = None
-    score: Optional[float] = Field(None, ge=0, le=1)  # Score between 0 and 1
-    tags: List[str] = Field(default_factory=list)
+    skills: List[str] = Field(default_factory=list)
     short_responsibilities: Optional[str] = None
     short_qualifications: Optional[str] = None
+    is_remote: bool = False
     is_verified: bool = False
     is_sponsored: bool = False
     provides_sponsorship: bool = False
     expired: bool = False
 
-class JobCreate(JobBase):
-    """Schema for creating a new job"""
-    posted_date: datetime = Field(default_factory=datetime.now)
-
-class JobUpdate(BaseModel):
-    """Schema for updating an existing job"""
-    title: Optional[constr(min_length=1, max_length=255)] = None
-    company: Optional[constr(min_length=1, max_length=255)] = None
-    logo: Optional[HttpUrl] = None
-    location: Optional[constr(min_length=1, max_length=255)] = None
-    salary: Optional[constr(min_length=1, max_length=255)] = None
-    salary_value: Optional[confloat(gt=0)] = None
-    job_type: Optional[constr(min_length=1, max_length=50)] = None
+class JobCreate(BaseModel):
+    id: str
+    title: str
+    company: str
+    company_url: Optional[str] = None
+    logo: Optional[str] = None
+    location: Optional[str] = None
+    salary_min_range: Optional[float] = None
+    salary_max_range: Optional[float] = None
+    salary_currency: Optional[str] = None
+    job_type: Optional[str] = None
     description: Optional[str] = None
-    experience_level: Optional[constr(min_length=1, max_length=50)] = None
+    company_description: Optional[str] = None
+    company_size: Optional[str] = None
+    experience_level: Optional[str] = None
     specialization: Optional[str] = None
     responsibilities: Optional[List[str]] = None
     requirements: Optional[List[str]] = None
-    job_url: Optional[HttpUrl] = None
-    score: Optional[float] = Field(None, ge=0, le=1)
+    skills: Optional[List[str]] = None
+    job_url: Optional[str] = None
+    score: Optional[float] = None
     tags: Optional[List[str]] = None
     short_responsibilities: Optional[str] = None
     short_qualifications: Optional[str] = None
-    is_verified: Optional[bool] = None
-    is_sponsored: Optional[bool] = None
-    provides_sponsorship: Optional[bool] = None
-    expired: Optional[bool] = None
+    is_verified: Optional[bool] = True
+    is_sponsored: Optional[bool] = False
+    provides_sponsorship: Optional[bool] = False
+    expired: Optional[bool] = False
+    is_remote: Optional[bool] = False
+    posted_date: Optional[datetime] = None
 
 class JobInDB(JobBase):
     """Schema for job as stored in database"""
-    id: int
-    posted_date: datetime
+    id: str
     created_at: datetime
     updated_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
 
 class JobResponse(JobInDB):
     """Schema for job response"""
@@ -85,7 +90,7 @@ class JobsPaginatedResponse(BaseModel):
     """Schema for paginated jobs response"""
     jobs: List[JobResponse]
     has_more: bool
-    last_job_id: Optional[int] = None
+    last_job_id: Optional[str] = None
     total_count: int
     filtered_count: int
 
@@ -101,6 +106,11 @@ class JobsSearchResponse(BaseModel):
     limit: int
     offset: int
     has_more: bool
+
+class JobsResponse(BaseModel):
+    jobs: List[JobResponse]
+    total: int
+    lastJobId: Optional[str] = None
 
 # Example of how to use the schema:
 """
