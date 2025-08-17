@@ -16,6 +16,7 @@ class ApplicationStatus(str, Enum):
     EXPIRED = "Expired"
     ACCEPTED = "Accepted"
     FAILED = "Failed"      # When job application processing fails
+    NOT_FOUND = "Not Found" # When job no longer exists
 
 
 class JobType(str, Enum):
@@ -59,9 +60,11 @@ class UserProfile(BaseModel):
     email: str
     phoneNumber: Optional[str]
     currentLocation: Optional[str]
-    resumeUrl: Optional[str]
+    resume: Optional[str]
     resumeFilename: Optional[str]
     resumeAutofill: Optional[Dict[str, Any]]
+    coverLetterPath: Optional[str]
+    coverLetterFilename: Optional[str]
 
     # Social Links
     linkedin: Optional[str]
@@ -126,11 +129,13 @@ class UserProfile(BaseModel):
 class QuestionType(Enum):
     """Field types enum."""
     INPUT = "text"
+    NUMBER = "number"
     TEXTAREA = "textarea"
     SELECT = "select"
     MULTISELECT = "multiselect"
     DATE = "date"
     FILE = "file"
+    CHECKBOX = "checkbox"
 
 class FormSectionType(str, Enum):
     PERSONAL = "personal"
@@ -138,22 +143,25 @@ class FormSectionType(str, Enum):
     EXPERIENCE = "experience"
     RESUME = "resume"
     COVER_LETTER = "cover_letter"
-    ADDITIONAL = "additional" 
+    ADDITIONAL = "additional"
+    DEMOGRAPHIC = "demographic"
 
+AnswerType = Union[str, int, List[int], List[str]]
 
 class FormQuestion(BaseModel):
     """Form question model matching frontend interface"""
     unique_label_id: str
     question: str
-    answer: Optional[str] = None
+    answer: Optional[AnswerType] = None
     type: QuestionType
     placeholder: Optional[str] = None
     options: Optional[List[str]] = None
     section: FormSectionType
-    file_url: Optional[str] = None
+    file_path: Optional[str] = None
     file_name: Optional[str] = None
     required: Optional[bool] = False
     pruned: Optional[bool] = False
+    ai_custom: Optional[bool] = False
 
     class Config:
         use_enum_values = True  # Use enum values instead of enum objects for JSON serialization
@@ -191,7 +199,7 @@ class SaveFormResponse(BaseModel):
     """Response model for saving form questions"""
     application_id: str
     status: ApplicationStatus
-    message: str 
+    message: str
 
 
 class GenerateCoverLetterRequest(BaseModel):
@@ -203,8 +211,8 @@ class GenerateCoverLetterRequest(BaseModel):
 class GenerateCoverLetterResponse(BaseModel):
     """Response model for cover letter generation"""
     application_id: str
-    cover_letter_url: str
-    message: str 
+    cover_letter_path: str
+    message: str
 
 
 class GenerateCustomAnswerRequest(BaseModel):

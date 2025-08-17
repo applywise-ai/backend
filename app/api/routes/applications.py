@@ -23,6 +23,7 @@ import logging
 import tempfile
 import os
 from datetime import datetime
+from app.services.job_application.utils import validate_and_convert_form_questions
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -71,12 +72,20 @@ async def prepare_application(
         logger.info(f"Prepare endpoint called for user: {user_id}, job: {job_request.job_id}")
         
         # Create or update application
-        application_id = firestore_manager.create_or_update_application(
+        application_id, is_new_application = firestore_manager.create_or_update_application(
             user_id=user_id,
             job_id=job_request.job_id
         )
         
-        logger.info(f"Created/updated application: {application_id}")
+        logger.info(f"Created/updated application: {application_id} (new: {is_new_application})")
+        
+        # Deduct AI credit if this is a new application
+        if is_new_application:
+            credit_deducted = firestore_manager.deduct_ai_credit(user_id)
+            if credit_deducted:
+                logger.info(f"AI credit deducted for new application {application_id}")
+            else:
+                logger.warning(f"Failed to deduct AI credit for new application {application_id}")
         
         # Queue the task (will succeed even if Celery is down)
         task_data = {
@@ -128,17 +137,6 @@ async def submit_application(
     """
     try:
         logger.info(f"Submit endpoint called for user: {user_id}, application: {job_request.application_id}")
-        
-        # Check Celery connection before proceeding
-        celery_ok, celery_message = check_celery_connection()
-        if not celery_ok:
-            logger.error(f"Celery check failed: {celery_message}")
-            raise HTTPException(
-                status_code=503, 
-                detail=f"Task processing service unavailable: {celery_message}"
-            )
-        
-        logger.info(f"Celery status: {celery_message}")
         
         # Verify application exists and belongs to user
         application = firestore_manager.get_application(user_id, job_request.application_id)
@@ -197,31 +195,34 @@ async def save_form_questions(
     user_id: str = Depends(get_user_id)
 ):
     """
-    Save custom form questions for a job application and process it.
+    Save custom form questions for a job application.
     These questions will override the default form filling in the job application task.
     """
     try:
-        # Get job_id from the application
-        job_id = firestore_manager.get_job_id_by_application_id(user_id, save_request.application_id)
-        if not job_id:
-            raise HTTPException(status_code=404, detail="Application not found or job_id not available")
-        
-        # TODO: Validate form questions
         # Convert FormQuestion objects to dictionaries for JSON serialization
         form_questions_dict = [question.dict() for question in save_request.form_questions]
+
+        # If question is pruned and multi-select we need to split answer by commas
+        for question in form_questions_dict:
+            if question.get('pruned') and question.get('type') == QuestionType.MULTISELECT:
+                question['answer'] = question['answer'].split(',')
         
-        # Queue the task with the custom form questions
-        apply_to_job.delay({
-            'user_id': user_id,
-            'application_id': save_request.application_id,
-            'job_id': job_id,
-            'form_questions': form_questions_dict,
-        })
+        # Validate and convert form questions
+        logger.info(f"Validating {len(form_questions_dict)} form questions for application {save_request.application_id}")
+        validated_questions = validate_and_convert_form_questions(form_questions_dict)
+        for question in validated_questions:
+            logger.info(f"Validated question: {question.get('unique_label_id')} -> {question.get('answer')} type: {type(question.get('answer'))}")
+        # Update application with validated form questions
+        firestore_manager.update_application(
+            user_id,
+            save_request.application_id,
+            form_questions=validated_questions
+        )
         
         return SaveFormResponse(
             application_id=save_request.application_id,
-            status=ApplicationStatus.PENDING,
-            message="Form questions saved and processing started"
+            status=ApplicationStatus.DRAFT,
+            message="Form questions saved and validated"
         )
         
     except Exception as e:
@@ -370,7 +371,7 @@ async def generate_cover_letter(
             raise HTTPException(status_code=400, detail="Job description not available")
         
         # Get application from firestore using application_id
-        application_id = firestore_manager.create_or_update_application(
+        application_id, _ = firestore_manager.create_or_update_application(
             user_id=user_id,
             job_id=request.job_id
         )
@@ -394,19 +395,19 @@ async def generate_cover_letter(
             raise HTTPException(status_code=500, detail="Failed to create PDF")
         
         # Upload to storage
-        cover_letter_url = storage_manager.upload_cover_letter(tmp_path, user_id, application_id)
+        cover_letter_path = storage_manager.upload_cover_letter(tmp_path, user_id, application_id)
         
         # Clean up temporary file
         os.unlink(tmp_path)
         
-        if not cover_letter_url:
+        if not cover_letter_path:
             raise HTTPException(status_code=500, detail="Failed to upload cover letter")
         
         logger.info(f"Cover letter generated successfully for user {user_id}, job {request.job_id}, application {application_id}")
         
         return GenerateCoverLetterResponse(
             application_id=application_id,
-            cover_letter_url=cover_letter_url,
+            cover_letter_path=cover_letter_path,
             message="Cover letter generated successfully"
         )
         
@@ -451,14 +452,17 @@ async def generate_custom_answer(
         ai_assistant = AIAssistant(profile, job_description)
         
         # Generate custom answer with the question and optional custom prompt
-        answer = ai_assistant.answer_question(
+        ai_result = ai_assistant.answer_question(
             question=request.question,
             field_type=QuestionType.TEXTAREA,
             custom_prompt=request.prompt
         )
 
-        if not answer:
+        if not ai_result:
             raise HTTPException(status_code=500, detail="Failed to generate custom answer")
+        
+        # Unpack the tuple (answer, is_open_ended)
+        answer, is_open_ended = ai_result
         
         logger.info(f"Custom answer generated successfully for user {user_id}, question: {request.question[:50]}...")
         

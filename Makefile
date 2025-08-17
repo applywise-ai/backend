@@ -19,7 +19,8 @@ help:
 	@echo "  make celery-health - Check Celery worker status"
 	@echo "  make health       - Check overall system health via API"
 	@echo "  make check-db     - Test database connectivity"
-	@echo "  make onboard     - Onboard new developer with database access"
+	@echo "  make onboard      - Onboard new developer with database access"
+	@echo "  make jobs         - Fetch jobs from the API"
 	@echo ""
 
 # Start all services
@@ -66,9 +67,8 @@ clean:
 # Development environment
 dev:
 	@echo "🔧 Starting development environment..."
-	docker-compose up -d redis
-	@echo "✅ Redis started. Starting API server on port 8000..."
-	uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+	@echo "✅ Activating virtual environment..."
+	@bash -c "source venv/bin/activate && echo '✅ Virtual environment activated.' && docker-compose up -d redis && echo '✅ Redis started. Starting API server on port 8000...' && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
 # Development environment with verbose logging
 dev-verbose:
@@ -105,7 +105,8 @@ health:
 # Start Celery worker
 celery:
 	@echo "🚀 Starting Celery worker..."
-	celery -A app.tasks.celery_app worker --loglevel=info
+	@echo "✅ Activating virtual environment..."
+	@bash -c "source venv/bin/activate && echo '✅ Virtual environment activated.' && celery -A app.tasks.celery_app worker --loglevel=info"
 
 # Check Celery worker status
 celery-health:
@@ -133,3 +134,9 @@ onboard:
 	@echo "🚀 Starting developer onboarding..."
 	chmod +x scripts/onboard_new_developer.sh
 	./scripts/onboard_new_developer.sh 
+
+# Fetch jobs
+jobs:
+	@echo "🔍 Fetching jobs..."
+	@echo "✅ Activating virtual environment..."
+	@bash -c "source venv/bin/activate && echo '✅ Virtual environment activated.' && python -m app.services.fetch_jobs.main"

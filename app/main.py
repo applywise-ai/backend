@@ -5,6 +5,9 @@ from .core.config import settings
 import logging
 import asyncio
 import atexit
+import signal
+import sys
+import os
 from contextlib import asynccontextmanager
 from .services.browser import browser_pool
 from .db.postgres import postgres_manager
@@ -13,6 +16,27 @@ from .db.firestore import firestore_manager
 # Logging is now configured in app/__init__.py
 logger = logging.getLogger(__name__)
 
+# Global flag to track shutdown state
+_shutdown_initiated = False
+
+def signal_handler(signum, frame):
+    """Handle shutdown signals gracefully"""
+    global _shutdown_initiated
+    if not _shutdown_initiated:
+        _shutdown_initiated = True
+        logger.info(f"🛑 Received signal {signum}, initiating graceful shutdown...")
+        try:
+            cleanup_resources()
+            logger.info("✅ Graceful shutdown completed")
+        except Exception as e:
+            logger.error(f"❌ Error during shutdown: {e}")
+        finally:
+            # Force exit to prevent restart
+            os._exit(0)
+
+# Register signal handlers
+signal.signal(signal.SIGTERM, signal_handler)
+signal.signal(signal.SIGINT, signal_handler)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -36,6 +60,10 @@ async def lifespan(app: FastAPI):
         # Close database connections
         logger.info("🐘 Closing database connections...")
         postgres_manager.cleanup()
+        
+        # Close Firestore connections
+        logger.info("🔥 Closing Firestore connections...")
+        firestore_manager.cleanup()
         
         # Small delay to allow cleanup to complete
         await asyncio.sleep(0.1)
@@ -63,11 +91,26 @@ app.add_middleware(
 )
 
 def cleanup_resources():
-    """Cleanup function for atexit handler"""
-    logger.info("🧹 atexit cleanup initiated...")
+    """Cleanup function for atexit handler and signal handlers"""
+    global _shutdown_initiated
+    if _shutdown_initiated:
+        return  # Already cleaning up
+    
+    _shutdown_initiated = True
+    
     try:
+        # Close all browser drivers
+        logger.info("🌐 Closing browser pool...")
         browser_pool.close_all()
+        
+        # Close database connections
+        logger.info("🐘 Closing database connections...")
         postgres_manager.cleanup()
+        
+        # Close Firestore connections
+        logger.info("🔥 Closing Firestore connections...")
+        firestore_manager.cleanup()
+        
         logger.info("✅ atexit cleanup completed")
     except Exception as e:
         logger.error(f"❌ Error during atexit cleanup: {e}")
@@ -84,6 +127,13 @@ async def health_check():
 async def root():
     """Root endpoint"""
     return {"message": "ApplyWise API is running", "version": "1.0.0"}
+
+@app.post("/shutdown")
+async def shutdown_endpoint():
+    """Manual shutdown endpoint for testing"""
+    logger.info("🛑 Manual shutdown requested via API endpoint")
+    cleanup_resources()
+    return {"message": "Shutdown initiated"}
 
 # Include routers
 app.include_router(applications.router, prefix="/applications", tags=["applications"])

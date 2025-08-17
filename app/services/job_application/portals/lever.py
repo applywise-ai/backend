@@ -76,32 +76,21 @@ class Lever(BasePortal):
             return ""
     
     def _find_all_form_fields(self):
-        """Find all form fields on the page."""
-        fields = []
-        
+        """Find all form fields on the page in DOM order."""
         try:
-            # Find all input fields except radio inputs (we'll handle radio groups separately)
-            input_fields = self.driver.find_elements(By.CSS_SELECTOR, "input:not([type='radio'])")
-            fields.extend(input_fields)
-            
-            # Find all textarea fields
-            textarea_fields = self.driver.find_elements(By.CSS_SELECTOR, "textarea")
-            fields.extend(textarea_fields)
-            
-            # Find all select fields
-            select_fields = self.driver.find_elements(By.CSS_SELECTOR, "select")
-            fields.extend(select_fields)
-            
-            # Find Lever groups(checkboxes or multiple-choice)
-            radio_groups = self.driver.find_elements(By.CSS_SELECTOR, "ul[data-qa]")
-            fields.extend(radio_groups)
-            
-            self.logger.info(f"Found {len(input_fields)} input fields, {len(textarea_fields)} textarea fields, {len(select_fields)} select fields, {len(radio_groups)} radio groups")
-            
+            # Select all relevant form fields at once
+            fields = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                "input:not([type='radio']):not([type='checkbox']), textarea, select, ul[data-qa]"
+            )
+
+            self.logger.info(f"Found {len(fields)} form fields in DOM order")
+
+            return fields
+
         except Exception as e:
             self.logger.warning(f"Error finding form fields: {str(e)}", exc_info=True)
-        
-        return fields
+            return []
     
     def _process_all_form_fields(self):
         """Process all form fields using base class functionality."""
@@ -196,7 +185,7 @@ class Lever(BasePortal):
             question = self.form_questions[question_id].get('question')
             
             # Check if the group is a multiselect
-            is_multiselect = group.get_attribute('data-qa') == 'checkboxes'
+            is_multiselect = 'checkboxes' in group.get_attribute('data-qa').lower()
 
             self.logger.info(f"Filling Lever group with value: {value} (multiselect: {is_multiselect}) for question: {question}")
             

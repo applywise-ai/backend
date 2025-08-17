@@ -83,25 +83,18 @@ class Jobvite(BasePortal):
             self.logger.error(f"Error processing form fields: {str(e)}")
     
     def _find_all_form_fields(self):
-        """Find all form fields on the page."""
-        fields = []
-        
+        """Find all form fields on the page in DOM order."""
         try:
-            # Find all input fields
-            input_fields = self.driver.find_elements(By.CSS_SELECTOR, "input")
-            fields.extend(input_fields)
-            
-            # Find all textarea fields
-            textarea_fields = self.driver.find_elements(By.CSS_SELECTOR, "textarea")
-            fields.extend(textarea_fields)
-            
-            # Find all select fields
-            select_fields = self.driver.find_elements(By.CSS_SELECTOR, "select")
-            fields.extend(select_fields)
-            
-            self.logger.info(f"Found {len(input_fields)} input fields, {len(textarea_fields)} textarea fields, {len(select_fields)} select fields")
-            
+            # Select all relevant form fields at once
+            fields = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                "input, textarea, select"
+            )
+
+            self.logger.info(f"Found {len(fields)} form fields in DOM order")
+
+            return fields
+
         except Exception as e:
-            self.logger.warning(f"Error finding form fields: {str(e)}")
-        
-        return fields 
+            self.logger.warning(f"Error finding form fields: {str(e)}", exc_info=True)
+            return [] 

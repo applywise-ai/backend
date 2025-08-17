@@ -75,7 +75,7 @@ class FirestoreManager:
                 self.db.collection('users')
                 .document(user_id)
                 .collection('applications')
-                .where(filter=firestore.FieldFilter('jobId', '==', job_id))
+                .where(filter=FieldFilter('jobId', '==', job_id))
                 .limit(1)
             )
             
@@ -100,6 +100,7 @@ class FirestoreManager:
         form_questions: Optional[Dict] = None,
         error_message: Optional[str] = None,
         screenshot: Optional[str] = None,
+        submitted_screenshot: Optional[str] = None,
         task_id: Optional[str] = None
     ) -> bool:
         """
@@ -121,6 +122,9 @@ class FirestoreManager:
             if screenshot is not None:
                 update_data['screenshot'] = screenshot
                 
+            if submitted_screenshot is not None:
+                update_data['submittedScreenshot'] = submitted_screenshot
+                
             if task_id is not None:
                 update_data['taskId'] = task_id
             
@@ -136,7 +140,45 @@ class FirestoreManager:
         except Exception as e:
             logger.error(f"Failed to update application status: {e}")
             return False
-    
+
+    def update_application(
+        self, 
+        user_id: str, 
+        application_id: str, 
+        form_questions: Dict[str, Any]
+    ) -> bool:
+        """
+        Update an application's form questions and last updated timestamp
+        
+        Args:
+            user_id: The user ID
+            application_id: The application ID
+            form_questions: Dictionary containing the form questions to update
+            
+        Returns:
+            bool: True if update was successful, False otherwise
+        """
+        try:
+            update_data = {
+                'formQuestions': form_questions,
+                'lastUpdated': datetime.utcnow()
+            }
+            
+            # Update the application in the user's subcollection
+            app_ref = (self.db.collection('users')
+                      .document(user_id)
+                      .collection('applications')
+                      .document(application_id))
+            
+            app_ref.update(update_data)
+            
+            logger.info(f"Successfully updated application {application_id} form questions for user {user_id}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to update application {application_id} for user {user_id}: {e}")
+            return False
+
     def get_application(self, user_id: str, application_id: str) -> Optional[Dict[str, Any]]:
         """Get application by ID"""
         try:
@@ -175,7 +217,7 @@ class FirestoreManager:
             log_data = {
                 'level': level,
                 'message': message,
-                'timestamp': firestore.SERVER_TIMESTAMP
+                'timestamp': datetime.utcnow()
             }
             
             # Add to logs subcollection under the application
@@ -208,14 +250,80 @@ class FirestoreManager:
             logger.error(f"Error getting user profile: {e}")
             return None
 
+    def update_profile(self, user_id: str, update_data: Dict[str, Any]) -> bool:
+        """
+        Update user profile data
+        
+        Args:
+            user_id: The user ID
+            update_data: Dictionary containing the fields to update
+            
+        Returns:
+            bool: True if update was successful, False otherwise
+        """
+        try:
+            # Add lastUpdated timestamp
+            update_data['lastUpdated'] = datetime.utcnow()
+            
+            # Update the user document
+            user_ref = self.db.collection('users').document(user_id)
+            user_ref.update(update_data)
+            
+            logger.info(f"Successfully updated profile for user {user_id}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to update profile for user {user_id}: {e}")
+            return False
+
+    def deduct_ai_credit(self, user_id: str) -> bool:
+        """
+        Deduct one AI credit from user's profile
+        
+        Args:
+            user_id: The user ID
+            
+        Returns:
+            bool: True if deduction was successful, False otherwise
+        """
+        try:
+            # Get current profile
+            profile = self.get_profile(user_id)
+            if not profile:
+                logger.error(f"User profile not found for user {user_id}")
+                return False
+            
+            # Get current AI credits
+            current_credits = profile.get('aiCredits', 0)
+            
+            if current_credits <= 0:
+                logger.warning(f"User {user_id} has no AI credits remaining")
+                return False
+            
+            # Deduct one credit
+            new_credits = current_credits - 1
+            
+            # Update the profile
+            update_data = {'aiCredits': new_credits}
+            success = self.update_profile(user_id, update_data)
+            
+            if success:
+                logger.info(f"Successfully deducted AI credit for user {user_id}. Credits remaining: {new_credits}")
+            
+            return success
+            
+        except Exception as e:
+            logger.error(f"Failed to deduct AI credit for user {user_id}: {e}")
+            return False
+
     def create_or_update_application(
         self,
         user_id: str,
         job_id: str,
-    ) -> str:
+    ) -> tuple[str, bool]:
         """
         Create a new application or return existing one for the same job
-        Returns the application ID
+        Returns a tuple of (application_id, is_new_application)
         """
         try:
             # Check if application already exists for this job
@@ -223,7 +331,7 @@ class FirestoreManager:
             
             if existing_app:
                 logger.info(f"Found existing application {existing_app['id']} for job {job_id}")
-                return existing_app['id']
+                return existing_app['id'], False
             
             # Create new application
             application_data = {
@@ -242,7 +350,7 @@ class FirestoreManager:
             application_id = app_ref[1].id
             logger.info(f"Created new application {application_id} for job {job_id}")
             
-            return application_id
+            return application_id, True
             
         except Exception as e:
             logger.error(f"Failed to create/update application: {e}")

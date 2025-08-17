@@ -49,7 +49,7 @@ class Ashby(BasePortal):
                         continue
                     
                     # Get field label using Ashby's specific method
-                    label, is_required = self._get_ashby_field_label(field)
+                    label, description, is_required = self._get_ashby_field_label(field)
                     self.logger.info(f"Field label: {label}")
                     
                     # Get field type
@@ -64,12 +64,19 @@ class Ashby(BasePortal):
                     
                     # Initialize form question
                     question_id = self.init_form_question(field, field_type, label, is_required, has_custom_options)
-                    
+
+                    # Only include description for textarea fields
+                    if description and field_type == QuestionType.TEXTAREA:
+                        self.form_questions[question_id]['question'] = f"{label} - {description}"
+
                     # Match field to profile data
                     self.match_field_to_profile(question_id)
                     
                     # Check field type and fill accordingly
-                    if self._is_ashby_radio_group(field):
+                    if self._is_communication_consent_radio(field):
+                        self.logger.info(f"Processing communication consent radio: '{label}'")
+                        success = self._fill_ashby_communication_consent_radio(field, question_id)
+                    elif self._is_ashby_radio_group(field):
                         self.logger.info(f"Processing fieldset as radio group: '{label}'")
                         success = self._fill_ashby_radio_group(field, question_id)
                     elif self._is_yesno_container(field):
@@ -101,36 +108,21 @@ class Ashby(BasePortal):
             self.logger.error(f"Error processing form fields: {str(e)}")
     
     def _find_all_form_fields(self):
-        """Find all form fields on the page, excluding radio inputs but including fieldsets."""
-        fields = []
-        
+        """Find all form fields on the page in DOM order."""
         try:
-            # Find all input fields except radio inputs
-            input_fields = self.driver.find_elements(By.CSS_SELECTOR, "input:not([type='radio'])")
-            fields.extend(input_fields)
-            
-            # Find all textarea fields
-            textarea_fields = self.driver.find_elements(By.CSS_SELECTOR, "textarea")
-            fields.extend(textarea_fields)
-            
-            # Find all select fields
-            select_fields = self.driver.find_elements(By.CSS_SELECTOR, "select")
-            fields.extend(select_fields)
-            
-            # Find all fieldsets (for radio groups)
-            fieldsets = self.driver.find_elements(By.CSS_SELECTOR, "fieldset")
-            fields.extend(fieldsets)
-            
-            # Find all yes/no containers
-            yesno_containers = self.driver.find_elements(By.CSS_SELECTOR, "div[class*='_yesno']")
-            fields.extend(yesno_containers)
-            
-            self.logger.info(f"Found {len(input_fields)} input fields, {len(textarea_fields)} textarea fields, {len(select_fields)} select fields, {len(fieldsets)} fieldsets, {len(yesno_containers)} yes/no containers")
-            
-        except Exception:
-            self.logger.warning(f"Error finding form fields")
-        
-        return fields 
+            # Select all relevant form fields at once
+            fields = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                "input:not([type='radio']):not([type='checkbox']), textarea, select, fieldset, div[class*='_yesno'], div[class*='_phoneNumberConsent']"
+            )
+
+            self.logger.info(f"Found {len(fields)} form fields in DOM order")
+
+            return fields
+
+        except Exception as e:
+            self.logger.warning(f"Error finding form fields: {str(e)}", exc_info=True)
+            return []
     
     def _is_datepicker_field(self, field) -> bool:
         """Check if field is a datepicker by looking for react-datepicker class in parent div."""
@@ -171,6 +163,8 @@ class Ashby(BasePortal):
             return QuestionType.SELECT
         elif self._is_ashby_dropdown(field):
             return QuestionType.SELECT
+        elif self._is_communication_consent_radio(field):
+            return QuestionType.CHECKBOX
         else:
             return get_field_type(field.get_attribute('type'), field.tag_name)
     
@@ -191,6 +185,7 @@ class Ashby(BasePortal):
                             label = current.find_element(By.CSS_SELECTOR, "label.ashby-application-form-question-title")
                             if label:
                                 label_text = label.text.strip()
+                                label_description = None
                                 
                                 # Try to find description in the same parent
                                 try:
@@ -198,12 +193,12 @@ class Ashby(BasePortal):
                                     if description:
                                         desc_text = description.text.strip()
                                         if desc_text:
-                                            label_text = f"{label_text} - {desc_text}"
+                                            label_description = desc_text
                                 except:
                                     pass
                                 
                                 is_required = 'required' in (label.get_attribute("class") or "")
-                                return label_text, is_required
+                                return label_text, label_description, is_required
                         except:
                             pass
                         
@@ -221,17 +216,20 @@ class Ashby(BasePortal):
                             if label:
                                 label_text = label.text.strip()
                                 is_required = 'required' in (label.get_attribute("class") or "")
-                                return label_text, is_required
+                                return label_text, None, is_required
                     except:
                         pass
                 except:
                     pass
             
+            if self._is_communication_consent_radio(field):
+                return "Do you consent to receive text message updates from us regarding this application?", None, False
+
             # For other elements, use the for attribute approach
             field_id = field.get_attribute('id')
             if not field_id:
                 fallback_label = self.analyze_field_context(field)
-                return fallback_label, self.is_required_field(fallback_label)
+                return fallback_label, None, self.is_required_field(fallback_label)
             
             # Find label using for attribute
             try:
@@ -251,17 +249,17 @@ class Ashby(BasePortal):
                         pass
                     
                     is_required = 'required' in (label.get_attribute("class") or "")
-                    return label_text, is_required
+                    return label_text, None, is_required
             except:
                 pass
             
             fallback_label = self.analyze_field_context(field)
-            return fallback_label, self.is_required_field(fallback_label)
+            return fallback_label, None, self.is_required_field(fallback_label)
             
         except Exception as e:
             self.logger.warning(f"Error getting Ashby field label: {str(e)}")
             fallback_label = self.analyze_field_context(field)
-            return fallback_label, self.is_required_field(fallback_label)
+            return fallback_label, None, self.is_required_field(fallback_label)
     
     def _fill_ashby_radio_group(self, fieldset, question_id: str):
         """Fill Ashby radio group (single select) or multiselect group by finding and clicking matching options."""
@@ -309,7 +307,7 @@ class Ashby(BasePortal):
             option_texts = [opt['text'] for opt in option_elements]
             matched_indices = self.match_option_to_target(option_texts, question_id, multiple=is_multiselect)
                 
-            if not is_multiselect:
+            if not is_multiselect and matched_indices is not None:
                 matched_indices = [matched_indices]
 
             self.logger.info(f"Matched indices: {matched_indices}")
@@ -338,6 +336,13 @@ class Ashby(BasePortal):
             
         except Exception as e:
             self.logger.error(f"Error filling Ashby radio group: {str(e)}")
+            return False
+
+    def _is_communication_consent_radio(self, field) -> bool:
+        """Check if field is a communication consent radio."""
+        try:
+            return 'phoneNumberConsent' in field.get_attribute('class')
+        except:
             return False
 
     def _is_ashby_radio_group(self, field) -> bool:
@@ -370,6 +375,28 @@ class Ashby(BasePortal):
                 return label.text.strip()
             except:
                 return ""
+
+    def _fill_ashby_communication_consent_radio(self, field, question_id: str):
+        """Fill Ashby communication consent radio by clicking the appropriate button."""
+        try:
+            value = self.form_questions[question_id].get('answer')
+            self.logger.info(f"Filling Ashby communication consent radio with value: '{value}'")
+
+            self.scroll_to_element(field)
+
+            # Find radio buttons
+            consent_labels = field.find_elements(By.CSS_SELECTOR, "label")
+            consent_labels_texts = [label.text.strip() for label in consent_labels]
+
+            # Match the value to the appropriate button
+            best_index = self.match_option_to_target(consent_labels_texts, question_id)
+
+            if best_index is not None:
+                self.driver.wait_and_click_element(element=consent_labels[best_index])
+
+            return True
+        except:
+            return False
 
     def _fill_ashby_yesno_container(self, yesno_container, question_id: str):
         """Fill Ashby yes/no container by clicking the appropriate button."""
@@ -443,17 +470,32 @@ class Ashby(BasePortal):
         """Fill Ashby dropdown input by typing and selecting first option."""
         try:
             value = self.form_questions[question_id].get('answer')
+            question = self.form_questions[question_id].get('question')
+            is_required = self.form_questions[question_id].get('is_required')
             if not value:
-                return False
+                # Use ai to get value
+                if "location" in question.lower():
+                    question = "What is your current location?"
+                ai_result = self.ai_assistant.answer_question(
+                    question=question, 
+                    field_type=QuestionType.INPUT, 
+                    is_required=is_required,
+                    previous_question=self.last_question,
+                    previous_answer=self.last_answer
+                )
+                if ai_result is not None:
+                    value, is_open_ended = ai_result
+                    self.form_questions[question_id]['ai_custom'] = is_open_ended
 
             self.logger.info(f"Filling Ashby dropdown with value: {value}")
             
             # Scroll and click the input field
             self.driver.wait_and_click_element(element=field)
-            
+
             # Type the value
-            field.clear()
-            field.send_keys(str(value))
+            if value is not None:
+                field.clear()
+                field.send_keys(str(value))
             
             # Wait for aria-controls to be populated
             listbox_id = self._wait_for_aria_controls(field)
@@ -493,6 +535,7 @@ class Ashby(BasePortal):
     def _fill_ashby_datepicker(self, field, question_id: str) -> bool:
         """Fill Ashby datepicker field by entering the date value."""
         try:
+            question = self.form_questions[question_id].get('question')
             value = self.form_questions[question_id].get('answer')
             if not value:
                 return False
@@ -504,7 +547,12 @@ class Ashby(BasePortal):
 
             # Validate the date format otherwise use AI to answer the question
             if not self.validate_date_format(value):
-                value = self.ai_assistant.answer_question(question_id, QuestionType.DATE)
+                value = self.ai_assistant.answer_question(
+                    question=question, 
+                    field_type=QuestionType.DATE,
+                    previous_question=self.last_question,
+                    previous_answer=self.last_answer
+                )
             
             # Clear and enter the date value
             field.clear()

@@ -204,6 +204,38 @@
         "documentation": {}
     },
     {
+        "label": "validate_and_convert_form_questions",
+        "importPath": "app.services.job_application.utils",
+        "description": "app.services.job_application.utils",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.utils",
+        "documentation": {}
+    },
+    {
+        "label": "validate_and_convert_form_questions",
+        "importPath": "app.services.job_application.utils",
+        "description": "app.services.job_application.utils",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.utils",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "importPath": "app.services.job_application.utils",
+        "description": "app.services.job_application.utils",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.utils",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_screenshot",
+        "importPath": "app.services.job_application.utils",
+        "description": "app.services.job_application.utils",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.utils",
+        "documentation": {}
+    },
+    {
         "label": "List",
         "importPath": "typing",
         "description": "typing",
@@ -405,6 +437,46 @@
     },
     {
         "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -674,14 +746,6 @@
         "description": "psycopg2.extras",
         "isExtraImport": true,
         "detail": "psycopg2.extras",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
         "documentation": {}
     },
     {
@@ -1146,30 +1210,6 @@
         "documentation": {}
     },
     {
-        "label": "send_job_application_update",
-        "importPath": "app.services.websocket",
-        "description": "app.services.websocket",
-        "isExtraImport": true,
-        "detail": "app.services.websocket",
-        "documentation": {}
-    },
-    {
-        "label": "websocket_manager",
-        "importPath": "app.services.websocket",
-        "description": "app.services.websocket",
-        "isExtraImport": true,
-        "detail": "app.services.websocket",
-        "documentation": {}
-    },
-    {
-        "label": "send_job_application_update",
-        "importPath": "app.services.websocket",
-        "description": "app.services.websocket",
-        "isExtraImport": true,
-        "detail": "app.services.websocket",
-        "documentation": {}
-    },
-    {
         "label": "BaseSettings",
         "importPath": "pydantic_settings",
         "description": "pydantic_settings",
@@ -1363,6 +1403,22 @@
         "documentation": {}
     },
     {
+        "label": "QuestionType",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "FormQuestion",
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "isExtraImport": true,
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
         "label": "FormSectionType",
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
@@ -1424,6 +1480,14 @@
         "description": "app.db.base",
         "isExtraImport": true,
         "detail": "app.db.base",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
         "documentation": {}
     },
     {
@@ -1500,7 +1564,7 @@
         "documentation": {}
     },
     {
-        "label": "get_field_type",
+        "label": "DEMOGRAPHIC_FIELDS",
         "importPath": "app.services.job_application.types",
         "description": "app.services.job_application.types",
         "isExtraImport": true,
@@ -1517,6 +1581,30 @@
     },
     {
         "label": "get_field_type",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "get_field_type",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "JobPortal",
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "isExtraImport": true,
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "JobPortal",
         "importPath": "app.services.job_application.types",
         "description": "app.services.job_application.types",
         "isExtraImport": true,
@@ -1545,6 +1633,14 @@
         "description": "app.services.ai_assistant",
         "isExtraImport": true,
         "detail": "app.services.ai_assistant",
+        "documentation": {}
+    },
+    {
+        "label": "By",
+        "importPath": "selenium.webdriver.common.by",
+        "description": "selenium.webdriver.common.by",
+        "isExtraImport": true,
+        "detail": "selenium.webdriver.common.by",
         "documentation": {}
     },
     {
@@ -1768,7 +1864,7 @@
         "documentation": {}
     },
     {
-        "label": "clean_label",
+        "label": "clean_string",
         "importPath": "app.services.job_application.utils.helpers",
         "description": "app.services.job_application.utils.helpers",
         "isExtraImport": true,
@@ -1776,11 +1872,19 @@
         "documentation": {}
     },
     {
-        "label": "clean_string",
-        "importPath": "app.services.job_application.utils.helpers",
-        "description": "app.services.job_application.utils.helpers",
+        "label": "storage_manager",
+        "importPath": "app.services.storage",
+        "description": "app.services.storage",
         "isExtraImport": true,
-        "detail": "app.services.job_application.utils.helpers",
+        "detail": "app.services.storage",
+        "documentation": {}
+    },
+    {
+        "label": "storage_manager",
+        "importPath": "app.services.storage",
+        "description": "app.services.storage",
+        "isExtraImport": true,
+        "detail": "app.services.storage",
         "documentation": {}
     },
     {
@@ -2037,14 +2141,6 @@
         "documentation": {}
     },
     {
-        "label": "storage_manager",
-        "importPath": "app.services.storage",
-        "description": "app.services.storage",
-        "isExtraImport": true,
-        "detail": "app.services.storage",
-        "documentation": {}
-    },
-    {
         "label": "firestore_manager",
         "importPath": "app.db.firestore",
         "description": "app.db.firestore",
@@ -2078,11 +2174,12 @@
         "documentation": {}
     },
     {
-        "label": "asynccontextmanager",
-        "importPath": "contextlib",
-        "description": "contextlib",
+        "label": "signal",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "contextlib",
+        "importPath": "signal",
+        "description": "signal",
+        "detail": "signal",
         "documentation": {}
     },
     {
@@ -2092,6 +2189,14 @@
         "importPath": "sys",
         "description": "sys",
         "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "asynccontextmanager",
+        "importPath": "contextlib",
+        "description": "contextlib",
+        "isExtraImport": true,
+        "detail": "contextlib",
         "documentation": {}
     },
     {
@@ -2160,15 +2265,6 @@
         "description": "jmespath",
         "isExtraImport": true,
         "detail": "jmespath",
-        "documentation": {}
-    },
-    {
-        "label": "redis",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "redis",
-        "description": "redis",
-        "detail": "redis",
         "documentation": {}
     },
     {
@@ -2500,7 +2596,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class UserProfile(BaseModel):\n    # Personal Information\n    fullName: str\n    email: str\n    phoneNumber: Optional[str]\n    currentLocation: Optional[str]\n    resumeUrl: Optional[str]\n    resumeFilename: Optional[str]\n    resumeAutofill: Optional[Dict[str, Any]]\n    # Social Links",
+        "peekOfCode": "class UserProfile(BaseModel):\n    # Personal Information\n    fullName: str\n    email: str\n    phoneNumber: Optional[str]\n    currentLocation: Optional[str]\n    resume: Optional[str]\n    resumeFilename: Optional[str]\n    resumeAutofill: Optional[Dict[str, Any]]\n    coverLetterPath: Optional[str]",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2509,7 +2605,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class QuestionType(Enum):\n    \"\"\"Field types enum.\"\"\"\n    INPUT = \"text\"\n    TEXTAREA = \"textarea\"\n    SELECT = \"select\"\n    MULTISELECT = \"multiselect\"\n    DATE = \"date\"\n    FILE = \"file\"\nclass FormSectionType(str, Enum):\n    PERSONAL = \"personal\"",
+        "peekOfCode": "class QuestionType(Enum):\n    \"\"\"Field types enum.\"\"\"\n    INPUT = \"text\"\n    NUMBER = \"number\"\n    TEXTAREA = \"textarea\"\n    SELECT = \"select\"\n    MULTISELECT = \"multiselect\"\n    DATE = \"date\"\n    FILE = \"file\"\n    CHECKBOX = \"checkbox\"",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2518,7 +2614,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class FormSectionType(str, Enum):\n    PERSONAL = \"personal\"\n    EDUCATION = \"education\"\n    EXPERIENCE = \"experience\"\n    RESUME = \"resume\"\n    COVER_LETTER = \"cover_letter\"\n    ADDITIONAL = \"additional\" \nclass FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    unique_label_id: str",
+        "peekOfCode": "class FormSectionType(str, Enum):\n    PERSONAL = \"personal\"\n    EDUCATION = \"education\"\n    EXPERIENCE = \"experience\"\n    RESUME = \"resume\"\n    COVER_LETTER = \"cover_letter\"\n    ADDITIONAL = \"additional\"\n    DEMOGRAPHIC = \"demographic\"\nAnswerType = Union[str, int, List[int], List[str]]\nclass FormQuestion(BaseModel):",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2527,7 +2623,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    unique_label_id: str\n    question: str\n    answer: Optional[str] = None\n    type: QuestionType\n    placeholder: Optional[str] = None\n    options: Optional[List[str]] = None\n    section: FormSectionType\n    file_url: Optional[str] = None",
+        "peekOfCode": "class FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    unique_label_id: str\n    question: str\n    answer: Optional[AnswerType] = None\n    type: QuestionType\n    placeholder: Optional[str] = None\n    options: Optional[List[str]] = None\n    section: FormSectionType\n    file_path: Optional[str] = None",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2572,7 +2668,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str \nclass GenerateCoverLetterRequest(BaseModel):",
+        "peekOfCode": "class SaveFormRequest(BaseModel):\n    \"\"\"Request model for saving form questions\"\"\"\n    application_id: str\n    form_questions: List[FormQuestion]\nclass SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass GenerateCoverLetterRequest(BaseModel):",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2581,7 +2677,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str \nclass GenerateCoverLetterRequest(BaseModel):\n    \"\"\"Request model for generating cover letter\"\"\"\n    job_id: str\n    prompt: Optional[str] = None\nclass GenerateCoverLetterResponse(BaseModel):",
+        "peekOfCode": "class SaveFormResponse(BaseModel):\n    \"\"\"Response model for saving form questions\"\"\"\n    application_id: str\n    status: ApplicationStatus\n    message: str\nclass GenerateCoverLetterRequest(BaseModel):\n    \"\"\"Request model for generating cover letter\"\"\"\n    job_id: str\n    prompt: Optional[str] = None\nclass GenerateCoverLetterResponse(BaseModel):",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2590,7 +2686,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class GenerateCoverLetterRequest(BaseModel):\n    \"\"\"Request model for generating cover letter\"\"\"\n    job_id: str\n    prompt: Optional[str] = None\nclass GenerateCoverLetterResponse(BaseModel):\n    \"\"\"Response model for cover letter generation\"\"\"\n    application_id: str\n    cover_letter_url: str\n    message: str \nclass GenerateCustomAnswerRequest(BaseModel):",
+        "peekOfCode": "class GenerateCoverLetterRequest(BaseModel):\n    \"\"\"Request model for generating cover letter\"\"\"\n    job_id: str\n    prompt: Optional[str] = None\nclass GenerateCoverLetterResponse(BaseModel):\n    \"\"\"Response model for cover letter generation\"\"\"\n    application_id: str\n    cover_letter_path: str\n    message: str\nclass GenerateCustomAnswerRequest(BaseModel):",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2599,7 +2695,7 @@
         "kind": 6,
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
-        "peekOfCode": "class GenerateCoverLetterResponse(BaseModel):\n    \"\"\"Response model for cover letter generation\"\"\"\n    application_id: str\n    cover_letter_url: str\n    message: str \nclass GenerateCustomAnswerRequest(BaseModel):\n    \"\"\"Request model for generating custom answers\"\"\"\n    job_description: str\n    question: str\n    prompt: Optional[str] = None",
+        "peekOfCode": "class GenerateCoverLetterResponse(BaseModel):\n    \"\"\"Response model for cover letter generation\"\"\"\n    application_id: str\n    cover_letter_path: str\n    message: str\nclass GenerateCustomAnswerRequest(BaseModel):\n    \"\"\"Request model for generating custom answers\"\"\"\n    job_description: str\n    question: str\n    prompt: Optional[str] = None",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2618,6 +2714,15 @@
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
         "peekOfCode": "class GenerateCustomAnswerResponse(BaseModel):\n    \"\"\"Response model for custom answer generation\"\"\"\n    answer: str\n    message: str",
+        "detail": "app.schemas.application",
+        "documentation": {}
+    },
+    {
+        "label": "AnswerType",
+        "kind": 5,
+        "importPath": "app.schemas.application",
+        "description": "app.schemas.application",
+        "peekOfCode": "AnswerType = Union[str, int, List[int], List[str]]\nclass FormQuestion(BaseModel):\n    \"\"\"Form question model matching frontend interface\"\"\"\n    unique_label_id: str\n    question: str\n    answer: Optional[AnswerType] = None\n    type: QuestionType\n    placeholder: Optional[str] = None\n    options: Optional[List[str]] = None\n    section: FormSectionType",
         "detail": "app.schemas.application",
         "documentation": {}
     },
@@ -2838,12 +2943,66 @@
         "documentation": {}
     },
     {
+        "label": "take_screenshot",
+        "kind": 2,
+        "importPath": "app.services.job_application.utils.screenshot",
+        "description": "app.services.job_application.utils.screenshot",
+        "peekOfCode": "def take_screenshot(driver, application_id: str, portal_name: JobPortal, submit: bool = False) -> Optional[str]:\n    \"\"\"\n    Take a screenshot of the current page using CDP.\n    Args:\n        driver: Selenium WebDriver instance\n        application_id: Application identifier for filename\n        portal_name: JobPortal enum to determine portal-specific processing\n        submit: Boolean to determine if the screenshot is for a submitted application\n    Returns:\n        Filepath to the screenshot if successful, None otherwise",
+        "detail": "app.services.job_application.utils.screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "cleanup_screenshot",
+        "kind": 2,
+        "importPath": "app.services.job_application.utils.screenshot",
+        "description": "app.services.job_application.utils.screenshot",
+        "peekOfCode": "def cleanup_screenshot(filepath: str) -> bool:\n    \"\"\"\n    Clean up screenshot file from temporary directory.\n    Args:\n        filepath: Path to the screenshot file to delete\n    Returns:\n        True if cleanup was successful, False otherwise\n    \"\"\"\n    try:\n        if filepath and os.path.exists(filepath):",
+        "detail": "app.services.job_application.utils.screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.job_application.utils.screenshot",
+        "description": "app.services.job_application.utils.screenshot",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef take_screenshot(driver, application_id: str, portal_name: JobPortal, submit: bool = False) -> Optional[str]:\n    \"\"\"\n    Take a screenshot of the current page using CDP.\n    Args:\n        driver: Selenium WebDriver instance\n        application_id: Application identifier for filename\n        portal_name: JobPortal enum to determine portal-specific processing\n        submit: Boolean to determine if the screenshot is for a submitted application\n    Returns:",
+        "detail": "app.services.job_application.utils.screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "validate_and_convert_form_questions",
+        "kind": 2,
+        "importPath": "app.services.job_application.utils.validation",
+        "description": "app.services.job_application.utils.validation",
+        "peekOfCode": "def validate_and_convert_form_questions(form_questions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:\n    \"\"\"\n    Validate and convert form question answers based on their type and pruned status.\n    Args:\n        form_questions: List containing form questions with their answers\n    Returns:\n        List with validated and converted form questions\n    \"\"\"\n    validated_questions = []\n    for question in form_questions:",
+        "detail": "app.services.job_application.utils.validation",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.services.job_application.utils.validation",
+        "description": "app.services.job_application.utils.validation",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef validate_and_convert_form_questions(form_questions: List[Dict[str, Any]]) -> List[Dict[str, Any]]:\n    \"\"\"\n    Validate and convert form question answers based on their type and pruned status.\n    Args:\n        form_questions: List containing form questions with their answers\n    Returns:\n        List with validated and converted form questions\n    \"\"\"\n    validated_questions = []",
+        "detail": "app.services.job_application.utils.validation",
+        "documentation": {}
+    },
+    {
         "label": "JobApplicationService",
         "kind": 6,
         "importPath": "app.services.job_application.main",
         "description": "app.services.job_application.main",
         "peekOfCode": "class JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None, job_description: str = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        self.job_description = job_description\n        self.logger = logging.getLogger(__name__)\n        # Validate required environment variables\n        self._validate_environment()",
         "detail": "app.services.job_application.main",
+        "documentation": {}
+    },
+    {
+        "label": "JobPortal",
+        "kind": 6,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "class JobPortal(Enum):\n    LEVER = 'Lever'\n    GREENHOUSE = 'Greenhouse'\n    OLD_GREENHOUSE = 'Old Greenhouse'\n    ASHBY = 'Ashby'\n    WORKABLE = 'Workable'\n# Supported job portals\nSUPPORTED_JOB_PORTALS = {\n    'lever.co': 'Lever',\n    'greenhouse.io': 'Greenhouse',",
+        "detail": "app.services.job_application.types",
         "documentation": {}
     },
     {
@@ -2932,7 +3091,7 @@
         "kind": 5,
         "importPath": "app.services.job_application.types",
         "description": "app.services.job_application.types",
-        "peekOfCode": "DEGREE_OPTIONS = [\n    {'value': 'high_school', 'label': 'High School'},\n    {'value': 'associate', 'label': 'Associate Degree'},\n    {'value': 'bachelor', 'label': \"Bachelor's Degree\"},\n    {'value': 'master', 'label': \"Master's Degree\"},\n    {'value': 'doctorate', 'label': 'Doctorate'},\n    {'value': 'other', 'label': 'Other'}\n]\n# Supported job portals\nSUPPORTED_JOB_PORTALS = {",
+        "peekOfCode": "DEGREE_OPTIONS = [\n    {'value': 'high_school', 'label': 'High School'},\n    {'value': 'associate', 'label': 'Associate Degree'},\n    {'value': 'bachelor', 'label': \"Bachelor's Degree\"},\n    {'value': 'master', 'label': \"Master's Degree\"},\n    {'value': 'doctorate', 'label': 'Doctorate'},\n    {'value': 'other', 'label': 'Other'}\n]\n# Enum of job portals\nclass JobPortal(Enum):",
         "detail": "app.services.job_application.types",
         "documentation": {}
     },
@@ -2941,7 +3100,16 @@
         "kind": 5,
         "importPath": "app.services.job_application.types",
         "description": "app.services.job_application.types",
-        "peekOfCode": "SUPPORTED_JOB_PORTALS = {\n    'lever.co': 'Lever',\n    'greenhouse.io': 'Greenhouse',\n    'ashbyhq.com': 'Ashby',\n    'workable.com': 'Workable'\n}\n# Create lookup dictionaries for easy value to label mapping\nJOB_TYPE_MAPPING = {option['value']: option['label'] for option in JOB_TYPE_OPTIONS}\nLOCATION_TYPE_MAPPING = {option['value']: option['label'] for option in LOCATION_TYPE_OPTIONS}\nROLE_LEVEL_MAPPING = {option['value']: option['label'] for option in ROLE_LEVEL_OPTIONS}",
+        "peekOfCode": "SUPPORTED_JOB_PORTALS = {\n    'lever.co': 'Lever',\n    'greenhouse.io': 'Greenhouse',\n    'ashbyhq.com': 'Ashby',\n    'workable.com': 'Workable'\n}\nDEMOGRAPHIC_FIELDS = [\n    'gender',\n    'veteran',\n    'sexuality',",
+        "detail": "app.services.job_application.types",
+        "documentation": {}
+    },
+    {
+        "label": "DEMOGRAPHIC_FIELDS",
+        "kind": 5,
+        "importPath": "app.services.job_application.types",
+        "description": "app.services.job_application.types",
+        "peekOfCode": "DEMOGRAPHIC_FIELDS = [\n    'gender',\n    'veteran',\n    'sexuality',\n    'race',\n    'hispanic',\n    'disability',\n    'trans'\n]\n# Create lookup dictionaries for easy value to label mapping",
         "detail": "app.services.job_application.types",
         "documentation": {}
     },
@@ -3085,7 +3253,7 @@
         "kind": 6,
         "importPath": "app.services.storage",
         "description": "app.services.storage",
-        "peekOfCode": "class StorageManager:\n    \"\"\"Manages file uploads to Firebase Storage\"\"\"\n    def __init__(self):\n        \"\"\"Initialize storage client\"\"\"\n        self.firebase_bucket = None\n        self._bucket_initialized = False\n        self.resume_path = \"resumes\"\n        self.cover_letter_path = \"cover-letters\"\n        self.screenshot_path = \"screenshots\"\n    def _get_firebase_app(self):",
+        "peekOfCode": "class StorageManager:\n    \"\"\"Manages file uploads to Firebase Storage\"\"\"\n    def __init__(self):\n        \"\"\"Initialize storage client\"\"\"\n        self.firebase_bucket = None\n        self._bucket_initialized = False\n        self.resume_path = \"resumes\"\n        self.cover_letter_path = \"cover-letters\"\n        self.screenshot_path = \"screenshots\"\n        self.submitted_screenshot_path = \"submitted-screenshots\"",
         "detail": "app.services.storage",
         "documentation": {}
     },
@@ -3153,15 +3321,6 @@
         "documentation": {}
     },
     {
-        "label": "take_screenshot",
-        "kind": 2,
-        "importPath": "app.tasks.job_application",
-        "description": "app.tasks.job_application",
-        "peekOfCode": "def take_screenshot(driver, application_id: str) -> str:\n    \"\"\"Take a screenshot of the current page using CDP\"\"\"\n    try:\n        from Screenshot import Screenshot\n        ss = Screenshot(driver)\n        # Define temp filepath\n        filename = f\"screenshot_{application_id}.png\"\n        filepath = os.path.join(tempfile.gettempdir(), filename)\n        # Take full page screenshot and save to temp dir\n        ss.capture_full_page(",
-        "detail": "app.tasks.job_application",
-        "documentation": {}
-    },
-    {
         "label": "logger",
         "kind": 5,
         "importPath": "app.tasks.job_application",
@@ -3171,11 +3330,20 @@
         "documentation": {}
     },
     {
+        "label": "signal_handler",
+        "kind": 2,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "def signal_handler(signum, frame):\n    \"\"\"Handle shutdown signals gracefully\"\"\"\n    global _shutdown_initiated\n    if not _shutdown_initiated:\n        _shutdown_initiated = True\n        logger.info(f\"🛑 Received signal {signum}, initiating graceful shutdown...\")\n        try:\n            cleanup_resources()\n            logger.info(\"✅ Graceful shutdown completed\")\n        except Exception as e:",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
         "label": "cleanup_resources",
         "kind": 2,
         "importPath": "app.main",
         "description": "app.main",
-        "peekOfCode": "def cleanup_resources():\n    \"\"\"Cleanup function for atexit handler\"\"\"\n    logger.info(\"🧹 atexit cleanup initiated...\")\n    try:\n        browser_pool.close_all()\n        postgres_manager.cleanup()\n        logger.info(\"✅ atexit cleanup completed\")\n    except Exception as e:\n        logger.error(f\"❌ Error during atexit cleanup: {e}\")\n# Register cleanup function for process termination",
+        "peekOfCode": "def cleanup_resources():\n    \"\"\"Cleanup function for atexit handler and signal handlers\"\"\"\n    global _shutdown_initiated\n    if _shutdown_initiated:\n        return  # Already cleaning up\n    _shutdown_initiated = True\n    try:\n        # Close all browser drivers\n        logger.info(\"🌐 Closing browser pool...\")\n        browser_pool.close_all()",
         "detail": "app.main",
         "documentation": {}
     },
@@ -3184,7 +3352,16 @@
         "kind": 5,
         "importPath": "app.main",
         "description": "app.main",
-        "peekOfCode": "logger = logging.getLogger(__name__)\n@asynccontextmanager\nasync def lifespan(app: FastAPI):\n    \"\"\"Application lifespan context manager\"\"\"\n    # Startup\n    logger.info(\"🚀 Application startup initiated\")\n    # Initialize resources if needed\n    logger.info(\"✅ Application startup complete\")\n    yield\n    # Shutdown",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Global flag to track shutdown state\n_shutdown_initiated = False\ndef signal_handler(signum, frame):\n    \"\"\"Handle shutdown signals gracefully\"\"\"\n    global _shutdown_initiated\n    if not _shutdown_initiated:\n        _shutdown_initiated = True\n        logger.info(f\"🛑 Received signal {signum}, initiating graceful shutdown...\")\n        try:",
+        "detail": "app.main",
+        "documentation": {}
+    },
+    {
+        "label": "_shutdown_initiated",
+        "kind": 5,
+        "importPath": "app.main",
+        "description": "app.main",
+        "peekOfCode": "_shutdown_initiated = False\ndef signal_handler(signum, frame):\n    \"\"\"Handle shutdown signals gracefully\"\"\"\n    global _shutdown_initiated\n    if not _shutdown_initiated:\n        _shutdown_initiated = True\n        logger.info(f\"🛑 Received signal {signum}, initiating graceful shutdown...\")\n        try:\n            cleanup_resources()\n            logger.info(\"✅ Graceful shutdown completed\")",
         "detail": "app.main",
         "documentation": {}
     },
@@ -3492,15 +3669,6 @@
         "description": "venv.bin.jp",
         "peekOfCode": "def main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument('expression')\n    parser.add_argument('-f', '--filename',\n                        help=('The filename containing the input data.  '\n                              'If a filename is not given then data is '\n                              'read from stdin.'))\n    parser.add_argument('--ast', action='store_true',\n                        help=('Pretty print the AST, do not search the data.'))\n    args = parser.parse_args()",
         "detail": "venv.bin.jp",
-        "documentation": {}
-    },
-    {
-        "label": "logger",
-        "kind": 5,
-        "importPath": "test_websocket_redis",
-        "description": "test_websocket_redis",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nasync def test_job_application_updates():\n    \"\"\"Test sending job application updates to users.\"\"\"\n    try:\n        print(\"🧪 Testing Redis WebSocket Manager with Job Application Updates\")\n        print(\"=\" * 70)\n        # Initialize the WebSocket manager\n        print(\"🔌 Initializing WebSocket manager...\")\n        await websocket_manager.initialize()\n        print(\"✅ WebSocket manager initialized\")",
-        "detail": "test_websocket_redis",
         "documentation": {}
     }
 ]

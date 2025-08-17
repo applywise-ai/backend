@@ -21,7 +21,7 @@ def check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) ->
         return True  # If no questions, can submit
     
     for question in form_questions:
-        if question.required and question.answer is None:
+        if question.get('required') and question.get('answer') is None:
             return False
     
     return True

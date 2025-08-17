@@ -29,6 +29,7 @@ class StorageManager:
         self.resume_path = "resumes"
         self.cover_letter_path = "cover-letters"
         self.screenshot_path = "screenshots"
+        self.submitted_screenshot_path = "submitted-screenshots"
 
     def _get_firebase_app(self):
         """Get an existing Firebase app or return None"""
@@ -82,6 +83,12 @@ class StorageManager:
         filename = f"{self.screenshot_path}/{user_id}/{application_id}.png"
         return self._upload_file(file_path, filename)
     
+    def upload_submit_screenshot(self, file_path: str, user_id: str, application_id: str) -> Optional[str]:
+        """Upload a submit screenshot to storage - stores one screenshot per application ID in submitted-screenshots folder"""
+        # Use consistent filename format: submitted-screenshots/{user_id}/{application_id}.png
+        filename = f"{self.submitted_screenshot_path}/{user_id}/{application_id}.png"
+        return self._upload_file(file_path, filename)
+    
     def delete_screenshot(self, user_id: str, application_id: str) -> Optional[str]:
         """Delete a screenshot from storage and return the URL that was deleted"""
         try:
@@ -116,8 +123,14 @@ class StorageManager:
         filename = f"{self.cover_letter_path}/{user_id}/{application_id}.pdf"
         return self._upload_file(file_path, filename)
 
+    def upload_resume(self, file_path: str, user_id: str, application_id: str) -> Optional[str]:
+        """Upload a resume to storage - stores one resume per application ID"""
+        # Use consistent filename format: resumes/{user_id}/{application_id}.pdf
+        filename = f"{self.resume_path}/{user_id}/{application_id}.pdf"
+        return self._upload_file(file_path, filename)
+
     def _upload_file(self, file_path: str, filename: str) -> Optional[str]:
-        """Upload file to Firebase Storage"""
+        """Upload file to Firebase Storage and return the file path"""
         try:
             # Ensure storage is initialized when we actually need it
             self._ensure_storage_initialized()
@@ -130,12 +143,41 @@ class StorageManager:
             blob.upload_from_filename(file_path)
             blob.make_public()
             
-            url = blob.public_url
-            logger.info(f"Uploaded to Firebase: {url}")
-            return url
+            logger.info(f"Uploaded to Firebase: {filename}")
+            return filename
             
         except Exception as e:
             logger.error(f"Firebase upload failed: {e}")
+            return None
+    
+    def get_download_url_from_path(self, path: str) -> Optional[str]:
+        """
+        Get a download URL for a file path in Firebase Storage
+        
+        Returns:
+            str: download_url or None if not found
+        """
+        try:
+            # Ensure storage is initialized when we actually need it
+            self._ensure_storage_initialized()
+            
+            if not self.firebase_bucket:
+                logger.error("Firebase Storage not initialized")
+                return None
+            
+            blob = self.firebase_bucket.blob(path)
+            if not blob.exists():
+                logger.error(f"File does not exist: {path}")
+                return None
+                
+            # Get the download URL
+            blob.make_public()  # Optional: only if you're not using signed URLs
+            download_url = blob.public_url
+            
+            return download_url
+            
+        except Exception as e:
+            logger.error(f"Failed to get download URL: {e}")
             return None
     
     def get_download_info(self, path: str) -> tuple[str, str]:

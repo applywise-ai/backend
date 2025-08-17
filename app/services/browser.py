@@ -26,7 +26,7 @@ class CustomWebDriver(uc.Chrome):
             if headless is None:
                 headless = settings.HEADLESS_BROWSER
 
-            super().__init__(options=options, headless=headless, version_main=137, browser_executable_path="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+            super().__init__(options=options, headless=headless, version_main=139, browser_executable_path="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
             self.apply_stealth()
             
         except Exception as e:
@@ -42,11 +42,11 @@ class CustomWebDriver(uc.Chrome):
         chrome_options.add_argument("--window-size=1920,1080")
         
         # Disable images and CSS for faster loading
-        prefs = {
-            "profile.managed_default_content_settings.images": 2,
-            "profile.default_content_setting_values.notifications": 2
-        }
-        chrome_options.add_experimental_option("prefs", prefs)
+        # prefs = {
+        #     "profile.managed_default_content_settings.images": 2,
+        #     "profile.default_content_setting_values.notifications": 2
+        # }
+        # chrome_options.add_experimental_option("prefs", prefs)
         
         return chrome_options
 
@@ -129,12 +129,12 @@ class BrowserPool:
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--window-size=1920,1080")
         
-        # Disable images and CSS for faster loading
-        prefs = {
-            "profile.managed_default_content_settings.images": 2,
-            "profile.default_content_setting_values.notifications": 2
-        }
-        options.add_experimental_option("prefs", prefs)
+        # # Disable images and CSS for faster loading
+        # prefs = {
+        #     "profile.managed_default_content_settings.images": 2,
+        #     "profile.default_content_setting_values.notifications": 2
+        # }
+        # options.add_experimental_option("prefs", prefs)
         
         return options
 
@@ -209,12 +209,29 @@ class BrowserPool:
         
         # Wait for cleanup thread to finish (with timeout)
         if self.cleanup_thread.is_alive():
+            logger.info("Waiting for cleanup thread to finish...")
             self.cleanup_thread.join(timeout=5)
+            if self.cleanup_thread.is_alive():
+                logger.warning("Cleanup thread did not finish within timeout")
         
         # Close all drivers
         with self.driver_lock:
-            for worker_id in list(self.drivers.keys()):
-                self.close_driver(worker_id)
+            driver_count = len(self.drivers)
+            if driver_count > 0:
+                logger.info(f"Closing {driver_count} remaining drivers...")
+                
+                for worker_id in list(self.drivers.keys()):
+                    try:
+                        self.close_driver(worker_id)
+                    except Exception as e:
+                        logger.error(f"Error closing driver for worker {worker_id}: {e}")
+                        # Force remove from dict even if close failed
+                        if worker_id in self.drivers:
+                            del self.drivers[worker_id]
+                        if worker_id in self.last_used:
+                            del self.last_used[worker_id]
+            else:
+                logger.info("No active drivers to close")
         
         logger.info("Browser pool shutdown complete")
 

@@ -85,32 +85,21 @@ class Workable(BasePortal):
             self.logger.error(f"Error processing form fields: {str(e)}")
     
     def _find_all_form_fields(self):
-        """Find all form fields on the page, including Workable custom radio groups."""
-        fields = []
-        
+        """Find all form fields on the page in DOM order."""
         try:
-            # Find all non-radio input fields (exclude radio to avoid conflicts with custom radio groups)
-            input_fields = self.driver.find_elements(By.CSS_SELECTOR, "input:not([type='radio'])")
-            fields.extend(input_fields)
-            
-            # Find all textarea fields
-            textarea_fields = self.driver.find_elements(By.CSS_SELECTOR, "textarea")
-            fields.extend(textarea_fields)
-            
-            # Find all select fields
-            select_fields = self.driver.find_elements(By.CSS_SELECTOR, "select")
-            fields.extend(select_fields)
-            
-            # Find Workable custom radio groups (fieldset with role="radiogroup")
-            radio_groups = self.driver.find_elements(By.CSS_SELECTOR, "fieldset[role='radiogroup']")
-            fields.extend(radio_groups)
-            
-            self.logger.info(f"Found {len(input_fields)} input fields, {len(textarea_fields)} textarea fields, {len(select_fields)} select fields, {len(radio_groups)} radio groups")
-            
+            # Select all relevant form fields at once
+            fields = self.driver.find_elements(
+                By.CSS_SELECTOR,
+                "input:not([type='radio']), textarea, select, fieldset[role='radiogroup']"
+            )
+
+            self.logger.info(f"Found {len(fields)} form fields in DOM order")
+
+            return fields
+
         except Exception as e:
-            self.logger.warning(f"Error finding form fields: {str(e)}")
-        
-        return fields
+            self.logger.warning(f"Error finding form fields: {str(e)}", exc_info=True)
+            return []
     
     def _get_workable_field_type(self, field):
         """Get the type of field from Workable."""

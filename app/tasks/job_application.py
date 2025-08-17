@@ -14,6 +14,7 @@ from app.db.postgres import postgres_manager
 from app.schemas.application import ApplicationStatus
 from app.services.websocket import send_job_application_update
 from app.services.job_application import JobApplicationService
+from app.services.job_application.utils import validate_and_convert_form_questions, take_screenshot, cleanup_screenshot
 
 logger = logging.getLogger(__name__)
 
@@ -79,33 +80,39 @@ def apply_to_job(self, application_data: Dict[str, Any]):
         # Get browser driver from pool
         driver = browser_pool.get_driver(worker_id)
         
-        # Navigate to job URL with reduced timeout
-        driver.set_page_load_timeout(30)  # Reduce from default 30s to 10s
+        driver.set_page_load_timeout(30)
         driver.get(job_url)
         
         # Apply based on job site and whether this is a preparation or submission
         final_status = ApplicationStatus.FAILED
         form_questions = None
-        screenshot, screenshot_url = None, None
+        screenshot, screenshot_path = None, None
 
         # We need to set the cover letter details based on application id
-        cover_letter_url, cover_letter_filename = storage_manager.get_cover_letter(user_id, application_id)
-        if cover_letter_url:
-            profile['coverLetterUrl'] = cover_letter_url
-            profile['coverLetterFilename'] = cover_letter_filename or "cover_letter.pdf"
+        cover_letter_path = f"cover-letters/{user_id}/{application_id}.pdf"
+        if storage_manager.get_download_url_from_path(cover_letter_path):
+            profile['coverLetterPath'] = cover_letter_path
 
         # We need to set the resume details based on application id
-        resume_url, resume_filename = storage_manager.get_resume(user_id, application_id)
-        if resume_url:
-            profile['resumeUrl'] = resume_url
-            profile['resumeFilename'] = resume_filename or "resume.pdf"
+        resume_path = f"resumes/{user_id}/{application_id}.pdf"
+        if storage_manager.get_download_url_from_path(resume_path):
+            profile['resume'] = resume_path
 
         # We need to set the override answers based on the form questions
         overrided_answers = None
         if overrided_form_questions:
+            # Validate and convert form questions before processing
+            logger.info(f"Validating {len(overrided_form_questions)} form questions before processing")
+            validated_questions = validate_and_convert_form_questions(overrided_form_questions)
+            
             overrided_answers = {
-                question['unique_label_id']: question.get('answer') for question in overrided_form_questions
+                question['unique_label_id']: {
+                    "answer": question.get('answer'),
+                    "pruned": question.get('pruned')
+                } for question in validated_questions
             }
+            
+            logger.info(f"Processed {len(overrided_answers)} validated override answers")
 
         # Create job application service with profile
         job_service = JobApplicationService(driver, profile, job.get('description'))
@@ -114,38 +121,81 @@ def apply_to_job(self, application_data: Dict[str, Any]):
         application_data['profile'] = profile
         application_data['job'] = job
         
-        if should_submit:
-            # This is a submission request - actually apply and submit
-            form_questions = job_service.apply(job_url, submit=True, overrided_answers=overrided_answers)
-            final_status = ApplicationStatus.APPLIED if form_questions else ApplicationStatus.FAILED
-        else:
-            # This is just a preparation/save request - apply but don't submit
-            form_questions = job_service.apply(job_url, submit=False, overrided_answers=overrided_answers)
-            final_status = ApplicationStatus.DRAFT if form_questions else ApplicationStatus.FAILED
-            
-        # Take screenshot and upload in background (don't wait)
-        screenshot_url = None
+        # Apply to the job (this fills out the form but doesn't submit)
+        response = job_service.apply(job_url, overrided_answers=overrided_answers)
+        if not response or not response[0]:
+            final_status = ApplicationStatus.NOT_FOUND if not response else ApplicationStatus.FAILED
+            log_message = "Job no longer exists." if not response else "Job application failed"
+
+            # Send failure WebSocket notification (fire-and-forget)
+            try:
+                _run_async_websocket(send_job_application_update, user_id, application_id, final_status, {
+                    "message": log_message
+                })
+            except Exception as ws_error:
+                logger.error(f"Failure WebSocket notification failed: {ws_error}")
+
+            firestore_manager.update_application_status(
+                user_id,
+                application_id,
+                final_status,
+                error_message=log_message
+            )
+            return {
+                "status": final_status,
+            }
+        
+        form_questions, portal_name = response
+        
+        # Take screenshot before submitting (if this is a submission)
+        screenshot_path = None
+        submitted_screenshot_path = None
         try:
-            if should_submit:
-                # Delete screenshot for submit
-                storage_manager.delete_screenshot(user_id, application_id)
-            else:
-                # Take screenshot for draft/save
-                screenshot = take_screenshot(driver, application_id)
-                if screenshot:
-                    # Upload asynchronously - don't block task completion
-                    screenshot_url = storage_manager.upload_screenshot(screenshot, user_id, application_id)
-                    # Cleanup immediately
-                    try:
-                        os.remove(screenshot)
-                    except:
-                        pass
+            screenshot = take_screenshot(driver, application_id, portal_name)
+            
+            if screenshot:
+                # Upload to screenshots folder (before submitting)
+                screenshot_path = storage_manager.upload_screenshot(screenshot, user_id, application_id)
+                # Cleanup immediately
+                cleanup_screenshot(screenshot)
         except Exception as e:
             logger.error(f"Screenshot failed: {e}")
+        
+        # Submit if this is a submission request
+        if should_submit:
+            submit_success = job_service.submit()
+            if submit_success:
+                final_status = ApplicationStatus.APPLIED
+                logger.info(f"Successfully submitted application for job: {job_url}")
+                
+                # Take screenshot after successful submission
+                try:
+                    submitted_screenshot = take_screenshot(driver, application_id, portal_name, submit=True)
+                    
+                    if submitted_screenshot:
+                        # Upload to submitted-screenshots folder
+                        submitted_screenshot_path = storage_manager.upload_submit_screenshot(submitted_screenshot, user_id, application_id)
+                        # Cleanup immediately
+                        cleanup_screenshot(submitted_screenshot)
+                except Exception as e:
+                    logger.error(f"Submitted screenshot failed: {e}")
+            else:
+                final_status = ApplicationStatus.FAILED
+                logger.warning(f"Application prepared but submission failed for job: {job_url}")
+        else:
+            final_status = ApplicationStatus.DRAFT
+            logger.info(f"Successfully prepared application for job: {job_url}")
+
+        # Clean up temporary files
+        for file_path in job_service.temp_file_paths:
+            try:
+                os.remove(file_path)
+            except Exception as e:
+                logger.error(f"Failed to clean up temporary file: {e}")
 
         # Single Firestore update with all data
-        log_message = "Job application submitted successfully" if (form_questions and should_submit) else \
-                     "Job application prepared successfully" if form_questions else \
+        log_message = "Job application submitted successfully" if (form_questions and should_submit and final_status == ApplicationStatus.APPLIED) else \
+                     "Job application prepared successfully" if form_questions and final_status == ApplicationStatus.DRAFT else \
                      "Job application failed"
         
         firestore_manager.update_application_status(
@@ -153,27 +203,23 @@ def apply_to_job(self, application_data: Dict[str, Any]):
             application_id,
             final_status,
             form_questions=form_questions,
-            screenshot=screenshot_url,
+            screenshot=screenshot_path,
+            submitted_screenshot=submitted_screenshot_path,
             error_message="" if form_questions else "Application process failed"
         )
-        
-        if form_questions:
-            logger.info(f"Task completed successfully for job {job_id}")
-        else:
-            logger.error(f"Task failed for job {job_id}: {log_message}")
         
         # Send WebSocket notification (fire-and-forget, don't block)
         try:
             _run_async_websocket(send_job_application_update, user_id, application_id, final_status, {
                 "message": log_message,
-                "screenshot_url": screenshot_url
+                "screenshot_path": screenshot_path
             })
         except Exception as e:
             logger.error(f"WebSocket notification failed: {e}")
         
         return {
             "status": final_status,
-            "screenshot_url": screenshot_url,
+            "screenshot_path": screenshot_path,
             "message": log_message
         }
         
@@ -212,24 +258,3 @@ def apply_to_job(self, application_data: Dict[str, Any]):
                     browser_pool.close_driver(worker_id)
                 except:
                     pass
-
-
-def take_screenshot(driver, application_id: str) -> str:
-    """Take a screenshot of the current page using CDP"""
-    try:
-        from Screenshot import Screenshot
-        ss = Screenshot(driver)
-
-        # Define temp filepath
-        filename = f"screenshot_{application_id}.png"
-        filepath = os.path.join(tempfile.gettempdir(), filename)
-
-        # Take full page screenshot and save to temp dir
-        ss.capture_full_page(
-            output_path=filepath,
-        )
-
-        return filepath
-    except Exception as e:
-        logger.error(f"Failed to take screenshot: {e}")
-        return None

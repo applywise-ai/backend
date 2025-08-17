@@ -1,6 +1,7 @@
 """Types and constants for job application service."""
 
 from app.schemas.application import QuestionType
+from enum import Enum
 from typing import List
 
 # Job Types
@@ -122,6 +123,14 @@ DEGREE_OPTIONS = [
     {'value': 'other', 'label': 'Other'}
 ]
 
+# Enum of job portals
+class JobPortal(Enum):
+    LEVER = 'Lever'
+    GREENHOUSE = 'Greenhouse'
+    OLD_GREENHOUSE = 'Old Greenhouse'
+    ASHBY = 'Ashby'
+    WORKABLE = 'Workable'
+
 # Supported job portals
 SUPPORTED_JOB_PORTALS = {
     'lever.co': 'Lever',
@@ -129,6 +138,16 @@ SUPPORTED_JOB_PORTALS = {
     'ashbyhq.com': 'Ashby',
     'workable.com': 'Workable'
 }
+
+DEMOGRAPHIC_FIELDS = [
+    'gender',
+    'veteran',
+    'sexuality',
+    'race',
+    'hispanic',
+    'disability',
+    'trans'
+]
 
 # Create lookup dictionaries for easy value to label mapping
 JOB_TYPE_MAPPING = {option['value']: option['label'] for option in JOB_TYPE_OPTIONS}

@@ -9,6 +9,7 @@ from app.services.browser import CustomWebDriver
 from app.services.job_application.portals import Lever, Greenhouse, Ashby, Jobvite, Workable
 from app.db.postgres import postgres_manager
 from app.schemas.application import FormSectionType, QuestionType
+from app.services.job_application.types import JobPortal
 
 load_dotenv()
 
@@ -24,23 +25,30 @@ class JobApplicationService:
         self.logger = logging.getLogger(__name__)
         # Validate required environment variables
         self._validate_environment()
+
+        self.temp_file_paths = []
         
         # Portal configuration - easily extensible
         self.portal_config = {
             'lever.co': {
-                'name': 'Lever',
+                'name': JobPortal.LEVER,
                 'portal_class': Lever,
-                'transform': lambda url: url if "/apply" in url else f"{url.rstrip('/')}/apply"
+                'transform': lambda url, query_params: url if "/apply" in url else f"{url.rstrip('/')}/apply{query_params}"
+            },
+            'job-boards.greenhouse.io': {
+                'name': JobPortal.GREENHOUSE,
+                'portal_class': Greenhouse,
+                'transform': lambda url, query_params: url if '#app' in url else f"{url}{query_params}#app"
             },
             'greenhouse.io': {
-                'name': 'Greenhouse',
+                'name': JobPortal.OLD_GREENHOUSE,
                 'portal_class': Greenhouse,
-                'transform': lambda url: url if '#app' in url else f"{url}#app"
+                'transform': lambda url, query_params: url if '#app' in url else f"{url}{query_params}#app"
             },
             'ashbyhq.com': {
-                'name': 'Ashby',
+                'name': JobPortal.ASHBY,
                 'portal_class': Ashby,
-                'transform': lambda url: url if "/application" in url else f"{url.rstrip('/')}/application"
+                'transform': lambda url, query_params: url if "/application" in url else f"{url.rstrip('/')}/application{query_params}"
             },
             # 'jobvite.com': {
             #     'name': 'Jobvite',
@@ -48,9 +56,9 @@ class JobApplicationService:
             #     'transform': lambda url: url if '/apply' in url else f"{url.rstrip('/')}/apply"
             # },
             'workable.com': {
-                'name': 'Workable',
+                'name': JobPortal.WORKABLE,
                 'portal_class': Workable,
-                'transform': lambda url: f"{url.rstrip('/')}/apply"
+                'transform': lambda url, query_params: f"{url.rstrip('/')}/apply{query_params}"
             }
         }
     
@@ -80,7 +88,7 @@ class JobApplicationService:
         self.logger.info("Waiting for page to load...")
         try:  
             
-            self.driver.wait_and_find_element(By.TAG_NAME, "input", timeout=30)
+            self.driver.wait_and_find_elements(By.TAG_NAME, "input", timeout=10)
         except TimeoutException:
             self.logger.warning("Page loaded but no body element found")
             return False
@@ -98,14 +106,21 @@ class JobApplicationService:
             dict: Contains 'portal_class', 'application_url', and 'portal_name'
         """
         # Clean URL by removing query parameters
-        clean_url = url.split('?')[0]
+        if '?' in url:
+            clean_url, query_params = url.split('?', 1)
+        elif '&' in url:
+            clean_url, query_params = url.split('&', 1)
+        else:
+            clean_url, query_params = url, None
+        
+        query_params = f"?{query_params}" if query_params else "" # Add back the query params
         
         # Find matching portal configuration
         for domain, config in self.portal_config.items():
             if domain in clean_url:
                 return {
                     'portal_class': config['portal_class'],
-                    'application_url': config['transform'](clean_url),
+                    'application_url': config['transform'](clean_url, query_params),
                     'portal_name': config['name']
                 }
         
@@ -116,16 +131,16 @@ class JobApplicationService:
             'portal_name': 'Unknown'
         }
     
-    def apply(self, job_url: str, submit: bool = False, overrided_answers: dict = None) -> bool:
+    def apply(self, job_url: str, overrided_answers: dict = None) -> list:
         """
         Apply for a job at the given URL.
         
         Args:
             job_url (str): The URL of the job to apply for
-            submit (bool): Whether to submit the application
             overrided_answers (dict): A dictionary of question IDs and FormQuestion objects to override the answers
         Returns:
-            bool: True if application was successful, False otherwise
+            list: List of form questions if application was successful, None otherwise
+            str: Portal name if application was successful, None otherwise
         """
         try:
             self.logger.info(f"Starting job application for URL: {job_url}")
@@ -174,23 +189,18 @@ class JobApplicationService:
                 q.pop("element", None)
                 q.pop("count", None)
 
-            if submit:
-                submit_success = self._submit_application()
-                if submit_success:
-                    self.logger.info(f"Successfully submitted application for job: {job_url}")
-                else:
-                    self.logger.warning(f"Application prepared but submission failed for job: {job_url}")
-            else:
-                self.logger.info(f"Successfully prepared application for job: {job_url}")
+            self.logger.info(f"Successfully prepared application for job: {job_url}")
             
+            self.temp_file_paths = portal.temp_file_paths
+
             # Return the form questions
-            return sorted_form_questions
+            return sorted_form_questions, portal_name
             
         except Exception as e:
             self.logger.error(f"Error applying to job {job_url}: {str(e)}")
             return None
     
-    def _submit_application(self):
+    def submit(self):
         """Dynamically find and click submit button."""
         try:
             # Common submit button selectors and text patterns
@@ -243,6 +253,14 @@ class JobApplicationService:
                     self.driver.execute_script("arguments[0].click();", submit_button)
                     self.logger.info("Application submitted successfully using JavaScript click")
                 
+                # See if we re-routed to a new url
+                if self.driver.current_url != self.driver.page_source:
+                    self.logger.info("We re-routed to a new url")
+                    return True
+                else:
+                    self.logger.warning("We did not re-routed to a new url")
+                    return False
+
                 return True
             else:
                 self.logger.warning("No submit button found on the page")
@@ -327,8 +345,11 @@ if __name__ == "__main__":
         #     'School2': 'University of Toronto',
         #     'Your website URL1': "https://mynamejeff.com"
         # }
-        
-        questions = job_service.apply(job.get('job_url'), submit=False)
+
+        test = "https://boards.greenhouse.io/embed/job_app?token=6709289&gh_src=8c01b2f01&source=LinkedIn&urlHash=sxPx"
+        # print(job_service.get_portal_info(test))
+        old_greenhouse = "https://boards.greenhouse.io/embed/job_app?token=6709289&gh_src=Simplify&source=LinkedIn&urlHash=sxPx&utm_source=Simplify"
+        questions, portal_name = job_service.apply('https://jobs.ashbyhq.com/airapps/b1b7acf5-af91-46d9-9db5-8dddc9facf95?src=LinkedIn&urlHash=RH3W')
         import json
 
         formatted = json.dumps(questions, indent=2, default=str)

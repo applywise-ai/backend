@@ -68,14 +68,14 @@ class AIAssistant:
         )
         self.logger.info("Initialized Gemini 1.5/2.0 Flash")
     
-    def _should_use_openai(self, field_type: QuestionType, is_cover_letter: bool = False) -> bool:
+    def _should_use_openai(self, field_type: QuestionType, is_cover_letter: bool = False, is_open_ended: bool = False) -> bool:
         """
         Determine whether to use OpenAI based on field type and user status.
         
         Args:
             field_type: Type of input field
             is_cover_letter: Whether this is for cover letter generation
-            
+            is_open_ended: Whether the question is open-ended
         Returns:
             True if OpenAI should be used, False for Gemini
         """
@@ -83,14 +83,22 @@ class AIAssistant:
         if is_cover_letter and self.openai_client:
             return True
         
-        # Use OpenAI for TEXTAREA fields only if user is pro and OpenAI is available
-        if field_type == QuestionType.TEXTAREA and self.is_pro_member and self.openai_client:
+        # Use OpenAI for open ended questions only if user is pro and OpenAI is available
+        if self.is_pro_member and self.openai_client and is_open_ended:
             return True
         
         # Use Gemini for all other cases
         return False
     
-    def _call_ai(self, prompt: str, system_prompt: Optional[str] = None, temperature: float = 0.1, max_tokens: int = None, field_type: QuestionType = QuestionType.INPUT, is_cover_letter: bool = False) -> Optional[str]:
+    def _call_ai(
+        self, 
+        prompt: str, 
+        system_prompt: Optional[str] = None, 
+        temperature: float = 0.1, 
+        max_tokens: int = None, 
+        field_type: QuestionType = QuestionType.INPUT, 
+        is_cover_letter: bool = False,
+        is_open_ended: bool = False) -> Optional[str]:
         """
         Unified method to call the appropriate AI provider.
         
@@ -101,17 +109,17 @@ class AIAssistant:
             max_tokens: Maximum tokens to generate
             field_type: Type of input field
             is_cover_letter: Whether this is for cover letter generation
-            
+                        
         Returns:
             Generated response text or None if failed
         """
         try:
-            if self._should_use_openai(field_type, is_cover_letter):
+            if self._should_use_openai(field_type, is_cover_letter, is_open_ended):
                 return self._call_openai(prompt, system_prompt, temperature, max_tokens)
             else:
                 return self._call_gemini(prompt, system_prompt, temperature, max_tokens)
         except Exception as e:
-            provider = "OpenAI" if self._should_use_openai(field_type, is_cover_letter) else "Gemini"
+            provider = "OpenAI" if self._should_use_openai(field_type, is_cover_letter, is_open_ended) else "Gemini"
             self.logger.error(f"Error calling {provider}: {str(e)}")
             return None
     
@@ -313,12 +321,15 @@ class AIAssistant:
     
     def answer_question(
         self, 
-        question: str, 
+        question: str,
         field_type: QuestionType = QuestionType.INPUT,
         options: Optional[List[str]] = None,
         is_required: bool = False,
-        custom_prompt: Optional[str] = None
-    ) -> Optional[Union[str, List[str]]]:
+        custom_prompt: Optional[str] = None,
+        profile_value: Optional[str] = None,
+        previous_question: Optional[str] = None,
+        previous_answer: Optional[str] = None
+    ) -> Optional[Union[str, List[str], tuple]]:
         """
         Answer a form question using AI based on user profile context.
         
@@ -328,16 +339,28 @@ class AIAssistant:
             options: List of options for select/multiselect fields
             is_required: Whether the field is required
             custom_prompt: Optional custom prompt to guide the AI response
-            
+            profile_value: The value of the profile field that is being answered
+            previous_question: The previous question that was asked (for context)
+            previous_answer: The answer provided to the previous question (for context)
         Returns:
-            - For INPUT: String answer or None
+            - For INPUT/TEXTAREA: Tuple of (answer, is_open_ended) or None
             - For SELECT: One of the options or None
             - For MULTISELECT: List of selected options or None
             - For DATE: Date string in MM/DD/YYYY format or None
         """
         try:
+            # Check if question is related to previous question
+            is_related_to_previous_question = self._is_related_to_previous_question(question, previous_question)
+            
+            # Check if question is open-ended
+            is_open_ended = self._is_open_ended_question(question)
+
+            # If we already have a value and it's not open-ended, skip AI
+            if profile_value and not is_open_ended:
+                return None
+
             # Build prompt with profile context
-            prompt = self._build_prompt(field_type, options)
+            prompt_text = self._build_prompt(field_type, options, question, previous_answer, is_required, is_open_ended, is_related_to_previous_question)
             
             # Skip non required additional information questions for non-pro members
             if field_type == QuestionType.TEXTAREA and not self.is_pro_member and not is_required:
@@ -349,19 +372,21 @@ class AIAssistant:
             system_prompt = f"""You are a helpful assistant that fills out job application forms based on user profile information. 
 
 IMPORTANT INSTRUCTIONS:
-1. If you cannot determine an answer, respond with exactly "null"
-2. Do not include any explanation or additional text - only the value
-3. If the question is an open-ended, reflective, or subjective question, use the user profile information to best determine the answer to the question {"" if self.is_pro_member else "and answer in around 100 words"}.
-. Consider the current date ({self.current_date.strftime('%B %d, %Y')}) when answering questions about graduation status, employment dates, or time-based information."""
-            
+1. Do not include any explanation or additional text - only the value"""        
             # Prepare user prompt with profile context
             user_prompt = f"""User Profile:
 {self.user_profile}
+"""
 
-Required: {is_required}
-Question: {question}
+            # Add previous question/answer context if available
+            if is_related_to_previous_question:
+                user_prompt += f"""
 
-{prompt}"""
+PREVIOUS CONTEXT:
+Previous Question: {previous_question}
+Previous Answer: {previous_answer}
+
+This question is a follow-up use the previous context to answer the question accurately. """
 
             # Add custom prompt if provided
             if custom_prompt:
@@ -373,27 +398,41 @@ CUSTOM INSTRUCTIONS:
 IMPORTANT CONTEXT:
 - If the custom instructions ask for specific details or focus areas, prioritize those in your response"""
             
+            user_prompt += f"""
+
+Question: {question}
+
+{prompt_text}
+"""
+
             # Set temperature based on question type
-            temperature = 0.8 if field_type == QuestionType.TEXTAREA else 0.1
+            temperature = 0.8 if is_open_ended else 0.1
             
             # Set max tokens based on user type and question type
-            max_tokens = 150
+            max_tokens = 250
             if field_type == QuestionType.TEXTAREA and self.is_pro_member:
-                max_tokens = 500
+                max_tokens = 650
             
             # Generate response using unified AI call
-            answer = self._call_ai(user_prompt, system_prompt, temperature, max_tokens, field_type)
+            answer = self._call_ai(user_prompt, system_prompt, temperature, max_tokens, field_type, is_open_ended=is_open_ended)
             
             self.logger.info(f"""
-            Prompt: {prompt}
-            AI response: {answer}""")
+            Prompt: {prompt_text}
+            AI response: {answer}
+            Is open-ended: {is_open_ended}
+            Is required: {is_required}
+            Is related to previous question: {is_related_to_previous_question}
+            Previous answer: {previous_answer}
+            """)
 
             if answer is None:
                 self.logger.error(f"Failed to get AI response for question: {question}")
                 return None
             
             # Process the answer based on input type
-            return self._process_answer(answer, field_type, options)
+            processed_answer = self._process_answer(answer, field_type, options)
+            
+            return (processed_answer, is_open_ended)
             
         except Exception as e:
             self.logger.error(f"Error getting AI response for question '{question}': {str(e)}")
@@ -401,61 +440,121 @@ IMPORTANT CONTEXT:
     
     def _is_additional_information_question(self, question: str) -> bool:
         """Check if a question is asking for additional information that can be skipped."""
+        for keyword in ["additional", "optional", "comments", "anything else"]:
+            if keyword in question.lower().strip():
+                return True
+        return False
+    
+    def _is_open_ended_question(self, question: str) -> bool:
+        """Check if a question is open-ended, reflective, or personal."""
         try:
-            # Simple prompt to classify the question
+            # Edge case for lever additional information question
+            if question and question.lower().strip() == "additional information":
+                return True
+            
+            # Build classification prompt with context
             classification_prompt = f"""Question: {question}
 
-Does this question ask for additional/optional information like comments, additional details, or anything else you'd like to share? 
+Based on the criteria below, determine whether the following question is open-ended (requires a descriptive, multi-sentence answer) or not (can be answered with yes/no or a single word).
+Open-ended questions typically:
+- Ask "why", "how", "what", "describe", "explain", "tell me about"
+- Require personal reflection, motivation, or reasoning
+- Ask about feelings, excitement, passion, goals, or experiences
+- Need multiple sentences to answer properly
 
-Answer only "true" or "false"."""
-            
+Answer "true" if open-ended, "false" if not.
+"""
+
             # Use unified AI call for classification
             result = self._call_ai(classification_prompt, temperature=0.1, max_tokens=10, field_type=QuestionType.INPUT)
             
             if result is None:
-                self.logger.error(f"Failed to classify question: {question}")
+                self.logger.error(f"Failed to classify question as open-ended: {question}")
                 return False
-            
+            self.logger.info(f"Is open ended: Question: {question} - {result}")
             return result.lower().strip() == "true"
             
         except Exception as e:
-            self.logger.error(f"Error classifying question '{question}': {str(e)}")
+            self.logger.error(f"Error classifying question as open-ended '{question}': {str(e)}")
             return False
     
+    def _is_related_to_previous_question(self, question: str, previous_question: Optional[str] = None) -> bool:
+        """Check if a question is related to the previous question."""
+        try:
+            # Build classification prompt with context
+            classification_prompt = f"""Question: {question}
+Previous Question: {previous_question}
+
+Is the current question a follow-up to the previous question and contains an if at the start or explicitly mention above?
+
+Answer only "true" or "false"."""
+            
+            # Use unified AI call for classification
+            result = self._call_ai(classification_prompt, temperature=0.1, max_tokens=10)
+            return result.lower().strip() == "true"
+        except Exception as e:
+            self.logger.error(f"Error classifying question as related to previous question '{question}': {str(e)}")
+            return False
+
     def _build_prompt(
         self, 
         field_type: QuestionType,
-        options: Optional[List[str]] = None
+        options: Optional[List[str]] = None,
+        question: Optional[str] = None,
+        previous_answer: Optional[str] = None,
+        is_required: bool = False,
+        is_open_ended: bool = False,
+        is_related_to_previous_question: bool = False
     ) -> str:
         """Build the prompt for the AI based on question and input type."""
         prompt = None
+        
         if field_type == QuestionType.SELECT:
             if options:
                 prompt = f"\nAvailable Options: {', '.join(options)}"
-                prompt += "\nSelect the BEST matching option from the list above. Return only the exact option text or \"null\" if no option matches."
+                prompt += "\nSelect the BEST matching option from the list above. Return only the exact option text."
             else:
-                prompt = "\nProvide the most appropriate answer or \"null\" if you cannot determine it."
+                prompt = "\nProvide the most appropriate answer."
         
         elif field_type == QuestionType.MULTISELECT:
             if options:
                 prompt = f"\nAvailable Options: {', '.join(options)}"
                 prompt += "\nSelect ALL appropriate options from the list above. Return as JSON array like [\"option1\", \"option2\"] or \"null\" if no options match."
             else:
-                prompt = "\nProvide all appropriate answers as JSON array or \"null\" if you cannot determine any."
+                prompt = "\nProvide all appropriate answers as JSON array."
         
         elif field_type == QuestionType.DATE:
-            prompt = "\nProvide a date in MM/DD/YYYY format or \"null\" if you cannot determine an appropriate date."
+            prompt = f"\nProvide a date in MM/DD/YYYY format. Consider the current date ({self.current_date.strftime('%B %d, %Y')}) when answering questions about graduation status, employment dates, or time-based information."
         
-        elif field_type == QuestionType.TEXTAREA:
-            prompt = "\nBased on the user profile information above, provide a detailed and descriptive answer that best addresses the question. Use relevant details from the profile (experience, skills, education, etc.) to craft a thoughtful response."
+        elif field_type == QuestionType.CHECKBOX:
+            prompt = f"\nBased on the user profile information above, should this checkbox be checked? Answer only 'Yes' or 'No'."
+        
+        elif field_type == QuestionType.NUMBER:
+            prompt = f"\nProvide a numeric value (integer or decimal). Return only the number without any text or formatting."
+        
+        else:
+            # Default prompt same as INPUT
+            date_prompt = f"Consider the current date ({self.current_date.strftime('%B %d, %Y')}) when answering questions about graduation status, employment dates, or time-based information."
+            # prompt = f"\nProvide a concise text answer. {date_prompt}"
             
-            if self.job_description:
+            # # Check if question is open-ended and add detailed prompt if so
+            # if question and is_open_ended:
+            #     prompt = f"\nBased on the user profile information above, provide a detailed and descriptive answer that best addresses the question. Use relevant details from the profile (experience, skills, education, etc.) to craft a thoughtful response. {date_prompt}"
+            descriptive_prompt = "Provide a detailed and descriptive answer using full sentence format. Use relevant details from the profile(education, experience, skills, etc.) to craft a thoughtful response."
+            prompt = f"Answer the question formally. {descriptive_prompt if is_open_ended else ''} {date_prompt}" 
+            if self.job_description and is_open_ended:
                 prompt += f"\n\nJob Description:\n{self.job_description[:500]}\n\nTailor your response to show how you would be a good fit for this specific role."
 
-        else:  # INPUT type
-            prompt = "\nProvide a concise text answer or \"null\" if you cannot determine an appropriate response."
+        # Add null instruction only for non-required questions
+        if not is_required:
+            if not is_related_to_previous_question or not previous_answer:
+                prompt += "\nProvide \"null\" if you cannot determine an appropriate answer."
+            else:
+                prompt += "\nTry to answer the question as best as possible."
+        else:
+            prompt += "\nYou MUST answer this question as it is required."
         
-        return prompt + " If the question is required, you MUST answer it."
+        return prompt + "\nAlways answer yes to any question related to eligibility, interest, or willingness to proceed unless doing so would be illegal or dishonest."
     
     def _process_answer(
         self, 
@@ -523,6 +622,41 @@ Answer only "true" or "false"."""
                 return answer
             except ValueError:
                 self.logger.warning(f"Invalid date format from AI: {answer}")
+                return None
+        
+        elif field_type == QuestionType.CHECKBOX:
+            # Process checkbox response - normalize to "Yes" or "No"
+            answer_lower = answer.lower().strip()
+            if answer_lower in ['yes', 'true', '1', 'check', 'checked']:
+                return "Yes"
+            elif answer_lower in ['no', 'false', '0', 'uncheck', 'unchecked']:
+                return "No"
+            else:
+                self.logger.warning(f"Invalid checkbox response from AI: {answer}, defaulting to 'No'")
+                return "No"
+        
+        elif field_type == QuestionType.NUMBER:
+            # Process number response - extract numeric value
+            try:
+                # Remove any non-numeric characters except decimal point and minus sign
+                cleaned_answer = ''.join(c for c in answer if c.isdigit() or c in '.-')
+                
+                # Handle edge cases
+                if not cleaned_answer or cleaned_answer == '.' or cleaned_answer == '-':
+                    self.logger.warning(f"Invalid number format from AI: {answer}")
+                    return None
+                
+                # Convert to float first to handle both integers and decimals
+                number_value = float(cleaned_answer)
+                
+                # Return as integer if it's a whole number, otherwise as float
+                if number_value.is_integer():
+                    return str(int(number_value))
+                else:
+                    return str(number_value)
+                    
+            except (ValueError, TypeError):
+                self.logger.warning(f"Could not parse number from AI response: {answer}")
                 return None
         
         else:  # INPUT type
@@ -783,12 +917,30 @@ Instructions:
                     for key, value in extracted_info.items():
                         if key in result_df.columns:
                             try:
-                                result_df.at[idx, key] = value
+                                # Special handling for location field - only update if current value is null
+                                if key == 'location':
+                                    current_location = result_df.at[idx, key]
+                                    if pd.isna(current_location) or current_location is None or current_location == '':
+                                        # Only use AI value if current location is null
+                                        formatted_location = self._format_location(value)
+                                        result_df.at[idx, key] = formatted_location
+                                        if formatted_location:
+                                            self.logger.info(f"Updated null location for job {idx}: {value} -> {formatted_location}")
+                                else:
+                                    result_df.at[idx, key] = value
                             except Exception as assign_error:
                                 self.logger.warning(f"Failed to assign {key} for job {idx}: {str(assign_error)}")
                                 # Use loc as fallback
                                 try:
-                                    result_df.loc[idx, key] = value
+                                    if key == 'location':
+                                        current_location = result_df.loc[idx, key]
+                                        if pd.isna(current_location) or current_location is None or current_location == '':
+                                            formatted_location = self._format_location(value)
+                                            result_df.loc[idx, key] = formatted_location
+                                        else:
+                                            result_df.loc[idx, key] = value
+                                    else:
+                                        result_df.loc[idx, key] = value
                                 except Exception as loc_error:
                                     self.logger.warning(f"Loc assignment also failed for {key}: {str(loc_error)}")
                                     continue
@@ -802,7 +954,45 @@ Instructions:
         except Exception as e:
             self.logger.error(f"Error in job summarization: {str(e)}")
             return jobs_df
-    
+
+    def _format_location(self, location: str) -> str:
+        """
+        Format location string. We receive "toronto-on" format, try to match to LOCATION_TYPE_MAPPING keys.
+        If not found, convert to "City, State/Province" format.
+        
+        Args:
+            location: Raw location string in "toronto-on" format
+            
+        Returns:
+            Formatted location string in "City, State/Province" format if not in mapping
+        """
+        if not location or not isinstance(location, str):
+            return None
+        
+        location = location.strip()
+        if not location:
+            return None
+        
+        # Import the location mapping from types
+        from app.services.job_application.types import LOCATION_TYPE_MAPPING
+        
+        # Check if the location is already in our mapping keys (e.g., "toronto-on")
+        if location in LOCATION_TYPE_MAPPING.keys():
+            # Return the key if it exists
+            return location
+        
+        # If not found in mapping, convert from "toronto-on" format to "City, State/Province" format
+        # Split by hyphen to get city and state/province
+        if '-' in location:
+            parts = location.split('-')
+            if len(parts) >= 2:
+                city = parts[0].replace('-', ' ').title()
+                state_province = parts[1].upper()
+                return f"{city}, {state_province}"
+        
+        # If no hyphen found or can't parse, return the original
+        return location
+
     def _extract_job_info_batch(self, job_descriptions: List[str]) -> List[Dict[str, Any]]:
         """
         Extract structured information from multiple job descriptions in a single API call.
@@ -876,7 +1066,8 @@ Instructions:
         "company_description": "Brief description of the company (max 150 chars)",
         "salary_currency": "string",  // Currency code (USD, EUR, GBP, etc.) or null if not mentioned
         "company_size": "string",  // Company size category: "startup" (1-50), "small" (51-200), "medium" (201-1000), "large" (1001-5000), "enterprise" (5000+) or null
-        "skills": ["skill1", "skill2", "skill3", "skill4", "skill5"]  // Up to 5 most relevant technical skills (programming languages, frameworks, tools, etc.)
+        "skills": ["skill1", "skill2", "skill3", "skill4", "skill5"],  // Up to 5 most relevant technical skills (programming languages, frameworks, tools, etc.)
+        "location": "string",  // Location of the job (city-state/province) or null if not mentioned
     }},
     // ... repeat for each job
 ]
@@ -910,6 +1101,9 @@ IMPORTANT:
   * Set to false if its mentioned in the job description that sponsorship is not provided
   * For Canada jobs: ALWAYS true (Canada generally provides work permits)
   * For US jobs: true unless explicitly stated otherwise
+- For location:
+  * Extract the location of the job (city-state/province) or null if not mentioned
+  * Example: "New York, NY" -> "new-york-ny", "Toronto, ON" -> "toronto-on", "San Francisco, CA" -> "san-francisco-ca"
 
 RESPONSIBILITIES GUIDELINES:
 - Be specific and descriptive, not generic
@@ -982,7 +1176,7 @@ JOB DESCRIPTION GUIDELINES:
                 cleaned['company_description'] = self._clean_string_field(parsed.get('company_description'))
                 cleaned['salary_currency'] = self._clean_string_field(parsed.get('salary_currency'))
                 cleaned['company_size'] = self._clean_string_field(parsed.get('company_size'))
-                
+                cleaned['location'] = self._format_location(parsed.get('location'))
                 # Numeric fields
                 cleaned['salary_min_range'] = self._clean_numeric_field(parsed.get('salary_min_range'))
                 cleaned['salary_max_range'] = self._clean_numeric_field(parsed.get('salary_max_range'))
@@ -1005,7 +1199,7 @@ JOB DESCRIPTION GUIDELINES:
         except Exception as e:
             self.logger.error(f"Error parsing batch job extraction: {str(e)}")
             return [self._get_default_job_info() for _ in range(expected_count)]
-    
+
     def _clean_list_field(self, value: Any) -> List[str]:
         """Clean and validate a list field."""
         if not isinstance(value, list):
@@ -1056,5 +1250,6 @@ JOB DESCRIPTION GUIDELINES:
             'company_description': None,
             'salary_currency': None,
             'company_size': None,
-            'skills': []
+            'skills': [],
+            'location': None
         } 

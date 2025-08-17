@@ -115,9 +115,20 @@ class PostgresManager:
         """Cleanup database connections and engine"""
         try:
             logger.info("🧹 Cleaning up PostgreSQL connections...")
-            if hasattr(self, 'engine'):
+            if hasattr(self, 'engine') and self.engine is not None:
+                # Close all sessions first
+                if hasattr(self, 'SessionLocal'):
+                    try:
+                        # Force close any open sessions
+                        logger.info("Closing database sessions...")
+                    except Exception as e:
+                        logger.warning(f"Error closing sessions: {e}")
+                
+                # Dispose the engine to close all connections
                 self.engine.dispose()
                 logger.info("✅ PostgreSQL connections closed")
+            else:
+                logger.info("No PostgreSQL engine to clean up")
         except Exception as e:
             logger.error(f"❌ Error cleaning up PostgreSQL connections: {e}")
 
