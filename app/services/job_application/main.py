@@ -7,7 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException, ElementClickInterceptedException
 from app.services.browser import CustomWebDriver
 from app.services.job_application.portals import Lever, Greenhouse, Ashby, Jobvite, Workable
-from app.db.postgres import postgres_manager
+from app.db.supabase import supabase_manager
 from app.schemas.application import FormSectionType, QuestionType
 from app.services.job_application.types import JobPortal
 
@@ -304,7 +304,7 @@ if __name__ == "__main__":
         import time
 
         profile = firestore_manager.get_profile('fYDy4dNReTN6ng8qWnD5iLJTSrH2')
-        job = postgres_manager.get_job_by_id("li-4260290879")
+        job = supabase_manager.get_job_by_id("li-4260290879")
         print(job.get('description'))
 
         job_service = JobApplicationService(driver, profile, job.get('description'))

@@ -276,11 +276,11 @@ class JobFetcher:
                     for level in ROLE_LEVEL_MAPPING.keys():
                         if level in title:
                             return level
-                    if 'staff' in title:
+                    if ' staff' in title or 'staff ' in title:
                         return 'director'
                     elif 'new grad' in title:
                         return 'entry'
-                    elif 'intern' in title:
+                    elif 'intern ' in title or ' intern' in title:
                         return 'internship'
                     elif 'junior' in title:
                         return 'associate'
@@ -379,10 +379,10 @@ class JobFetcher:
             }
             
             # Initialize PostgresManager and upload to database
-            from app.db.postgres import PostgresManager
+            from app.db.supabase import SupabaseManager
             
-            postgres_manager = PostgresManager()
-            upload_stats = postgres_manager.upload_jobs_dataframe(formatted_df, column_mapping)
+            supabase_manager = SupabaseManager()
+            upload_stats = supabase_manager.upload_jobs_dataframe(formatted_df, column_mapping)
             
             logger.info(f"Database upload completed:")
             logger.info(f"  Total rows: {upload_stats['total_rows']}")

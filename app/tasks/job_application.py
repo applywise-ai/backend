@@ -10,7 +10,7 @@ from app.tasks.celery_app import celery_app
 from app.services.browser import browser_pool
 from app.services.storage import storage_manager
 from app.db.firestore import firestore_manager
-from app.db.postgres import postgres_manager
+from app.db.supabase import supabase_manager
 from app.schemas.application import ApplicationStatus
 from app.services.websocket import send_job_application_update
 from app.services.job_application import JobApplicationService
@@ -62,7 +62,7 @@ def apply_to_job(self, application_data: Dict[str, Any]):
         
         # Get job details from PostgreSQL
         logger.info(f"Getting job details for job ID {type(job_id)} {job_id}")
-        job = postgres_manager.get_job_by_id(job_id)
+        job = supabase_manager.get_job_by_id(job_id)
         if not job:
             raise Exception(f"Job with ID {job_id} not found")
 

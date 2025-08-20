@@ -487,9 +487,13 @@ class BasePortal(ABC):
         unique_label_id = self.form_questions[question_id]['unique_label_id']
 
         if not label:
-            self.delete_form_question(question_id)
-            self.logger.info(f"No label found for question {question_id}, deleting question")
-            return None
+            placeholder = field.get_attribute('placeholder')
+            if placeholder:
+                label = placeholder
+            else:
+                self.delete_form_question(question_id)
+                self.logger.info(f"No label found for question {question_id}, deleting question")
+                return None
             
         best_match = None
         best_score = 0

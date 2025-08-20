@@ -44,11 +44,23 @@ class FirestoreManager:
                     try:
                         # Parse the JSON credentials from the environment variable
                         credentials_dict = json.loads(settings.FIREBASE_CREDENTIALS)
+                        
+                        # Handle potential private key formatting issues
+                        if 'private_key' in credentials_dict:
+                            # Replace literal \n with actual newlines if they exist
+                            private_key = credentials_dict['private_key']
+                            if '\\n' in private_key:
+                                credentials_dict['private_key'] = private_key.replace('\\n', '\n')
+                        
                         cred = credentials.Certificate(credentials_dict)
                         firebase_admin.initialize_app(cred, name=self.app_name)
                         logger.info(f"✅ Firebase Admin SDK initialized with service account credentials (app: {self.app_name})")
                     except json.JSONDecodeError as e:
                         error_msg = f"Invalid JSON format in FIREBASE_CREDENTIALS: {e}"
+                        logger.error(f"❌ {error_msg}")
+                        raise Exception(error_msg)
+                    except Exception as e:
+                        error_msg = f"Failed to initialize Firebase with credentials: {e}"
                         logger.error(f"❌ {error_msg}")
                         raise Exception(error_msg)
                 else:

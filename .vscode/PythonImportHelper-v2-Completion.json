@@ -48,14 +48,6 @@
         "documentation": {}
     },
     {
-        "label": "Depends",
-        "importPath": "fastapi",
-        "description": "fastapi",
-        "isExtraImport": true,
-        "detail": "fastapi",
-        "documentation": {}
-    },
-    {
         "label": "APIRouter",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -180,6 +172,22 @@
         "documentation": {}
     },
     {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
@@ -284,14 +292,6 @@
         "documentation": {}
     },
     {
-        "label": "Set",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "Dict",
         "importPath": "typing",
         "description": "typing",
@@ -365,14 +365,6 @@
     },
     {
         "label": "Optional",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -621,14 +613,6 @@
     },
     {
         "label": "Any",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "List",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -764,436 +748,31 @@
         "documentation": {}
     },
     {
-        "label": "psycopg2",
-        "kind": 6,
+        "label": "supabase_manager",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
         "isExtraImport": true,
-        "importPath": "psycopg2",
-        "description": "psycopg2",
-        "detail": "psycopg2",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
-        "label": "RealDictCursor",
-        "importPath": "psycopg2.extras",
-        "description": "psycopg2.extras",
+        "label": "supabase_manager",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
         "isExtraImport": true,
-        "detail": "psycopg2.extras",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
-        "label": "RealDictCursor",
-        "importPath": "psycopg2.extras",
-        "description": "psycopg2.extras",
+        "label": "supabase_manager",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
         "isExtraImport": true,
-        "detail": "psycopg2.extras",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "settings",
-        "importPath": "app.core.config",
-        "description": "app.core.config",
-        "isExtraImport": true,
-        "detail": "app.core.config",
-        "documentation": {}
-    },
-    {
-        "label": "create_engine",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "MetaData",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "URL",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "String",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "and_",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "or_",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "func",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "desc",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "create_engine",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "Column",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "Integer",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "String",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "DateTime",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "Text",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "Boolean",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "JSON",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "ForeignKey",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "Float",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "create_engine",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "MetaData",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "URL",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "text",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "Session",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "declarative_base",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "relationship",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "sessionmaker",
-        "importPath": "sqlalchemy.orm",
-        "description": "sqlalchemy.orm",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.orm",
-        "documentation": {}
-    },
-    {
-        "label": "SQLAlchemyError",
-        "importPath": "sqlalchemy.exc",
-        "description": "sqlalchemy.exc",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.exc",
-        "documentation": {}
-    },
-    {
-        "label": "SQLAlchemyError",
-        "importPath": "sqlalchemy.exc",
-        "description": "sqlalchemy.exc",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.exc",
-        "documentation": {}
-    },
-    {
-        "label": "boto3",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "boto3",
-        "description": "boto3",
-        "detail": "boto3",
-        "documentation": {}
-    },
-    {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
-        "label": "numpy",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "numpy",
-        "description": "numpy",
-        "detail": "numpy",
-        "documentation": {}
-    },
-    {
-        "label": "pandas",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "pandas",
-        "description": "pandas",
-        "detail": "pandas",
-        "documentation": {}
-    },
-    {
-        "label": "get_db",
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "isExtraImport": true,
-        "detail": "app.db.postgres",
-        "documentation": {}
-    },
-    {
-        "label": "postgres_manager",
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "isExtraImport": true,
-        "detail": "app.db.postgres",
-        "documentation": {}
-    },
-    {
-        "label": "postgres_manager",
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "isExtraImport": true,
-        "detail": "app.db.postgres",
-        "documentation": {}
-    },
-    {
-        "label": "PostgresManager",
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "isExtraImport": true,
-        "detail": "app.db.postgres",
-        "documentation": {}
-    },
-    {
-        "label": "Job",
-        "importPath": "app.db.models",
-        "description": "app.db.models",
-        "isExtraImport": true,
-        "detail": "app.db.models",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
         "label": "JobResponse",
-        "importPath": "app.schemas.job",
-        "description": "app.schemas.job",
-        "isExtraImport": true,
-        "detail": "app.schemas.job",
-        "documentation": {}
-    },
-    {
-        "label": "JobFilters",
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
         "isExtraImport": true,
@@ -1240,6 +819,15 @@
         "importPath": "asyncio",
         "description": "asyncio",
         "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -1388,6 +976,62 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
         "label": "ApplicationStatus",
         "importPath": "app.schemas.application",
         "description": "app.schemas.application",
@@ -1524,19 +1168,46 @@
         "documentation": {}
     },
     {
-        "label": "func",
-        "importPath": "sqlalchemy.sql",
-        "description": "sqlalchemy.sql",
+        "label": "numpy",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "sqlalchemy.sql",
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
         "documentation": {}
     },
     {
-        "label": "Base",
-        "importPath": "app.db.base",
-        "description": "app.db.base",
+        "label": "pandas",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "app.db.base",
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "create_client",
+        "importPath": "supabase",
+        "description": "supabase",
+        "isExtraImport": true,
+        "detail": "supabase",
+        "documentation": {}
+    },
+    {
+        "label": "Client",
+        "importPath": "supabase",
+        "description": "supabase",
+        "isExtraImport": true,
+        "detail": "supabase",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
         "documentation": {}
     },
     {
@@ -1839,15 +1510,6 @@
         "documentation": {}
     },
     {
-        "label": "uuid",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
-        "documentation": {}
-    },
-    {
         "label": "requests",
         "kind": 6,
         "isExtraImport": true,
@@ -1950,14 +1612,6 @@
         "description": "selenium.webdriver.common.keys",
         "isExtraImport": true,
         "detail": "selenium.webdriver.common.keys",
-        "documentation": {}
-    },
-    {
-        "label": "load_dotenv",
-        "importPath": "dotenv",
-        "description": "dotenv",
-        "isExtraImport": true,
-        "detail": "dotenv",
         "documentation": {}
     },
     {
@@ -2257,15 +1911,6 @@
         "documentation": {}
     },
     {
-        "label": "socket",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "socket",
-        "description": "socket",
-        "detail": "socket",
-        "documentation": {}
-    },
-    {
         "label": "pathlib",
         "kind": 6,
         "isExtraImport": true,
@@ -2356,16 +2001,7 @@
         "kind": 2,
         "importPath": "app.api.routes.jobs",
         "description": "app.api.routes.jobs",
-        "peekOfCode": "def convert_job_to_response(job: Job) -> JobResponse:\n    \"\"\"Convert SQLAlchemy Job model to Pydantic JobResponse\"\"\"\n    try:\n        # Convert to dict and handle None values for list fields\n        job_dict = {\n            'id': job.id,\n            'title': job.title,\n            'company': job.company,\n            'company_url': job.company_url,\n            'logo': job.logo,",
-        "detail": "app.api.routes.jobs",
-        "documentation": {}
-    },
-    {
-        "label": "convert_jobs_to_response",
-        "kind": 2,
-        "importPath": "app.api.routes.jobs",
-        "description": "app.api.routes.jobs",
-        "peekOfCode": "def convert_jobs_to_response(jobs: List[Job]) -> List[JobResponse]:\n    \"\"\"Convert list of SQLAlchemy Job models to Pydantic JobResponse models\"\"\"\n    try:\n        logger.info(f\"Converting {len(jobs)} jobs to response format\")\n        result = [convert_job_to_response(job) for job in jobs]\n        logger.info(f\"Successfully converted {len(result)} jobs\")\n        return result\n    except Exception as e:\n        logger.error(f\"Error converting jobs list to response: {e}\")\n        raise e",
+        "peekOfCode": "def convert_job_to_response(job_dict: Dict[str, Any]) -> JobResponse:\n    \"\"\"Convert Supabase job dict to Pydantic JobResponse\"\"\"\n    try:\n        # Ensure list fields are not None\n        job_dict['responsibilities'] = job_dict.get('responsibilities') or []\n        job_dict['requirements'] = job_dict.get('requirements') or []\n        job_dict['skills'] = job_dict.get('skills') or []\n        job_dict['tags'] = job_dict.get('tags') or []\n        return JobResponse(**job_dict)\n    except Exception as e:",
         "detail": "app.api.routes.jobs",
         "documentation": {}
     },
@@ -2374,7 +2010,7 @@
         "kind": 5,
         "importPath": "app.api.routes.jobs",
         "description": "app.api.routes.jobs",
-        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\ndef convert_job_to_response(job: Job) -> JobResponse:\n    \"\"\"Convert SQLAlchemy Job model to Pydantic JobResponse\"\"\"\n    try:\n        # Convert to dict and handle None values for list fields\n        job_dict = {\n            'id': job.id,\n            'title': job.title,\n            'company': job.company,",
+        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\ndef convert_job_to_response(job_dict: Dict[str, Any]) -> JobResponse:\n    \"\"\"Convert Supabase job dict to Pydantic JobResponse\"\"\"\n    try:\n        # Ensure list fields are not None\n        job_dict['responsibilities'] = job_dict.get('responsibilities') or []\n        job_dict['requirements'] = job_dict.get('requirements') or []\n        job_dict['skills'] = job_dict.get('skills') or []\n        job_dict['tags'] = job_dict.get('tags') or []",
         "detail": "app.api.routes.jobs",
         "documentation": {}
     },
@@ -2383,7 +2019,7 @@
         "kind": 5,
         "importPath": "app.api.routes.jobs",
         "description": "app.api.routes.jobs",
-        "peekOfCode": "logger = logging.getLogger(__name__)\ndef convert_job_to_response(job: Job) -> JobResponse:\n    \"\"\"Convert SQLAlchemy Job model to Pydantic JobResponse\"\"\"\n    try:\n        # Convert to dict and handle None values for list fields\n        job_dict = {\n            'id': job.id,\n            'title': job.title,\n            'company': job.company,\n            'company_url': job.company_url,",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef convert_job_to_response(job_dict: Dict[str, Any]) -> JobResponse:\n    \"\"\"Convert Supabase job dict to Pydantic JobResponse\"\"\"\n    try:\n        # Ensure list fields are not None\n        job_dict['responsibilities'] = job_dict.get('responsibilities') or []\n        job_dict['requirements'] = job_dict.get('requirements') or []\n        job_dict['skills'] = job_dict.get('skills') or []\n        job_dict['tags'] = job_dict.get('tags') or []\n        return JobResponse(**job_dict)",
         "detail": "app.api.routes.jobs",
         "documentation": {}
     },
@@ -2469,42 +2105,6 @@
         "documentation": {}
     },
     {
-        "label": "get_db",
-        "kind": 2,
-        "importPath": "app.db.base",
-        "description": "app.db.base",
-        "peekOfCode": "def get_db():\n    \"\"\"Dependency to get database session\"\"\"\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
-        "detail": "app.db.base",
-        "documentation": {}
-    },
-    {
-        "label": "engine",
-        "kind": 5,
-        "importPath": "app.db.base",
-        "description": "app.db.base",
-        "peekOfCode": "engine = create_engine(\n    settings.DATABASE_URL,\n    pool_pre_ping=True,\n    pool_recycle=300,\n    echo=settings.DEBUG\n)\n# Create session factory\nSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Create base class for models\nBase = declarative_base()",
-        "detail": "app.db.base",
-        "documentation": {}
-    },
-    {
-        "label": "SessionLocal",
-        "kind": 5,
-        "importPath": "app.db.base",
-        "description": "app.db.base",
-        "peekOfCode": "SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)\n# Create base class for models\nBase = declarative_base()\ndef get_db():\n    \"\"\"Dependency to get database session\"\"\"\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
-        "detail": "app.db.base",
-        "documentation": {}
-    },
-    {
-        "label": "Base",
-        "kind": 5,
-        "importPath": "app.db.base",
-        "description": "app.db.base",
-        "peekOfCode": "Base = declarative_base()\ndef get_db():\n    \"\"\"Dependency to get database session\"\"\"\n    db = SessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()",
-        "detail": "app.db.base",
-        "documentation": {}
-    },
-    {
         "label": "FirestoreManager",
         "kind": 6,
         "importPath": "app.db.firestore",
@@ -2532,102 +2132,48 @@
         "documentation": {}
     },
     {
-        "label": "Job",
+        "label": "SupabaseManager",
         "kind": 6,
-        "importPath": "app.db.models",
-        "description": "app.db.models",
-        "peekOfCode": "class Job(Base):\n    __tablename__ = \"jobs\"\n    id = Column(String, primary_key=True, index=True)\n    title = Column(String, nullable=False)\n    company = Column(String, nullable=False)\n    company_url = Column(String)\n    logo = Column(String)\n    location = Column(String)\n    salary_min_range = Column(Float)\n    salary_max_range = Column(Float)",
-        "detail": "app.db.models",
-        "documentation": {}
-    },
-    {
-        "label": "JobApplication",
-        "kind": 6,
-        "importPath": "app.db.models",
-        "description": "app.db.models",
-        "peekOfCode": "class JobApplication(Base):\n    __tablename__ = \"job_applications\"\n    id = Column(Integer, primary_key=True, index=True)\n    task_id = Column(String, unique=True, index=True, nullable=False)\n    job_url = Column(String, nullable=False)\n    company_name = Column(String)\n    job_title = Column(String)\n    status = Column(String, default=\"pending\")  # pending, processing, completed, failed\n    # Application data\n    resume_path = Column(String)",
-        "detail": "app.db.models",
-        "documentation": {}
-    },
-    {
-        "label": "ApplicationLog",
-        "kind": 6,
-        "importPath": "app.db.models",
-        "description": "app.db.models",
-        "peekOfCode": "class ApplicationLog(Base):\n    __tablename__ = \"application_logs\"\n    id = Column(Integer, primary_key=True, index=True)\n    application_id = Column(Integer, ForeignKey(\"job_applications.id\"))\n    level = Column(String)  # info, warning, error\n    message = Column(Text)\n    timestamp = Column(DateTime(timezone=True), server_default=func.now())\n    # Relationships\n    application = relationship(\"JobApplication\", back_populates=\"logs\")\nclass BrowserSession(Base):",
-        "detail": "app.db.models",
-        "documentation": {}
-    },
-    {
-        "label": "BrowserSession",
-        "kind": 6,
-        "importPath": "app.db.models",
-        "description": "app.db.models",
-        "peekOfCode": "class BrowserSession(Base):\n    __tablename__ = \"browser_sessions\"\n    id = Column(Integer, primary_key=True, index=True)\n    worker_id = Column(String, unique=True, index=True)\n    session_id = Column(String)\n    is_active = Column(Boolean, default=True)\n    last_used = Column(DateTime(timezone=True), server_default=func.now())\n    created_at = Column(DateTime(timezone=True), server_default=func.now())",
-        "detail": "app.db.models",
-        "documentation": {}
-    },
-    {
-        "label": "PostgresManager",
-        "kind": 6,
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "peekOfCode": "class PostgresManager:\n    \"\"\"Manages PostgreSQL database operations\"\"\"\n    def __init__(self):\n        \"\"\"Initialize PostgreSQL connection with Secrets Manager authentication\"\"\"\n        logger.info(\"🐘 Starting PostgreSQL initialization...\")\n        try:\n            logger.info(\"📡 Connecting to PostgreSQL using Secrets Manager credentials\")\n            # Get database URL from Secrets Manager\n            db_url = get_db_url()\n            # Configure connection args",
-        "detail": "app.db.postgres",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
+        "peekOfCode": "class SupabaseManager:\n    \"\"\"Manages Supabase database operations using native Supabase client\"\"\"\n    def __init__(self):\n        \"\"\"Initialize Supabase client\"\"\"\n        logger.info(\"🚀 Starting Supabase initialization...\")\n        try:\n            if not settings.SUPABASE_URL or not settings.SUPABASE_KEY:\n                raise ValueError(\"SUPABASE_URL and SUPABASE_KEY must be provided\")\n            logger.info(\"📡 Connecting to Supabase\")\n            # Create client with simple initialization",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
         "label": "is_effectively_empty",
         "kind": 2,
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
         "peekOfCode": "def is_effectively_empty(val):\n    \"\"\"\n    Safely check if a value is null, empty, or effectively empty.\n    Args:\n        val: Value to check\n    Returns:\n        bool: True if the value is effectively empty, False otherwise\n    \"\"\"\n    if isinstance(val, (list, tuple, set, dict, np.ndarray, pd.Series)):\n        return len(val) == 0",
-        "detail": "app.db.postgres",
-        "documentation": {}
-    },
-    {
-        "label": "get_db_credentials",
-        "kind": 2,
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "peekOfCode": "def get_db_credentials():\n    \"\"\"Get database credentials from AWS Secrets Manager\"\"\"\n    try:\n        secrets_client = boto3.client(\n            'secretsmanager',\n            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,\n            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,\n            region_name=settings.AWS_REGION\n        )\n        # Get the secret from Secrets Manager",
-        "detail": "app.db.postgres",
-        "documentation": {}
-    },
-    {
-        "label": "get_db_url",
-        "kind": 2,
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "peekOfCode": "def get_db_url():\n    \"\"\"Get database URL using credentials from Secrets Manager and settings\"\"\"\n    try:\n        credentials = get_db_credentials()\n        logger.info(\"Using Secrets Manager authentication for PostgreSQL\")\n        return URL.create(\n            drivername=\"postgresql\",\n            username=credentials['username'],\n            password=credentials['password'],\n            host=settings.POSTGRES_HOST,",
-        "detail": "app.db.postgres",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
         "label": "get_db",
         "kind": 2,
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "peekOfCode": "def get_db():\n    \"\"\"FastAPI dependency to get database session\"\"\"\n    session = postgres_manager.SessionLocal()\n    try:\n        yield session\n    finally:\n        session.close()",
-        "detail": "app.db.postgres",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
+        "peekOfCode": "def get_db():\n    \"\"\"FastAPI dependency to get database session\"\"\"\n    # For compatibility with existing FastAPI dependencies\n    session = next(supabase_manager.get_session())\n    try:\n        yield session\n    finally:\n        session.close()",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
         "label": "logger",
         "kind": 5,
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_db_credentials():\n    \"\"\"Get database credentials from AWS Secrets Manager\"\"\"\n    try:\n        secrets_client = boto3.client(\n            'secretsmanager',\n            aws_access_key_id=settings.AWS_ACCESS_KEY_ID,\n            aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,\n            region_name=settings.AWS_REGION\n        )",
-        "detail": "app.db.postgres",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nclass SupabaseManager:\n    \"\"\"Manages Supabase database operations using native Supabase client\"\"\"\n    def __init__(self):\n        \"\"\"Initialize Supabase client\"\"\"\n        logger.info(\"🚀 Starting Supabase initialization...\")\n        try:\n            if not settings.SUPABASE_URL or not settings.SUPABASE_KEY:\n                raise ValueError(\"SUPABASE_URL and SUPABASE_KEY must be provided\")\n            logger.info(\"📡 Connecting to Supabase\")",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
-        "label": "postgres_manager",
+        "label": "supabase_manager",
         "kind": 5,
-        "importPath": "app.db.postgres",
-        "description": "app.db.postgres",
-        "peekOfCode": "postgres_manager = PostgresManager()\ndef get_db():\n    \"\"\"FastAPI dependency to get database session\"\"\"\n    session = postgres_manager.SessionLocal()\n    try:\n        yield session\n    finally:\n        session.close()",
-        "detail": "app.db.postgres",
+        "importPath": "app.db.supabase",
+        "description": "app.db.supabase",
+        "peekOfCode": "supabase_manager = SupabaseManager()\ndef get_db():\n    \"\"\"FastAPI dependency to get database session\"\"\"\n    # For compatibility with existing FastAPI dependencies\n    session = next(supabase_manager.get_session())\n    try:\n        yield session\n    finally:\n        session.close()",
+        "detail": "app.db.supabase",
         "documentation": {}
     },
     {
@@ -2860,7 +2406,7 @@
         "kind": 6,
         "importPath": "app.schemas.job",
         "description": "app.schemas.job",
-        "peekOfCode": "class JobsPaginatedResponse(BaseModel):\n    \"\"\"Schema for paginated jobs response\"\"\"\n    jobs: List[JobResponse]\n    has_more: bool\n    last_job_id: Optional[str] = None\n    total_count: int\n    filtered_count: int\nclass JobsCountResponse(BaseModel):\n    \"\"\"Schema for jobs count response\"\"\"\n    filtered_count: int",
+        "peekOfCode": "class JobsPaginatedResponse(BaseModel):\n    \"\"\"Schema for paginated jobs response\"\"\"\n    jobs: List[JobResponse]\n    has_more: bool\nclass JobsCountResponse(BaseModel):\n    \"\"\"Schema for jobs count response\"\"\"\n    filtered_count: int\n    total_available: int\nclass JobsSearchResponse(BaseModel):\n    \"\"\"Schema for advanced job search response\"\"\"",
         "detail": "app.schemas.job",
         "documentation": {}
     },
@@ -3600,69 +3146,6 @@
         "description": "app.main",
         "peekOfCode": "app = FastAPI(\n    title=\"ApplyWise API\",\n    description=\"Backend API for ApplyWise job application automation\",\n    version=\"1.0.0\",\n    lifespan=lifespan\n)\n# Configure CORS\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=settings.CORS_ORIGINS,",
         "detail": "app.main",
-        "documentation": {}
-    },
-    {
-        "label": "test_network_connectivity",
-        "kind": 2,
-        "importPath": "scripts.check_db_connection",
-        "description": "scripts.check_db_connection",
-        "peekOfCode": "def test_network_connectivity(host, port):\n    \"\"\"Test basic network connectivity to host:port\"\"\"\n    print(f\"🌐 Testing network connectivity to {host}:{port}\")\n    try:\n        sock = socket.create_connection((host, port), timeout=10)\n        sock.close()\n        print(\"✅ Network connectivity OK\")\n        return True\n    except socket.timeout:\n        print(\"❌ Connection timeout - possible network/VPN issue\")",
-        "detail": "scripts.check_db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "test_db_connection",
-        "kind": 2,
-        "importPath": "scripts.check_db_connection",
-        "description": "scripts.check_db_connection",
-        "peekOfCode": "def test_db_connection():\n    \"\"\"Test PostgreSQL database connection\"\"\"\n    print(\"🐘 Testing PostgreSQL connection\")\n    db_params = {\n        \"host\": os.getenv(\"POSTGRES_HOST\", \"172.31.85.170\"),\n        \"database\": os.getenv(\"POSTGRES_DB\", \"applywise\"),\n        \"user\": os.getenv(\"POSTGRES_USER\", \"postgres\"),\n        \"password\": os.getenv(\"POSTGRES_PASSWORD\"),\n        \"port\": int(os.getenv(\"POSTGRES_PORT\", \"5432\")),\n        \"connect_timeout\": 10,",
-        "detail": "scripts.check_db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "get_public_ip",
-        "kind": 2,
-        "importPath": "scripts.check_db_connection",
-        "description": "scripts.check_db_connection",
-        "peekOfCode": "def get_public_ip():\n    \"\"\"Get your current public IP address\"\"\"\n    try:\n        import requests\n        response = requests.get('https://httpbin.org/ip', timeout=5)\n        ip = response.json()['origin']\n        print(f\"🌍 Your public IP: {ip}\")\n        return ip\n    except Exception as e:\n        print(f\"⚠️ Could not determine public IP: {e}\")",
-        "detail": "scripts.check_db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "main",
-        "kind": 2,
-        "importPath": "scripts.check_db_connection",
-        "description": "scripts.check_db_connection",
-        "peekOfCode": "def main():\n    \"\"\"Main diagnostic function\"\"\"\n    print(\"🔍 PostgreSQL Connection Diagnostics\")\n    print(\"=\" * 50)\n    # Get environment info\n    print(f\"📁 Working directory: {os.getcwd()}\")\n    print(f\"🐍 Python version: {sys.version}\")\n    # Check if .env file exists\n    env_file = \".env\"\n    if os.path.exists(env_file):",
-        "detail": "scripts.check_db_connection",
-        "documentation": {}
-    },
-    {
-        "label": "create_jobs_table",
-        "kind": 2,
-        "importPath": "scripts.reset_db",
-        "description": "scripts.reset_db",
-        "peekOfCode": "def create_jobs_table(postgres_manager: PostgresManager):\n    \"\"\"Create jobs table if it doesn't exist\"\"\"\n    print(\"[5] Dropping existing jobs table...\")\n    start_time = time.time()\n    session = postgres_manager.SessionLocal()\n    try:\n        session.execute(text(\"DROP TABLE IF EXISTS jobs CASCADE\"))\n        session.commit()\n    finally:\n        session.close()",
-        "detail": "scripts.reset_db",
-        "documentation": {}
-    },
-    {
-        "label": "insert_sample_job",
-        "kind": 2,
-        "importPath": "scripts.reset_db",
-        "description": "scripts.reset_db",
-        "peekOfCode": "def insert_sample_job(postgres_manager: PostgresManager):\n    \"\"\"Insert a sample job into the jobs table\"\"\"\n    print(\"[9] Preparing sample job data...\")\n    # Generate a unique string ID\n    import uuid\n    import json\n    job_id = str(uuid.uuid4())\n    job_data = {\n        \"id\": job_id,\n        \"title\": \"Senior Software Engineer\",",
-        "detail": "scripts.reset_db",
-        "documentation": {}
-    },
-    {
-        "label": "main",
-        "kind": 2,
-        "importPath": "scripts.reset_db",
-        "description": "scripts.reset_db",
-        "peekOfCode": "def main():\n    print(\"[1] Starting job insertion script...\")\n    script_start_time = time.time()\n    try:\n        # Initialize PostgresManager\n        print(\"[2] Initializing PostgresManager...\")\n        start_time = time.time()\n        postgres_manager = PostgresManager()\n        end_time = time.time()\n        print(f\"[3] PostgresManager initialized in {end_time - start_time:.2f} seconds\")",
-        "detail": "scripts.reset_db",
         "documentation": {}
     },
     {

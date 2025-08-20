@@ -90,9 +90,7 @@ class JobsPaginatedResponse(BaseModel):
     """Schema for paginated jobs response"""
     jobs: List[JobResponse]
     has_more: bool
-    last_job_id: Optional[str] = None
-    total_count: int
-    filtered_count: int
+
 
 class JobsCountResponse(BaseModel):
     """Schema for jobs count response"""

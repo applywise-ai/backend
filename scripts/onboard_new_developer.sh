@@ -58,16 +58,16 @@ if [ ! -f .env ]; then
     echo ""
     echo "📝 Creating .env file..."
     
-    read -p "PostgreSQL password: " -s POSTGRES_PASSWORD
+    read -p "Supabase URL: " SUPABASE_URL
+    read -p "Supabase Service Role Key: " SUPABASE_KEY
+    read -p "Supabase DB Password: " -s SUPABASE_DB_PASSWORD
     echo
     
     cat > .env << EOF
-# Database Configuration (via Tailscale)
-POSTGRES_HOST=172.31.85.170
-POSTGRES_PORT=5432
-POSTGRES_DB=applywise
-POSTGRES_USER=postgres
-POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+# Supabase Configuration
+SUPABASE_URL=$SUPABASE_URL
+SUPABASE_KEY=$SUPABASE_KEY
+SUPABASE_DB_PASSWORD=$SUPABASE_DB_PASSWORD
 
 # Redis Configuration
 REDIS_URL=redis://localhost:6379/0

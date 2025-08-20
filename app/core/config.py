@@ -29,15 +29,12 @@ class Settings(BaseSettings):
     CELERY_BROKER_URL: str = Field(default="redis://localhost:6379/0", description="Celery broker URL")
     CELERY_RESULT_BACKEND: str = Field(default="redis://localhost:6379/0", description="Celery result backend URL")
     
-    # PostgreSQL Configuration
-    POSTGRES_HOST: str = Field(
-        default="172.31.85.170",
-        description="PostgreSQL host"
-    )
-    POSTGRES_PORT: int = Field(default=5432, description="PostgreSQL port")
-    POSTGRES_DB: str = Field(default="applywise", description="PostgreSQL database name")
-    POSTGRES_USER: str = Field(default="applywise_backend", description="PostgreSQL username")
-    POSTGRES_PASSWORD: str = Field(default="", description="PostgreSQL password")
+    # Supabase Configuration
+    SUPABASE_URL: str = Field(default="", description="Supabase project URL")
+    SUPABASE_KEY: str = Field(default="", description="Supabase service role key")
+    SUPABASE_DB_PASSWORD: str = Field(default="", description="Supabase database password")
+    
+
     
     # CORS Configuration
     CORS_ORIGINS: List[str] = Field(default=["*"], description="Allowed CORS origins")
@@ -69,12 +66,8 @@ class Settings(BaseSettings):
             return [origin.strip() for origin in v.split(',')]
         return v
     
-    @validator('POSTGRES_PORT', pre=True)
-    def parse_postgres_port(cls, v):
-        """Ensure PostgreSQL port is an integer"""
-        if isinstance(v, str):
-            return int(v)
-        return v
+
+
     
     @validator('BROWSER_TIMEOUT', pre=True)
     def parse_browser_timeout(cls, v):
@@ -83,10 +76,7 @@ class Settings(BaseSettings):
             return int(v)
         return v
     
-    @property
-    def DATABASE_URL(self) -> str:
-        """Construct database URL from PostgreSQL parameters"""
-        return f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+
     
     @property
     def is_production(self) -> bool:

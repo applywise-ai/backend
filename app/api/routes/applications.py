@@ -12,7 +12,7 @@ from ...schemas.application import (
     GenerateCustomAnswerResponse
 )
 from ...db.firestore import firestore_manager
-from ...db.postgres import postgres_manager
+from ...db.supabase import supabase_manager
 from ...tasks.job_application import apply_to_job
 from ..dependencies import get_user_id
 from ...services.storage import storage_manager
@@ -362,7 +362,7 @@ async def generate_cover_letter(
             raise HTTPException(status_code=403, detail="Cover letter generation is only available for Pro members")
         
         # Get job description from postgres using job_id
-        job_data = postgres_manager.get_job_by_id(request.job_id)
+        job_data = supabase_manager.get_job_by_id(request.job_id)
         if not job_data:
             raise HTTPException(status_code=404, detail="Job not found")
         

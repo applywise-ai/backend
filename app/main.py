@@ -10,7 +10,7 @@ import sys
 import os
 from contextlib import asynccontextmanager
 from .services.browser import browser_pool
-from .db.postgres import postgres_manager
+from .db.supabase import supabase_manager
 from .db.firestore import firestore_manager
 
 # Logging is now configured in app/__init__.py
@@ -59,7 +59,7 @@ async def lifespan(app: FastAPI):
         
         # Close database connections
         logger.info("🐘 Closing database connections...")
-        postgres_manager.cleanup()
+        supabase_manager.cleanup()
         
         # Close Firestore connections
         logger.info("🔥 Closing Firestore connections...")
@@ -105,7 +105,7 @@ def cleanup_resources():
         
         # Close database connections
         logger.info("🐘 Closing database connections...")
-        postgres_manager.cleanup()
+        supabase_manager.cleanup()
         
         # Close Firestore connections
         logger.info("🔥 Closing Firestore connections...")
