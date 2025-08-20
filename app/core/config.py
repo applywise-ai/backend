@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     REDIS_URL: str = Field(default="redis://localhost:6379/0", description="Redis connection URL")
     
     # Firebase Configuration
-    FIREBASE_CREDENTIALS_PATH: str = Field(default="", description="Path to Firebase service account JSON")
+    FIREBASE_CREDENTIALS: str = Field(default="", description="Firebase service account JSON as string")
     FIREBASE_STORAGE_BUCKET: str = Field(default="", description="Firebase Storage bucket name")
     
     # Application Configuration

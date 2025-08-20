@@ -38,7 +38,7 @@ services:
       - ENVIRONMENT=production
       
       # Firebase Configuration
-      - FIREBASE_CREDENTIALS_PATH=${FIREBASE_CREDENTIALS_PATH}
+      - FIREBASE_CREDENTIALS=${FIREBASE_CREDENTIALS}
       - FIREBASE_STORAGE_BUCKET=${FIREBASE_STORAGE_BUCKET}
       
       # AWS Configuration

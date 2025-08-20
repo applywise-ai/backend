@@ -1,5 +1,6 @@
 import logging
 import os
+import json
 from typing import Optional, Dict, Any, List
 from datetime import datetime
 from firebase_admin import firestore
@@ -38,13 +39,20 @@ class FirestoreManager:
                 logger.info(f"✅ Firebase app '{self.app_name}' already initialized, reusing existing app")
             except ValueError:
                 # Our app doesn't exist, so we can initialize it
-                if settings.FIREBASE_CREDENTIALS_PATH:
-                    logger.info(f"📁 Loading Firebase credentials from: {settings.FIREBASE_CREDENTIALS_PATH}")
-                    cred = credentials.Certificate(settings.FIREBASE_CREDENTIALS_PATH)
-                    firebase_admin.initialize_app(cred, name=self.app_name)
-                    logger.info(f"✅ Firebase Admin SDK initialized with service account credentials (app: {self.app_name})")
+                if settings.FIREBASE_CREDENTIALS:
+                    logger.info("🔑 Loading Firebase credentials from environment variable")
+                    try:
+                        # Parse the JSON credentials from the environment variable
+                        credentials_dict = json.loads(settings.FIREBASE_CREDENTIALS)
+                        cred = credentials.Certificate(credentials_dict)
+                        firebase_admin.initialize_app(cred, name=self.app_name)
+                        logger.info(f"✅ Firebase Admin SDK initialized with service account credentials (app: {self.app_name})")
+                    except json.JSONDecodeError as e:
+                        error_msg = f"Invalid JSON format in FIREBASE_CREDENTIALS: {e}"
+                        logger.error(f"❌ {error_msg}")
+                        raise Exception(error_msg)
                 else:
-                    logger.info("🔑 No Firebase credentials file found, using default credentials")
+                    logger.info("🔑 No Firebase credentials found, using default credentials")
                     firebase_admin.initialize_app(name=self.app_name)
                     logger.info(f"✅ Firebase Admin SDK initialized with default credentials (app: {self.app_name})")
             
@@ -52,13 +60,8 @@ class FirestoreManager:
             logger.info("🎯 Firestore client created successfully")
             logger.info("✅ Firestore initialization completed successfully")
             
-        except FileNotFoundError as e:
-            error_msg = f"Firebase credentials file not found: {settings.FIREBASE_CREDENTIALS_PATH}"
-            logger.error(f"❌ {error_msg}")
-            raise Exception(error_msg)
-            
         except ValueError as e:
-            error_msg = f"Invalid Firebase credentials file format: {e}"
+            error_msg = f"Invalid Firebase credentials format: {e}"
             logger.error(f"❌ {error_msg}")
             raise Exception(error_msg)
             

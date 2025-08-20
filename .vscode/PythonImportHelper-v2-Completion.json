@@ -2455,7 +2455,7 @@
         "kind": 6,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "class Settings(BaseSettings):\n    \"\"\"\n    Application settings using pure Pydantic approach.\n    Environment variables are automatically loaded and validated.\n    \"\"\"\n    # Redis Configuration\n    REDIS_URL: str = Field(default=\"redis://localhost:6379/0\", description=\"Redis connection URL\")\n    # Firebase Configuration\n    FIREBASE_CREDENTIALS_PATH: str = Field(default=\"\", description=\"Path to Firebase service account JSON\")\n    FIREBASE_STORAGE_BUCKET: str = Field(default=\"\", description=\"Firebase Storage bucket name\")",
+        "peekOfCode": "class Settings(BaseSettings):\n    \"\"\"\n    Application settings using pure Pydantic approach.\n    Environment variables are automatically loaded and validated.\n    \"\"\"\n    # Redis Configuration\n    REDIS_URL: str = Field(default=\"redis://localhost:6379/0\", description=\"Redis connection URL\")\n    # Firebase Configuration\n    FIREBASE_CREDENTIALS: str = Field(default=\"\", description=\"Firebase service account JSON as string\")\n    FIREBASE_STORAGE_BUCKET: str = Field(default=\"\", description=\"Firebase Storage bucket name\")",
         "detail": "app.core.config",
         "documentation": {}
     },
