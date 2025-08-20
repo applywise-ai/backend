@@ -140,6 +140,10 @@ app.include_router(applications.router, prefix="/applications", tags=["applicati
 app.include_router(websocket.router, prefix="/ws", tags=["websocket"])
 app.include_router(jobs.router, prefix="/jobs", tags=["jobs"])
 
+# Import and include Stripe router
+from .api.routes import stripe
+app.include_router(stripe.router, prefix="/stripe", tags=["stripe"])
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000) 

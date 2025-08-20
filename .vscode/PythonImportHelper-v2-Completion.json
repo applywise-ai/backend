@@ -64,6 +64,38 @@
         "documentation": {}
     },
     {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "WebSocket",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -397,6 +429,14 @@
     },
     {
         "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
         "importPath": "typing",
         "description": "typing",
         "isExtraImport": true,
@@ -1185,6 +1225,15 @@
         "documentation": {}
     },
     {
+        "label": "stripe",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "stripe",
+        "description": "stripe",
+        "detail": "stripe",
+        "documentation": {}
+    },
+    {
         "label": "asyncio",
         "kind": 6,
         "isExtraImport": true,
@@ -1275,6 +1324,14 @@
     },
     {
         "label": "field_validator",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
         "importPath": "pydantic",
         "description": "pydantic",
         "isExtraImport": true,
@@ -2333,6 +2390,33 @@
     {
         "label": "router",
         "kind": 5,
+        "importPath": "app.api.routes.stripe",
+        "description": "app.api.routes.stripe",
+        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\n# Stripe is initialized globally in app/__init__.py\n# Disable Stripe internal INFO logging\nstripe.log = logging.getLogger(\"stripe\")\nstripe.log.setLevel(logging.WARNING)\nstripe.log.addHandler(logging.StreamHandler())\n@router.post(\"/customer\", response_model=GetCustomerResponse)\nasync def get_or_create_customer(\n    request: GetCustomerRequest,",
+        "detail": "app.api.routes.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.api.routes.stripe",
+        "description": "app.api.routes.stripe",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Stripe is initialized globally in app/__init__.py\n# Disable Stripe internal INFO logging\nstripe.log = logging.getLogger(\"stripe\")\nstripe.log.setLevel(logging.WARNING)\nstripe.log.addHandler(logging.StreamHandler())\n@router.post(\"/customer\", response_model=GetCustomerResponse)\nasync def get_or_create_customer(\n    request: GetCustomerRequest,\n    user_id: str = Depends(get_user_id)",
+        "detail": "app.api.routes.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "stripe.log",
+        "kind": 5,
+        "importPath": "app.api.routes.stripe",
+        "description": "app.api.routes.stripe",
+        "peekOfCode": "stripe.log = logging.getLogger(\"stripe\")\nstripe.log.setLevel(logging.WARNING)\nstripe.log.addHandler(logging.StreamHandler())\n@router.post(\"/customer\", response_model=GetCustomerResponse)\nasync def get_or_create_customer(\n    request: GetCustomerRequest,\n    user_id: str = Depends(get_user_id)\n):\n    \"\"\"\n    Get or create a Stripe customer ID for a user.",
+        "detail": "app.api.routes.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
         "importPath": "app.api.routes.websocket",
         "description": "app.api.routes.websocket",
         "peekOfCode": "router = APIRouter()\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    await websocket.accept()\n    pubsub = redis_client.pubsub()\n    await pubsub.subscribe(f\"user:{user_id}\")\n    try:\n        while True:\n            message = await pubsub.get_message(ignore_subscribe_messages=True)\n            if message:",
@@ -2817,6 +2901,150 @@
         "documentation": {}
     },
     {
+        "label": "GetCustomerRequest",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class GetCustomerRequest(BaseModel):\n    \"\"\"Request model for getting/creating a Stripe customer\"\"\"\n    email: Optional[str] = None\nclass GetCustomerResponse(BaseModel):\n    \"\"\"Response model for Stripe customer operations\"\"\"\n    customer_id: str\n    created: bool = False  # True if customer was newly created, False if existing\n    message: str\nclass CancelSubscriptionRequest(BaseModel):\n    \"\"\"Request model for canceling a subscription\"\"\"",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "GetCustomerResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class GetCustomerResponse(BaseModel):\n    \"\"\"Response model for Stripe customer operations\"\"\"\n    customer_id: str\n    created: bool = False  # True if customer was newly created, False if existing\n    message: str\nclass CancelSubscriptionRequest(BaseModel):\n    \"\"\"Request model for canceling a subscription\"\"\"\n    user_id: str\nclass CancelSubscriptionResponse(BaseModel):\n    \"\"\"Response model for subscription cancellation\"\"\"",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "CancelSubscriptionRequest",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class CancelSubscriptionRequest(BaseModel):\n    \"\"\"Request model for canceling a subscription\"\"\"\n    user_id: str\nclass CancelSubscriptionResponse(BaseModel):\n    \"\"\"Response model for subscription cancellation\"\"\"\n    subscription_id: str\n    status: str\n    canceled_at: str\n    message: str\nclass UpdateSubscriptionRequest(BaseModel):",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "CancelSubscriptionResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class CancelSubscriptionResponse(BaseModel):\n    \"\"\"Response model for subscription cancellation\"\"\"\n    subscription_id: str\n    status: str\n    canceled_at: str\n    message: str\nclass UpdateSubscriptionRequest(BaseModel):\n    \"\"\"Request model for updating a subscription\"\"\"\n    user_id: str\n    new_price_id: Optional[str] = None",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateSubscriptionRequest",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class UpdateSubscriptionRequest(BaseModel):\n    \"\"\"Request model for updating a subscription\"\"\"\n    user_id: str\n    new_price_id: Optional[str] = None\n    quantity: Optional[int] = None\n    proration_behavior: Optional[str] = \"none\"  # create_prorations, none, always_invoice\nclass UpdateSubscriptionResponse(BaseModel):\n    \"\"\"Response model for subscription updates\"\"\"\n    subscription_id: str\n    status: str",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "UpdateSubscriptionResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class UpdateSubscriptionResponse(BaseModel):\n    \"\"\"Response model for subscription updates\"\"\"\n    subscription_id: str\n    status: str\n    message: str\nclass GetSubscriptionInfoRequest(BaseModel):\n    \"\"\"Request model for getting subscription info\"\"\"\n    user_id: str\nclass PendingUpdate(BaseModel):\n    \"\"\"Model for pending subscription updates\"\"\"",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "GetSubscriptionInfoRequest",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class GetSubscriptionInfoRequest(BaseModel):\n    \"\"\"Request model for getting subscription info\"\"\"\n    user_id: str\nclass PendingUpdate(BaseModel):\n    \"\"\"Model for pending subscription updates\"\"\"\n    new_plan_name: Optional[str] = None\n    new_price: Optional[float] = None\n    effective_date: str  # Format: MM/DD/YYYY\n    currency: str\nclass GetSubscriptionInfoResponse(BaseModel):",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "PendingUpdate",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class PendingUpdate(BaseModel):\n    \"\"\"Model for pending subscription updates\"\"\"\n    new_plan_name: Optional[str] = None\n    new_price: Optional[float] = None\n    effective_date: str  # Format: MM/DD/YYYY\n    currency: str\nclass GetSubscriptionInfoResponse(BaseModel):\n    \"\"\"Response model for subscription info\"\"\"\n    subscription_id: str\n    status: str",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "GetSubscriptionInfoResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class GetSubscriptionInfoResponse(BaseModel):\n    \"\"\"Response model for subscription info\"\"\"\n    subscription_id: str\n    status: str\n    renewal_date: str  # Format: MM/DD/YYYY\n    price: float\n    currency: str\n    plan_name: Optional[str] = None\n    cancel_at_period_end: bool\n    has_pending_update: bool = False",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "WebhookResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class WebhookResponse(BaseModel):\n    \"\"\"Response model for webhook processing\"\"\"\n    received: bool\n    event_type: str\n    processed: bool\n    message: str\nclass GetSessionInfoRequest(BaseModel):\n    \"\"\"Request model for getting session info\"\"\"\n    session_id: str\nclass GetSessionInfoResponse(BaseModel):",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "GetSessionInfoRequest",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class GetSessionInfoRequest(BaseModel):\n    \"\"\"Request model for getting session info\"\"\"\n    session_id: str\nclass GetSessionInfoResponse(BaseModel):\n    \"\"\"Response model for session info\"\"\"\n    session_id: str\n    payment_status: str\n    is_paid: bool\n    message: str\nclass DeleteCustomerRequest(BaseModel):",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "GetSessionInfoResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class GetSessionInfoResponse(BaseModel):\n    \"\"\"Response model for session info\"\"\"\n    session_id: str\n    payment_status: str\n    is_paid: bool\n    message: str\nclass DeleteCustomerRequest(BaseModel):\n    \"\"\"Request model for deleting a customer\"\"\"\n    user_id: str\nclass DeleteCustomerResponse(BaseModel):",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteCustomerRequest",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class DeleteCustomerRequest(BaseModel):\n    \"\"\"Request model for deleting a customer\"\"\"\n    user_id: str\nclass DeleteCustomerResponse(BaseModel):\n    \"\"\"Response model for customer deletion\"\"\"\n    user_id: str\n    stripe_deleted: bool\n    firestore_deleted: bool\n    message: str\nclass RenewSubscriptionRequest(BaseModel):",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "DeleteCustomerResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class DeleteCustomerResponse(BaseModel):\n    \"\"\"Response model for customer deletion\"\"\"\n    user_id: str\n    stripe_deleted: bool\n    firestore_deleted: bool\n    message: str\nclass RenewSubscriptionRequest(BaseModel):\n    \"\"\"Request model for renewing a subscription\"\"\"\n    user_id: str\nclass RenewSubscriptionResponse(BaseModel):",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "RenewSubscriptionRequest",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class RenewSubscriptionRequest(BaseModel):\n    \"\"\"Request model for renewing a subscription\"\"\"\n    user_id: str\nclass RenewSubscriptionResponse(BaseModel):\n    \"\"\"Response model for subscription renewal\"\"\"\n    subscription_id: str\n    status: str\n    current_period_end: str\n    message: str",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
+        "label": "RenewSubscriptionResponse",
+        "kind": 6,
+        "importPath": "app.schemas.stripe",
+        "description": "app.schemas.stripe",
+        "peekOfCode": "class RenewSubscriptionResponse(BaseModel):\n    \"\"\"Response model for subscription renewal\"\"\"\n    subscription_id: str\n    status: str\n    current_period_end: str\n    message: str",
+        "detail": "app.schemas.stripe",
+        "documentation": {}
+    },
+    {
         "label": "JobFetcher",
         "kind": 6,
         "importPath": "app.services.fetch_jobs.main",
@@ -2992,7 +3220,7 @@
         "kind": 6,
         "importPath": "app.services.job_application.main",
         "description": "app.services.job_application.main",
-        "peekOfCode": "class JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None, job_description: str = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        self.job_description = job_description\n        self.logger = logging.getLogger(__name__)\n        # Validate required environment variables\n        self._validate_environment()",
+        "peekOfCode": "class JobApplicationService:\n    \"\"\"Service class for handling job applications across different portals.\"\"\"\n    def __init__(self, driver: CustomWebDriver, profile: dict = None, job_description: str = None):\n        \"\"\"Initialize the job application service with a driver and user profile.\"\"\"\n        self.driver = driver\n        self.profile = profile or {}\n        self.job_description = job_description\n        self.logger = logging.getLogger(__name__)\n        self.temp_file_paths = []\n        # Portal configuration - easily extensible",
         "detail": "app.services.job_application.main",
         "documentation": {}
     },

@@ -43,4 +43,17 @@ try:
     from app.services.storage import storage_manager
     logger.info("✅ Storage Manager initialized")
 except Exception as e:
-    logger.error(f"❌ Failed to initialize Storage Manager: {e}") 
+    logger.error(f"❌ Failed to initialize Storage Manager: {e}")
+
+# Initialize Stripe
+try:
+    import stripe
+    from app.core.config import settings
+    
+    if settings.STRIPE_SECRET_KEY:
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        logger.info("✅ Stripe initialized with API key")
+    else:
+        logger.warning("⚠️ Stripe API key not configured")
+except Exception as e:
+    logger.error(f"❌ Failed to initialize Stripe: {e}") 

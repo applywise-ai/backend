@@ -49,9 +49,6 @@ class AIAssistant:
     def _init_gemini(self, override_gemini_model: Optional[str] = None):
         """Initialize Gemini client."""
         gemini_api_key = getattr(settings, 'GOOGLE_API_KEY', None)
-        if not gemini_api_key:
-            raise ValueError("Google API key is required")
-        
         genai.configure(api_key=gemini_api_key)
         
         # Default generation config for Gemini

@@ -356,6 +356,130 @@ class FirestoreManager:
             logger.error(f"Failed to create/update application: {e}")
             raise
 
+    def get_stripe_customer(self, user_id: str) -> Optional[str]:
+        """Get Stripe customer ID from Firestore stripe_customers table"""
+        try:
+            doc_ref = self.db.collection('stripe_customers').document(user_id)
+            doc = doc_ref.get()
+            
+            if doc.exists:
+                data = doc.to_dict()
+                return data.get('customer_id')
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error retrieving Stripe customer from Firestore: {e}")
+            raise
+
+    def store_stripe_customer(self, user_id: str, customer_id: str) -> None:
+        """Store Stripe customer ID in Firestore stripe_customers table"""
+        try:
+            doc_ref = self.db.collection('stripe_customers').document(user_id)
+            doc_ref.set({
+                'customer_id': customer_id,
+                'created_at': datetime.utcnow(),
+                'updated_at': datetime.utcnow()
+            })
+            
+            logger.info(f"Stored Stripe customer {customer_id} for user {user_id} in Firestore")
+            
+        except Exception as e:
+            logger.error(f"Error storing Stripe customer in Firestore: {e}")
+            raise
+
+    def get_active_subscription_id(self, user_id: str) -> Optional[str]:
+        """Get active subscription ID from Firestore stripe_customers table"""
+        try:
+            doc_ref = self.db.collection('stripe_customers').document(user_id)
+            doc = doc_ref.get()
+            
+            if doc.exists:
+                data = doc.to_dict()
+                return data.get('activeSubscriptionId')
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error retrieving active subscription ID from Firestore: {e}")
+            raise
+
+    def update_subscription_id(self, user_id: str, subscription_id: Optional[str] = None) -> None:
+        """Update active subscription ID in Firestore stripe_customers table"""
+        try:
+            doc_ref = self.db.collection('stripe_customers').document(user_id)
+            
+            # Get existing data to preserve it
+            doc = doc_ref.get()
+            if doc.exists:
+                data = doc.to_dict()
+            else:
+                data = {}
+            
+            # Update subscription ID and timestamp
+            data.update({
+                'activeSubscriptionId': subscription_id,
+                'updated_at': datetime.utcnow()
+            })
+            
+            doc_ref.set(data)
+            
+            logger.info(f"Updated subscription ID for user {user_id}: {subscription_id}")
+            
+        except Exception as e:
+            logger.error(f"Error updating subscription ID in Firestore: {e}")
+            raise
+
+    def set_pro_member_status(self, user_id: str, is_pro: bool) -> None:
+        """Set isProMember status in users table"""
+        try:
+            # Update isProMember in users collection
+            user_doc_ref = self.db.collection('users').document(user_id)
+            user_doc_ref.update({
+                'isProMember': is_pro,
+                'updated_at': datetime.utcnow()
+            })
+            
+            logger.info(f"Set isProMember to {is_pro} for user {user_id}")
+            
+        except Exception as e:
+            logger.error(f"Error setting pro member status in Firestore: {e}")
+            raise
+
+    def get_user_by_customer_id(self, customer_id: str) -> Optional[str]:
+        """Get user_id by Stripe customer_id"""
+        try:
+            # Query the stripe_customers collection to find the user with this customer_id
+            query = self.db.collection('stripe_customers').where('customer_id', '==', customer_id).limit(1)
+            docs = query.get()
+            
+            for doc in docs:
+                return doc.id  # The document ID is the user_id
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error getting user by customer ID: {e}")
+            raise
+
+    def delete_stripe_customer(self, user_id: str) -> bool:
+        """Delete Stripe customer record from Firestore"""
+        try:
+            doc_ref = self.db.collection('stripe_customers').document(user_id)
+            doc = doc_ref.get()
+            
+            if doc.exists:
+                doc_ref.delete()
+                logger.info(f"Deleted Stripe customer record for user {user_id} from Firestore")
+                return True
+            else:
+                logger.warning(f"No Stripe customer record found for user {user_id} in Firestore")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error deleting Stripe customer from Firestore: {e}")
+            raise
+
     def cleanup(self):
         """Clean up Firebase app resources"""
         try:

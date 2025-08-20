@@ -57,6 +57,11 @@ class Settings(BaseSettings):
     # Google Gemini Configuration
     GOOGLE_API_KEY: str = Field(default="", description="Google API key for Gemini AI")
     
+    # Stripe Configuration
+    STRIPE_SECRET_KEY: str = Field(default="", description="Stripe secret key")
+    STRIPE_PUBLISHABLE_KEY: str = Field(default="", description="Stripe publishable key")
+    STRIPE_WEBHOOK_SECRET: str = Field(default="", description="Stripe webhook secret")
+    
     @validator('CORS_ORIGINS', pre=True)
     def parse_cors_origins(cls, v):
         """Parse CORS origins from string or list"""

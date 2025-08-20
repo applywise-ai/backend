@@ -23,8 +23,6 @@ class JobApplicationService:
         self.profile = profile or {}
         self.job_description = job_description
         self.logger = logging.getLogger(__name__)
-        # Validate required environment variables
-        self._validate_environment()
 
         self.temp_file_paths = []
         
@@ -62,26 +60,7 @@ class JobApplicationService:
             }
         }
     
-    def _validate_environment(self):
-        """Validate that required environment variables are set."""
-        # Change to gemini api key
-        required_env_vars = {
-            'GOOGLE_API_KEY': 'Gemini API key is required for AI-powered form filling'
-        }
-        
-        missing_vars = []
-        for var_name, description in required_env_vars.items():
-            if not os.getenv(var_name):
-                missing_vars.append(f"{var_name}: {description}")
-        
-        if missing_vars:
-            error_msg = "Missing required environment variables:\n" + "\n".join(f"  - {var}" for var in missing_vars)
-            self.logger.error(error_msg)
-            raise EnvironmentError(error_msg)
-        
-        # Set Gemini API key
-        os.environ['GOOGLE_API_KEY'] = os.getenv('GOOGLE_API_KEY')
-        self.logger.info("Environment variables validated successfully")
+
     
     def _wait_for_page_load(self):
         """Wait for the page to load completely."""
