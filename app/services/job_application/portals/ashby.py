@@ -486,6 +486,7 @@ class Ashby(BasePortal):
                 if ai_result is not None:
                     value, is_open_ended = ai_result
                     self.form_questions[question_id]['pruned'] = True
+                    self.form_questions[question_id]['answer'] = value
                     self.form_questions[question_id]['ai_custom'] = is_open_ended
 
             self.logger.info(f"Filling Ashby dropdown with value: {value}")

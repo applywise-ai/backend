@@ -1793,6 +1793,15 @@
         "documentation": {}
     },
     {
+        "label": "shutil",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "shutil",
+        "description": "shutil",
+        "detail": "shutil",
+        "documentation": {}
+    },
+    {
         "label": "undetected_chromedriver",
         "kind": 6,
         "isExtraImport": true,
@@ -1832,6 +1841,15 @@
         "description": "celery",
         "isExtraImport": true,
         "detail": "celery",
+        "documentation": {}
+    },
+    {
+        "label": "ssl",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "ssl",
+        "description": "ssl",
+        "detail": "ssl",
         "documentation": {}
     },
     {
@@ -2091,7 +2109,7 @@
         "kind": 6,
         "importPath": "app.core.config",
         "description": "app.core.config",
-        "peekOfCode": "class Settings(BaseSettings):\n    \"\"\"\n    Application settings using pure Pydantic approach.\n    Environment variables are automatically loaded and validated.\n    \"\"\"\n    # Redis Configuration\n    REDIS_URL: str = Field(default=\"redis://localhost:6379/0\", description=\"Redis connection URL\")\n    # Firebase Configuration\n    FIREBASE_CREDENTIALS: str = Field(default=\"\", description=\"Firebase service account JSON as string\")\n    FIREBASE_STORAGE_BUCKET: str = Field(default=\"\", description=\"Firebase Storage bucket name\")",
+        "peekOfCode": "class Settings(BaseSettings):\n    \"\"\"\n    Application settings using pure Pydantic approach.\n    Environment variables are automatically loaded and validated.\n    \"\"\"\n    # Redis Configuration (Upstash)\n    REDIS_URL: str = Field(default=\"\", description=\"Upstash Redis connection URL with token\")\n    # Firebase Configuration\n    FIREBASE_CREDENTIALS: str = Field(default=\"\", description=\"Firebase service account JSON as string\")\n    FIREBASE_STORAGE_BUCKET: str = Field(default=\"\", description=\"Firebase Storage bucket name\")",
         "detail": "app.core.config",
         "documentation": {}
     },
@@ -3005,11 +3023,20 @@
         "documentation": {}
     },
     {
+        "label": "get_chrome_binary_path",
+        "kind": 2,
+        "importPath": "app.services.browser",
+        "description": "app.services.browser",
+        "peekOfCode": "def get_chrome_binary_path():\n    \"\"\"\n    Detect the Chrome binary path based on the environment\n    \"\"\"\n    # Common Chrome binary paths for different environments\n    chrome_paths = [\n        \"/usr/bin/google-chrome\",  # Docker/Linux (installed via apt)\n        \"/usr/bin/google-chrome-stable\",  # Alternative Linux path\n        \"/usr/bin/chromium-browser\",  # Chromium fallback\n        \"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\",  # macOS",
+        "detail": "app.services.browser",
+        "documentation": {}
+    },
+    {
         "label": "logger",
         "kind": 5,
         "importPath": "app.services.browser",
         "description": "app.services.browser",
-        "peekOfCode": "logger = logging.getLogger(__name__)\nclass CustomWebDriver(uc.Chrome):\n    \"\"\"Custom WebDriver class that extends the Undetected Chrome WebDriver with additional functionality.\"\"\"\n    def __init__(self, headless=None, options=None, service=None):\n        \"\"\"Initialize the Custom Undetected Chrome WebDriver with fallback\"\"\"\n        try:\n            if options is None:\n                options = self._get_custom_chrome_options(headless)\n            # Determine headless mode\n            if headless is None:",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef get_chrome_binary_path():\n    \"\"\"\n    Detect the Chrome binary path based on the environment\n    \"\"\"\n    # Common Chrome binary paths for different environments\n    chrome_paths = [\n        \"/usr/bin/google-chrome\",  # Docker/Linux (installed via apt)\n        \"/usr/bin/google-chrome-stable\",  # Alternative Linux path\n        \"/usr/bin/chromium-browser\",  # Chromium fallback",
         "detail": "app.services.browser",
         "documentation": {}
     },
@@ -3063,8 +3090,17 @@
         "kind": 5,
         "importPath": "app.services.websocket",
         "description": "app.services.websocket",
-        "peekOfCode": "redis_client = aioredis.from_url(settings.get_redis_url(db=1), decode_responses=True)\ndef check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:\n    \"\"\"\n    Check if all required form questions have non-None answers\n    Args:\n        form_questions: List of form questions to check\n    Returns:\n        True if all required questions have answers, False otherwise\n    \"\"\"\n    if not form_questions:",
+        "peekOfCode": "redis_client = aioredis.from_url(settings.get_redis_url(db=0), decode_responses=True)\ndef check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:\n    \"\"\"\n    Check if all required form questions have non-None answers\n    Args:\n        form_questions: List of form questions to check\n    Returns:\n        True if all required questions have answers, False otherwise\n    \"\"\"\n    if not form_questions:",
         "detail": "app.services.websocket",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "app.tasks.celery_app",
+        "description": "app.tasks.celery_app",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# Log the Redis URLs being used\nlogger.info(f\"🔧 Celery Broker URL: {settings.CELERY_BROKER_URL}\")\nlogger.info(f\"🔧 Celery Result Backend: {settings.CELERY_RESULT_BACKEND}\")\n# Create Celery app\ncelery_app = Celery(\n    \"applywise\",\n    broker=settings.CELERY_BROKER_URL,\n    backend=settings.CELERY_RESULT_BACKEND,\n    include=[\"app.tasks.job_application\"]",
+        "detail": "app.tasks.celery_app",
         "documentation": {}
     },
     {

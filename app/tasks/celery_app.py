@@ -1,5 +1,13 @@
 from celery import Celery
 from app.core.config import settings
+import logging
+import ssl
+
+logger = logging.getLogger(__name__)
+
+# Log the Redis URLs being used
+logger.info(f"🔧 Celery Broker URL: {settings.CELERY_BROKER_URL}")
+logger.info(f"🔧 Celery Result Backend: {settings.CELERY_RESULT_BACKEND}")
 
 # Create Celery app
 celery_app = Celery(
@@ -25,4 +33,19 @@ celery_app.conf.update(
     # Use threads instead of fork to avoid macOS Objective-C runtime issues
     worker_pool='threads',
     worker_concurrency=4,  # Number of threads
+    # SSL configuration for rediss:// URLs (Upstash Redis)
+    broker_use_ssl={
+        'ssl_cert_reqs': ssl.CERT_NONE,
+        'ssl_ca_certs': None,
+        'ssl_certfile': None,
+        'ssl_keyfile': None,
+        'ssl_check_hostname': False,
+    },
+    redis_backend_use_ssl={
+        'ssl_cert_reqs': ssl.CERT_NONE,
+        'ssl_ca_certs': None,
+        'ssl_certfile': None,
+        'ssl_keyfile': None,
+        'ssl_check_hostname': False,
+    },
 )

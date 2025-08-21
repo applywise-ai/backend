@@ -5,7 +5,7 @@ import asyncio
 from typing import List, Optional
 from app.schemas.application import FormQuestion
 
-redis_client = aioredis.from_url(settings.get_redis_url(db=1), decode_responses=True)
+redis_client = aioredis.from_url(settings.get_redis_url(db=0), decode_responses=True)
 
 def check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:
     """

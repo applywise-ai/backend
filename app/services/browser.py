@@ -1,5 +1,7 @@
 import threading
 import time
+import os
+import shutil
 from typing import Dict
 import undetected_chromedriver as uc
 from selenium.webdriver.common.by import By
@@ -11,6 +13,42 @@ from app.core.config import settings
 import logging
 
 logger = logging.getLogger(__name__)
+
+
+def get_chrome_binary_path():
+    """
+    Detect the Chrome binary path based on the environment
+    """
+    # Common Chrome binary paths for different environments
+    chrome_paths = [
+        "/usr/bin/google-chrome",  # Docker/Linux (installed via apt)
+        "/usr/bin/google-chrome-stable",  # Alternative Linux path
+        "/usr/bin/chromium-browser",  # Chromium fallback
+        "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",  # macOS
+        "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",  # Windows
+        "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",  # Windows 32-bit
+    ]
+    
+    # Check if we can find chrome in PATH
+    chrome_in_path = shutil.which("google-chrome") or shutil.which("google-chrome-stable") or shutil.which("chromium-browser")
+    if chrome_in_path:
+        logger.info(f"Found Chrome in PATH: {chrome_in_path}")
+        return chrome_in_path
+    
+    # Check common installation paths
+    for path in chrome_paths:
+        if os.path.exists(path):
+            logger.info(f"Found Chrome at: {path}")
+            return path
+    
+    # If production environment (Docker), expect Chrome to be installed
+    if settings.is_production or os.path.exists("/.dockerenv"):
+        logger.warning("Running in production/Docker but Chrome not found at expected paths")
+        # Return None to let undetected-chromedriver handle it
+        return None
+    
+    logger.warning("Chrome binary not found, letting undetected-chromedriver auto-detect")
+    return None
 
 
 class CustomWebDriver(uc.Chrome):
@@ -26,11 +64,22 @@ class CustomWebDriver(uc.Chrome):
             if headless is None:
                 headless = settings.HEADLESS_BROWSER
 
-            super().__init__(options=options, headless=headless, version_main=139, browser_executable_path="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+            # Get Chrome binary path based on environment
+            chrome_binary = get_chrome_binary_path()
+            
+            # Initialize with detected Chrome path
+            if chrome_binary:
+                logger.info(f"Initializing Chrome with binary: {chrome_binary}")
+                super().__init__(options=options, headless=headless, version_main=None, browser_executable_path=chrome_binary)
+            else:
+                logger.info("Initializing Chrome with auto-detection")
+                super().__init__(options=options, headless=headless, version_main=None)
+            
             self.apply_stealth()
             
         except Exception as e:
-            logger.warning(f"Failed to initialize undetected-chromedriver: {e}")
+            logger.error(f"Failed to initialize undetected-chromedriver: {e}")
+            raise
 
     def _get_custom_chrome_options(self, headless=None):
         """Set up Chrome options for undetected Chrome"""
@@ -41,13 +90,20 @@ class CustomWebDriver(uc.Chrome):
         chrome_options.add_argument("--disable-dev-shm-usage")
         chrome_options.add_argument("--window-size=1920,1080")
         
-        # Disable images and CSS for faster loading
-        # prefs = {
-        #     "profile.managed_default_content_settings.images": 2,
-        #     "profile.default_content_setting_values.notifications": 2
-        # }
-        # chrome_options.add_experimental_option("prefs", prefs)
-        
+        # Additional options for Docker/production environments
+        if settings.is_production or os.path.exists("/.dockerenv"):
+            logger.info("Adding Docker-specific Chrome options")
+            chrome_options.add_argument("--disable-gpu")
+            chrome_options.add_argument("--disable-software-rasterizer")
+            chrome_options.add_argument("--disable-background-timer-throttling")
+            chrome_options.add_argument("--disable-backgrounding-occluded-windows")
+            chrome_options.add_argument("--disable-renderer-backgrounding")
+            chrome_options.add_argument("--disable-features=TranslateUI")
+            chrome_options.add_argument("--disable-ipc-flooding-protection")
+            chrome_options.add_argument("--disable-extensions")
+            chrome_options.add_argument("--disable-plugins")
+            chrome_options.add_argument("--remote-debugging-port=9222")
+
         return chrome_options
 
     def apply_stealth(self):
@@ -119,24 +175,6 @@ class BrowserPool:
         # Start cleanup thread
         self.cleanup_thread = threading.Thread(target=self._cleanup_inactive_drivers, daemon=True)
         self.cleanup_thread.start()
-    
-    def get_chrome_options(self) -> uc.ChromeOptions:
-        """Configure Chrome options for undetected automation"""
-        options = uc.ChromeOptions()
-        
-        # Basic options (undetected-chromedriver handles most stealth automatically)
-        options.add_argument("--no-sandbox")
-        options.add_argument("--disable-dev-shm-usage")
-        options.add_argument("--window-size=1920,1080")
-        
-        # # Disable images and CSS for faster loading
-        # prefs = {
-        #     "profile.managed_default_content_settings.images": 2,
-        #     "profile.default_content_setting_values.notifications": 2
-        # }
-        # options.add_experimental_option("prefs", prefs)
-        
-        return options
 
     def get_driver(self, worker_id: str) -> CustomWebDriver:
         """Get or create a Custom Chrome driver for the worker"""

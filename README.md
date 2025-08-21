@@ -16,9 +16,9 @@ Backend service for ApplyWise job application automation platform.
          │                       │                       │
          ▼                       ▼                       ▼
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   PostgreSQL    │    │      Redis      │    │  Firebase Storage│
-│                 │    │                 │    │                 │
-│ • Users         │    │ • Task Queue    │    │ • Screenshots   │
+│    Supabase     │    │  Upstash Redis  │    │  Firebase Storage│
+│   PostgreSQL    │    │                 │    │                 │
+│ • Jobs Table    │    │ • Task Queue    │    │ • Screenshots   │
 │ • Applications  │    │ • Results Cache │    │ • File Storage  │
 │ • Logs          │    │ • Session Data  │    │ • Public URLs   │
 │ • Job Dedup     │    │                 │    │                 │
@@ -28,11 +28,11 @@ Backend service for ApplyWise job application automation platform.
 ## 🚀 Features
 
 - **Fast API Server**: FastAPI with async support and automatic OpenAPI docs
-- **Task Queue**: Celery with Redis for background job processing
+- **Task Queue**: Celery with Upstash Redis for background job processing
 - **Browser Pool**: Persistent Chrome drivers to avoid cold starts
 - **Multi-Site Support**: LinkedIn, Indeed, Greenhouse, and generic job sites
 - **Screenshot Capture**: Automatic screenshots stored in Firebase Storage
-- **PostgreSQL Database**: User tables with application relationships and duplicate detection
+- **Supabase Database**: PostgreSQL-based with native client and real-time capabilities
 - **Docker Ready**: Complete containerization with Docker Compose
 - **Monitoring**: Celery Flower for task monitoring
 - **Scalable**: Easy horizontal scaling of workers
@@ -40,10 +40,10 @@ Backend service for ApplyWise job application automation platform.
 ## 📋 Prerequisites
 
 - Python 3.11+
-- Redis (installed locally or via Docker)
+- **Upstash Redis** account and instance ([Sign up here](https://upstash.com/))
+- **Supabase** project ([Sign up here](https://supabase.com/))
 - Firebase project with Storage enabled
 - Chrome browser installed
-- Tailscale account (for database access)
 
 ## 🛠️ Quick Start
 
@@ -78,7 +78,7 @@ If you prefer manual setup, create a `.env` file in the root directory:
 
 ### 4. Development
 
-Start the development environment (Redis + API server):
+Start the development environment (uses Upstash Redis + API server):
 ```bash
 make dev
 ```
@@ -94,7 +94,7 @@ make celery
 # New developer onboarding
 make onboard
 
-# Start development environment (Redis + API)
+# Start development environment (uses Upstash Redis + API)
 make dev
 
 # Start Celery worker
@@ -120,11 +120,31 @@ make help
 
 - **API**: http://localhost:8000
 - **API Documentation**: http://localhost:8000/docs
-- **Redis**: localhost:6379
+- **Upstash Redis**: [Console](https://console.upstash.com/)
 
-## 🔐 Database Access
+## ☁️ Cloud Services
 
-Our PostgreSQL database is hosted on AWS RDS in a private subnet. To access it:
+This application uses the following cloud services:
+
+### **Supabase** (Database)
+- **Service**: PostgreSQL database with real-time capabilities
+- **Website**: [supabase.com](https://supabase.com/)
+- **Console**: [app.supabase.com](https://app.supabase.com/)
+- **Purpose**: Stores jobs, applications, and user data
+
+### **Upstash Redis** (Cache & Task Queue)  
+- **Service**: Serverless Redis for Celery task queue and caching
+- **Website**: [upstash.com](https://upstash.com/)
+- **Console**: [console.upstash.com](https://console.upstash.com/)
+- **Purpose**: Task queue, session storage, and caching
+
+### **Firebase** (File Storage)
+- **Service**: Cloud storage for screenshots and files
+- **Website**: [firebase.google.com](https://firebase.google.com/)
+- **Console**: [console.firebase.google.com](https://console.firebase.google.com/)
+- **Purpose**: File storage with public URLs
+
+## 🔐 Database Access (Legacy)
 
 1. **For New Developers**: Run `make onboard` - this handles everything automatically
 2. **Manual Setup**: Install Tailscale and join our network to access the private database IP
@@ -366,7 +386,7 @@ Use the provided Dockerfile with ECS task definitions for AWS deployment.
 - **API Server**: 2-4 instances behind load balancer
 - **Workers**: 1-2 workers per CPU core
 - **Database**: Connection pooling with 10-20 connections per worker
-- **Redis**: Single instance handles 1000+ concurrent tasks
+- **Upstash Redis**: Serverless Redis handles 1000+ concurrent tasks with global edge caching
 
 ## 🔒 Security
 
@@ -398,10 +418,10 @@ Use the provided Dockerfile with ECS task definitions for AWS deployment.
    docker-compose build --no-cache worker
    ```
 
-3. **Redis Connection**
+3. **Upstash Redis Connection**
    ```bash
-   # Check Redis status
-   docker-compose logs redis
+   # Check Redis connectivity in your app logs
+   make dev  # Look for Redis connection messages
    ```
 
 4. **Worker Not Processing Tasks**

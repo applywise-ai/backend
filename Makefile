@@ -18,8 +18,8 @@ help:
 	@echo "  make celery       - Start Celery worker"
 	@echo "  make celery-health - Check Celery worker status"
 	@echo "  make health       - Check overall system health via API"
-	@echo "  make check-db     - Test database connectivity"
-	@echo "  make onboard      - Onboard new developer with database access"
+	@echo ""
+	@echo "  make onboard      - Onboard new developer with Supabase and Upstash access"
 	@echo "  make jobs         - Fetch jobs from the API"
 	@echo ""
 
@@ -68,13 +68,13 @@ clean:
 dev:
 	@echo "🔧 Starting development environment..."
 	@echo "✅ Activating virtual environment..."
-	@bash -c "source venv/bin/activate && echo '✅ Virtual environment activated.' && docker-compose up -d redis && echo '✅ Redis started. Starting API server on port 8000...' && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+	@bash -c "source venv/bin/activate && echo '✅ Virtual environment activated.' && echo '🌐 Using Upstash Redis (no local Redis needed)...' && echo '✅ Starting API server on port 8000...' && uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
 
 # Development environment with verbose logging
 dev-verbose:
 	@echo "🔧 Starting development environment with verbose logging..."
-	docker-compose up -d redis
-	@echo "✅ Redis started. Starting API server on port 8000 with verbose logging..."
+	@echo "🌐 Using Upstash Redis (no local Redis needed)..."
+	@echo "✅ Starting API server on port 8000 with verbose logging..."
 	uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
 
 # Install dependencies locally
@@ -87,10 +87,10 @@ scale-workers:
 	@echo "⚡ Scaling workers to 4 instances..."
 	docker-compose up -d --scale worker=4
 
-# Redis shell
+# Redis shell (Upstash - use their web console instead)
 redis-shell:
-	@echo "🔴 Opening Redis shell..."
-	docker-compose exec redis redis-cli
+	@echo "🔴 Redis shell not available for Upstash Redis..."
+	@echo "💡 Use the Upstash web console instead: https://console.upstash.com/"
 
 # View worker status
 workers:
@@ -104,9 +104,9 @@ health:
 
 # Start Celery worker
 celery:
-	@echo "🚀 Starting Celery worker..."
+	@echo "🚀 Starting Celery worker with Upstash Redis..."
 	@echo "✅ Activating virtual environment..."
-	@bash -c "source venv/bin/activate && echo '✅ Virtual environment activated.' && celery -A app.tasks.celery_app worker --loglevel=info"
+	@bash -c "source venv/bin/activate && echo '✅ Virtual environment activated.' && echo '🌐 Using Upstash Redis...' && celery -A app.tasks.celery_app worker --loglevel=info"
 
 # Check Celery worker status
 celery-health:
@@ -124,10 +124,10 @@ celery-health:
 	@echo "📈 Worker Stats:"
 	@celery -A app.tasks.celery_app inspect stats || echo "❌ Could not retrieve worker stats"
 
-# Database connectivity
+# Database connectivity (now handled by Supabase)
 check-db:
-	@echo "🔍 Checking database connectivity..."
-	python scripts/check_db_connection.py
+	@echo "🔍 Database connectivity is handled by Supabase..."
+	@echo "💡 Check your Supabase dashboard: https://app.supabase.com/"
 
 # New developer onboarding
 onboard:

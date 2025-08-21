@@ -1,17 +1,6 @@
 version: '3.8'
 
 services:
-  # Redis for Celery
-  redis:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 3s
-      retries: 3
-
   # FastAPI Application
   api:
     build: 
@@ -21,34 +10,42 @@ services:
     ports:
       - "8000:8000"
     environment: &common-env
-      # Redis Configuration
-      - REDIS_URL=redis://redis:6379/0
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      # Redis Configuration (Upstash)
+      - REDIS_URL=${REDIS_URL}
+      # CELERY_BROKER_URL and CELERY_RESULT_BACKEND use REDIS_URL
       
       # Supabase Configuration
       - SUPABASE_URL=${SUPABASE_URL}
       - SUPABASE_KEY=${SUPABASE_KEY}
       - SUPABASE_DB_PASSWORD=${SUPABASE_DB_PASSWORD}
       
-
-      
       # Application Configuration
-      - HEADLESS_BROWSER=true
-      - DEBUG=false
-      - ENVIRONMENT=production
+      - DEBUG=${DEBUG:-false}
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+      - HEADLESS_BROWSER=${HEADLESS_BROWSER:-true}
+      - BROWSER_TIMEOUT=${BROWSER_TIMEOUT:-10}
       
       # Firebase Configuration
       - FIREBASE_CREDENTIALS=${FIREBASE_CREDENTIALS}
       - FIREBASE_STORAGE_BUCKET=${FIREBASE_STORAGE_BUCKET}
       
-      # AWS Configuration
-      - AWS_REGION=${AWS_REGION}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-    depends_on:
-      redis:
-        condition: service_healthy
+      # CORS Configuration
+      - CORS_ORIGINS=${CORS_ORIGINS:-https://applywise.ca,http://localhost:3000}
+      
+      # Stripe Configuration
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_PUBLISHABLE_KEY=${STRIPE_PUBLISHABLE_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      
+      # OpenAI Configuration
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      
+      # Google Gemini Configuration
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      
+      # WebSocket Configuration
+      - WEBSOCKET_URL=${WEBSOCKET_URL:-ws://localhost:8001/ws}
+
     volumes:
       - ./app:/app/app
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
@@ -57,9 +54,7 @@ services:
   worker:
     image: applywise-backend  # Reuse the same image
     environment: *common-env  # Reuse environment variables
-    depends_on:
-      redis:
-        condition: service_healthy
+
     volumes:
       - ./app:/app/app
       - /dev/shm:/dev/shm  # Shared memory for Chrome
@@ -67,27 +62,4 @@ services:
     deploy:
       replicas: 1  # Start with 1 replica, scale as needed
 
-  # Celery Flower (monitoring)
-  flower:
-    image: applywise-backend  # Reuse the same image
-    ports:
-      - "5555:5555"
-    environment: *common-env  # Reuse environment variables
-    depends_on:
-      redis:
-        condition: service_healthy
-    command: ["celery", "-A", "app.tasks.celery_app", "flower", "--port=5555"]
-
-  # Celery Beat (scheduler - optional)
-  beat:
-    image: applywise-backend  # Reuse the same image
-    environment: *common-env  # Reuse environment variables
-    depends_on:
-      redis:
-        condition: service_healthy
-    volumes:
-      - ./app:/app/app
-    command: ["celery", "-A", "app.tasks.celery_app", "beat", "--loglevel=info"]
-
-volumes:
-  postgres_data: 
+# No volumes needed - using cloud services (Supabase, Upstash Redis, Firebase) 

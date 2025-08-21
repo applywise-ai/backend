@@ -62,6 +62,7 @@ if [ ! -f .env ]; then
     read -p "Supabase Service Role Key: " SUPABASE_KEY
     read -p "Supabase DB Password: " -s SUPABASE_DB_PASSWORD
     echo
+    read -p "Upstash Redis URL with token (e.g., rediss://:your-token@your-instance.upstash.io:6379): " REDIS_URL
     
     cat > .env << EOF
 # Supabase Configuration
@@ -69,10 +70,9 @@ SUPABASE_URL=$SUPABASE_URL
 SUPABASE_KEY=$SUPABASE_KEY
 SUPABASE_DB_PASSWORD=$SUPABASE_DB_PASSWORD
 
-# Redis Configuration
-REDIS_URL=redis://localhost:6379/0
-CELERY_BROKER_URL=redis://localhost:6379/0
-CELERY_RESULT_BACKEND=redis://localhost:6379/0
+# Redis Configuration (Upstash)
+REDIS_URL=$REDIS_URL
+# CELERY_BROKER_URL and CELERY_RESULT_BACKEND use REDIS_URL
 
 # Application Configuration
 DEBUG=true
@@ -86,9 +86,7 @@ CORS_ORIGINS=http://localhost:3000
 # Add other environment variables as needed
 # FIREBASE_CREDENTIALS=
 # FIREBASE_STORAGE_BUCKET=
-# AWS_REGION=us-east-1
-# AWS_ACCESS_KEY_ID=
-# AWS_SECRET_ACCESS_KEY=
+
 EOF
 
     echo "✅ .env file created!"

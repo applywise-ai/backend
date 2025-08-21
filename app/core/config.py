@@ -9,8 +9,8 @@ class Settings(BaseSettings):
     Environment variables are automatically loaded and validated.
     """
     
-    # Redis Configuration
-    REDIS_URL: str = Field(default="redis://localhost:6379/0", description="Redis connection URL")
+    # Redis Configuration (Upstash)
+    REDIS_URL: str = Field(default="", description="Upstash Redis connection URL with token")
     
     # Firebase Configuration
     FIREBASE_CREDENTIALS: str = Field(default="", description="Firebase service account JSON as string")
@@ -25,25 +25,16 @@ class Settings(BaseSettings):
 
     BROWSER_TIMEOUT: int = Field(default=10, description="Browser timeout in seconds")
     
-    # Celery Configuration
-    CELERY_BROKER_URL: str = Field(default="redis://localhost:6379/0", description="Celery broker URL")
-    CELERY_RESULT_BACKEND: str = Field(default="redis://localhost:6379/0", description="Celery result backend URL")
+    # Celery Configuration (will be constructed from Redis settings)
+    # These are computed properties that include the token
     
     # Supabase Configuration
     SUPABASE_URL: str = Field(default="", description="Supabase project URL")
     SUPABASE_KEY: str = Field(default="", description="Supabase service role key")
     SUPABASE_DB_PASSWORD: str = Field(default="", description="Supabase database password")
     
-
-    
     # CORS Configuration
-    CORS_ORIGINS: List[str] = Field(default=["*"], description="Allowed CORS origins")
-    
-    # AWS Configuration
-    AWS_REGION: str = Field(default="us-east-1", description="AWS region")
-    AWS_ACCESS_KEY_ID: str = Field(default="", description="AWS access key ID")
-    AWS_SECRET_ACCESS_KEY: str = Field(default="", description="AWS secret access key")
-    DB_SECRET_NAME: str = Field(default="applywise/db-credentials", description="AWS Secrets Manager secret name for database credentials")
+    CORS_ORIGINS: str = Field(default="*", description="Allowed CORS origins (comma-separated)")
     
     # WebSocket Configuration
     WEBSOCKET_URL: str = Field(default="", description="WebSocket server URL for notifications")
@@ -59,24 +50,27 @@ class Settings(BaseSettings):
     STRIPE_PUBLISHABLE_KEY: str = Field(default="", description="Stripe publishable key")
     STRIPE_WEBHOOK_SECRET: str = Field(default="", description="Stripe webhook secret")
     
-    @validator('CORS_ORIGINS', pre=True)
-    def parse_cors_origins(cls, v):
-        """Parse CORS origins from string or list"""
-        if isinstance(v, str):
-            return [origin.strip() for origin in v.split(',')]
-        return v
-    
+    @property
+    def cors_origins_list(self) -> List[str]:
+        """Convert comma-separated CORS_ORIGINS string to list"""
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(',') if origin.strip()]
 
-
-    
     @validator('BROWSER_TIMEOUT', pre=True)
     def parse_browser_timeout(cls, v):
         """Ensure browser timeout is an integer"""
         if isinstance(v, str):
             return int(v)
         return v
-    
 
+    @property
+    def CELERY_BROKER_URL(self) -> str:
+        """Celery broker URL (uses REDIS_URL directly)"""
+        return self.REDIS_URL
+    
+    @property
+    def CELERY_RESULT_BACKEND(self) -> str:
+        """Celery result backend URL (uses REDIS_URL directly)"""
+        return self.REDIS_URL
     
     @property
     def is_production(self) -> bool:
@@ -90,6 +84,10 @@ class Settings(BaseSettings):
     
     def get_redis_url(self, db: int = 0) -> str:
         """Get Redis URL for specific database"""
+        # If db is 0, return base URL as-is
+        if db == 0:
+            return self.REDIS_URL
+        # For other databases, append the db number
         base_url = self.REDIS_URL.rstrip('/0')
         return f"{base_url}/{db}"
     
