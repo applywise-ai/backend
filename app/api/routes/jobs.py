@@ -260,10 +260,10 @@ async def get_jobs_count(
 
 @router.get("/total-available-count")
 async def get_total_available_count(
-    exclude_applied_count: Optional[int] = Query(None, description="Number of applied jobs to subtract")
+    excluded_job_ids: Optional[str] = Query(None, description="Comma-separated job IDs to exclude")
 ):
     """
-    Get total count of available (non-expired) jobs
+    Get total count of available (non-expired) jobs with optional exclusions
     """
     try:
         # Get total count of non-expired jobs
@@ -272,12 +272,13 @@ async def get_total_available_count(
         # TEMPORARY: Filter out greenhouse jobs
         query = query.not_.ilike('job_url', '%greenhouse%')
         
+        # Apply exclude IDs filter
+        if excluded_job_ids:
+            exclude_list = [id.strip() for id in excluded_job_ids.split(',')]
+            query = query.not_.in_('id', exclude_list)
+        
         result = query.execute()
         total_count = result.count if result.count is not None else 0
-        
-        # Subtract applied count if provided
-        if exclude_applied_count:
-            total_count = max(0, total_count - exclude_applied_count)
         
         return total_count
         
