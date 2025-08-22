@@ -5,7 +5,15 @@ import asyncio
 from typing import List, Optional
 from app.schemas.application import FormQuestion
 
-redis_client = aioredis.from_url(settings.get_redis_url(db=0), decode_responses=True)
+# Configure Redis client with connection pooling for better performance
+redis_client = aioredis.from_url(
+    settings.get_redis_url(db=0), 
+    decode_responses=True,
+    max_connections=20,  # Connection pool size
+    retry_on_timeout=True,
+    socket_keepalive=True,
+    socket_keepalive_options={}
+)
 
 def check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:
     """

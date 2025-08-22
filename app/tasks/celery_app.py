@@ -29,6 +29,21 @@ celery_app.conf.update(
     task_soft_time_limit=25 * 60,  # 25 minutes
     worker_prefetch_multiplier=1,
     worker_max_tasks_per_child=1000,
+    # Optimize Redis usage to reduce reads
+    result_expires=3600,  # Results expire after 1 hour
+    task_ignore_result=False,  # Keep results for status checking
+    task_store_eager_result=True,  # Store results immediately
+    # Reduce Celery polling frequency
+    broker_transport_options={
+        'visibility_timeout': 3600,  # 1 hour
+        'fanout_prefix': True,
+        'fanout_patterns': True,
+    },
+    # Optimize worker polling behavior
+    worker_disable_rate_limits=True,
+    task_acks_late=True,  # Acknowledge tasks only after completion
+    worker_send_task_events=False,  # Disable task events to reduce Redis writes
+    task_send_sent_event=False,  # Don't send task-sent events
     broker_connection_retry_on_startup=True,  # Suppress deprecation warning and retain retry behavior
     # Use threads instead of fork to avoid macOS Objective-C runtime issues
     worker_pool='threads',

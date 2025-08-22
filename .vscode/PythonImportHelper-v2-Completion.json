@@ -822,15 +822,6 @@
         "documentation": {}
     },
     {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
         "label": "redis_client",
         "importPath": "app.services.websocket",
         "description": "app.services.websocket",
@@ -924,6 +915,15 @@
         "description": "pydantic",
         "isExtraImport": true,
         "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
         "documentation": {}
     },
     {
@@ -1992,7 +1992,7 @@
         "kind": 2,
         "importPath": "app.api.routes.applications",
         "description": "app.api.routes.applications",
-        "peekOfCode": "def check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\"\"\"\n    try:\n        from celery import current_app\n        # Check broker connection\n        inspect = current_app.control.inspect()\n        # Get active workers - this will fail if broker is down\n        active_workers = inspect.active()\n        if not active_workers:\n            return False, \"No Celery workers are running\"",
+        "peekOfCode": "def check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\n    Optimized to reduce Redis reads by limiting inspection calls\n    \"\"\"\n    try:\n        from celery import current_app\n        # Simplified check - just ping workers (fewer Redis operations)\n        inspect = current_app.control.inspect(timeout=1.0)  # Short timeout\n        # Use ping instead of active() - much lighter on Redis\n        pong = inspect.ping()",
         "detail": "app.api.routes.applications",
         "documentation": {}
     },
@@ -2001,7 +2001,7 @@
         "kind": 5,
         "importPath": "app.api.routes.applications",
         "description": "app.api.routes.applications",
-        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\ndef check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\"\"\"\n    try:\n        from celery import current_app\n        # Check broker connection\n        inspect = current_app.control.inspect()\n        # Get active workers - this will fail if broker is down\n        active_workers = inspect.active()",
+        "peekOfCode": "router = APIRouter()\nlogger = logging.getLogger(__name__)\ndef check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\n    Optimized to reduce Redis reads by limiting inspection calls\n    \"\"\"\n    try:\n        from celery import current_app\n        # Simplified check - just ping workers (fewer Redis operations)\n        inspect = current_app.control.inspect(timeout=1.0)  # Short timeout",
         "detail": "app.api.routes.applications",
         "documentation": {}
     },
@@ -2010,7 +2010,7 @@
         "kind": 5,
         "importPath": "app.api.routes.applications",
         "description": "app.api.routes.applications",
-        "peekOfCode": "logger = logging.getLogger(__name__)\ndef check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\"\"\"\n    try:\n        from celery import current_app\n        # Check broker connection\n        inspect = current_app.control.inspect()\n        # Get active workers - this will fail if broker is down\n        active_workers = inspect.active()\n        if not active_workers:",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef check_celery_connection():\n    \"\"\"Check if Celery broker is available and workers are running\n    Optimized to reduce Redis reads by limiting inspection calls\n    \"\"\"\n    try:\n        from celery import current_app\n        # Simplified check - just ping workers (fewer Redis operations)\n        inspect = current_app.control.inspect(timeout=1.0)  # Short timeout\n        # Use ping instead of active() - much lighter on Redis",
         "detail": "app.api.routes.applications",
         "documentation": {}
     },
@@ -2073,7 +2073,7 @@
         "kind": 5,
         "importPath": "app.api.routes.websocket",
         "description": "app.api.routes.websocket",
-        "peekOfCode": "router = APIRouter()\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    await websocket.accept()\n    pubsub = redis_client.pubsub()\n    await pubsub.subscribe(f\"user:{user_id}\")\n    try:\n        while True:\n            message = await pubsub.get_message(ignore_subscribe_messages=True)\n            if message:",
+        "peekOfCode": "router = APIRouter()\n@router.websocket(\"/{user_id}\")\nasync def websocket_endpoint(websocket: WebSocket, user_id: str):\n    await websocket.accept()\n    pubsub = redis_client.pubsub()\n    await pubsub.subscribe(f\"user:{user_id}\")\n    try:\n        # Set 3-minute timeout for WebSocket connections\n        timeout_seconds = 180  # 3 minutes\n        async def listen_with_timeout():",
         "detail": "app.api.routes.websocket",
         "documentation": {}
     },
@@ -3090,7 +3090,7 @@
         "kind": 5,
         "importPath": "app.services.websocket",
         "description": "app.services.websocket",
-        "peekOfCode": "redis_client = aioredis.from_url(settings.get_redis_url(db=0), decode_responses=True)\ndef check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:\n    \"\"\"\n    Check if all required form questions have non-None answers\n    Args:\n        form_questions: List of form questions to check\n    Returns:\n        True if all required questions have answers, False otherwise\n    \"\"\"\n    if not form_questions:",
+        "peekOfCode": "redis_client = aioredis.from_url(\n    settings.get_redis_url(db=0), \n    decode_responses=True,\n    max_connections=20,  # Connection pool size\n    retry_on_timeout=True,\n    socket_keepalive=True,\n    socket_keepalive_options={}\n)\ndef check_able_to_submit(form_questions: Optional[List[FormQuestion]] = None) -> bool:\n    \"\"\"",
         "detail": "app.services.websocket",
         "documentation": {}
     },

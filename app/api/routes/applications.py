@@ -29,25 +29,22 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 def check_celery_connection():
-    """Check if Celery broker is available and workers are running"""
+    """Check if Celery broker is available and workers are running
+    Optimized to reduce Redis reads by limiting inspection calls
+    """
     try:
         from celery import current_app
         
-        # Check broker connection
-        inspect = current_app.control.inspect()
+        # Simplified check - just ping workers (fewer Redis operations)
+        inspect = current_app.control.inspect(timeout=1.0)  # Short timeout
         
-        # Get active workers - this will fail if broker is down
-        active_workers = inspect.active()
+        # Use ping instead of active() - much lighter on Redis
+        pong = inspect.ping()
         
-        if not active_workers:
-            return False, "No Celery workers are running"
-        
-        # Check if workers are responding
-        stats = inspect.stats()
-        if not stats:
-            return False, "Celery workers are not responding"
+        if not pong:
+            return False, "No Celery workers are responding to ping"
             
-        worker_count = len(stats)
+        worker_count = len(pong)
         return True, f"Celery is running with {worker_count} worker(s)"
         
     except Exception as e:
@@ -243,6 +240,7 @@ async def get_application_status(
 ):
     """
     Get the status of a job application and its associated task
+    Optimized to reduce Redis reads by caching completed task results
     """
     try:
         # Get application from Firestore
@@ -264,21 +262,38 @@ async def get_application_status(
         task_id = application.get('taskId')
         if task_id:
             from celery.result import AsyncResult
-            task_result = AsyncResult(task_id)
             
-            response.update({
-                "task_id": task_id,
-                "task_status": task_result.status,
-                "task_result": task_result.result if task_result.ready() else None,
-                "task_info": {
-                    "ready": task_result.ready(),
-                    "successful": task_result.successful() if task_result.ready() else None,
-                    "failed": task_result.failed() if task_result.ready() else None,
-                }
-            })
-            
-            if task_result.failed():
-                response["task_error"] = str(task_result.result)
+            # Only check Redis if task is not in a final state
+            app_status = application.get('status')
+            if app_status in ['COMPLETED', 'APPLIED', 'FAILED']:
+                # Task is done, use cached status from Firestore instead of Redis
+                response.update({
+                    "task_id": task_id,
+                    "task_status": app_status,
+                    "task_result": "Task completed - check application status",
+                    "task_info": {
+                        "ready": True,
+                        "successful": app_status in ['COMPLETED', 'APPLIED'],
+                        "failed": app_status == 'FAILED',
+                    }
+                })
+            else:
+                # Task still running, check Redis (but limit frequency)
+                task_result = AsyncResult(task_id)
+                
+                response.update({
+                    "task_id": task_id,
+                    "task_status": task_result.status,
+                    "task_result": task_result.result if task_result.ready() else None,
+                    "task_info": {
+                        "ready": task_result.ready(),
+                        "successful": task_result.successful() if task_result.ready() else None,
+                        "failed": task_result.failed() if task_result.ready() else None,
+                    }
+                })
+                
+                if task_result.failed():
+                    response["task_error"] = str(task_result.result)
         
         return response
         
