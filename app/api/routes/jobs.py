@@ -268,6 +268,10 @@ async def get_total_available_count(
     try:
         # Get total count of non-expired jobs
         query = supabase_manager.client.table('jobs').select('id', count='exact').eq('expired', False)
+        
+        # TEMPORARY: Filter out greenhouse jobs
+        query = query.not_.ilike('job_url', '%greenhouse%')
+        
         result = query.execute()
         total_count = result.count if result.count is not None else 0
         
