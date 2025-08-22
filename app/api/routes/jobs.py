@@ -126,6 +126,9 @@ async def get_jobs(
             exclude_list = [id.strip() for id in excluded_job_ids.split(',')]
             query = query.not_.in_('id', exclude_list)
         
+        # TEMPORARY: Filter out greenhouse jobs
+        query = query.not_.ilike('job_url', '%greenhouse%')
+        
         # Apply sorting with id as secondary sort
         if sort_order.lower() == 'desc':
             query = query.order(sort_by, desc=True).order('id')
@@ -241,6 +244,9 @@ async def get_jobs_count(
             exclude_list = [id.strip() for id in excluded_job_ids.split(',')]
             query = query.not_.in_('id', exclude_list)
         
+        # TEMPORARY: Filter out greenhouse jobs
+        query = query.not_.ilike('job_url', '%greenhouse%')
+        
         result = query.execute()
         filtered_count = result.count if result.count is not None else 0
         logger.info(f"Filtered count: {filtered_count}")
@@ -355,6 +361,9 @@ async def get_recommended_jobs(
         if excluded_job_ids:
             exclude_list = [id.strip() for id in excluded_job_ids.split(',')]
             query = query.not_.in_('id', exclude_list)
+        
+        # TEMPORARY: Filter out greenhouse jobs
+        query = query.not_.ilike('job_url', '%greenhouse%')
         
         # Order by creation date (newest first) and limit
         query = query.order('created_at', desc=True).limit(limit)
