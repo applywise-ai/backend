@@ -15,10 +15,13 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome 129
-RUN wget -q https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_127.0.0.63-1_amd64.deb -O /tmp/google-chrome-stable.deb \
+ENV CHROME_VERSION=129.0.6668.59-1
+RUN wget -q https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}_amd64.deb -O /tmp/google-chrome-stable.deb \
     && apt-get update \
     && apt-get install -y /tmp/google-chrome-stable.deb \
+    && apt-get install -f -y \
     && rm -rf /tmp/google-chrome-stable.deb /var/lib/apt/lists/*
+
 
 # Set work directory
 WORKDIR /app
