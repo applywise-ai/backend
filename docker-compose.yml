@@ -58,7 +58,7 @@ services:
     volumes:
       - ./app:/app/app
       - /dev/shm:/dev/shm  # Shared memory for Chrome
-    command: ["celery", "-A", "app.tasks.celery_app", "worker", "--loglevel=info", "--concurrency=2"]
+    command: ["celery", "-A", "app.tasks.celery_app", "worker", "--loglevel=info", "--autoscale=4,1"]
     deploy:
       replicas: 1  # Start with 1 replica, scale as needed
 
