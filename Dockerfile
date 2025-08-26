@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome 129
-RUN wget -q https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_127.0.####-1_amd64.deb -O /tmp/google-chrome-stable.deb \
+RUN wget -q https://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_127.0.0.63-1_amd64.deb -O /tmp/google-chrome-stable.deb \
     && apt-get update \
     && apt-get install -y /tmp/google-chrome-stable.deb \
     && rm -rf /tmp/google-chrome-stable.deb /var/lib/apt/lists/*
