@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Chrome 129
-ENV CHROME_VERSION=129.0.6668.59-1
+ENV CHROME_VERSION=114.0.5735.198-1
 RUN wget -q https://mirror.cs.uchicago.edu/google-chrome/pool/main/g/google-chrome-stable/google-chrome-stable_${CHROME_VERSION}_amd64.deb -O /tmp/google-chrome-stable.deb \
     && apt-get update \
     && apt-get install -y /tmp/google-chrome-stable.deb \
