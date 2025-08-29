@@ -76,6 +76,8 @@ class CustomWebDriver(uc.Chrome):
                 super().__init__(options=options, headless=headless, version_main=None)
             
             self.apply_stealth()
+            # Check DISPLAY
+            logger.info(f"DISPLAY: {os.environ.get('DISPLAY')}")
             
         except Exception as e:
             logger.error(f"Failed to initialize undetected-chromedriver: {e}")
