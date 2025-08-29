@@ -66,7 +66,7 @@ class CustomWebDriver(uc.Chrome):
 
             # Get Chrome binary path based on environment
             chrome_binary = get_chrome_binary_path()
-            
+            logger.info(f"DISPLAY: {os.environ.get('DISPLAY')}")
             # Initialize with detected Chrome path
             if chrome_binary:
                 logger.info(f"Initializing Chrome with binary: {chrome_binary}")
@@ -77,7 +77,7 @@ class CustomWebDriver(uc.Chrome):
             
             self.apply_stealth()
             # Check DISPLAY
-            logger.info(f"DISPLAY: {os.environ.get('DISPLAY')}")
+            
             
         except Exception as e:
             logger.error(f"Failed to initialize undetected-chromedriver: {e}")
